@@ -21,16 +21,7 @@
             color: #eee;
         }
         #weather-temp { color: #D4AF37; font-weight: 900; }
-        .countdown-box {
-            background: rgba(20, 20, 20, 0.8);
-            border: 2px solid #D4AF37;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 20px 0;
-            text-align: center;
-        }
-        .countdown-label { font-size: 0.9rem; color: #D4AF37; margin-bottom: 8px; font-weight: bold; }
-        #timer-display { font-size: 1.8rem; font-weight: 900; color: #fff; font-family: monospace; }
+        
         .footer-info {
             margin-top: 30px;
             padding: 20px;
@@ -59,10 +50,6 @@
         </div>
 
         <div id="today-tab" class="tab-content active">
-            <div id="match-countdown" class="countdown-box" style="display: none;">
-                <div class="countdown-label">⏱️ متبقي على بداية المباراة:</div>
-                <div id="timer-display">00:00:00</div>
-            </div>
             <div id="today-matches-list" class="schedule-container"></div>
         </div>
         
@@ -131,26 +118,6 @@
             } catch (e) { document.getElementById('weather-temp').innerText = "24°C"; }
         }
         getQT();
-
-        function startTimer() {
-            const timerDisplay = document.getElementById('timer-display');
-            const timerBox = document.getElementById('match-countdown');
-            function update() {
-                const now = new Date();
-                const target = new Date();
-                target.setHours(23, 40, 0); 
-                const diff = target - now;
-                if (diff > 0) {
-                    timerBox.style.display = 'block';
-                    const h = Math.floor(diff / 3600000);
-                    const m = Math.floor((diff % 3600000) / 60000);
-                    const s = Math.floor((diff % 60000) / 1000);
-                    timerDisplay.innerText = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
-                } else { timerBox.style.display = 'none'; }
-            }
-            setInterval(update, 1000); update();
-        }
-        startTimer();
     </script>
 </body>
 </html>
