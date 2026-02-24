@@ -79,7 +79,7 @@
         </div>
 
         <div class="footer-info">
-            <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 ©️ 2026</p>
+            <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
             <div style="font-size: 0.85rem; color: var(--gold); font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
         </div>
     </div>
@@ -101,7 +101,6 @@
     <script src="script.js"></script>
 
     <script>
-        // كود الطقس
         async function getQT() {
             try {
                 const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
@@ -111,35 +110,23 @@
         }
         getQT();
 
-        // كود العداد التنازلي الجديد والمبسط
         function startTimer() {
             const timerDisplay = document.getElementById('timer-display');
             const timerBox = document.getElementById('match-countdown');
-            
             function update() {
                 const now = new Date();
-                // نحدد موعد مباراة الليلة (الساعة 11 مساءً)
                 const target = new Date();
                 target.setHours(23, 0, 0); 
-
                 const diff = target - now;
-
                 if (diff > 0) {
                     timerBox.style.display = 'block';
                     const h = Math.floor(diff / 3600000);
                     const m = Math.floor((diff % 3600000) / 60000);
                     const s = Math.floor((diff % 60000) / 1000);
-                    
-                    timerDisplay.innerText = 
-                        (h < 10 ? "0"+h : h) + ":" + 
-                        (m < 10 ? "0"+m : m) + ":" + 
-                        (s < 10 ? "0"+s : s);
-                } else {
-                    timerBox.style.display = 'none';
-                }
+                    timerDisplay.innerText = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+                } else { timerBox.style.display = 'none'; }
             }
-            setInterval(update, 1000);
-            update();
+            setInterval(update, 1000); update();
         }
         startTimer();
     </script>
