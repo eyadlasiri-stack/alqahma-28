@@ -7,31 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* تنسيق شريط الطقس */
-        .weather-container {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50px;
-            padding: 8px 20px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 15px auto;
-            font-size: 0.95rem;
-            color: #eee;
-        }
+        .weather-container { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 50px; padding: 8px 20px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 15px auto; font-size: 0.95rem; color: #eee; }
         #weather-temp { color: #D4AF37; font-weight: 900; }
-        
-        /* تنسيق العداد التنازلي */
-        .countdown-box {
-            background: rgba(20, 20, 20, 0.8);
-            border: 2px solid #D4AF37;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 20px 0;
-            text-align: center;
-        }
+        .countdown-box { background: rgba(20, 20, 20, 0.8); border: 2px solid #D4AF37; border-radius: 15px; padding: 15px; margin: 20px 0; text-align: center; }
         .countdown-label { font-size: 0.9rem; color: #D4AF37; margin-bottom: 8px; font-weight: bold; }
         #timer-display { font-size: 1.8rem; font-weight: 900; color: #fff; font-family: monospace; }
     </style>
@@ -42,10 +20,8 @@
         <header class="header">
             <h1>جدول مباريات</h1>
             <p>بطولة القحمة الرمضانية الـ 28 للعام 2026</p>
-
             <div class="weather-container">
-                <span>📍 طقس القحمة الآن:</span>
-                <span id="weather-temp">جاري التحميل...</span>
+                <span>📍 طقس القحمة الآن:</span> <span id="weather-temp">جاري التحميل...</span>
             </div>
         </header>
 
@@ -79,16 +55,23 @@
         </div>
 
         <div class="footer-info">
-            <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
+            <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة 28 © 2026</p>
             <div style="font-size: 0.85rem; color: var(--gold); font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
         </div>
     </div>
 
     <div id="master-schedule" style="display: none;">
+        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">الأربعاء 01 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">الخميس 02 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الساحل الرياضي</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">الجمعة 03 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">الخليج</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">السبت 04 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">الأحد 05 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">الاثنين 06 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">الخليج</span></div></div></div>
+
         <div class="match-day-source" data-date="2026-02-24">
             <div class="day-header">الثلاثاء 07 رمضان</div>
             <div class="match-card" data-start="23:40">
-                <div class="teams"><span class="team">عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div>
+                <div class="teams"><span class="team">صقور عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div>
                 <div class="match-time">11:40 م</div>
             </div>
             <div class="match-card" data-start="24:30">
@@ -96,8 +79,11 @@
                 <div class="match-time">12:30 ص</div>
             </div>
         </div>
-        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">الأربعاء 01 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">الاثنين 06 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">الخليج</span></div></div></div>
+
+        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">الأربعاء 08 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">الخميس 09 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">صقور عرمرم</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-27"><div class="day-header">الجمعة 10 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">جندلة</span><span class="vs">VS</span><span class="team">الفيض</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-28"><div class="day-header">السبت 11 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div></div></div>
     </div>
 
     <script src="script.js"></script>
@@ -118,7 +104,7 @@
             function update() {
                 const now = new Date();
                 const target = new Date();
-                // تم ضبط الوقت هنا لـ 11:40 م
+                // تم التعديل لـ 11:40 م
                 target.setHours(23, 40, 0); 
                 const diff = target - now;
                 if (diff > 0) {
