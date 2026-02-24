@@ -7,23 +7,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .weather-container { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 50px; padding: 8px 20px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 15px auto; font-size: 0.95rem; color: #eee; }
+        /* تنسيق شريط الطقس */
+        .weather-container {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            padding: 8px 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px auto;
+            font-size: 0.95rem;
+            color: #eee;
+        }
         #weather-temp { color: #D4AF37; font-weight: 900; }
-        .countdown-box { background: rgba(20, 20, 20, 0.8); border: 2px solid #D4AF37; border-radius: 15px; padding: 15px; margin: 20px 0; text-align: center; }
-        #timer-display { font-size: 1.8rem; font-weight: 900; color: #fff; font-family: monospace; }
         
-        /* تنسيق التبويبات */
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .tabs-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-bottom: 20px; }
-        .tab-btn { padding: 10px 15px; font-size: 0.85rem; flex: 1 1 auto; min-width: 100px; cursor: pointer; border: none; background: rgba(255,255,255,0.05); color: #fff; border-radius: 8px; font-family: 'Cairo'; transition: 0.3s; }
-        .tab-btn.active { background: #D4AF37; color: #000; font-weight: bold; transform: scale(1.05); }
-
-        /* جداول الترتيب */
-        .group-head { background: rgba(212, 175, 55, 0.15); color: #D4AF37; padding: 10px; font-weight: bold; margin-top: 20px; border-right: 4px solid #D4AF37; text-align: right; }
-        .standings-table { width: 100%; border-collapse: collapse; margin-top: 5px; background: rgba(255,255,255,0.02); border-radius: 10px; font-size: 0.85rem; margin-bottom: 20px; }
-        .standings-table th { background: #D4AF37; color: #000; padding: 8px; text-align: center; }
-        .standings-table td { padding: 8px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); color: #fff; }
+        /* تنسيق العداد التنازلي */
+        .countdown-box {
+            background: rgba(20, 20, 20, 0.8);
+            border: 2px solid #D4AF37;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .countdown-label { font-size: 0.9rem; color: #D4AF37; margin-bottom: 8px; font-weight: bold; }
+        #timer-display { font-size: 1.8rem; font-weight: 900; color: #fff; font-family: monospace; }
     </style>
 </head>
 <body>
@@ -32,134 +42,66 @@
         <header class="header">
             <h1>جدول مباريات</h1>
             <p>بطولة القحمة الرمضانية الـ 28 للعام 2026</p>
+
             <div class="weather-container">
-                <span>📍 طقس القحمة الآن:</span> <span id="weather-temp">--°C</span>
+                <span>📍 طقس القحمة الآن:</span>
+                <span id="weather-temp">جاري التحميل...</span>
             </div>
         </header>
 
         <div class="tabs-nav">
-            <button class="tab-btn active" onclick="showTab(event, 'today-tab')">مباريات اليوم</button>
-            <button class="tab-btn" onclick="showTab(event, 'upcoming-tab')">المباريات القادمة</button>
-            <button class="tab-btn" onclick="showTab(event, 'previous-tab')">المباريات السابقة</button>
-            <button class="tab-btn" onclick="showTab(event, 'standings-tab')">ترتيب المجموعات</button>
-            <button class="tab-btn" onclick="showTab(event, 'groups-tab')">المجموعات</button>
+            <button class="tab-btn active" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
+            <button class="tab-btn" onclick="openTab(event, 'upcoming-tab')">المباريات القادمة</button>
+            <button class="tab-btn" onclick="openTab(event, 'previous-tab')">المباريات السابقة</button>
+            <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
         </div>
 
         <div id="today-tab" class="tab-content active">
-            <div id="match-countdown" class="countdown-box">
-                <div style="font-size: 0.8rem; color: #D4AF37; font-weight: bold;">⏱️ متبقي على المباراة:</div>
+            <div id="match-countdown" class="countdown-box" style="display: none;">
+                <div class="countdown-label">⏱️ متبقي على بداية المباراة:</div>
                 <div id="timer-display">00:00:00</div>
             </div>
-            <div class="schedule-container">
-                <div class="day-header">الثلاثاء 07 رمضان</div>
-                <div class="match-card"><div class="teams"><span class="team">صقور عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">11:00 م</div></div>
-                <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">12:30 ص</div></div>
-            </div>
+            <div id="today-matches-list" class="schedule-container"></div>
         </div>
-
-        <div id="upcoming-tab" class="tab-content">
-            <div class="schedule-container">
-                <div class="day-header">الأربعاء 08 رمضان</div>
-                <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div></div>
-                <div class="day-header">الخميس 09 رمضان</div>
-                <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div></div>
-                <div class="day-header">السبت 11 رمضان</div>
-                <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div></div>
-            </div>
-        </div>
-
-        <div id="previous-tab" class="tab-content">
-            <div class="schedule-container">
-                <div class="day-header">الاثنين 06 رمضان</div>
-                <div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div></div>
-                <div class="day-header">الأحد 05 رمضان</div>
-                <div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div></div>
-                <div class="day-header">السبت 04 رمضان</div>
-                <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div></div>
-            </div>
-        </div>
-
-        <div id="standings-tab" class="tab-content">
-            <div id="dynamic-standings-area"></div>
-        </div>
+        
+        <div id="upcoming-tab" class="tab-content"><div id="upcoming-matches-list" class="schedule-container"></div></div>
+        <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
 
         <div id="groups-tab" class="tab-content">
             <div class="groups-container">
-                <div class="group-card" data-g="المجموعة 1"><div class="group-header">المجموعة 1</div><ul class="group-teams"><li>السوق</li><li>جندلة</li><li>الفيض</li></ul></div>
-                <div class="group-card" data-g="المجموعة 2"><div class="group-header">المجموعة 2</div><ul class="group-teams"><li>البرك</li><li>ساحل مغزل</li><li>وحدة الرقه</li></ul></div>
-                <div class="group-card" data-g="المجموعة 3"><div class="group-header">المجموعة 3</div><ul class="group-teams"><li>الصقر</li><li>عمق</li><li>العرق</li></ul></div>
-                <div class="group-card" data-g="المجموعة 4"><div class="group-header">المجموعة 4</div><ul class="group-teams"><li>السلطان</li><li>الساحل الرياضي</li><li>مستقبل عرمرم</li></ul></div>
-                <div class="group-card" data-g="المجموعة 5"><div class="group-header">المجموعة 5</div><ul class="group-teams"><li>الفيصلي</li><li>الوسام</li><li>خليج الصوالحة</li></ul></div>
-                <div class="group-card" data-g="المجموعة 6"><div class="group-header">المجموعة 6</div><ul class="group-teams"><li>صقلية</li><li>صقور عرمرم</li><li>دبسا</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 1</div><ul class="group-teams"><li>السوق</li><li>جندلة</li><li>الفيض</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 2</div><ul class="group-teams"><li>البرك</li><li>ساحل مغزل</li><li>وحدة الرقه</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 3</div><ul class="group-teams"><li>الصقر</li><li>عمق</li><li>العرق</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 4</div><ul class="group-teams"><li>السلطان</li><li>الساحل الرياضي</li><li>مستقبل عرمرم</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 5</div><ul class="group-teams"><li>الفيصلي</li><li>الوسام</li><li>خليج الصوالحة</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 6</div><ul class="group-teams"><li>صقلية</li><li>صقور عرمرم</li><li>دبسا</li></ul></div>
             </div>
         </div>
 
         <div class="footer-info">
-            <p style="font-size: 0.75rem; color: #888;">بطولة القحمة الرمضانية 28 © 2026</p>
-            <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold;">تصميم وإشراف: إياد عسيري</div>
+            <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
+            <div style="font-size: 0.85rem; color: var(--gold); font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
         </div>
     </div>
 
-    <div id="master-results" style="display: none;">
-        <div class="r" data-t1="البرك" data-s="2-1" data-t2="وحدة الرقه"></div>
-        <div class="r" data-t1="الساحل الرياضي" data-s="2-1" data-t2="مستقبل عرمرم"></div>
-        <div class="r" data-t1="عمق" data-s="4-0" data-t2="العرق"></div>
-        <div class="r" data-t1="الفيصلي" data-s="2-0" data-t2="خليج الصوالحة"></div>
-        <div class="r" data-t1="السوق" data-s="2-0" data-t2="جندلة"></div>
-        <div class="r" data-t1="ساحل مغزل" data-s="3-1" data-t2="وحدة الرقه"></div>
-        <div class="r" data-t1="الوسام" data-s="4-1" data-t2="خليج الصوالحة"></div>
+    <div id="master-schedule" style="display: none;">
+        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">الأربعاء 01 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">11:00 م</div></div></div>
+        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">الخميس 02 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الساحل الرياضي</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div><div class="match-time">12:30 ص</div></div></div>
+        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">الجمعة 03 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">الخليج</span></div><div class="match-time">11:00 م</div></div></div>
+        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">السبت 04 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div><div class="match-time">11:00 م</div></div></div>
+        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">الأحد 05 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">12:30 ص</div></div></div>
+        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">الاثنين 06 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">الخليج</span></div><div class="match-time">11:00 م</div></div></div>
+        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">الثلاثاء 07 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">السوق</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">12:30 ص</div></div></div>
+        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">الأربعاء 08 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div><div class="match-time">11:00 م</div></div></div>
+        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">الخميس 09 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">صقور عرمرم</span></div><div class="match-time">12:30 ص</div></div></div>
+        <div class="match-day-source" data-date="2026-02-27"><div class="day-header">الجمعة 10 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">جندلة</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time">12:30 ص</div></div></div>
+        <div class="match-day-source" data-date="2026-02-28"><div class="day-header">السبت 11 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div><div class="match-time">12:30 ص</div></div></div>
     </div>
 
+    <script src="script.js"></script>
+
     <script>
-        // وظيفة التبديل بين التبويبات (بدون الاعتماد على ملف خارجي)
-        function showTab(evt, tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(c => c.classList.remove('active'));
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-
-        // حساب الترتيب تلقائياً
-        function calcStandings() {
-            const teams = {};
-            document.querySelectorAll('.group-card').forEach(c => {
-                const g = c.getAttribute('data-g');
-                c.querySelectorAll('li').forEach(li => {
-                    teams[li.innerText.trim()] = { g: g, p: 0, pts: 0, diff: 0 };
-                });
-            });
-
-            document.querySelectorAll('#master-results .r').forEach(r => {
-                const t1 = r.getAttribute('data-t1'), t2 = r.getAttribute('data-t2');
-                const [s1, s2] = r.getAttribute('data-s').split('-').map(Number);
-                if(teams[t1] && teams[t2]) {
-                    teams[t1].p++; teams[t2].p++;
-                    teams[t1].diff += (s1-s2); teams[t2].diff += (s2-s1);
-                    if(s1 > s2) teams[t1].pts += 3; else if(s2 > s1) teams[t2].pts += 3; else { teams[t1].pts++; teams[t2].pts++; }
-                }
-            });
-
-            const groups = {};
-            for(let n in teams) {
-                if(!groups[teams[n].g]) groups[teams[n].g] = [];
-                groups[teams[n].g].push({name: n, ...teams[n]});
-            }
-
-            let html = '';
-            for(let g in groups) {
-                groups[g].sort((a,b) => b.pts - a.pts || b.diff - a.diff);
-                html += `<div class="group-head">${g}</div><table class="standings-table"><tr><th>الفريق</th><th>لعب</th><th>فرق</th><th>نقاط</th></tr>`;
-                groups[g].forEach(i => {
-                    html += `<tr><td>${i.name}</td><td>${i.p}</td><td>${i.diff > 0 ? '+'+i.diff : i.diff}</td><td><b>${i.pts}</b></td></tr>`;
-                });
-                html += `</table>`;
-            }
-            document.getElementById('dynamic-standings-area').innerHTML = html;
-        }
-
-        // الطقس والعداد
+        // كود الطقس
         async function getQT() {
             try {
                 const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
@@ -167,19 +109,39 @@
                 document.getElementById('weather-temp').innerText = Math.round(d.current_weather.temperature) + "°C";
             } catch (e) { document.getElementById('weather-temp').innerText = "24°C"; }
         }
+        getQT();
 
+        // كود العداد التنازلي الجديد والمبسط
         function startTimer() {
-            setInterval(() => {
-                const now = new Date(), target = new Date(); target.setHours(23, 0, 0);
-                const diff = target - now;
-                if (diff > 0) {
-                    const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
-                    document.getElementById('timer-display').innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-                } else { document.getElementById('match-countdown').style.display = 'none'; }
-            }, 1000);
-        }
+            const timerDisplay = document.getElementById('timer-display');
+            const timerBox = document.getElementById('match-countdown');
+            
+            function update() {
+                const now = new Date();
+                // نحدد موعد مباراة الليلة (الساعة 11 مساءً)
+                const target = new Date();
+                target.setHours(23, 0, 0); 
 
-        window.onload = () => { getQT(); startTimer(); calcStandings(); };
+                const diff = target - now;
+
+                if (diff > 0) {
+                    timerBox.style.display = 'block';
+                    const h = Math.floor(diff / 3600000);
+                    const m = Math.floor((diff % 3600000) / 60000);
+                    const s = Math.floor((diff % 60000) / 1000);
+                    
+                    timerDisplay.innerText = 
+                        (h < 10 ? "0"+h : h) + ":" + 
+                        (m < 10 ? "0"+m : m) + ":" + 
+                        (s < 10 ? "0"+s : s);
+                } else {
+                    timerBox.style.display = 'none';
+                }
+            }
+            setInterval(update, 1000);
+            update();
+        }
+        startTimer();
     </script>
 </body>
 </html>
