@@ -7,29 +7,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .weather-bar {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+        .weather-container {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 50px;
             padding: 8px 20px;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #ddd;
+            margin: 15px auto;
+            font-size: 0.95rem;
+            color: #eee;
         }
-        #weather-temp { color: var(--gold); font-weight: bold; }
+        #weather-temp { color: #D4AF37; font-weight: 900; }
         
-        .timer-box {
-            background: #1a1a1a;
-            border: 1px solid var(--gold);
-            border-radius: 10px;
-            padding: 10px;
-            margin: 15px 0;
+        /* ستايل زر الموقع */
+        .location-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #D4AF37;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+        .location-btn:hover { background: #fff; transform: scale(1.05); }
+
+        .countdown-box {
+            background: rgba(20, 20, 20, 0.8);
+            border: 2px solid #D4AF37;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
             text-align: center;
         }
-        #timer-display { font-size: 1.5rem; font-weight: 900; color: #fff; font-family: monospace; }
+        #timer-display { font-size: 1.8rem; font-weight: 900; color: #fff; font-family: monospace; }
     </style>
 </head>
 <body>
@@ -39,10 +57,15 @@
             <h1>جدول مباريات</h1>
             <p>بطولة القحمة الرمضانية الـ 28 للعام 2026</p>
 
-            <div class="weather-bar">
+            <div class="weather-container">
                 <span>📍 طقس القحمة الآن:</span>
-                <span id="weather-temp">--°C</span>
+                <span id="weather-temp">جاري التحميل...</span>
             </div>
+            
+            <br>
+            <a href="https://www.google.com/maps/search/?api=1&query=ساحة+البلدية+بالقحمة" target="_blank" class="location-btn">
+                📍 موقع الملعب (ساحة البلدية)
+            </a>
         </header>
 
         <div class="tabs-nav">
@@ -53,16 +76,15 @@
         </div>
 
         <div id="today-tab" class="tab-content active">
-            <div id="match-countdown" class="timer-box" style="display: none;">
-                <div style="font-size: 0.8rem; color: var(--gold); margin-bottom: 5px;">متبقي على بداية المباراة:</div>
+            <div id="match-countdown" class="countdown-box" style="display: none;">
+                <div style="font-size: 0.9rem; color: #D4AF37; margin-bottom: 8px;">⏱️ متبقي على بداية المباراة:</div>
                 <div id="timer-display">00:00:00</div>
             </div>
             <div id="today-matches-list" class="schedule-container"></div>
         </div>
-        
+
         <div id="upcoming-tab" class="tab-content"><div id="upcoming-matches-list" class="schedule-container"></div></div>
         <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
-
         <div id="groups-tab" class="tab-content">
             <div class="groups-container">
                 <div class="group-card"><div class="group-header">المجموعة 1</div><ul class="group-teams"><li>السوق</li><li>جندلة</li><li>الفيض</li></ul></div>
@@ -81,42 +103,36 @@
     </div>
 
     <div id="master-schedule" style="display: none;">
-        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">الأربعاء 01 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">الخميس 02 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">الجمعة 03 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">الخليج</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">السبت 04 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">الأحد 05 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">الاثنين 06 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">الخليج</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">الثلاثاء 07 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">السوق</span><span class="vs">VS</span><span class="team">الفيض</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">الأربعاء 08 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div></div></div>
-    </div>
+        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">الثلاثاء 07 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">11:00 م</div></div></div>
+        </div>
 
     <script src="script.js"></script>
     <script>
-        async function fetchQT() {
+        // كود الطقس والعداد
+        async function fetchWeather() {
             try {
                 const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
                 const d = await r.json();
                 document.getElementById('weather-temp').innerText = Math.round(d.current_weather.temperature) + "°C";
             } catch (e) { document.getElementById('weather-temp').innerText = "24°C"; }
         }
-        fetchQT();
+        fetchWeather();
 
         function startTimer() {
-            const timerBox = document.getElementById('match-countdown');
-            const timerDisplay = document.getElementById('timer-display');
+            const display = document.getElementById('timer-display');
+            const box = document.getElementById('match-countdown');
             function update() {
                 const now = new Date();
                 const target = new Date();
                 target.setHours(23, 0, 0); 
                 const diff = target - now;
                 if (diff > 0) {
-                    timerBox.style.display = 'block';
+                    box.style.display = 'block';
                     const h = Math.floor(diff / 3600000);
                     const m = Math.floor((diff % 3600000) / 60000);
                     const s = Math.floor((diff % 60000) / 1000);
-                    timerDisplay.innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-                } else { timerBox.style.display = 'none'; }
+                    display.innerText = (h<10?"0"+h:h)+":"+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
+                } else { box.style.display = 'none'; }
             }
             setInterval(update, 1000); update();
         }
