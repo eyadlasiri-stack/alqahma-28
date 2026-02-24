@@ -34,33 +34,6 @@
         }
         .countdown-label { font-size: 0.9rem; color: #D4AF37; margin-bottom: 8px; font-weight: bold; }
         #timer-display { font-size: 1.8rem; font-weight: 900; color: #fff; font-family: monospace; }
-
-        /* ستايل علامة "مباشر الآن" */
-        .live-status {
-            display: none; /* مخفي بشكل افتراضي ويظهر وقت المباراة */
-            color: #ff4d4d;
-            font-weight: 900;
-            font-size: 1rem;
-            text-align: center;
-            margin-bottom: 10px;
-            animation: blinker 1.5s linear infinite;
-        }
-        @keyframes blinker {
-            50% { opacity: 0.3; }
-        }
-
-        /* تنسيق إخلاء المسؤولية في الأسفل */
-        .disclaimer-text {
-            font-size: 0.65rem;
-            color: #777;
-            margin-top: 15px;
-            line-height: 1.5;
-            max-width: 85%;
-            margin-left: auto;
-            margin-right: auto;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 10px;
-        }
     </style>
 </head>
 <body>
@@ -88,9 +61,6 @@
                 <div class="countdown-label">⏱️ متبقي على بداية المباراة:</div>
                 <div id="timer-display">00:00:00</div>
             </div>
-
-            <div id="live-indicator" class="live-status">🔴 مباشر الآن</div>
-
             <div id="today-matches-list" class="schedule-container"></div>
         </div>
         
@@ -111,28 +81,28 @@
         <div class="footer-info">
             <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
             <div style="font-size: 0.85rem; color: var(--gold); font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
-            <p class="disclaimer-text">هذا الموقع شخصي مستقل تم إنشاؤه لأغراض تنظيمية فقط ولا يمثل أي جهة رسمية.</p>
         </div>
     </div>
 
     <div id="master-schedule" style="display: none;">
-        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">الأربعاء 01 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">11:00 م</div></div></div>
-        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">الخميس 02 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الساحل الرياضي</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div><div class="match-time">12:30 ص</div></div></div>
-        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">الجمعة 03 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">الخليج</span></div><div class="match-time">11:00 م</div></div></div>
-        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">السبت 04 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div><div class="match-time">11:00 م</div></div></div>
-        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">الأحد 05 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">12:30 ص</div></div></div>
-        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">الاثنين 06 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">الخليج</span></div><div class="match-time">11:00 م</div></div></div>
-        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">الثلاثاء 07 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">السوق</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">12:30 ص</div></div></div>
-        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">الأربعاء 08 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div><div class="match-time">11:00 م</div></div></div>
-        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">الخميس 09 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">صقور عرمرم</span></div><div class="match-time">12:30 ص</div></div></div>
-        <div class="match-day-source" data-date="2026-02-27"><div class="day-header">الجمعة 10 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">جندلة</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time">12:30 ص</div></div></div>
-        <div class="match-day-source" data-date="2026-02-28"><div class="day-header">السبت 11 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div><div class="match-time">11:00 م</div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div><div class="match-time">12:30 ص</div></div></div>
+        <div class="match-day-source" data-date="2026-02-24">
+            <div class="day-header">الثلاثاء 07 رمضان</div>
+            <div class="match-card" data-start="23:40">
+                <div class="teams"><span class="team">عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div>
+                <div class="match-time">11:40 م</div>
+            </div>
+            <div class="match-card" data-start="24:30">
+                <div class="teams"><span class="team">السوق</span><span class="vs">VS</span><span class="team">الفيض</span></div>
+                <div class="match-time">12:30 ص</div>
+            </div>
+        </div>
+        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">الأربعاء 01 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">الاثنين 06 رمضان</div><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">الخليج</span></div></div></div>
     </div>
 
     <script src="script.js"></script>
 
     <script>
-        // كود الطقس
         async function getQT() {
             try {
                 const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
@@ -142,36 +112,22 @@
         }
         getQT();
 
-        // كود العداد التنازلي + إدارة علامة المباشر
         function startTimer() {
             const timerDisplay = document.getElementById('timer-display');
             const timerBox = document.getElementById('match-countdown');
-            const liveIndicator = document.getElementById('live-indicator');
-
             function update() {
                 const now = new Date();
                 const target = new Date();
-                target.setHours(23, 0, 0); // موعد المباراة 11 مساءً
-
+                // تم ضبط الوقت هنا لـ 11:40 م
+                target.setHours(23, 40, 0); 
                 const diff = target - now;
-
                 if (diff > 0) {
-                    // قبل المباراة: اظهر العداد واخفي علامة مباشر
                     timerBox.style.display = 'block';
-                    liveIndicator.style.display = 'none';
                     const h = Math.floor(diff / 3600000);
                     const m = Math.floor((diff % 3600000) / 60000);
                     const s = Math.floor((diff % 60000) / 1000);
-                    timerDisplay.innerText = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
-                } else if (diff <= 0 && diff > -7200000) { 
-                    // وقت المباراة (لمدة ساعتين من البداية): اخفي العداد واظهر مباشر الآن
-                    timerBox.style.display = 'none';
-                    liveIndicator.style.display = 'block';
-                } else {
-                    // بعد انتهاء وقت المباراة الافتراضي: اخفي الاثنين
-                    timerBox.style.display = 'none';
-                    liveIndicator.style.display = 'none';
-                }
+                    timerDisplay.innerText = (h<10?"0"+h:h)+":"+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
+                } else { timerBox.style.display = 'none'; }
             }
             setInterval(update, 1000); update();
         }
