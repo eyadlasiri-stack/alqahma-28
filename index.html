@@ -12,11 +12,21 @@
         .timer-box { background: #1a1a1a; border: 1px solid var(--gold); border-radius: 10px; padding: 10px; margin: 15px 0; text-align: center; }
         #timer-display { font-size: 1.5rem; font-weight: 900; color: #fff; font-family: monospace; }
         
-        /* ستايل جدول الترتيب */
-        .standings-table { width: 100%; border-collapse: collapse; margin-top: 10px; background: rgba(255,255,255,0.02); border-radius: 10px; overflow: hidden; font-size: 0.85rem; margin-bottom: 20px; }
-        .standings-table th { background: var(--gold); color: #000; padding: 8px; text-align: center; }
-        .standings-table td { padding: 8px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .group-title { background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 8px; font-weight: bold; margin-top: 15px; border-right: 4px solid var(--gold); text-align: right; font-size: 0.95rem; }
+        /* ستايل خانة الصدارة */
+        .top-rank-card {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .rank-info { display: flex; flex-direction: column; }
+        .rank-label { font-size: 0.75rem; color: #888; }
+        .rank-team { font-size: 1.1rem; font-weight: 900; color: #fff; }
+        .rank-points { background: var(--gold); color: #000; padding: 2px 10px; border-radius: 5px; font-weight: bold; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -30,7 +40,7 @@
 
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
-            <button class="tab-btn" onclick="openTab(event, 'standings-tab')">ترتيب الفرق</button>
+            <button class="tab-btn" onclick="openTab(event, 'top-tab')">صدارة المجموعات</button>
             <button class="tab-btn" onclick="openTab(event, 'previous-tab')">النتائج</button>
             <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
         </div>
@@ -43,66 +53,38 @@
             <div id="today-matches-list" class="schedule-container"></div>
         </div>
         
-        <div id="standings-tab" class="tab-content">
-            <div class="group-title">المجموعة 1</div>
-            <table class="standings-table">
-                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
-                <tbody>
-                    <tr><td>السوق</td><td>1</td><td>+2</td><td>3</td></tr>
-                    <tr><td>جندلة</td><td>1</td><td>-2</td><td>0</td></tr>
-                    <tr><td>الفيض</td><td>0</td><td>0</td><td>0</td></tr>
-                </tbody>
-            </table>
+        <div id="top-tab" class="tab-content">
+            <h3 style="color: var(--gold); text-align: center; margin-bottom: 20px;">🏆 متصدري المجموعات حالياً</h3>
+            
+            <div class="top-rank-card">
+                <div class="rank-info"><span class="rank-label">المجموعة 1</span><span class="rank-team">السوق</span></div>
+                <span class="rank-points">3 نقاط</span>
+            </div>
 
-            <div class="group-title">المجموعة 2</div>
-            <table class="standings-table">
-                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
-                <tbody>
-                    <tr><td>ساحل مغزل</td><td>1</td><td>+2</td><td>3</td></tr>
-                    <tr><td>البرك</td><td>1</td><td>+1</td><td>3</td></tr>
-                    <tr><td>وحدة الرقه</td><td>2</td><td>-3</td><td>0</td></tr>
-                </tbody>
-            </table>
+            <div class="top-rank-card">
+                <div class="rank-info"><span class="rank-label">المجموعة 2</span><span class="rank-team">ساحل مغزل</span></div>
+                <span class="rank-points">3 نقاط</span>
+            </div>
 
-            <div class="group-title">المجموعة 3</div>
-            <table class="standings-table">
-                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
-                <tbody>
-                    <tr><td>عمق</td><td>1</td><td>+4</td><td>3</td></tr>
-                    <tr><td>الصقر</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>العرق</td><td>1</td><td>-4</td><td>0</td></tr>
-                </tbody>
-            </table>
+            <div class="top-rank-card">
+                <div class="rank-info"><span class="rank-label">المجموعة 3</span><span class="rank-team">عمق</span></div>
+                <span class="rank-points">3 نقاط</span>
+            </div>
 
-            <div class="group-title">المجموعة 4</div>
-            <table class="standings-table">
-                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
-                <tbody>
-                    <tr><td>مستقبل عرمرم</td><td>2</td><td>+1</td><td>3</td></tr>
-                    <tr><td>الساحل الرياضي</td><td>1</td><td>+1</td><td>3</td></tr>
-                    <tr><td>السلطان</td><td>1</td><td>-2</td><td>0</td></tr>
-                </tbody>
-            </table>
+            <div class="top-rank-card">
+                <div class="rank-info"><span class="rank-label">المجموعة 4</span><span class="rank-team">الساحل الرياضي</span></div>
+                <span class="rank-points">3 نقاط</span>
+            </div>
 
-            <div class="group-title">المجموعة 5</div>
-            <table class="standings-table">
-                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
-                <tbody>
-                    <tr><td>الوسام</td><td>1</td><td>+3</td><td>3</td></tr>
-                    <tr><td>الفيصلي</td><td>1</td><td>+2</td><td>3</td></tr>
-                    <tr><td>خليج الصوالحة</td><td>2</td><td>-5</td><td>0</td></tr>
-                </tbody>
-            </table>
+            <div class="top-rank-card">
+                <div class="rank-info"><span class="rank-label">المجموعة 5</span><span class="rank-team">الوسام</span></div>
+                <span class="rank-points">3 نقاط</span>
+            </div>
 
-            <div class="group-title">المجموعة 6</div>
-            <table class="standings-table">
-                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
-                <tbody>
-                    <tr><td>صقلية</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>صقور عرمرم</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>دبسا</td><td>0</td><td>0</td><td>0</td></tr>
-                </tbody>
-            </table>
+            <div class="top-rank-card">
+                <div class="rank-info"><span class="rank-label">المجموعة 6</span><span class="rank-team">--</span></div>
+                <span class="rank-points">0 نقاط</span>
+            </div>
         </div>
 
         <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
@@ -119,7 +101,7 @@
         </div>
 
         <div class="footer-info">
-            <p style="font-size: 0.7rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
+            <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
             <div style="font-size: 0.85rem; color: var(--gold); font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
         </div>
     </div>
@@ -132,7 +114,6 @@
         <div class="match-day-source" data-date="2026-02-22"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div></div></div>
         <div class="match-day-source" data-date="2026-02-23"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">الخليج</span></div></div></div>
         <div class="match-day-source" data-date="2026-02-24"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">السوق</span><span class="vs">VS</span><span class="team">الفيض</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-25"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div></div></div>
     </div>
 
     <script src="script.js"></script>
