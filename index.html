@@ -13,10 +13,10 @@
         #timer-display { font-size: 1.5rem; font-weight: 900; color: #fff; font-family: monospace; }
         
         /* ستايل جدول الترتيب */
-        .standings-table { width: 100%; border-collapse: collapse; margin-top: 15px; background: rgba(255,255,255,0.02); border-radius: 10px; overflow: hidden; font-size: 0.9rem; }
-        .standings-table th { background: var(--gold); color: #000; padding: 10px; text-align: center; }
-        .standings-table td { padding: 10px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .group-title { background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 8px; font-weight: bold; margin-top: 20px; border-right: 4px solid var(--gold); text-align: right; }
+        .standings-table { width: 100%; border-collapse: collapse; margin-top: 10px; background: rgba(255,255,255,0.02); border-radius: 10px; overflow: hidden; font-size: 0.85rem; margin-bottom: 20px; }
+        .standings-table th { background: var(--gold); color: #000; padding: 8px; text-align: center; }
+        .standings-table td { padding: 8px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .group-title { background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 8px; font-weight: bold; margin-top: 15px; border-right: 4px solid var(--gold); text-align: right; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -44,48 +44,99 @@
         </div>
         
         <div id="standings-tab" class="tab-content">
-            <div class="group-title">المجموعة الأولى</div>
+            <div class="group-title">المجموعة 1</div>
             <table class="standings-table">
-                <thead><tr><th>الفريق</th><th>لعب</th><th>أهداف</th><th>نقاط</th></tr></thead>
+                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
                 <tbody>
-                    <tr><td>السوق</td><td>1</td><td>2</td><td>3</td></tr>
-                    <tr><td>جندلة</td><td>1</td><td>0</td><td>0</td></tr>
+                    <tr><td>السوق</td><td>1</td><td>+2</td><td>3</td></tr>
+                    <tr><td>جندلة</td><td>1</td><td>-2</td><td>0</td></tr>
                     <tr><td>الفيض</td><td>0</td><td>0</td><td>0</td></tr>
                 </tbody>
             </table>
 
-            <div class="group-title">المجموعة الثانية</div>
+            <div class="group-title">المجموعة 2</div>
             <table class="standings-table">
-                <thead><tr><th>الفريق</th><th>لعب</th><th>أهداف</th><th>نقاط</th></tr></thead>
+                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
                 <tbody>
-                    <tr><td>البرك</td><td>1</td><td>2</td><td>3</td></tr>
-                    <tr><td>ساحل مغزل</td><td>1</td><td>3</td><td>3</td></tr>
-                    <tr><td>وحدة الرقه</td><td>2</td><td>2</td><td>0</td></tr>
+                    <tr><td>ساحل مغزل</td><td>1</td><td>+2</td><td>3</td></tr>
+                    <tr><td>البرك</td><td>1</td><td>+1</td><td>3</td></tr>
+                    <tr><td>وحدة الرقه</td><td>2</td><td>-3</td><td>0</td></tr>
                 </tbody>
             </table>
-            </div>
+
+            <div class="group-title">المجموعة 3</div>
+            <table class="standings-table">
+                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
+                <tbody>
+                    <tr><td>عمق</td><td>1</td><td>+4</td><td>3</td></tr>
+                    <tr><td>الصقر</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>العرق</td><td>1</td><td>-4</td><td>0</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-title">المجموعة 4</div>
+            <table class="standings-table">
+                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
+                <tbody>
+                    <tr><td>مستقبل عرمرم</td><td>2</td><td>+1</td><td>3</td></tr>
+                    <tr><td>الساحل الرياضي</td><td>1</td><td>+1</td><td>3</td></tr>
+                    <tr><td>السلطان</td><td>1</td><td>-2</td><td>0</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-title">المجموعة 5</div>
+            <table class="standings-table">
+                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
+                <tbody>
+                    <tr><td>الوسام</td><td>1</td><td>+3</td><td>3</td></tr>
+                    <tr><td>الفيصلي</td><td>1</td><td>+2</td><td>3</td></tr>
+                    <tr><td>خليج الصوالحة</td><td>2</td><td>-5</td><td>0</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-title">المجموعة 6</div>
+            <table class="standings-table">
+                <thead><tr><th>الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
+                <tbody>
+                    <tr><td>صقلية</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>صقور عرمرم</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>دبسا</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </div>
 
         <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
+        
         <div id="groups-tab" class="tab-content">
-             <div class="groups-container">
+            <div class="groups-container">
                 <div class="group-card"><div class="group-header">المجموعة 1</div><ul class="group-teams"><li>السوق</li><li>جندلة</li><li>الفيض</li></ul></div>
                 <div class="group-card"><div class="group-header">المجموعة 2</div><ul class="group-teams"><li>البرك</li><li>ساحل مغزل</li><li>وحدة الرقه</li></ul></div>
-                </div>
+                <div class="group-card"><div class="group-header">المجموعة 3</div><ul class="group-teams"><li>الصقر</li><li>عمق</li><li>العرق</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 4</div><ul class="group-teams"><li>السلطان</li><li>الساحل الرياضي</li><li>مستقبل عرمرم</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 5</div><ul class="group-teams"><li>الفيصلي</li><li>الوسام</li><li>خليج الصوالحة</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 6</div><ul class="group-teams"><li>صقلية</li><li>صقور عرمرم</li><li>دبسا</li></ul></div>
+            </div>
         </div>
 
         <div class="footer-info">
-            <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
+            <p style="font-size: 0.7rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
             <div style="font-size: 0.85rem; color: var(--gold); font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
         </div>
     </div>
 
     <div id="master-schedule" style="display: none;">
-        <div class="match-day-source" data-date="2026-02-24"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-18"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-19"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-20"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">الخليج</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-21"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-22"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-23"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">الخليج</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-24"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div></div><div class="match-card" data-start="24:30"><div class="teams"><span class="team">السوق</span><span class="vs">VS</span><span class="team">الفيض</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-25"><div class="match-card" data-start="23:00"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div></div></div>
     </div>
 
     <script src="script.js"></script>
     <script>
-        // كود الطقس والعداد التلقائي
         async function fetchQT() {
             try {
                 const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
