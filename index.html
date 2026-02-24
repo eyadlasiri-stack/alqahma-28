@@ -15,7 +15,7 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         .tabs-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-bottom: 20px; }
-        .tab-btn { padding: 8px 12px; font-size: 0.85rem; flex: 1 1 auto; min-width: 90px; cursor: pointer; }
+        .tab-btn { padding: 8px 12px; font-size: 0.85rem; flex: 1 1 auto; min-width: 90px; cursor: pointer; border-radius: 8px; }
 
         .group-head { background: rgba(212, 175, 55, 0.15); color: var(--gold); padding: 10px; font-weight: bold; margin-top: 20px; border-right: 4px solid var(--gold); text-align: right; }
         .standings-table { width: 100%; border-collapse: collapse; margin-top: 5px; background: rgba(255,255,255,0.02); border-radius: 10px; font-size: 0.85rem; margin-bottom: 20px; }
@@ -30,21 +30,21 @@
             <h1>جدول مباريات</h1>
             <p>بطولة القحمة الرمضانية الـ 28 للعام 2026</p>
             <div class="weather-container">
-                <span>📍 طقس القحمة الآن:</span> <span id="weather-temp">جاري التحميل...</span>
+                <span>📍 طقس القحمة الآن:</span> <span id="weather-temp">--°C</span>
             </div>
         </header>
 
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
-            <button class="tab-btn" onclick="openTab(event, 'upcoming-tab')">القادمة</button>
-            <button class="tab-btn" onclick="openTab(event, 'previous-tab')">السابقة</button>
-            <button class="tab-btn" onclick="openTab(event, 'standings-tab')">الترتيب</button>
+            <button class="tab-btn" onclick="openTab(event, 'upcoming-tab')">المباريات القادمة</button>
+            <button class="tab-btn" onclick="openTab(event, 'previous-tab')">المباريات السابقة</button>
+            <button class="tab-btn" onclick="openTab(event, 'standings-tab')">ترتيب المجموعات</button>
             <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
         </div>
 
         <div id="today-tab" class="tab-content active">
             <div id="match-countdown" class="countdown-box">
-                <div style="font-size: 0.8rem; color: #D4AF37; font-weight: bold; margin-bottom: 5px;">⏱️ متبقي على المباراة:</div>
+                <div style="font-size: 0.8rem; color: #D4AF37; font-weight: bold;">⏱️ متبقي على المباراة:</div>
                 <div id="timer-display">00:00:00</div>
             </div>
             <div class="schedule-container">
@@ -58,6 +58,8 @@
             <div class="schedule-container">
                 <div class="day-header">الأربعاء 08 رمضان</div>
                 <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div></div>
+                <div class="day-header">الخميس 09 رمضان</div>
+                <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل</span></div></div>
             </div>
         </div>
 
@@ -66,7 +68,7 @@
                 <div class="day-header">الاثنين 06 رمضان</div>
                 <div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">الخليج</span></div></div>
                 <div class="day-header">الأحد 05 رمضان</div>
-                <div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div></div>
+                <div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقة</span></div></div>
                 <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div></div>
             </div>
         </div>
@@ -84,7 +86,7 @@
                 <tr><th>الفريق</th><th>لعب</th><th>فرق</th><th>نقاط</th></tr>
                 <tr><td>ساحل مغزل</td><td>1</td><td>+2</td><td>3</td></tr>
                 <tr><td>البرك</td><td>1</td><td>+1</td><td>3</td></tr>
-                <tr><td>وحدة الرقه</td><td>2</td><td>-3</td><td>0</td></tr>
+                <tr><td>وحدة الرقة</td><td>2</td><td>-3</td><td>0</td></tr>
             </table>
             <div class="group-head">المجموعة 3</div>
             <table class="standings-table">
@@ -98,7 +100,7 @@
         <div id="groups-tab" class="tab-content">
             <div class="groups-container">
                 <div class="group-card"><div class="group-header">المجموعة 1</div><ul class="group-teams"><li>السوق</li><li>جندلة</li><li>الفيض</li></ul></div>
-                <div class="group-card"><div class="group-header">المجموعة 2</div><ul class="group-teams"><li>البرك</li><li>ساحل مغزل</li><li>وحدة الرقه</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 2</div><ul class="group-teams"><li>البرك</li><li>ساحل مغزل</li><li>وحدة الرقة</li></ul></div>
                 <div class="group-card"><div class="group-header">المجموعة 3</div><ul class="group-teams"><li>الصقر</li><li>عمق</li><li>العرق</li></ul></div>
                 <div class="group-card"><div class="group-header">المجموعة 4</div><ul class="group-teams"><li>السلطان</li><li>الساحل</li><li>مستقبل عرمرم</li></ul></div>
                 <div class="group-card"><div class="group-header">المجموعة 5</div><ul class="group-teams"><li>الفيصلي</li><li>الوسام</li><li>الخليج</li></ul></div>
@@ -107,7 +109,7 @@
         </div>
 
         <div class="footer-info">
-            <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة 28 © 2026</p>
+            <p style="font-size: 0.75rem; color: #888;">جميع الحقوق محفوظة لبطولة القحمة 28 © 2026</p>
             <div style="font-size: 0.85rem; color: var(--gold); font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
         </div>
     </div>
