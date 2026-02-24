@@ -15,12 +15,13 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         .tabs-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-bottom: 20px; }
-        .tab-btn { padding: 8px 12px; font-size: 0.85rem; flex: 1 1 auto; min-width: 90px; cursor: pointer; border-radius: 8px; }
+        .tab-btn { padding: 8px 12px; font-size: 0.85rem; flex: 1 1 auto; min-width: 90px; cursor: pointer; border: none; background: rgba(255,255,255,0.05); color: #fff; border-radius: 8px; font-family: 'Cairo'; }
+        .tab-btn.active { background: #D4AF37; color: #000; font-weight: bold; }
 
-        .group-head { background: rgba(212, 175, 55, 0.15); color: var(--gold); padding: 10px; font-weight: bold; margin-top: 20px; border-right: 4px solid var(--gold); text-align: right; }
+        .group-head { background: rgba(212, 175, 55, 0.15); color: #D4AF37; padding: 10px; font-weight: bold; margin-top: 20px; border-right: 4px solid #D4AF37; text-align: right; }
         .standings-table { width: 100%; border-collapse: collapse; margin-top: 5px; background: rgba(255,255,255,0.02); border-radius: 10px; font-size: 0.85rem; margin-bottom: 20px; }
-        .standings-table th { background: var(--gold); color: #000; padding: 8px; text-align: center; }
-        .standings-table td { padding: 8px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .standings-table th { background: #D4AF37; color: #000; padding: 8px; text-align: center; }
+        .standings-table td { padding: 8px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); color: #fff; }
     </style>
 </head>
 <body>
@@ -57,9 +58,10 @@
         <div id="upcoming-tab" class="tab-content">
             <div class="schedule-container">
                 <div class="day-header">الأربعاء 08 رمضان</div>
-                <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div></div>
+                <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div><div class="match-time">11:00 م</div></div>
                 <div class="day-header">الخميس 09 رمضان</div>
-                <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل</span></div></div>
+                <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div><div class="match-time">11:00 م</div></div>
+                <div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">صقور عرمرم</span></div><div class="match-time">12:30 ص</div></div>
             </div>
         </div>
 
@@ -70,6 +72,8 @@
                 <div class="day-header">الأحد 05 رمضان</div>
                 <div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقة</span></div></div>
                 <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div></div>
+                <div class="day-header">السبت 04 رمضان</div>
+                <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div></div>
             </div>
         </div>
 
@@ -77,23 +81,32 @@
             <div class="group-head">المجموعة 1</div>
             <table class="standings-table">
                 <tr><th>الفريق</th><th>لعب</th><th>فرق</th><th>نقاط</th></tr>
-                <tr><td>السوق</td><td>1</td><td>+2</td><td>3</td></tr>
-                <tr><td>جندلة</td><td>1</td><td>-2</td><td>0</td></tr>
-                <tr><td>الفيض</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>السوق</td><td>1</td><td>+2</td><td>3</td></tr><tr><td>الفيض</td><td>0</td><td>0</td><td>0</td></tr><tr><td>جندلة</td><td>1</td><td>-2</td><td>0</td></tr>
             </table>
             <div class="group-head">المجموعة 2</div>
             <table class="standings-table">
                 <tr><th>الفريق</th><th>لعب</th><th>فرق</th><th>نقاط</th></tr>
-                <tr><td>ساحل مغزل</td><td>1</td><td>+2</td><td>3</td></tr>
-                <tr><td>البرك</td><td>1</td><td>+1</td><td>3</td></tr>
-                <tr><td>وحدة الرقة</td><td>2</td><td>-3</td><td>0</td></tr>
+                <tr><td>ساحل مغزل</td><td>1</td><td>+2</td><td>3</td></tr><tr><td>البرك</td><td>1</td><td>+1</td><td>3</td></tr><tr><td>وحدة الرقة</td><td>2</td><td>-3</td><td>0</td></tr>
             </table>
             <div class="group-head">المجموعة 3</div>
             <table class="standings-table">
                 <tr><th>الفريق</th><th>لعب</th><th>فرق</th><th>نقاط</th></tr>
-                <tr><td>عمق</td><td>1</td><td>+4</td><td>3</td></tr>
-                <tr><td>الصقر</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td>العرق</td><td>1</td><td>-4</td><td>0</td></tr>
+                <tr><td>عمق</td><td>1</td><td>+4</td><td>3</td></tr><tr><td>الصقر</td><td>0</td><td>0</td><td>0</td></tr><tr><td>العرق</td><td>1</td><td>-4</td><td>0</td></tr>
+            </table>
+            <div class="group-head">المجموعة 4</div>
+            <table class="standings-table">
+                <tr><th>الفريق</th><th>لعب</th><th>فرق</th><th>نقاط</th></tr>
+                <tr><td>مستقبل عرمرم</td><td>2</td><td>+3</td><td>6</td></tr><tr><td>الساحل الرياضي</td><td>1</td><td>+1</td><td>3</td></tr><tr><td>السلطان</td><td>2</td><td>-3</td><td>0</td></tr>
+            </table>
+            <div class="group-head">المجموعة 5</div>
+            <table class="standings-table">
+                <tr><th>الفريق</th><th>لعب</th><th>فرق</th><th>نقاط</th></tr>
+                <tr><td>الوسام</td><td>1</td><td>+3</td><td>3</td></tr><tr><td>الفيصلي</td><td>1</td><td>+2</td><td>3</td></tr><tr><td>الخليج</td><td>2</td><td>-5</td><td>0</td></tr>
+            </table>
+            <div class="group-head">المجموعة 6</div>
+            <table class="standings-table">
+                <tr><th>الفريق</th><th>لعب</th><th>فرق</th><th>نقاط</th></tr>
+                <tr><td>صقلية</td><td>0</td><td>0</td><td>0</td></tr><tr><td>صقور عرمرم</td><td>0</td><td>0</td><td>0</td></tr><tr><td>دبسا</td><td>0</td><td>0</td><td>0</td></tr>
             </table>
         </div>
 
@@ -102,7 +115,7 @@
                 <div class="group-card"><div class="group-header">المجموعة 1</div><ul class="group-teams"><li>السوق</li><li>جندلة</li><li>الفيض</li></ul></div>
                 <div class="group-card"><div class="group-header">المجموعة 2</div><ul class="group-teams"><li>البرك</li><li>ساحل مغزل</li><li>وحدة الرقة</li></ul></div>
                 <div class="group-card"><div class="group-header">المجموعة 3</div><ul class="group-teams"><li>الصقر</li><li>عمق</li><li>العرق</li></ul></div>
-                <div class="group-card"><div class="group-header">المجموعة 4</div><ul class="group-teams"><li>السلطان</li><li>الساحل</li><li>مستقبل عرمرم</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 4</div><ul class="group-teams"><li>السلطان</li><li>الساحل الرياضي</li><li>مستقبل عرمرم</li></ul></div>
                 <div class="group-card"><div class="group-header">المجموعة 5</div><ul class="group-teams"><li>الفيصلي</li><li>الوسام</li><li>الخليج</li></ul></div>
                 <div class="group-card"><div class="group-header">المجموعة 6</div><ul class="group-teams"><li>صقلية</li><li>صقور عرمرم</li><li>دبسا</li></ul></div>
             </div>
@@ -110,7 +123,7 @@
 
         <div class="footer-info">
             <p style="font-size: 0.75rem; color: #888;">جميع الحقوق محفوظة لبطولة القحمة 28 © 2026</p>
-            <div style="font-size: 0.85rem; color: var(--gold); font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
+            <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
         </div>
     </div>
 
