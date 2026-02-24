@@ -35,6 +35,20 @@
         .countdown-label { font-size: 0.9rem; color: #D4AF37; margin-bottom: 8px; font-weight: bold; }
         #timer-display { font-size: 1.8rem; font-weight: 900; color: #fff; font-family: monospace; }
 
+        /* ستايل علامة "مباشر الآن" */
+        .live-status {
+            display: none; /* مخفي بشكل افتراضي ويظهر وقت المباراة */
+            color: #ff4d4d;
+            font-weight: 900;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 10px;
+            animation: blinker 1.5s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0.3; }
+        }
+
         /* تنسيق إخلاء المسؤولية في الأسفل */
         .disclaimer-text {
             font-size: 0.65rem;
@@ -74,6 +88,9 @@
                 <div class="countdown-label">⏱️ متبقي على بداية المباراة:</div>
                 <div id="timer-display">00:00:00</div>
             </div>
+
+            <div id="live-indicator" class="live-status">🔴 مباشر الآن</div>
+
             <div id="today-matches-list" class="schedule-container"></div>
         </div>
         
@@ -125,22 +142,36 @@
         }
         getQT();
 
-        // كود العداد التنازلي
+        // كود العداد التنازلي + إدارة علامة المباشر
         function startTimer() {
             const timerDisplay = document.getElementById('timer-display');
             const timerBox = document.getElementById('match-countdown');
+            const liveIndicator = document.getElementById('live-indicator');
+
             function update() {
                 const now = new Date();
                 const target = new Date();
-                target.setHours(23, 0, 0); 
+                target.setHours(23, 0, 0); // موعد المباراة 11 مساءً
+
                 const diff = target - now;
+
                 if (diff > 0) {
+                    // قبل المباراة: اظهر العداد واخفي علامة مباشر
                     timerBox.style.display = 'block';
+                    liveIndicator.style.display = 'none';
                     const h = Math.floor(diff / 3600000);
                     const m = Math.floor((diff % 3600000) / 60000);
                     const s = Math.floor((diff % 60000) / 1000);
                     timerDisplay.innerText = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
-                } else { timerBox.style.display = 'none'; }
+                } else if (diff <= 0 && diff > -7200000) { 
+                    // وقت المباراة (لمدة ساعتين من البداية): اخفي العداد واظهر مباشر الآن
+                    timerBox.style.display = 'none';
+                    liveIndicator.style.display = 'block';
+                } else {
+                    // بعد انتهاء وقت المباراة الافتراضي: اخفي الاثنين
+                    timerBox.style.display = 'none';
+                    liveIndicator.style.display = 'none';
+                }
             }
             setInterval(update, 1000); update();
         }
