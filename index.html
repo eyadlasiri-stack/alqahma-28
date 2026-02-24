@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بطولة القحمة الرمضانية 28</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        
+        <header class="header">
+            <h1>جدول مباريات</h1>
+            <p>بطولة القحمة الرمضانية الـ 28 للعام 2026</p>
+        </header>
+
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
+            <button class="tab-btn" onclick="openTab(event, 'upcoming-tab')">المباريات القادمة</button>
+            <button class="tab-btn" onclick="openTab(event, 'previous-tab')">المباريات السابقة</button>
+            <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
+        </div>
+
+        <div id="today-tab" class="tab-content active"><div id="today-matches-list" class="schedule-container"></div></div>
+        <div id="upcoming-tab" class="tab-content"><div id="upcoming-matches-list" class="schedule-container"></div></div>
+        <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
+
+        <div id="groups-tab" class="tab-content">
+            <div class="groups-container">
+                <div class="group-card"><div class="group-header">المجموعة 1</div><ul class="group-teams"><li>السوق</li><li>جندلة</li><li>الفيض</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 2</div><ul class="group-teams"><li>البرك</li><li>ساحل مغزل</li><li>وحدة الرقه</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 3</div><ul class="group-teams"><li>الصقر</li><li>عمق</li><li>العرق</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 4</div><ul class="group-teams"><li>السلطان</li><li>الساحل الرياضي</li><li>مستقبل عرمرم</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 5</div><ul class="group-teams"><li>الفيصلي</li><li>الوسام</li><li>خليج الصوالحة</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 6</div><ul class="group-teams"><li>صقلية</li><li>صقور عرمرم</li><li>دبسا</li></ul></div>
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <strong style="color: var(--gold);">مباريات الملحق:</strong><br>
+            <span style="color: var(--text-gray); font-size: 0.95rem;">تحدد حسب نظام البطولة المعلن عنه للفرق المشاركة</span>
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 15px 0;">
+            <strong>جميع المباريات تقام على ملعب الوسم الرياضي بالقحمة</strong>
+            <hr style="border-color: rgba(255,255,255,0.05); margin: 15px 0 10px;">
+            <div style="font-size: 0.85rem; color: var(--gold); font-weight: bold; letter-spacing: 1px;">
+                تصميم وتطوير: إياد العسيري
+            </div>
+        </div>
+
+    </div>
+
+    <div id="master-schedule" style="display: none;">
+        
+        <div class="match-day-source" data-date="2026-02-18">
+            <div class="day-header">الأربعاء 09/01</div>
+            <div class="match-card" data-start="23:00"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">وحدة الرقه</span></div><div class="match-time">11:00 مساءً</div></div>
+        </div>
+        
+        <div class="match-day-source" data-date="2026-02-19">
+            <div class="day-header">الخميس 09/02</div>
+            <div class="match-card" data-start="23:00"><div class="teams"><span class="team">الساحل الرياضي</span><span class="vs">VS</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">11:00 مساءً</div></div>
+            <div class="match-card" data-start="24:30"><div class="teams"><span class="team">عمق</span><span class="vs">VS</span><span class="team">العرق</span></div><div class="match-time">12:30 مساءً</div></div>
+        </div>
+
+        <div class="match-day-source" data-date="2026-02-20">
+            <div class="day-header">الجمعة 09/03</div>
+            <div class="match-card" data-start="23:00"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الخليج</span></div><div class="match-time">11:00 مساءً</div></div>
+            <div class="match-card" data-start="24:30"><div class="teams"><span class="team">صقور عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">12:30 مساءً</div></div>
+        </div>
+
+        <div class="match-day-source" data-date="2026-02-21">
+            <div class="day-header">السبت 09/04</div>
+            <div class="match-card" data-start="23:00"><div class="teams"><span class="team">السوق</span><span class="vs">VS</span><span class="team">جندلة</span></div><div class="match-time">11:00 مساءً</div></div>
+        </div>
+
+        <div class="match-day-source" data-date="2026-02-22">
+            <div class="day-header">الأحد 09/05</div>
+            <div class="match-card" data-start="23:00"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">VS</span><span class="team">وحدة الرقه</span></div><div class="match-time">11:00 مساءً</div></div>
+            <div class="match-card" data-start="24:30"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">12:30 مساءً</div></div>
+        </div>
+
+        <div class="match-day-source" data-date="2026-02-23">
+            <div class="day-header">الاثنين 09/06</div>
+            <div class="match-card" data-start="23:00"><div class="teams"><span class="team">الوسام</span><span class="vs">VS</span><span class="team">الخليج</span></div><div class="match-time">11:00 مساءً</div></div>
+            <div class="match-card" data-start="24:30"><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">12:30 مساءً</div></div>
+        </div>
+
+        <div class="match-day-source" data-date="2026-02-24">
+            <div class="day-header">الثلاثاء 09/07 (اليوم)</div>
+            <div class="match-card" data-start="23:00"><div class="teams"><span class="team">عرمرم</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">11:00 مساءً</div></div>
+            <div class="match-card" data-start="24:30"><div class="teams"><span class="team">السوق</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">12:30 مساءً</div></div>
+        </div>
+
+        <div class="match-day-source" data-date="2026-02-25">
+            <div class="day-header">الأربعاء 09/08</div>
+            <div class="match-card" data-start="23:00"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div><div class="match-time">11:00 مساءً</div></div>
+        </div>
+
+        <div class="match-day-source" data-date="2026-02-26">
+            <div class="day-header">الخميس 09/09</div>
+            <div class="match-card" data-start="23:00"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div><div class="match-time">11:00 مساءً</div></div>
+            <div class="match-card" data-start="24:30"><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">صقور عرمرم</span></div><div class="match-time">12:30 مساءً</div></div>
+        </div>
+
+        <div class="match-day-source" data-date="2026-02-27">
+            <div class="day-header">الجمعة 09/10</div>
+            <div class="match-card" data-start="23:00"><div class="teams"><span class="team">جندلة</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">11:00 مساءً</div></div>
+            <div class="match-card" data-start="24:30"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time">12:30 مساءً</div></div>
+        </div>
+
+        <div class="match-day-source" data-date="2026-02-28">
+            <div class="day-header">السبت 09/11</div>
+            <div class="match-card" data-start="23:00"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div><div class="match-time">11:00 مساءً</div></div>
+            <div class="match-card" data-start="24:30"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div><div class="match-time">12:30 مساءً</div></div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
