@@ -101,6 +101,7 @@
     <script src="script.js"></script>
 
     <script>
+        // كود الطقس
         async function getQT() {
             try {
                 const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
@@ -110,6 +111,7 @@
         }
         getQT();
 
+        // كود العداد التنازلي
         function startTimer() {
             const timerDisplay = document.getElementById('timer-display');
             const timerBox = document.getElementById('match-countdown');
@@ -123,7 +125,7 @@
                     const h = Math.floor(diff / 3600000);
                     const m = Math.floor((diff % 3600000) / 60000);
                     const s = Math.floor((diff % 60000) / 1000);
-                    timerDisplay.innerText = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+                    timerDisplay.innerText = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
                 } else { timerBox.style.display = 'none'; }
             }
             setInterval(update, 1000); update();
