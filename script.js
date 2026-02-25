@@ -1,6 +1,7 @@
 window.onload = function() {
     const nowTime = new Date();
-    if (nowTime.getHours() < 3) nowTime.setDate(nowTime.getDate() - 1);
+    // تأخير تغيير اليوم حتى الساعة 5 فجراً لتناسب توقيت المباريات
+    if (nowTime.getHours() < 5) nowTime.setDate(nowTime.getDate() - 1);
     const formattedToday = nowTime.toISOString().split('T')[0];
 
     const groupsData = {
@@ -33,10 +34,7 @@ window.onload = function() {
             if (stadium || commentator) {
                 const infoDiv = document.createElement('div');
                 infoDiv.className = 'match-extra-info';
-                infoDiv.innerHTML = `
-                    ${stadium ? `📍 ${stadium}` : ''} 
-                    ${commentator ? `<br>🎙️ بصوت: ${commentator}` : ''}
-                `;
+                infoDiv.innerHTML = `${stadium ? `📍 ${stadium}` : ''}${commentator ? `<br>🎙️ بصوت: ${commentator}` : ''}`;
                 card.appendChild(infoDiv);
             }
 
