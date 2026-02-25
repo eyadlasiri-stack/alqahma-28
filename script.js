@@ -1,6 +1,6 @@
 window.onload = function() {
     const nowTime = new Date();
-    // نظام الـ 5 فجراً لضمان استقرار العرض طول السهرة
+    // نظام الـ 5 فجراً لضمان بقاء المباراة في "اليوم" طوال السهرة
     if (nowTime.getHours() < 5) nowTime.setDate(nowTime.getDate() - 1);
     const formattedToday = nowTime.toISOString().split('T')[0];
 
