@@ -1,3 +1,4 @@
+// وظيفة تبديل التبويبات
 function openTab(evt, tabId) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
@@ -16,11 +17,10 @@ function openTab(evt, tabId) {
 
 window.onload = function() {
     // --- نظام توقيت السعودية الذكي (KSA Time) ---
-    // جلب الوقت الحالي بتوقيت السعودية
     const ksaDate = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Riyadh"}));
     
-    // إذا كانت الساعة الآن في السعودية أقل من 5 فجراً، نعتبر أننا لا نزال في اليوم السابق
-    if (ksaDate.getHours() < 5) { 
+    // إذا كانت الساعة الآن في السعودية أقل من 4 فجراً، نعتبر أننا لا نزال في "سهرة" اليوم السابق
+    if (ksaDate.getHours() < 4) { 
         ksaDate.setDate(ksaDate.getDate() - 1);
     }
     
@@ -50,7 +50,6 @@ window.onload = function() {
         previous: document.getElementById('previous-matches-list')
     };
 
-    // تفريغ الحاويات قبل التوزيع للتأكد من عدم التكرار
     containers.today.innerHTML = '';
     containers.upcoming.innerHTML = '';
     containers.previous.innerHTML = '';
