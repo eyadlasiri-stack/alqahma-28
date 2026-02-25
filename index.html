@@ -67,7 +67,13 @@
         <div class="m" data-date="2026-02-25" data-h="الأربعاء 08 رمضان" data-t1="الصقر" data-vs="VS" data-t2="عمق" data-st="11:00 م"></div>
 
         <div class="m" data-date="2026-02-26" data-h="الخميس 09 رمضان" data-t1="السلطان" data-vs="VS" data-t2="الساحل الرياضي" data-st="11:00 م"></div>
+        <div class="m" data-date="2026-02-26" data-h="الخميس 09 رمضان" data-t1="صقلية" data-vs="VS" data-t2="عرمرم" data-st="1:00 ص"></div>
+        
+        <div class="m" data-date="2026-02-27" data-h="الجمعة 10 رمضان" data-t1="جندلة" data-vs="VS" data-t2="الفيض" data-st="11:00 م"></div>
+        <div class="m" data-date="2026-02-27" data-h="الجمعة 10 رمضان" data-t1="الفيصلي" data-vs="VS" data-t2="الوسام" data-st="1:00 ص"></div>
+        
         <div class="m" data-date="2026-02-28" data-h="السبت 11 رمضان" data-t1="الصقر" data-vs="VS" data-t2="العرق" data-st="11:00 م"></div>
+        <div class="m" data-date="2026-02-28" data-h="السبت 11 رمضان" data-t1="البرك" data-vs="VS" data-t2="ساحل مغزل" data-st="1:00 ص"></div>
     </div>
 
     <script>
@@ -85,6 +91,11 @@
             const today = new Date().toISOString().split('T')[0];
             const matches = document.querySelectorAll('.m');
             
+            // تفريغ القوائم قبل البناء
+            document.getElementById('today-list').innerHTML = "";
+            document.getElementById('upcoming-list').innerHTML = "";
+            document.getElementById('previous-list').innerHTML = "";
+
             matches.forEach(m => {
                 const mDate = m.getAttribute('data-date');
                 const html = `
