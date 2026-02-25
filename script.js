@@ -1,4 +1,3 @@
-// وظيفة تبديل التبويبات (Global Scope)
 function openTab(evt, tabId) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
@@ -16,16 +15,21 @@ function openTab(evt, tabId) {
 }
 
 window.onload = function() {
-    // --- نظام الوقت الذكي (تأخير تغيير اليوم للفجر) ---
-    const nowTime = new Date();
-    // إذا كانت الساعة بين 12 منتصف الليل و 5 فجراً، نعتبر أننا لا نزال في اليوم السابق
-    if (nowTime.getHours() < 5) { 
-        nowTime.setDate(nowTime.getDate() - 1);
+    // --- نظام توقيت السعودية الذكي (KSA Time) ---
+    // جلب الوقت الحالي بتوقيت السعودية
+    const ksaDate = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Riyadh"}));
+    
+    // إذا كانت الساعة الآن في السعودية أقل من 5 فجراً، نعتبر أننا لا نزال في اليوم السابق
+    if (ksaDate.getHours() < 5) { 
+        ksaDate.setDate(ksaDate.getDate() - 1);
     }
     
-    // الحصول على التاريخ بصيغة YYYY-MM-DD ليتوافق مع الـ HTML
-    const formattedToday = nowTime.toISOString().split('T')[0];
-    // ------------------------------------------------
+    // تنسيق التاريخ بصيغة YYYY-MM-DD
+    const y = ksaDate.getFullYear();
+    const m = String(ksaDate.getMonth() + 1).padStart(2, '0');
+    const d = String(ksaDate.getDate()).padStart(2, '0');
+    const formattedToday = `${y}-${m}-${d}`;
+    // ------------------------------------------
 
     const groupsData = {
         "المجموعة 1": ["السوق", "جندلة", "الفيض"],
@@ -45,6 +49,11 @@ window.onload = function() {
         upcoming: document.getElementById('upcoming-matches-list'),
         previous: document.getElementById('previous-matches-list')
     };
+
+    // تفريغ الحاويات قبل التوزيع للتأكد من عدم التكرار
+    containers.today.innerHTML = '';
+    containers.upcoming.innerHTML = '';
+    containers.previous.innerHTML = '';
 
     allMatches.forEach(match => {
         const matchDate = match.getAttribute('data-date');
@@ -69,7 +78,6 @@ window.onload = function() {
             }
         });
 
-        // توزيع المباريات بناءً على الوقت الذكي
         if (matchDate < formattedToday) containers.previous.appendChild(cloned);
         else if (matchDate === formattedToday) containers.today.appendChild(cloned);
         else containers.upcoming.appendChild(cloned);
@@ -90,6 +98,5 @@ window.onload = function() {
         }
     }
 
-    // فتح تبويب "مباريات اليوم" تلقائياً
     openTab(null, 'today-tab');
 };
