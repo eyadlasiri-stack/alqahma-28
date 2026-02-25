@@ -28,7 +28,6 @@ window.onload = function() {
         cloned.className = 'match-day';
         
         cloned.querySelectorAll('.match-card').forEach(card => {
-            // --- إضافة كود عرض الملعب والمعلق ---
             const stadium = card.getAttribute('data-stadium');
             const commentator = card.getAttribute('data-commentator');
             if (stadium || commentator) {
@@ -40,7 +39,6 @@ window.onload = function() {
                 `;
                 card.appendChild(infoDiv);
             }
-            // -----------------------------------
 
             const teams = card.querySelectorAll('.team');
             const vs = card.querySelector('.vs');
