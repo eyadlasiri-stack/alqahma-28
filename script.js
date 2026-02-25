@@ -1,5 +1,6 @@
 window.onload = function() {
-    // إجبار الموقع على اعتبار تاريخ اليوم هو 25 فبراير لضمان ظهور المباراة في خانة "اليوم"
+    // إجبار النظام على التعامل مع تاريخ 25 فبراير كأنه "اليوم"
+    // هذا يضمن بقاء مباراة الصقر وعمق في خانة اليوم طوال السهرة
     const formattedToday = "2026-02-25"; 
 
     const groupsData = {
@@ -53,9 +54,17 @@ window.onload = function() {
             }
         });
 
-        if (matchDate < formattedToday) containers.previous.appendChild(cloned);
-        else if (matchDate === formattedToday) containers.today.appendChild(cloned);
-        else containers.upcoming.appendChild(cloned);
+        // المقارنة اليدوية لضمان الترتيب المطلوب:
+        // 1. إذا كان التاريخ أصغر من 25 فبراير -> سابقة
+        // 2. إذا كان التاريخ يساوي 25 فبراير -> اليوم (الصقر وعمق)
+        // 3. إذا كان التاريخ أكبر من 25 فبراير -> قادمة
+        if (matchDate < formattedToday) {
+            containers.previous.appendChild(cloned);
+        } else if (matchDate === formattedToday) {
+            containers.today.appendChild(cloned);
+        } else {
+            containers.upcoming.appendChild(cloned);
+        }
     });
 
     const gContainer = document.getElementById('auto-groups');
