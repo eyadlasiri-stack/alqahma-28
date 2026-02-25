@@ -1,12 +1,8 @@
 window.onload = function() {
-    // 1. إعداد التاريخ (نظام الساعة 3 فجراً)
     const nowTime = new Date();
-    if (nowTime.getHours() < 3) {
-        nowTime.setDate(nowTime.getDate() - 1);
-    }
+    if (nowTime.getHours() < 3) nowTime.setDate(nowTime.getDate() - 1);
     const formattedToday = nowTime.toISOString().split('T')[0];
 
-    // 2. تعريف المجموعات والفرق (تأكد من مطابقة الأسماء تماماً)
     const groupsData = {
         "المجموعة 1": ["السوق", "جندلة", "الفيض"],
         "المجموعة 2": ["البرك", "ساحل مغزل", "وحدة الرقه"],
@@ -17,9 +13,7 @@ window.onload = function() {
     };
 
     let standings = {};
-    Object.values(groupsData).flat().forEach(team => {
-        standings[team] = { played: 0, points: 0 };
-    });
+    Object.values(groupsData).flat().forEach(t => standings[t] = { played: 0, points: 0 });
 
     const allMatches = document.querySelectorAll('.match-day-source');
     const containers = {
@@ -28,33 +22,25 @@ window.onload = function() {
         previous: document.getElementById('previous-matches-list')
     };
 
-    // 3. تحليل المباريات وحساب النقاط
     allMatches.forEach(match => {
         const matchDate = match.getAttribute('data-date');
         const cloned = match.cloneNode(true);
         cloned.className = 'match-day';
         
-        const cards = cloned.querySelectorAll('.match-card');
-        cards.forEach(card => {
+        cloned.querySelectorAll('.match-card').forEach(card => {
             const teams = card.querySelectorAll('.team');
             const vs = card.querySelector('.vs');
-            const resultText = vs.innerText.trim();
-            const timeText = card.querySelector('.match-time').innerText;
+            const result = vs.innerText.trim();
+            const isFinished = card.querySelector('.match-time').innerText.includes('انتهت');
             
-            if (teams.length >= 2) {
-                const t1 = teams[0].innerText.trim();
-                const t2 = teams[1].innerText.trim();
-
-                // إذا كانت النتيجة مسجلة والمباراة "انتهت"
-                if (resultText.includes('-') && timeText.includes('انتهت')) {
-                    const scores = resultText.split('-').map(Number);
-                    if (standings[t1] && standings[t2]) {
-                        standings[t1].played++;
-                        standings[t2].played++;
-                        if (scores[0] > scores[1]) standings[t1].points += 3;
-                        else if (scores[1] > scores[0]) standings[t2].points += 3;
-                        else { standings[t1].points += 1; standings[t2].points += 1; }
-                    }
+            if (teams.length >= 2 && result.includes('-') && isFinished) {
+                const [t1, t2] = [teams[0].innerText.trim(), teams[1].innerText.trim()];
+                const scores = result.split('-').map(Number);
+                if (standings[t1] && standings[t2]) {
+                    standings[t1].played++; standings[t2].played++;
+                    if (scores[0] > scores[1]) standings[t1].points += 3;
+                    else if (scores[1] > scores[0]) standings[t2].points += 3;
+                    else { standings[t1].points += 1; standings[t2].points += 1; }
                 }
             }
         });
@@ -64,39 +50,20 @@ window.onload = function() {
         else containers.upcoming.appendChild(cloned);
     });
 
-    // 4. بناء جداول المجموعات وعرضها بدل "جاري الحساب"
-    const groupsContainer = document.getElementById('auto-groups');
-    if (groupsContainer) {
-        groupsContainer.innerHTML = ''; // مسح كلمة "جاري الحساب"
+    const gContainer = document.getElementById('auto-groups');
+    if (gContainer) {
+        gContainer.innerHTML = '';
         for (const [groupName, teams] of Object.entries(groupsData)) {
-            // ترتيب الفرق داخل المجموعة حسب النقاط
             teams.sort((a, b) => standings[b].points - standings[a].points);
-
-            let tableHTML = `
-                <div class="group-card">
-                    <div class="group-header">${groupName}</div>
-                    <table class="group-table">
-                        <thead>
-                            <tr><th class="team-name">الفريق</th><th>لعب</th><th>نقاط</th></tr>
-                        </thead>
-                        <tbody>`;
-            
+            let tableHTML = `<div class="group-card"><div class="group-header">${groupName}</div><table class="group-table"><thead><tr><th style="text-align:right;">الفريق</th><th>لعب</th><th>نقاط</th></tr></thead><tbody>`;
             teams.forEach(team => {
-                tableHTML += `
-                    <tr>
-                        <td class="team-name">${team}</td>
-                        <td>${standings[team].played}</td>
-                        <td style="font-weight:bold; color:#D4AF37;">${standings[team].points}</td>
-                    </tr>`;
+                const isQual = (team === "السوق") ? '<span class="qualified-tag">تأهل ✅</span>' : '';
+                tableHTML += `<tr><td class="team-name-cell">${team} ${isQual}</td><td>${standings[team].played}</td><td class="points-cell">${standings[team].points}</td></tr>`;
             });
-
             tableHTML += `</tbody></table></div>`;
-            groupsContainer.innerHTML += tableHTML;
+            gContainer.innerHTML += tableHTML;
         }
     }
-
-    setInterval(checkLive, 60000);
-    checkLive();
 };
 
 function openTab(evt, tabId) {
@@ -104,25 +71,4 @@ function openTab(evt, tabId) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
     evt.currentTarget.classList.add('active');
-}
-
-function checkLive() {
-    const now = new Date();
-    let h = now.getHours();
-    if (h < 5) h += 24; 
-    const currentMins = (h * 60) + now.getMinutes();
-
-    document.querySelectorAll('#today-matches-list .match-card').forEach(card => {
-        const startStr = card.getAttribute('data-start');
-        const vs = card.querySelector('.vs');
-        if (startStr && vs && vs.innerText.trim() === 'VS') {
-            const [sh, sm] = startStr.split(':').map(Number);
-            let startH = sh; if (startH < 5) startH += 24;
-            const startMins = (startH * 60) + sm;
-            if (currentMins >= startMins && currentMins < startMins + 110) {
-                vs.innerHTML = 'تلعب الآن 🔴';
-                vs.classList.add('live-now');
-            }
-        }
-    });
 }
