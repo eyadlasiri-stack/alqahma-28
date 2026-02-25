@@ -7,14 +7,61 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* التنسيقات العامة */
         .weather-container { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 50px; padding: 8px 20px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 15px auto; font-size: 0.95rem; color: #eee; }
         #weather-temp { color: #D4AF37; font-weight: 900; }
         .footer-info { margin-top: 30px; padding: 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.2); }
-        /* ستايل المجموعات الذكية */
-        .group-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
-        .group-table th { color: #D4AF37; border-bottom: 1px solid #D4AF37; padding: 5px; text-align: center; }
-        .group-table td { padding: 8px 5px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); text-align: center; }
-        .team-name { text-align: right !important; width: 50%; }
+
+        /* تنسيق المجموعات (مربعات بجانب بعض) */
+        .groups-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .group-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        .group-card:hover { border-color: #D4AF37; }
+
+        /* تصغير اسم المجموعة وجعله متناسق */
+        .group-header {
+            font-size: 0.85rem !important;
+            font-weight: 900;
+            color: #D4AF37;
+            margin-bottom: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .group-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .group-table th { color: #888; padding: 5px; font-weight: 400; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .group-table td { padding: 9px 4px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        /* علامة التأهل الخضراء الاحترافية */
+        .qualified-tag {
+            background: rgba(40, 167, 69, 0.15);
+            color: #28a745;
+            font-size: 0.65rem;
+            padding: 2px 7px;
+            border-radius: 4px;
+            margin-right: 8px;
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .team-name-cell { text-align: right !important; font-weight: 600; color: #fff; }
+        .points-cell { font-weight: 900; color: #D4AF37; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -42,8 +89,7 @@
 
         <div id="groups-tab" class="tab-content">
             <div class="groups-container" id="auto-groups">
-                <p style="text-align:center; color:gray;">جاري حساب النقاط والترتيب...</p>
-            </div>
+                </div>
         </div>
 
         <div class="footer-info">
@@ -63,8 +109,6 @@
         <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عرمرم</span><span class="vs">0 - 2</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-25"><div class="day-header">الأربعاء 08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div><div class="match-time">11:00 م</div></div></div>
         <div class="match-day-source" data-date="2026-02-26"><div class="day-header">الخميس 09 رمضان</div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div><div class="match-time">11:00 م</div></div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">1:00 ص</div></div></div>
-        <div class="match-day-source" data-date="2026-02-27"><div class="day-header">الجمعة 10 رمضان</div><div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">11:00 م</div></div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time">1:00 ص</div></div></div>
-        <div class="match-day-source" data-date="2026-02-28"><div class="day-header">السبت 11 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div><div class="match-time">11:00 م</div></div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div><div class="match-time">1:00 ص</div></div></div>
     </div>
 
     <script src="script.js"></script>
