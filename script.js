@@ -1,6 +1,10 @@
 window.onload = function() {
-    const today = new Date();
-    const formattedToday = today.toISOString().split('T')[0];
+    // تعديل منطق التاريخ: اليوم لا يتغير إلا بعد الساعة 3:00 فجراً
+    const nowTime = new Date();
+    if (nowTime.getHours() < 3) {
+        nowTime.setDate(nowTime.getDate() - 1); // نعتبر أننا لا نزال في اليوم السابق
+    }
+    const formattedToday = nowTime.toISOString().split('T')[0];
 
     const allMatches = document.querySelectorAll('.match-day-source');
     const containers = {
@@ -17,6 +21,7 @@ window.onload = function() {
         const vsElements = cloned.querySelectorAll('.vs');
         vsElements.forEach(vs => {
             vs.setAttribute('data-original', vs.innerText.trim());
+            // المقارنة مع التاريخ المعدل (قبل الساعة 3 الفجر يعتبر قديم)
             if (matchDate < formattedToday) {
                 vs.style.backgroundColor = 'var(--secondary-dark)';
                 if (vs.innerText.trim() === 'VS') vs.innerText = 'انتهت';
@@ -46,6 +51,7 @@ window.onload = function() {
 function checkLive() {
     const now = new Date();
     let h = now.getHours();
+    // لتسهيل حساب مباريات بعد منتصف الليل
     if (h < 5) h += 24; 
     const currentMins = (h * 60) + now.getMinutes();
 
@@ -54,7 +60,10 @@ function checkLive() {
         const vs = card.querySelector('.vs');
         if (startStr && vs && vs.getAttribute('data-original') === 'VS') {
             const [sh, sm] = startStr.split(':').map(Number);
-            const startMins = (sh * 60) + sm;
+            let startH = sh;
+            if (startH < 5) startH += 24; // معالجة مباريات الساعة 1 صباحاً
+            const startMins = (startH * 60) + sm;
+            
             if (currentMins >= startMins && currentMins < startMins + 110) {
                 vs.innerHTML = 'تلعب الآن 🔴';
                 vs.classList.add('live-now');
