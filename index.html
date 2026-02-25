@@ -21,12 +21,10 @@
         .points-cell { font-weight: 900; color: #D4AF37; }
         .final-prelim-badge { background: linear-gradient(45deg, #D4AF37, #8a6d1d); color: #000; font-size: 0.7rem; padding: 3px 10px; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
         .match-extra-info { font-size: 0.75rem; color: #D4AF37; margin-top: 10px; padding-top: 8px; border-top: 1px dotted rgba(212, 175, 55, 0.3); text-align: center; line-height: 1.5; }
-        .whatsapp-btn { text-decoration: none; color: #25D366; font-size: 0.85rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 5px; margin-top: 10px; transition: 0.3s; }
-        .whatsapp-btn:hover { opacity: 0.8; }
+        .whatsapp-btn { text-decoration: none; color: #25D366; font-size: 0.85rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 5px; margin-top: 10px; }
     </style>
 </head>
 <body>
-
     <div class="container">
         <header class="header">
             <h1>جدول مباريات</h1>
@@ -47,22 +45,15 @@
         <div id="today-tab" class="tab-content active"><div id="today-matches-list" class="schedule-container"></div></div>
         <div id="upcoming-tab" class="tab-content"><div id="upcoming-matches-list" class="schedule-container"></div></div>
         <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
-
-        <div id="groups-tab" class="tab-content">
-            <div class="groups-container" id="auto-groups">
-                <p style="text-align:center; color:gray;">جاري تحليل البيانات والترتيب الذكي...</p>
-            </div>
-        </div>
+        <div id="groups-tab" class="tab-content"><div class="groups-container" id="auto-groups"></div></div>
 
         <div class="footer-info">
             <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
             <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
-            
             <a href="https://wa.me/966534987428" target="_blank" class="whatsapp-btn">
                 <span>للتواصل واتساب:</span>
                 <span dir="ltr">0534987428</span>
             </a>
-
             <p style="font-size: 0.7rem; color: #666; font-style: italic; margin-top: 15px;">إخلاء مسؤولية: هذا الموقع تنظيمي ولا يمثل جهة رسمية.</p>
         </div>
     </div>
@@ -79,12 +70,8 @@
         <div class="match-day-source" data-date="2026-02-25">
             <div class="day-header">الأربعاء 08 رمضان</div>
             <div class="match-card" data-stadium="ملعب الوسم بالقحمة" data-commentator="أبو طلال">
-                <div class="teams">
-                    <span class="team">الصقر</span>
-                    <span class="vs">0 - 0</span>
-                    <span class="team">عمق</span>
-                </div>
-                <div class="match-time">12:10 م</div>
+                <div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div>
+                <div class="match-time">11:45 م</div>
             </div>
         </div>
 
