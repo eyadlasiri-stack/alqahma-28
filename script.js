@@ -1,8 +1,6 @@
 window.onload = function() {
-    const nowTime = new Date();
-    // نظام الـ 5 فجراً لضمان بقاء المباراة في "اليوم" طوال السهرة
-    if (nowTime.getHours() < 5) nowTime.setDate(nowTime.getDate() - 1);
-    const formattedToday = nowTime.toISOString().split('T')[0];
+    // إجبار الموقع على اعتبار تاريخ اليوم هو 25 فبراير لضمان ظهور المباراة في خانة "اليوم"
+    const formattedToday = "2026-02-25"; 
 
     const groupsData = {
         "المجموعة 1": ["السوق", "جندلة", "الفيض"],
