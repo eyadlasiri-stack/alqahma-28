@@ -1,82 +1,100 @@
-window.onload = function() {
-    // تحديث التاريخ ليكون الخميس 26 فبراير (9 رمضان)
-    const formattedToday = "2026-02-26"; 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بطولة القحمة الرمضانية 28</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .weather-container { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 50px; padding: 8px 20px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 15px auto; font-size: 0.95rem; color: #eee; }
+        #weather-temp { color: #D4AF37; font-weight: 900; }
+        .footer-info { margin-top: 30px; padding: 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.2); }
+        .groups-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 10px; }
+        .group-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .group-header { font-size: 0.85rem !important; font-weight: 900; color: #D4AF37; margin-bottom: 12px; text-align: center; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 8px; }
+        .group-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .group-table th { color: #888; padding: 5px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .group-table td { padding: 9px 4px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .qualified-tag { background: rgba(40, 167, 69, 0.15); color: #28a745; font-size: 0.65rem; padding: 2px 7px; border-radius: 4px; margin-right: 8px; border: 1px solid rgba(40, 167, 69, 0.3); font-weight: bold; }
+        .team-name-cell { text-align: right !important; font-weight: 600; color: #fff; }
+        .points-cell { font-weight: 900; color: #D4AF37; }
+        .final-prelim-badge { background: linear-gradient(45deg, #D4AF37, #8a6d1d); color: #000; font-size: 0.7rem; padding: 3px 10px; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
+        .match-extra-info { font-size: 0.75rem; color: #D4AF37; margin-top: 10px; padding-top: 8px; border-top: 1px dotted rgba(212, 175, 55, 0.3); text-align: center; line-height: 1.5; }
+        .whatsapp-btn { text-decoration: none; color: #25D366; font-size: 0.85rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 5px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>جدول مباريات</h1>
+            <p>بطولة القحمة الرمضانية الـ 28 للعام 2026</p>
+            <div class="weather-container">
+                <span>📍 طقس القحمة الآن:</span>
+                <span id="weather-temp">جاري التحميل...</span>
+            </div>
+        </header>
 
-    const groupsData = {
-        "المجموعة 1": ["السوق", "جندلة", "الفيض"],
-        "المجموعة 2": ["ساحل مغزل", "البرك", "وحدة الرقه"],
-        "المجموعة 3": ["الصقر", "عمق", "العرق"],
-        "المجموعة 4": ["السلطان", "الساحل الرياضي", "مستقبل عرمرم"],
-        "المجموعة 5": ["الوسام", "الفيصلي", "خليج الصوالحة"],
-        "المجموعة 6": ["صقلية", "عرمرم", "دبسا"]
-    };
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
+            <button class="tab-btn" onclick="openTab(event, 'upcoming-tab')">المباريات القادمة</button>
+            <button class="tab-btn" onclick="openTab(event, 'previous-tab')">المباريات السابقة</button>
+            <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
+        </div>
 
-    let standings = {};
-    Object.values(groupsData).flat().forEach(t => standings[t] = { played: 0, points: 0 });
+        <div id="today-tab" class="tab-content active"><div id="today-matches-list" class="schedule-container"></div></div>
+        <div id="upcoming-tab" class="tab-content"><div id="upcoming-matches-list" class="schedule-container"></div></div>
+        <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
+        <div id="groups-tab" class="tab-content"><div class="groups-container" id="auto-groups"></div></div>
 
-    const allMatches = document.querySelectorAll('.match-day-source');
-    const containers = {
-        today: document.getElementById('today-matches-list'),
-        upcoming: document.getElementById('upcoming-matches-list'),
-        previous: document.getElementById('previous-matches-list')
-    };
+        <div class="footer-info">
+            <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
+            <a href="https://wa.me/966534987428" target="_blank" class="whatsapp-btn">
+                <span>للتواصل واتساب:</span>
+                <span dir="ltr">0534987428</span>
+            </a>
+        </div>
+    </div>
 
-    allMatches.forEach(match => {
-        const matchDate = match.getAttribute('data-date');
-        const cloned = match.cloneNode(true);
-        cloned.className = 'match-day';
-        
-        cloned.querySelectorAll('.match-card').forEach(card => {
-            const stadium = card.getAttribute('data-stadium');
-            const commentator = card.getAttribute('data-commentator');
-            if (stadium || commentator) {
-                const infoDiv = document.createElement('div');
-                infoDiv.className = 'match-extra-info';
-                infoDiv.innerHTML = `${stadium ? `📍 ${stadium}` : ''}${commentator ? `<br>🎙️ بصوت: ${commentator}` : ''}`;
-                card.appendChild(infoDiv);
-            }
+    <div id="master-schedule" style="display: none;">
+        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">02 رمضان</div><div class="match-card"><div class="teams"><span class="team">الساحل الرياضي</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">03 رمضان</div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">04 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">05 رمضان</div><div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">06 رمضان</div><div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عرمرم</span><span class="vs">0 - 2</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div><div class="match-time">انتهت</div></div></div>
 
-            const teams = card.querySelectorAll('.team');
-            const vs = card.querySelector('.vs');
-            const result = vs.innerText.trim();
-            const isFinished = card.querySelector('.match-time').innerText.includes('انتهت');
-            
-            if (teams.length >= 2 && result.includes('-') && isFinished) {
-                const [t1, t2] = [teams[0].innerText.trim(), teams[1].innerText.trim()];
-                const scores = result.split('-').map(Number);
-                if (standings[t1] && standings[t2]) {
-                    standings[t1].played++; standings[t2].played++;
-                    if (scores[0] > scores[1]) standings[t1].points += 3;
-                    else if (scores[1] > scores[0]) standings[t2].points += 3;
-                    else { standings[t1].points += 1; standings[t2].points += 1; }
-                }
-            }
-        });
+        <div class="match-day-source" data-date="2026-02-26">
+            <div class="day-header">الخميس 09 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div><div class="match-time">11:00 م</div></div>
+            <div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">1:00 ص</div></div>
+        </div>
 
-        if (matchDate < formattedToday) containers.previous.appendChild(cloned);
-        else if (matchDate === formattedToday) containers.today.appendChild(cloned);
-        else containers.upcoming.appendChild(cloned);
-    });
+        <div class="match-day-source" data-date="2026-02-27">
+            <div class="day-header">الجمعة 10 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">11:00 م</div></div>
+            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time">1:00 ص</div></div>
+        </div>
+        <div class="match-day-source" data-date="2026-02-28">
+            <div class="day-header">السبت 11 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div><div class="match-time">11:00 م</div></div>
+            <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div><div class="match-time">1:00 ص</div></div>
+        </div>
+        <div class="match-day-source" data-date="2026-03-01">
+            <div class="day-header">الأحد 12 رمضان</div>
+            <div class="match-card">
+                <center><span class="final-prelim-badge">ختام التمهيدي</span></center>
+                <div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">11:00 م</div>
+            </div>
+        </div>
+    </div>
 
-    const gContainer = document.getElementById('auto-groups');
-    if (gContainer) {
-        gContainer.innerHTML = '';
-        for (const [groupName, teams] of Object.entries(groupsData)) {
-            teams.sort((a, b) => standings[b].points - standings[a].points);
-            let tableHTML = `<div class="group-card"><div class="group-header">${groupName}</div><table class="group-table"><thead><tr><th style="text-align:right;">الفريق</th><th>لعب</th><th>نقاط</th></tr></thead><tbody>`;
-            teams.forEach(team => {
-                const isQual = (team === "السوق") ? '<span class="qualified-tag">تأهل ✅</span>' : '';
-                tableHTML += `<tr><td class="team-name-cell">${team} ${isQual}</td><td>${standings[team].played}</td><td class="points-cell">${standings[team].points}</td></tr>`;
-            });
-            tableHTML += `</tbody></table></div>`;
-            gContainer.innerHTML += tableHTML;
-        }
-    }
-};
-
-function openTab(evt, tabId) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
-    evt.currentTarget.classList.add('active');
-}
+    <script src="script.js"></script>
+    <script>
+        async function getQT(){try{const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');const d=await r.json();document.getElementById('weather-temp').innerText=Math.round(d.current_weather.temperature)+"°C";}catch(e){document.getElementById('weather-temp').innerText="24°C";}}
+        getQT();
+    </script>
+</body>
+</html>
