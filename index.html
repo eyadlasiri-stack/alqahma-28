@@ -22,6 +22,21 @@
         .final-prelim-badge { background: linear-gradient(45deg, #D4AF37, #8a6d1d); color: #000; font-size: 0.7rem; padding: 3px 10px; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
         .match-extra-info { font-size: 0.75rem; color: #D4AF37; margin-top: 10px; padding-top: 8px; border-top: 1px dotted rgba(212, 175, 55, 0.3); text-align: center; line-height: 1.5; }
         .whatsapp-btn { text-decoration: none; color: #25D366; font-size: 0.85rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 5px; margin-top: 10px; }
+        
+        /* تأثير النقطة الحمراء المتحركة */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ff4d4d;
+            border-radius: 50%;
+            display: inline-block;
+            animation: blink 1s infinite;
+        }
     </style>
 </head>
 <body>
@@ -48,13 +63,11 @@
         <div id="groups-tab" class="tab-content"><div class="groups-container" id="auto-groups"></div></div>
 
         <div class="footer-info">
-            <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
             <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
             <a href="https://wa.me/966534987428" target="_blank" class="whatsapp-btn">
                 <span>للتواصل واتساب:</span>
                 <span dir="ltr">0534987428</span>
             </a>
-            <p style="font-size: 0.7rem; color: #666; font-style: italic; margin-top: 15px;">إخلاء مسؤولية: هذا الموقع تنظيمي ولا يمثل جهة رسمية.</p>
         </div>
     </div>
 
@@ -70,15 +83,19 @@
         <div class="match-day-source" data-date="2026-02-25">
             <div class="day-header">الأربعاء 08 رمضان</div>
             <div class="match-card" data-stadium="ملعب الوسم بالقحمة" data-commentator="أبو طلال">
-                <div class="teams"><span class="team">الصقر</span><span class="vs">0 - 0</span><span class="team">عمق</span></div>
-                <div class="match-time">11:45 م</div>
+                <div class="teams">
+                    <span class="team">الصقر</span>
+                    <span class="vs">0 - 0</span>
+                    <span class="team">عمق</span>
+                </div>
+                <div class="match-time" style="color: #ff4d4d; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <span class="live-dot"></span>
+                    مباشر الآن
+                </div>
             </div>
         </div>
 
-        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">الخميس 09 رمضان</div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div><div class="match-time">11:00 م</div></div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">1:00 ص</div></div></div>
-        <div class="match-day-source" data-date="2026-02-27"><div class="day-header">الجمعة 10 رمضان</div><div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">11:00 م</div></div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time">1:00 ص</div></div></div>
-        <div class="match-day-source" data-date="2026-02-28"><div class="day-header">السبت 11 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div><div class="match-time">11:00 م</div></div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div><div class="match-time">1:00 ص</div></div></div>
-        <div class="match-day-source" data-date="2026-03-01"><div class="day-header">الأحد 12 رمضان</div><div class="match-card"><center><span class="final-prelim-badge">ختام التمهيدي</span></center><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">11:00 م</div></div></div>
+        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">الخميس 09 رمضان</div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div><div class="match-time">11:00 م</div></div></div>
     </div>
 
     <script src="script.js"></script>
