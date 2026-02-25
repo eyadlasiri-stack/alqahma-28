@@ -36,16 +36,24 @@
         </header>
 
         <div class="tabs-nav">
-            <button class="tab-btn active" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
+            <button class="tab-btn active" id="defaultOpen" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming-tab')">المباريات القادمة</button>
             <button class="tab-btn" onclick="openTab(event, 'previous-tab')">المباريات السابقة</button>
             <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
         </div>
 
-        <div id="today-tab" class="tab-content active"><div id="today-matches-list" class="schedule-container"></div></div>
-        <div id="upcoming-tab" class="tab-content"><div id="upcoming-matches-list" class="schedule-container"></div></div>
-        <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
-        <div id="groups-tab" class="tab-content"><div class="groups-container" id="auto-groups"></div></div>
+        <div id="today-tab" class="tab-content active">
+            <div id="today-matches-list" class="schedule-container"></div>
+        </div>
+        <div id="upcoming-tab" class="tab-content">
+            <div id="upcoming-matches-list" class="schedule-container"></div>
+        </div>
+        <div id="previous-tab" class="tab-content">
+            <div id="previous-matches-list" class="schedule-container"></div>
+        </div>
+        <div id="groups-tab" class="tab-content">
+            <div class="groups-container" id="auto-groups"></div>
+        </div>
 
         <div class="footer-info">
             <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
