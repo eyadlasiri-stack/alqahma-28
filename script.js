@@ -1,12 +1,12 @@
 window.onload = function() {
-    // 1. منطق الوقت (تغيير اليوم عند الساعة 3 فجراً)
+    // 1. إعداد التاريخ (نظام الساعة 3 فجراً)
     const nowTime = new Date();
     if (nowTime.getHours() < 3) {
         nowTime.setDate(nowTime.getDate() - 1);
     }
     const formattedToday = nowTime.toISOString().split('T')[0];
 
-    // 2. تعريف المجموعات
+    // 2. تعريف المجموعات والفرق (تأكد من مطابقة الأسماء تماماً)
     const groupsData = {
         "المجموعة 1": ["السوق", "جندلة", "الفيض"],
         "المجموعة 2": ["البرك", "ساحل مغزل", "وحدة الرقه"],
@@ -28,7 +28,7 @@ window.onload = function() {
         previous: document.getElementById('previous-matches-list')
     };
 
-    // 3. تحليل النتائج وحساب النقاط
+    // 3. تحليل المباريات وحساب النقاط
     allMatches.forEach(match => {
         const matchDate = match.getAttribute('data-date');
         const cloned = match.cloneNode(true);
@@ -45,6 +45,7 @@ window.onload = function() {
                 const t1 = teams[0].innerText.trim();
                 const t2 = teams[1].innerText.trim();
 
+                // إذا كانت النتيجة مسجلة والمباراة "انتهت"
                 if (resultText.includes('-') && timeText.includes('انتهت')) {
                     const scores = resultText.split('-').map(Number);
                     if (standings[t1] && standings[t2]) {
@@ -63,11 +64,12 @@ window.onload = function() {
         else containers.upcoming.appendChild(cloned);
     });
 
-    // 4. بناء الجداول بشكل مربعات
+    // 4. بناء جداول المجموعات وعرضها بدل "جاري الحساب"
     const groupsContainer = document.getElementById('auto-groups');
     if (groupsContainer) {
-        groupsContainer.innerHTML = '';
+        groupsContainer.innerHTML = ''; // مسح كلمة "جاري الحساب"
         for (const [groupName, teams] of Object.entries(groupsData)) {
+            // ترتيب الفرق داخل المجموعة حسب النقاط
             teams.sort((a, b) => standings[b].points - standings[a].points);
 
             let tableHTML = `
@@ -75,19 +77,16 @@ window.onload = function() {
                     <div class="group-header">${groupName}</div>
                     <table class="group-table">
                         <thead>
-                            <tr><th style="text-align:right;">الفريق</th><th>لعب</th><th>نقاط</th></tr>
+                            <tr><th class="team-name">الفريق</th><th>لعب</th><th>نقاط</th></tr>
                         </thead>
                         <tbody>`;
             
             teams.forEach(team => {
-                // شرط إضافة كلمة تأهل (مثلاً السوق)
-                const isQualified = (team === "السوق") ? '<span class="qualified-tag">تأهل ✅</span>' : '';
-                
                 tableHTML += `
                     <tr>
-                        <td class="team-name-cell">${team} ${isQualified}</td>
-                        <td style="text-align:center;">${standings[team].played}</td>
-                        <td class="points-cell" style="text-align:center;">${standings[team].points}</td>
+                        <td class="team-name">${team}</td>
+                        <td>${standings[team].played}</td>
+                        <td style="font-weight:bold; color:#D4AF37;">${standings[team].points}</td>
                     </tr>`;
             });
 
