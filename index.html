@@ -15,42 +15,52 @@
             font-size: 0.95rem; color: #eee;
         }
         #weather-temp { color: #D4AF37; font-weight: 900; }
-        
-        /* تصميم قسم المتأهلين الجديد */
-        .qualified-section {
-            margin-top: 30px;
+
+        /* تصميم جدول دور الـ 8 الإقصائي */
+        .bracket-container {
+            margin-top: 20px;
             padding: 15px;
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px dashed #D4AF37;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 15px;
+        }
+        .bracket-title {
+            color: #D4AF37;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 10px;
+        }
+        .bracket-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .bracket-match {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 10px;
             text-align: center;
         }
-        .qualified-title {
-            color: #D4AF37;
-            font-weight: 900;
-            margin-bottom: 15px;
+        .bracket-team {
             display: block;
-            font-size: 1.2rem;
-        }
-        .qualified-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 10px;
-        }
-        .qualified-team {
-            background: #D4AF37;
-            color: #1a1a1a;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
             font-size: 0.9rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            animation: pulse 2s infinite;
+            color: #ccc;
+            padding: 5px 0;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .bracket-team.winner {
+            color: #D4AF37;
+            font-weight: bold;
+        }
+        .match-label {
+            font-size: 0.7rem;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
         }
 
         .footer-info { margin-top: 30px; padding: 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.2); }
@@ -69,30 +79,48 @@
         </header>
 
         <div class="tabs-nav">
-            <button class="tab-btn" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
+            <button class="tab-btn active" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming-tab')">المباريات القادمة</button>
             <button class="tab-btn" onclick="openTab(event, 'previous-tab')">المباريات السابقة</button>
-            <button class="tab-btn active" onclick="openTab(event, 'groups-tab')">المجموعات</button>
+            <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
         </div>
 
-        <div id="today-tab" class="tab-content">
+        <div id="today-tab" class="tab-content active">
             <div id="today-matches-list" class="schedule-container"></div>
         </div>
         
         <div id="upcoming-tab" class="tab-content"><div id="upcoming-matches-list" class="schedule-container"></div></div>
         <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
 
-        <div id="groups-tab" class="tab-content active">
-            <div class="qualified-section">
-                <span class="qualified-title">🏆 المتأهلين لدور الـ 8 رسمياً 🏆</span>
-                <div class="qualified-grid">
-                    <div class="qualified-team">1- السوق ⭐</div>
-                    <div class="qualified-team" style="background: rgba(255,255,255,0.1); color: #888; border: 1px solid #444; animation: none;">بانتظار المتأهل..</div>
+        <div id="groups-tab" class="tab-content">
+            <div class="bracket-container">
+                <span class="bracket-title">المتأهلين لدور الثمانية (8)</span>
+                <div class="bracket-grid">
+                    <div class="bracket-match">
+                        <span class="match-label">مباراة 1</span>
+                        <span class="bracket-team winner">السوق</span>
+                        <span class="bracket-team">بانتظار المتأهل..</span>
+                    </div>
+                    <div class="bracket-match">
+                        <span class="match-label">مباراة 2</span>
+                        <span class="bracket-team">بانتظار المتأهل..</span>
+                        <span class="bracket-team">بانتظار المتأهل..</span>
+                    </div>
+                    <div class="bracket-match">
+                        <span class="match-label">مباراة 3</span>
+                        <span class="bracket-team">بانتظار المتأهل..</span>
+                        <span class="bracket-team">بانتظار المتأهل..</span>
+                    </div>
+                    <div class="bracket-match">
+                        <span class="match-label">مباراة 4</span>
+                        <span class="bracket-team">بانتظار المتأهل..</span>
+                        <span class="bracket-team">بانتظار المتأهل..</span>
+                    </div>
                 </div>
             </div>
 
             <div class="groups-container" style="margin-top: 20px;">
-                <div class="group-card"><div class="group-header">المجموعة 1</div><ul class="group-teams"><li style="color: #D4AF37; font-weight: bold;">السوق (تأهل ✅)</li><li>جندلة</li><li>الفيض</li></ul></div>
+                <div class="group-card"><div class="group-header">المجموعة 1</div><ul class="group-teams"><li style="color: #D4AF37;">السوق (تأهل ✅)</li><li>جندلة</li><li>الفيض</li></ul></div>
                 <div class="group-card"><div class="group-header">المجموعة 2</div><ul class="group-teams"><li>البرك</li><li>ساحل مغزل</li><li>وحدة الرقه</li></ul></div>
                 <div class="group-card"><div class="group-header">المجموعة 3</div><ul class="group-teams"><li>الصقر</li><li>عمق</li><li>العرق</li></ul></div>
                 <div class="group-card"><div class="group-header">المجموعة 4</div><ul class="group-teams"><li>السلطان</li><li>الساحل الرياضي</li><li>مستقبل عرمرم</li></ul></div>
@@ -108,10 +136,13 @@
     </div>
 
     <div id="master-schedule" style="display: none;">
-        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div><div class="match-time">11:00 م</div></div></div>
-        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">09 رمضان</div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div><div class="match-time">11:00 م</div></div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">1:00 ص</div></div></div>
+        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time" style="color:#888;">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">02 رمضان</div><div class="match-card"><div class="teams"><span class="team">الساحل الرياضي</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time" style="color:#888;">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">06 رمضان</div><div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div><div class="match-time" style="color:#888;">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time" style="color:#888;">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عرمرم</span><span class="vs">0 - 2</span><span class="team">دبسا</span></div><div class="match-time" style="color:#888;">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">الأربعاء 08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">عمق</span></div><div class="match-time">11:00 م</div></div></div>
+        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">الخميس 09 رمضان</div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">VS</span><span class="team">الساحل الرياضي</span></div><div class="match-time">11:00 م</div></div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">دبسا</span></div><div class="match-time">1:00 ص</div></div></div>
+        <div class="match-day-source" data-date="2026-02-27"><div class="day-header">الجمعة 10 رمضان</div><div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">11:00 م</div></div></div>
     </div>
 
     <script src="script.js"></script>
