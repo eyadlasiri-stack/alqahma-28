@@ -1,4 +1,4 @@
-// وظيفة تبديل التبويبات (تعريفها في النطاق العام لتكون متاحة للـ HTML)
+// وظيفة تبديل التبويبات (Global Scope)
 function openTab(evt, tabId) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
@@ -16,8 +16,16 @@ function openTab(evt, tabId) {
 }
 
 window.onload = function() {
-    // تحديد تاريخ اليوم كـ 26 فبراير (9 رمضان)
-    const formattedToday = "2026-02-26"; 
+    // --- نظام الوقت الذكي (تأخير تغيير اليوم للفجر) ---
+    const nowTime = new Date();
+    // إذا كانت الساعة بين 12 منتصف الليل و 5 فجراً، نعتبر أننا لا نزال في اليوم السابق
+    if (nowTime.getHours() < 5) { 
+        nowTime.setDate(nowTime.getDate() - 1);
+    }
+    
+    // الحصول على التاريخ بصيغة YYYY-MM-DD ليتوافق مع الـ HTML
+    const formattedToday = nowTime.toISOString().split('T')[0];
+    // ------------------------------------------------
 
     const groupsData = {
         "المجموعة 1": ["السوق", "جندلة", "الفيض"],
@@ -61,7 +69,7 @@ window.onload = function() {
             }
         });
 
-        // توزيع المباريات بناءً على التاريخ الجديد
+        // توزيع المباريات بناءً على الوقت الذكي
         if (matchDate < formattedToday) containers.previous.appendChild(cloned);
         else if (matchDate === formattedToday) containers.today.appendChild(cloned);
         else containers.upcoming.appendChild(cloned);
@@ -82,6 +90,6 @@ window.onload = function() {
         }
     }
 
-    // فتح تبويب "مباريات اليوم" بشكل افتراضي عند التحميل
+    // فتح تبويب "مباريات اليوم" تلقائياً
     openTab(null, 'today-tab');
 };
