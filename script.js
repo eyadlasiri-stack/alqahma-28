@@ -28,6 +28,20 @@ window.onload = function() {
         cloned.className = 'match-day';
         
         cloned.querySelectorAll('.match-card').forEach(card => {
+            // --- إضافة كود عرض الملعب والمعلق ---
+            const stadium = card.getAttribute('data-stadium');
+            const commentator = card.getAttribute('data-commentator');
+            if (stadium || commentator) {
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'match-extra-info';
+                infoDiv.innerHTML = `
+                    ${stadium ? `📍 ${stadium}` : ''} 
+                    ${commentator ? `<br>🎙️ بصوت: ${commentator}` : ''}
+                `;
+                card.appendChild(infoDiv);
+            }
+            // -----------------------------------
+
             const teams = card.querySelectorAll('.team');
             const vs = card.querySelector('.vs');
             const result = vs.innerText.trim();
