@@ -20,8 +20,8 @@
         .team-name-cell { text-align: right !important; font-weight: 600; color: #fff; }
         .points-cell { font-weight: 900; color: #D4AF37; }
         .final-prelim-badge { background: linear-gradient(45deg, #D4AF37, #8a6d1d); color: #000; font-size: 0.7rem; padding: 3px 10px; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
-        .match-extra-info { font-size: 0.75rem; color: #D4AF37; margin-top: 10px; padding-top: 8px; border-top: 1px dotted rgba(212, 175, 55, 0.3); text-align: center; line-height: 1.5; }
         .whatsapp-btn { text-decoration: none; color: #25D366; font-size: 0.85rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 5px; margin-top: 10px; }
+        .news-alert { background: rgba(0, 0, 0, 0.7); color: #fff; padding: 15px; border-radius: 12px; border: 1px solid #444; margin: 10px 0 20px; text-align: center; font-size: 0.9rem; line-height: 1.6; backdrop-filter: blur(5px); }
     </style>
 </head>
 <body>
@@ -35,6 +35,11 @@
             </div>
         </header>
 
+        <div class="news-alert">
+            <strong>📍 إعلان:</strong> نظراً لحالة الوفاة، تقرر تأجيل مباراة الليلة (الفيصلي VS الوسام). <br>
+            دعواتنا للمتوفى بالرحمة والمغفرة.
+        </div>
+
         <div class="tabs-nav">
             <button class="tab-btn active" id="defaultOpen" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming-tab')">المباريات القادمة</button>
@@ -42,18 +47,10 @@
             <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
         </div>
 
-        <div id="today-tab" class="tab-content active">
-            <div id="today-matches-list" class="schedule-container"></div>
-        </div>
-        <div id="upcoming-tab" class="tab-content">
-            <div id="upcoming-matches-list" class="schedule-container"></div>
-        </div>
-        <div id="previous-tab" class="tab-content">
-            <div id="previous-matches-list" class="schedule-container"></div>
-        </div>
-        <div id="groups-tab" class="tab-content">
-            <div class="groups-container" id="auto-groups"></div>
-        </div>
+        <div id="today-tab" class="tab-content active"><div id="today-matches-list" class="schedule-container"></div></div>
+        <div id="upcoming-tab" class="tab-content"><div id="upcoming-matches-list" class="schedule-container"></div></div>
+        <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
+        <div id="groups-tab" class="tab-content"><div class="groups-container" id="auto-groups"></div></div>
 
         <div class="footer-info">
             <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
@@ -75,7 +72,6 @@
         <div class="match-day-source" data-date="2026-02-23"><div class="day-header">06 رمضان</div><div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عرمرم</span><span class="vs">0 - 2</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-25"><div class="day-header">08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div><div class="match-time">انتهت</div></div></div>
-
         <div class="match-day-source" data-date="2026-02-26">
             <div class="day-header">الخميس 09 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">1 - 2</span><span class="team">الساحل الرياضي</span></div><div class="match-time">انتهت</div></div>
@@ -85,8 +81,12 @@
         <div class="match-day-source" data-date="2026-02-27">
             <div class="day-header">الجمعة 10 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">VS</span><span class="team">الفيض</span></div><div class="match-time">11:15 م</div></div>
-            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time">1:00 ص</div></div>
+            <div class="match-card">
+                <div class="teams"><span class="team">الفيصلي</span><span class="vs" style="background-color: #555 !important;">تأجلت</span><span class="team">الوسام</span></div>
+                <div class="match-time">بسبب حالة وفاة</div>
+            </div>
         </div>
+
         <div class="match-day-source" data-date="2026-02-28">
             <div class="day-header">السبت 11 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div><div class="match-time">11:15 م</div></div>
@@ -96,7 +96,15 @@
             <div class="day-header">الأحد 12 رمضان</div>
             <div class="match-card">
                 <center><span class="final-prelim-badge">ختام التمهيدي</span></center>
-                <div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">11:50 </div>
+                <div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">11:50 م</div>
+            </div>
+        </div>
+
+        <div class="match-day-source" data-date="2026-03-10">
+            <div class="day-header" style="background-color: #333 !important;">مباريات مؤجلة (موعد لاحق)</div>
+            <div class="match-card">
+                <div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div>
+                <div class="match-time">سيتم تحديد الموعد لاحقاً</div>
             </div>
         </div>
     </div>
