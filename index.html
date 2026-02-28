@@ -82,15 +82,9 @@
         <div class="group-info" data-group="الثالثة"><div class="team-info" data-name="السوق" data-p="2" data-pts="6"></div><div class="team-info" data-name="الفيض" data-p="2" data-pts="1"></div><div class="team-info" data-name="جندلة" data-p="2" data-pts="1"></div></div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="script.js"></script>
     <script>
-        const firebaseConfig = { databaseURL: "https://eyad-a12a5-default-rtdb.firebaseio.com/" };
-        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
-        const db = firebase.database().ref('live_count_v28');
-        db.transaction(c => (c || 4231) + 1, (e, m, s) => { if(m) document.getElementById('count').innerText = s.val(); });
-
+        // إخفاء الإعلان تلقائياً
         function checkAlertStatus() {
             const now = new Date();
             const alertElement = document.getElementById('smart-alert');
@@ -98,12 +92,14 @@
             if (now < expiryDate) { alertElement.style.display = 'block'; } else { alertElement.style.display = 'none'; }
         }
 
+        // وظيفة المشاركة
         function shareSite() {
             const sData = { title: 'بطولة القحمة 28', text: 'تابع نتايج بطولة القحمة لايف:', url: window.location.href };
             if (navigator.share) { navigator.share(sData); } 
             else { window.open('https://wa.me/?text=' + encodeURIComponent(sData.text + ' ' + sData.url)); }
         }
 
+        // تحديث الطقس
         async function updateWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
@@ -112,7 +108,11 @@
                 document.getElementById('w-icon').innerText = new Date().getHours() > 6 && new Date().getHours() < 18 ? "☀️" : "🌙";
             } catch (e) { document.getElementById('w-icon').innerText = "📍"; }
         }
-        window.onload = function() { updateWeather(); checkAlertStatus(); };
+
+        window.onload = function() { 
+            updateWeather(); 
+            checkAlertStatus(); 
+        };
     </script>
 </body>
 </html>
