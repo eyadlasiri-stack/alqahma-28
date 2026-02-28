@@ -11,17 +11,18 @@
         .bottom-controls { position: fixed; bottom: 12px; left: 12px; display: flex; align-items: center; gap: 8px; z-index: 10000; }
         .control-item { background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(212, 175, 55, 0.3); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; color: #eee; backdrop-filter: blur(8px); display: flex; align-items: center; gap: 5px; cursor: pointer; transition: 0.3s; }
         
-        /* تصميم المجموعات الرياضي */
+        /* تصميم المجموعات الرياضي المحدث */
         .groups-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 10px; }
-        .group-card { background-color: rgba(255, 255, 255, 0.03); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.03); }
-        .group-header { background-color: rgba(255, 255, 255, 0.05); color: #fff; padding: 10px 15px; font-size: 0.9rem !important; font-weight: 700; text-align: right; display: block; }
+        .group-card { background-color: rgba(255, 255, 255, 0.03); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.03); margin-bottom: 10px; }
+        .group-header { background-color: rgba(255, 255, 255, 0.05); color: #fff; padding: 10px 15px; font-size: 0.9rem !important; font-weight: 700; text-align: right; display: block; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
         .group-table { width: 100%; border-collapse: collapse; color: #fff; font-size: 0.8rem; }
-        .group-table th { color: rgba(255, 255, 255, 0.5); padding: 10px 5px; text-align: center; }
+        .group-table th { color: rgba(255, 255, 255, 0.5); padding: 10px 5px; text-align: center; font-weight: 400; }
         .group-table td { padding: 12px 5px; text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
         .team-name-cell { text-align: right !important; width: 45%; padding-right: 15px !important; position: relative; }
         .rank-number { color: rgba(255, 255, 255, 0.7); font-weight: bold; margin-left: 5px; }
         .qualified-row .team-name-cell::before { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 4px; background-color: #25D366; }
         .final-prelim-badge { background: linear-gradient(45deg, #D4AF37, #8a6d1d); color: #000; font-size: 0.7rem; padding: 3px 10px; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
+        .footer-info { margin-top: 30px; padding: 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1); }
     </style>
 </head>
 <body>
@@ -41,6 +42,7 @@
             <h1>جدول مباريات</h1>
             <p>بطولة القحمة الرمضانية الـ 28 للعام 2026</p>
         </header>
+
         <div class="tabs-nav">
             <button class="tab-btn active" id="defaultOpen" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming-tab')">المباريات القادمة</button>
@@ -54,41 +56,31 @@
         
         <div id="groups-tab" class="tab-content">
             <div class="groups-container">
-                <div class="group-card">
-                    <span class="group-header">كأس مجموعة الأولى</span>
-                    <table class="group-table">
-                        <thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
-                        <tbody>
-                            <tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> <span class="team-title">البرك</span></td><td>2</td><td>+1</td><td>6</td></tr>
-                            <tr><td class="team-name-cell"><span class="rank-number">2</span> <span class="team-title">ساحل مغزل</span></td><td>1</td><td>+2</td><td>3</td></tr>
-                            <tr><td class="team-name-cell"><span class="rank-number">3</span> <span class="team-title">وحدة الرقه</span></td><td>2</td><td>-3</td><td>0</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="group-card">
-                    <span class="group-header">كأس مجموعة الثالثة</span>
-                    <table class="group-table">
-                        <thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead>
-                        <tbody>
-                            <tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> <span class="team-title">السوق</span></td><td>2</td><td>+1</td><td>6</td></tr>
-                            <tr><td class="team-name-cell"><span class="rank-number">2</span> <span class="team-title">الفيض</span></td><td>2</td><td>0</td><td>1</td></tr>
-                            <tr><td class="team-name-cell"><span class="rank-number">3</span> <span class="team-title">جندلة</span></td><td>2</td><td>-1</td><td>1</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+                <div class="group-card"><span class="group-header">المجموعة 1</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> البرك</td><td>2</td><td>+1</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> ساحل مغزل</td><td>1</td><td>+2</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> وحدة الرقه</td><td>2</td><td>-3</td><td>0</td></tr></tbody></table></div>
+                
+                <div class="group-card"><span class="group-header">المجموعة 2</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> الساحل</td><td>2</td><td>+2</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> مستقبل عرمرم</td><td>2</td><td>+1</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> السلطان</td><td>2</td><td>-3</td><td>0</td></tr></tbody></table></div>
+
+                <div class="group-card"><span class="group-header">المجموعة 3</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> السوق</td><td>2</td><td>+3</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> الفيض</td><td>2</td><td>0</td><td>1</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> جندلة</td><td>2</td><td>-3</td><td>1</td></tr></tbody></table></div>
+
+                <div class="group-card"><span class="group-header">المجموعة 4</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr><td class="team-name-cell"><span class="rank-number">1</span> دبسا</td><td>2</td><td>+2</td><td>4</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> صقلية</td><td>1</td><td>0</td><td>1</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> عرمرم</td><td>1</td><td>-2</td><td>0</td></tr></tbody></table></div>
+
+                <div class="group-card"><span class="group-header">المجموعة 5</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr><td class="team-name-cell"><span class="rank-number">1</span> الصقر</td><td>2</td><td>+2</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> عمق</td><td>2</td><td>+3</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> العرق</td><td>2</td><td>-5</td><td>0</td></tr></tbody></table></div>
+
+                <div class="group-card"><span class="group-header">المجموعة 6</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr><td class="team-name-cell"><span class="rank-number">1</span> الفيصلي</td><td>1</td><td>+2</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> الوسام</td><td>1</td><td>+3</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> خليج الصوالحة</td><td>2</td><td>-5</td><td>0</td></tr></tbody></table></div>
             </div>
         </div>
 
         <div class="footer-info">
-            <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
-            <a href="https://wa.me/966534987428" target="_blank" style="text-decoration:none; color:#25D366; font-size:0.8rem;">تواصل واتساب</a>
+            <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold; margin-bottom: 5px;">تطوير وتصميم: إياد عسيري</div>
+            <a href="https://wa.me/966534987428" target="_blank" style="text-decoration:none; color:#25D366; font-size:0.9rem; font-weight:bold;">📱 0534987428</a>
+            <p style="font-size: 0.7rem; color: #666; font-style: italic; margin-top: 15px;">إخلاء مسؤولية: هذا الموقع تنظيمي ولا يمثل جهة رسمية.</p>
         </div>
     </div>
 
     <div id="master-schedule" style="display: none;">
         <div class="match-day-source" data-date="2026-02-28">
             <div class="day-header">السبت 11 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">0 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div>
+            <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">1 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div>
             <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div><div class="match-time" style="color: #25D366; font-weight: bold;">تلعب الان</div></div>
         </div>
 
@@ -98,13 +90,21 @@
             <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time" style="color: #fbbf24;">(المؤجلة) 12:45 ص</div></div>
         </div>
 
+        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">02 رمضان</div><div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">03 رمضان</div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">04 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">05 رمضان</div><div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">06 رمضان</div><div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">09 رمضان</div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-27">
             <div class="day-header">الجمعة 10 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div>
             <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs" style="background-color: #666 !important;">مؤجلة</span><span class="team">الوسام</span></div><div class="match-time">سيتم تحديد موعدها</div></div>
         </div>
-        
-        </div>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
