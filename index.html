@@ -53,7 +53,7 @@
             <p>بطولة القحمة الرمضانية الـ 28 للعام 2026</p>
         </header>
 
-        <div class="news-alert">
+        <div id="smart-alert" class="news-alert">
             <strong>📍 إعلان:</strong> تأجيل مباراة (الفيصلي VS الوسام) للأحد القادم. <br>
             دعواتنا للمتوفى بالرحمة والمغفرة.
         </div>
@@ -105,13 +105,22 @@
             <div class="day-header">الأحد 12 رمضان</div>
             <div class="match-card">
                 <div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div>
-                <div class="match-time" style="color: #fbbf24;">(مباراة مؤجلة) 11:15 م</div>
+                <div class="match-time" style="color: #fbbf24;">(مؤجلة) 11:15 م</div>
             </div>
             <div class="match-card">
                 <center><span class="final-prelim-badge">ختام التمهيدي</span></center>
                 <div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">12:30 ص</div>
             </div>
         </div>
+    </div>
+
+    <div id="groups-data-source" style="display:none;">
+        <div class="group-info" data-group="الأولى"><div class="team-info" data-name="البرك" data-p="2" data-pts="6"></div><div class="team-info" data-name="ساحل مغزل" data-p="1" data-pts="3"></div><div class="team-info" data-name="وحدة الرقه" data-p="2" data-pts="0"></div></div>
+        <div class="group-info" data-group="الثانية"><div class="team-info" data-name="الساحل" data-p="2" data-pts="6"></div><div class="team-info" data-name="مستقبل عرمرم" data-p="2" data-pts="3"></div><div class="team-info" data-name="السلطان" data-p="2" data-pts="0"></div></div>
+        <div class="group-info" data-group="الثالثة"><div class="team-info" data-name="السوق" data-p="2" data-pts="6"></div><div class="team-info" data-name="الفيض" data-p="2" data-pts="1"></div><div class="team-info" data-name="جندلة" data-p="2" data-pts="1"></div></div>
+        <div class="group-info" data-group="الرابعة"><div class="team-info" data-name="دبسا" data-p="2" data-pts="4"></div><div class="team-info" data-name="صقلية" data-p="1" data-pts="1"></div><div class="team-info" data-name="عرمرم" data-p="1" data-pts="0"></div></div>
+        <div class="group-info" data-group="الخامسة"><div class="team-info" data-name="الصقر" data-p="1" data-pts="3"></div><div class="team-info" data-name="عمق" data-p="2" data-pts="3"></div><div class="team-info" data-name="العرق" data-p="1" data-pts="0"></div></div>
+        <div class="group-info" data-group="السادسة"><div class="team-info" data-name="الوسام" data-p="1" data-pts="3"></div><div class="team-info" data-name="الفيصلي" data-p="1" data-pts="3"></div><div class="team-info" data-name="خليج الصوالحة" data-p="2" data-pts="0"></div></div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -131,6 +140,17 @@
             }
         }
 
+        // وظيفة التحكم في الإعلان (يختفي الأحد س 4 فجر)
+        function manageAlert() {
+            const alertBox = document.getElementById('smart-alert');
+            const now = new Date();
+            const expiryTime = new Date(2026, 2, 1, 4, 0, 0); 
+
+            if (now >= expiryTime) {
+                alertBox.style.display = 'none';
+            }
+        }
+
         async function updateWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
@@ -145,7 +165,12 @@
                 document.getElementById('w-icon').innerText = icon;
             } catch (e) { document.getElementById('w-icon').innerText = "📍"; }
         }
-        updateWeather();
+
+        window.onload = function() {
+            updateWeather();
+            manageAlert();
+            setInterval(manageAlert, 60000); // تحديث كل دقيقة
+        };
     </script>
 </body>
 </html>
