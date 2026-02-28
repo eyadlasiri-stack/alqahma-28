@@ -34,12 +34,8 @@
     </div>
 
     <div class="bottom-controls">
-        <div class="control-item">
-            👁️ <span id="count" style="color:#D4AF37; font-weight:900;">4231</span>
-        </div>
-        <div class="control-item" onclick="shareSite()">
-            🔗 <span style="font-weight:bold;">نشر الموقع</span>
-        </div>
+        <div class="control-item">👁️ <span id="count" style="color:#D4AF37; font-weight:900;">4231</span></div>
+        <div class="control-item" onclick="shareSite()">🔗 <span style="font-weight:bold;">نشر الموقع</span></div>
     </div>
 
     <div class="container">
@@ -54,7 +50,7 @@
         </div>
 
         <div class="tabs-nav">
-            <button class="tab-btn active" id="defaultOpen" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
+            <button class="tab-btn active" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming-tab')">المباريات القادمة</button>
             <button class="tab-btn" onclick="openTab(event, 'previous-tab')">المباريات السابقة</button>
             <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
@@ -68,74 +64,21 @@
         <div class="footer-info">
             <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
             <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
-            <a href="https://wa.me/966534987428" target="_blank" style="text-decoration:none; color:#25D366; font-size:0.85rem; font-weight:bold; display:inline-flex; align-items:center; gap:5px; margin-top:10px;">
-                <span>للتواصل واتساب:</span>
-                <span dir="ltr">0534987428</span>
-            </a>
+            <a href="https://wa.me/966534987428" target="_blank" style="text-decoration:none; color:#25D366; font-size:0.85rem; font-weight:bold;">0534987428 📱</a>
             <p style="font-size: 0.7rem; color: #666; font-style: italic; margin-top: 15px;">إخلاء مسؤولية: هذا الموقع تنظيمي ولا يمثل جهة رسمية.</p>
         </div>
     </div>
 
     <div id="master-schedule" style="display: none;">
-        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">02 رمضان</div><div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">03 رمضان</div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">04 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">05 رمضان</div><div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">06 رمضان</div><div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عرمرم</span><span class="vs">0 - 2</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">09 رمضان</div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">السلطان</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-27">
-            <div class="day-header">الجمعة 10 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div>
-            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs" style="background:#555 !important;">تأجلت</span><span class="team">الوسام</span></div><div class="match-time">بسبب وفاة</div></div>
-        </div>
-        
-        <div class="match-day-source" data-date="2026-02-28">
-            <div class="day-header">السبت 11 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div><div class="match-time">11:15 م</div></div>
-            <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div><div class="match-time">1:00 ص</div></div>
-        </div>
-
-        <div class="match-day-source" data-date="2026-03-01">
-            <div class="day-header">الأحد 12 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time" style="color:#fbbf24;">(مؤجلة) 11:15 م</div></div>
-            <div class="match-card"><center><span class="final-prelim-badge">ختام التمهيدي</span></center><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">12:30 ص</div></div>
-        </div>
+        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-27"><div class="day-header">الجمعة 10 رمضان</div><div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-28"><div class="day-header">السبت 11 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div><div class="match-time">11:15 م</div></div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div><div class="match-time">1:00 ص</div></div></div>
+        <div class="match-day-source" data-date="2026-03-01"><div class="day-header">الأحد 12 رمضان</div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time" style="color:#fbbf24;">(مؤجلة) 11:15 م</div></div><div class="match-card"><center><span class="final-prelim-badge">ختام التمهيدي</span></center><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">12:30 ص</div></div></div>
     </div>
 
     <div id="groups-data-source" style="display:none;">
-        <div class="group-info" data-group="الأولى">
-            <div class="team-info" data-name="البرك" data-p="2" data-pts="6"></div>
-            <div class="team-info" data-name="ساحل مغزل" data-p="2" data-pts="3"></div>
-            <div class="team-info" data-name="وحدة الرقه" data-p="2" data-pts="0"></div>
-        </div>
-        <div class="group-info" data-group="الثانية">
-            <div class="team-info" data-name="الساحل" data-p="2" data-pts="6"></div>
-            <div class="team-info" data-name="مستقبل عرمرم" data-p="2" data-pts="3"></div>
-            <div class="team-info" data-name="السلطان" data-p="2" data-pts="0"></div>
-        </div>
-        <div class="group-info" data-group="الثالثة">
-            <div class="team-info" data-name="السوق" data-p="2" data-pts="6"></div>
-            <div class="team-info" data-name="الفيض" data-p="2" data-pts="1"></div>
-            <div class="team-info" data-name="جندلة" data-p="2" data-pts="1"></div>
-        </div>
-        <div class="group-info" data-group="الرابعة">
-            <div class="team-info" data-name="دبسا" data-p="2" data-pts="4"></div>
-            <div class="team-info" data-name="صقلية" data-p="1" data-pts="1"></div>
-            <div class="team-info" data-name="عرمرم" data-p="1" data-pts="0"></div>
-        </div>
-        <div class="group-info" data-group="الخامسة">
-            <div class="team-info" data-name="الصقر" data-p="1" data-pts="3"></div>
-            <div class="team-info" data-name="عمق" data-p="2" data-pts="3"></div>
-            <div class="team-info" data-name="العرق" data-p="1" data-pts="0"></div>
-        </div>
-        <div class="group-info" data-group="السادسة">
-            <div class="team-info" data-name="الوسام" data-p="1" data-pts="3"></div>
-            <div class="team-info" data-name="الفيصلي" data-p="1" data-pts="3"></div>
-            <div class="team-info" data-name="خليج الصوالحة" data-p="2" data-pts="0"></div>
-        </div>
+        <div class="group-info" data-group="الأولى"><div class="team-info" data-name="البرك" data-p="2" data-pts="6"></div><div class="team-info" data-name="ساحل مغزل" data-p="1" data-pts="3"></div></div>
+        <div class="group-info" data-group="الثالثة"><div class="team-info" data-name="السوق" data-p="2" data-pts="6"></div><div class="team-info" data-name="الفيض" data-p="2" data-pts="1"></div><div class="team-info" data-name="جندلة" data-p="2" data-pts="1"></div></div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -164,19 +107,11 @@
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
                 const d = await res.json();
-                const hr = new Date().getHours();
-                const isDay = hr > 6 && hr < 18;
-                let icon = isDay ? "☀️" : "🌙";
-                if ([1,2,3].includes(d.current_weather.weathercode)) icon = isDay ? "⛅" : "☁️";
                 document.getElementById('w-temp').innerText = Math.round(d.current_weather.temperature) + "°C";
-                document.getElementById('w-icon').innerText = icon;
+                document.getElementById('w-icon').innerText = new Date().getHours() > 6 && new Date().getHours() < 18 ? "☀️" : "🌙";
             } catch (e) { document.getElementById('w-icon').innerText = "📍"; }
         }
-
-        window.onload = function() { 
-            updateWeather(); 
-            checkAlertStatus(); 
-        };
+        window.onload = function() { updateWeather(); checkAlertStatus(); };
     </script>
 </body>
 </html>
