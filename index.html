@@ -10,39 +10,26 @@
         .weather-container { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 50px; padding: 8px 20px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 15px auto; font-size: 0.95rem; color: #eee; }
         #weather-temp { color: #D4AF37; font-weight: 900; }
         .footer-info { margin-top: 30px; padding: 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.2); }
-        
-        /* عداد الزيارات في الزاوية - صغير جداً */
-        .mini-counter { 
-            position: fixed; 
-            bottom: 10px; 
-            left: 10px; 
-            background: rgba(0, 0, 0, 0.6); 
-            border: 1px solid rgba(212, 175, 55, 0.3); 
-            padding: 4px 10px; 
-            border-radius: 20px; 
-            font-size: 0.7rem; 
-            color: #aaa; 
-            z-index: 9999;
-            backdrop-filter: blur(5px);
-        }
-        .mini-counter span#count { color: #D4AF37; font-weight: bold; margin-right: 3px; }
-
         .groups-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 10px; }
         .group-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         .group-header { font-size: 0.85rem !important; font-weight: 900; color: #D4AF37; margin-bottom: 12px; text-align: center; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 8px; }
         .group-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
         .group-table th { color: #888; padding: 5px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .group-table td { padding: 9px 4px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .qualified-tag { background: rgba(40, 167, 69, 0.15); color: #28a745; font-size: 0.65rem; padding: 2px 7px; border-radius: 4px; margin-right: 8px; border: 1px solid rgba(40, 167, 69, 0.3); font-weight: bold; }
         .team-name-cell { text-align: right !important; font-weight: 600; color: #fff; }
         .points-cell { font-weight: 900; color: #D4AF37; }
         .final-prelim-badge { background: linear-gradient(45deg, #D4AF37, #8a6d1d); color: #000; font-size: 0.7rem; padding: 3px 10px; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
         .whatsapp-btn { text-decoration: none; color: #25D366; font-size: 0.85rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 5px; margin-top: 10px; }
+        .news-alert { background: rgba(0, 0, 0, 0.7); color: #fff; padding: 15px; border-radius: 12px; border: 1px solid #444; margin: 10px 0 20px; text-align: center; font-size: 0.9rem; line-height: 1.6; backdrop-filter: blur(5px); }
+        
+        /* عداد الزوار في الزاوية - صغير وأنيق */
+        .mini-counter { position: fixed; bottom: 10px; left: 10px; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(212, 175, 55, 0.3); padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; color: #aaa; z-index: 9999; backdrop-filter: blur(5px); }
+        .mini-counter span#count { color: #D4AF37; font-weight: bold; margin-right: 3px; }
     </style>
 </head>
 <body>
-    <div class="mini-counter">
-        👁️ <span id="count">4231</span> زيارة
-    </div>
+    <div class="mini-counter">👁️ <span id="count">4231</span> زيارة</div>
 
     <div class="container">
         <header class="header">
@@ -53,6 +40,11 @@
                 <span id="weather-temp">جاري التحميل...</span>
             </div>
         </header>
+
+        <div class="news-alert">
+            <strong>📍 إعلان:</strong> نظراً لحالة الوفاة، تقرر تأجيل مباراة الليلة (الفيصلي VS الوسام). <br>
+            دعواتنا للمتوفى بالرحمة والمغفرة.
+        </div>
 
         <div class="tabs-nav">
             <button class="tab-btn active" id="defaultOpen" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
@@ -67,19 +59,30 @@
         <div id="groups-tab" class="tab-content"><div class="groups-container" id="auto-groups"></div></div>
 
         <div class="footer-info">
+            <p style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">جميع الحقوق محفوظة لبطولة القحمة الرمضانية 28 © 2026</p>
             <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold;">تطوير وتصميم: إياد عسيري</div>
             <a href="https://wa.me/966534987428" target="_blank" class="whatsapp-btn">
                 <span>للتواصل واتساب:</span>
                 <span dir="ltr">0534987428</span>
             </a>
+            <p style="font-size: 0.7rem; color: #666; font-style: italic; margin-top: 15px;">إخلاء مسؤولية: هذا الموقع تنظيمي ولا يمثل جهة رسمية.</p>
         </div>
     </div>
 
     <div id="master-schedule" style="display: none;">
+        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">02 رمضان</div><div class="match-card"><div class="teams"><span class="team">الساحل الرياضي</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">03 رمضان</div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">04 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">05 رمضان</div><div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">06 رمضان</div><div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عرمرم</span><span class="vs">0 - 2</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">الخميس 09 رمضان</div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">1 - 2</span><span class="team">الساحل الرياضي</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-27">
             <div class="day-header">الجمعة 10 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div>
-            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs" style="background:#555 !important;">تأجلت</span><span class="team">الوسام</span></div><div class="match-time">حالة وفاة</div></div>
+            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs" style="background-color: #555 !important;">تأجلت</span><span class="team">الوسام</span></div><div class="match-time">بسبب حالة وفاة</div></div>
         </div>
         <div class="match-day-source" data-date="2026-02-28">
             <div class="day-header">السبت 11 رمضان</div>
@@ -88,8 +91,11 @@
         </div>
         <div class="match-day-source" data-date="2026-03-01">
             <div class="day-header">الأحد 12 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time" style="color:#fbbf24;">(مؤجلة) 11:15 م</div></div>
-            <div class="match-card"><center><span class="final-prelim-badge">ختام التمهيدي</span></center><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">12:30 ص</div></div>
+            <div class="match-card"><center><span class="final-prelim-badge">ختام التمهيدي</span></center><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">11:50 م</div></div>
+        </div>
+        <div class="match-day-source" data-date="2026-03-10">
+            <div class="day-header" style="background-color: #333 !important;">مباريات مؤجلة (موعد لاحق)</div>
+            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time">سيتم تحديد الموعد لاحقاً</div></div>
         </div>
     </div>
 
@@ -100,11 +106,8 @@
         const firebaseConfig = { databaseURL: "https://qahma-tournament-default-rtdb.firebaseio.com" };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database().ref('live_visitors_v28');
-
         function startCounter() {
-            db.transaction((curr) => {
-                return (curr || 4230) + 1;
-            }, (err, comm, snap) => {
+            db.transaction((curr) => { return (curr || 4230) + 1; }, (err, comm, snap) => {
                 if (comm) { document.getElementById('count').innerHTML = snap.val(); }
             });
         }
