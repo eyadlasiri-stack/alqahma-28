@@ -14,8 +14,16 @@
         .control-item { background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(212, 175, 55, 0.3); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; color: #eee; backdrop-filter: blur(8px); display: flex; align-items: center; gap: 5px; cursor: pointer; transition: 0.3s; }
         .control-item:hover { background: rgba(212, 175, 55, 0.2); border-color: #D4AF37; }
         .footer-info { margin-top: 30px; padding: 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.2); }
-        .news-alert { background: rgba(0, 0, 0, 0.7); color: #fff; padding: 15px; border-radius: 12px; border: 1px solid #444; margin: 10px 0 20px; text-align: center; font-size: 0.85rem; line-height: 1.6; backdrop-filter: blur(5px); display: none; } /* مخفي افتراضياً ويظهر بالسكربت */
+        .groups-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 10px; }
+        .group-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .group-header { font-size: 0.85rem !important; font-weight: 900; color: #D4AF37; margin-bottom: 12px; text-align: center; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 8px; }
+        .group-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .group-table th { color: #888; padding: 5px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .group-table td { padding: 9px 4px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .team-name-cell { text-align: right !important; font-weight: 600; color: #fff; }
+        .points-cell { font-weight: 900; color: #D4AF37; }
         .final-prelim-badge { background: linear-gradient(45deg, #D4AF37, #8a6d1d); color: #000; font-size: 0.7rem; padding: 3px 10px; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
+        .news-alert { background: rgba(0, 0, 0, 0.7); color: #fff; padding: 15px; border-radius: 12px; border: 1px solid #444; margin: 10px 0 20px; text-align: center; font-size: 0.85rem; line-height: 1.6; backdrop-filter: blur(5px); display: none; }
     </style>
 </head>
 <body>
@@ -69,15 +77,64 @@
     </div>
 
     <div id="master-schedule" style="display: none;">
+        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">02 رمضان</div><div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">03 رمضان</div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">04 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">05 رمضان</div><div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">06 رمضان</div><div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عرمرم</span><span class="vs">0 - 2</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">09 رمضان</div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">السلطان</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-27">
+            <div class="day-header">الجمعة 10 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div>
+            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs" style="background:#555 !important;">تأجلت</span><span class="team">الوسام</span></div><div class="match-time">بسبب وفاة</div></div>
+        </div>
+        
         <div class="match-day-source" data-date="2026-02-28">
             <div class="day-header">السبت 11 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">VS</span><span class="team">العرق</span></div><div class="match-time">11:15 م</div></div>
             <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div><div class="match-time">1:00 ص</div></div>
         </div>
+
         <div class="match-day-source" data-date="2026-03-01">
             <div class="day-header">الأحد 12 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time" style="color: #fbbf24;">(مؤجلة) 11:15 م</div></div>
+            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time" style="color:#fbbf24;">(مؤجلة) 11:15 م</div></div>
             <div class="match-card"><center><span class="final-prelim-badge">ختام التمهيدي</span></center><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">12:30 ص</div></div>
+        </div>
+    </div>
+
+    <div id="groups-data-source" style="display:none;">
+        <div class="group-info" data-group="الأولى">
+            <div class="team-info" data-name="البرك" data-p="2" data-pts="6"></div>
+            <div class="team-info" data-name="ساحل مغزل" data-p="2" data-pts="3"></div>
+            <div class="team-info" data-name="وحدة الرقه" data-p="2" data-pts="0"></div>
+        </div>
+        <div class="group-info" data-group="الثانية">
+            <div class="team-info" data-name="الساحل" data-p="2" data-pts="6"></div>
+            <div class="team-info" data-name="مستقبل عرمرم" data-p="2" data-pts="3"></div>
+            <div class="team-info" data-name="السلطان" data-p="2" data-pts="0"></div>
+        </div>
+        <div class="group-info" data-group="الثالثة">
+            <div class="team-info" data-name="السوق" data-p="2" data-pts="6"></div>
+            <div class="team-info" data-name="الفيض" data-p="2" data-pts="1"></div>
+            <div class="team-info" data-name="جندلة" data-p="2" data-pts="1"></div>
+        </div>
+        <div class="group-info" data-group="الرابعة">
+            <div class="team-info" data-name="دبسا" data-p="2" data-pts="4"></div>
+            <div class="team-info" data-name="صقلية" data-p="1" data-pts="1"></div>
+            <div class="team-info" data-name="عرمرم" data-p="1" data-pts="0"></div>
+        </div>
+        <div class="group-info" data-group="الخامسة">
+            <div class="team-info" data-name="الصقر" data-p="1" data-pts="3"></div>
+            <div class="team-info" data-name="عمق" data-p="2" data-pts="3"></div>
+            <div class="team-info" data-name="العرق" data-p="1" data-pts="0"></div>
+        </div>
+        <div class="group-info" data-group="السادسة">
+            <div class="team-info" data-name="الوسام" data-p="1" data-pts="3"></div>
+            <div class="team-info" data-name="الفيصلي" data-p="1" data-pts="3"></div>
+            <div class="team-info" data-name="خليج الصوالحة" data-p="2" data-pts="0"></div>
         </div>
     </div>
 
@@ -90,22 +147,15 @@
         const db = firebase.database().ref('live_count_v28');
         db.transaction(c => (c || 4231) + 1, (e, m, s) => { if(m) document.getElementById('count').innerText = s.val(); });
 
-        // وظيفة التحكم في ظهور الإعلان (يختفي الأحد س 4 فجراً)
         function checkAlertStatus() {
             const now = new Date();
             const alertElement = document.getElementById('smart-alert');
-            // التاريخ المستهدف للإخفاء: 1 مارس 2026 الساعة 04:00:00
             const expiryDate = new Date(2026, 2, 1, 4, 0, 0); 
-
-            if (now < expiryDate) {
-                alertElement.style.display = 'block'; // يظهر إذا لم يحن الوقت بعد
-            } else {
-                alertElement.style.display = 'none'; // يختفي تلقائياً
-            }
+            if (now < expiryDate) { alertElement.style.display = 'block'; } else { alertElement.style.display = 'none'; }
         }
 
         function shareSite() {
-            const sData = { title: 'بطولة القحمة 28', text: 'تابع نتايج بطولة القحمة لايف:', url: window.location.href };
+            const sData = { title: 'بطولة القحمة 28', text: 'تابع نتائج بطولة القحمة لايف:', url: window.location.href };
             if (navigator.share) { navigator.share(sData); } 
             else { window.open('https://wa.me/?text=' + encodeURIComponent(sData.text + ' ' + sData.url)); }
         }
@@ -125,7 +175,7 @@
 
         window.onload = function() { 
             updateWeather(); 
-            checkAlertStatus(); // فحص حالة الإعلان فور التحميل
+            checkAlertStatus(); 
         };
     </script>
 </body>
