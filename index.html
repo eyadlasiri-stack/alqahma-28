@@ -12,7 +12,7 @@
         .bottom-controls { position: fixed; bottom: 12px; left: 12px; display: flex; align-items: center; gap: 8px; z-index: 10000; }
         .control-item { background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(212, 175, 55, 0.3); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; color: #eee; backdrop-filter: blur(8px); display: flex; align-items: center; gap: 5px; cursor: pointer; transition: 0.3s; }
         
-        /* تصميم المجموعات الرياضي الجديد */
+        /* تصميم المجموعات الرياضي */
         .groups-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 10px; }
         .group-card { background-color: rgba(255, 255, 255, 0.03); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.03); margin-bottom: 10px; }
         .group-header { background-color: rgba(255, 255, 255, 0.05); color: #fff; padding: 10px 15px; font-size: 0.9rem !important; font-weight: 700; text-align: right; display: block; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
@@ -59,18 +59,17 @@
         <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
         
         <div id="groups-tab" class="tab-content">
-            <div style="display: flex; align-items: center; gap: 10px; padding: 10px 15px; margin-bottom: 10px; background: rgba(37, 211, 102, 0.1); border-radius: 8px; width: fit-content; margin-right: 10px;">
-                <div style="width: 12px; height: 12px; background-color: #25D366; border-radius: 2px;"></div>
-                <span style="color: #25D366; font-size: 0.75rem; font-weight: bold;">متأهل للجولة التالية</span>
-            </div>
-
             <div class="groups-container">
                 <div class="group-card"><span class="group-header">المجموعة 1</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> البرك</td><td>2</td><td>+1</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> ساحل مغزل</td><td>1</td><td>+2</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> وحدة الرقه</td><td>2</td><td>-3</td><td>0</td></tr></tbody></table></div>
-                <div class="group-card"><span class="group-header">المجموعة 2</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> الساحل</td><td>2</td><td>+2</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> مستقبل عرمرم</td><td>2</td><td>+1</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> السلطان</td><td>2</td><td>-3</td><td>0</td></tr></tbody></table></div>
+                <div class="group-card"><span class="group-header">المجموعة 2</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> الساحل الرياضي</td><td>2</td><td>+2</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> مستقبل عرمرم</td><td>2</td><td>+1</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> السلطان</td><td>2</td><td>-3</td><td>0</td></tr></tbody></table></div>
                 <div class="group-card"><span class="group-header">المجموعة 3</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> السوق</td><td>2</td><td>+3</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> الفيض</td><td>2</td><td>0</td><td>1</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> جندلة</td><td>2</td><td>-3</td><td>1</td></tr></tbody></table></div>
                 <div class="group-card"><span class="group-header">المجموعة 4</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr><td class="team-name-cell"><span class="rank-number">1</span> دبسا</td><td>2</td><td>+2</td><td>4</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> صقلية</td><td>1</td><td>0</td><td>1</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> عرمرم</td><td>1</td><td>-2</td><td>0</td></tr></tbody></table></div>
                 <div class="group-card"><span class="group-header">المجموعة 5</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr><td class="team-name-cell"><span class="rank-number">1</span> الصقر</td><td>2</td><td>+2</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> عمق</td><td>2</td><td>+3</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> العرق</td><td>2</td><td>-5</td><td>0</td></tr></tbody></table></div>
                 <div class="group-card"><span class="group-header">المجموعة 6</span><table class="group-table"><thead><tr><th style="text-align: right; padding-right: 15px;"># الفريق</th><th>لعب</th><th>+/-</th><th>نقاط</th></tr></thead><tbody><tr><td class="team-name-cell"><span class="rank-number">1</span> الفيصلي</td><td>1</td><td>+2</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> الوسام</td><td>1</td><td>+3</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> خليج الصوالحة</td><td>2</td><td>-5</td><td>0</td></tr></tbody></table></div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 15px; margin-top: 10px;">
+                <div style="width: 4px; height: 15px; background-color: #25D366; border-radius: 2px;"></div>
+                <span style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">التأهل في المرحلة التالية</span>
             </div>
         </div>
 
@@ -87,15 +86,13 @@
             <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">1 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div>
             <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">VS</span><span class="team">ساحل مغزل</span></div><div class="match-time" style="color: #25D366; font-weight: bold;">تلعب الان</div></div>
         </div>
-
         <div class="match-day-source" data-date="2026-03-01">
             <div class="day-header">الأحد 12 رمضان</div>
             <div class="match-card"><center><span class="final-prelim-badge">ختام التمهيدي</span></center><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">11:30 م</div></div>
             <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time" style="color: #fbbf24;">(المؤجلة) 12:45 ص</div></div>
         </div>
-
         <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">02 رمضان</div><div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">02 رمضان</div><div class="match-card"><div class="teams"><span class="team">الساحل الرياضي</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-20"><div class="day-header">03 رمضان</div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-21"><div class="day-header">04 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-22"><div class="day-header">05 رمضان</div><div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div></div>
@@ -103,11 +100,7 @@
         <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-25"><div class="day-header">08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-26"><div class="day-header">09 رمضان</div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-27">
-            <div class="day-header">الجمعة 10 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div>
-            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs" style="background-color: #666 !important;">مؤجلة</span><span class="team">الوسام</span></div><div class="match-time">سيتم تحديد موعدها</div></div>
-        </div>
+        <div class="match-day-source" data-date="2026-02-27"><div class="day-header">الجمعة 10 رمضان</div><div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs" style="background-color: #666 !important;">مؤجلة</span><span class="team">الوسام</span></div><div class="match-time">مؤجلة</div></div></div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -118,7 +111,6 @@
         if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
         const db = firebase.database().ref('live_visitors_v28');
         db.transaction(c => (c || 4230) + 1, (e, m, s) => { if(m) document.getElementById('count').innerText = s.val(); });
-
         async function updateWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
