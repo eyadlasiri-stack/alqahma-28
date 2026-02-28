@@ -7,18 +7,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* شريط الأخبار المتحرك */
-        .ticker-wrap { width: 100%; overflow: hidden; background: rgba(212, 175, 55, 0.1); border-bottom: 1px solid rgba(212, 175, 55, 0.3); padding: 10px 0; margin-bottom: 15px; }
-        .ticker { display: inline-block; white-space: nowrap; animation: ticker 25s linear infinite; color: #D4AF37; font-weight: bold; font-size: 0.9rem; }
-        @keyframes ticker { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-
         .weather-container { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 50px; padding: 8px 20px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 15px auto; font-size: 0.95rem; color: #eee; }
         #weather-temp { color: #D4AF37; font-weight: 900; }
         .footer-info { margin-top: 30px; padding: 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.2); }
         
-        /* تنسيق عداد الزوار الفخم */
-        .visitor-counter { background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; padding: 12px; display: inline-block; margin-top: 15px; min-width: 200px; }
-        .visitor-count { color: #D4AF37; font-weight: 900; font-size: 1.4rem; margin-right: 5px; text-shadow: 0 0 10px rgba(212,175,55,0.4); }
+        /* عداد الزيارات في الزاوية - صغير جداً */
+        .mini-counter { 
+            position: fixed; 
+            bottom: 10px; 
+            left: 10px; 
+            background: rgba(0, 0, 0, 0.6); 
+            border: 1px solid rgba(212, 175, 55, 0.3); 
+            padding: 4px 10px; 
+            border-radius: 20px; 
+            font-size: 0.7rem; 
+            color: #aaa; 
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+        .mini-counter span#count { color: #D4AF37; font-weight: bold; margin-right: 3px; }
 
         .groups-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 10px; }
         .group-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
@@ -33,10 +40,8 @@
     </style>
 </head>
 <body>
-    <div class="ticker-wrap">
-        <div class="ticker">
-            🏆 عاجل: مباراة الفيصلي والوسام المؤجلة ستقام يوم الأحد القادم (11:15 م) .. ختام الدور التمهيدي يشتعل .. ترقبوا مباريات الليلة النارية.
-        </div>
+    <div class="mini-counter">
+        👁️ <span id="count">4231</span> زيارة
     </div>
 
     <div class="container">
@@ -67,11 +72,6 @@
                 <span>للتواصل واتساب:</span>
                 <span dir="ltr">0534987428</span>
             </a>
-            <br>
-            <div class="visitor-counter">
-                <span>👥 إجمالي زيارات الموقع:</span>
-                <span id="count" class="visitor-count">4231</span>
-            </div>
         </div>
     </div>
 
@@ -97,7 +97,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="script.js"></script>
     <script>
-        // إعداد العداد (Firebase)
         const firebaseConfig = { databaseURL: "https://qahma-tournament-default-rtdb.firebaseio.com" };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database().ref('live_visitors_v28');
