@@ -19,7 +19,6 @@
         .rank-number { color: rgba(255, 255, 255, 0.7); font-weight: bold; margin-left: 5px; }
         .qualified-row .team-name-cell::before { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 4px; background-color: #25D366; }
         .final-prelim-badge { background: linear-gradient(45deg, #D4AF37, #8a6d1d); color: #000; font-size: 0.7rem; padding: 3px 10px; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
-        .footer-info { margin-top: 30px; padding: 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1); }
     </style>
 </head>
 <body>
@@ -84,7 +83,7 @@
         <div class="match-day-source" data-date="2026-02-27"><div class="day-header">الجمعة 10 رمضان</div><div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-26"><div class="day-header">الخميس 09 رمضان</div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">1 - 2</span><span class="team">الساحل الرياضي</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عرمرم</span><span class="vs">0 - 0</span><span class="team">صقلية</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-25"><div class="day-header">الأربعاء 08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">الثلاثاء 07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عرمرم</span><span class="vs">0 - 2</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">الثلاثاء 07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-23"><div class="day-header">الاثنين 06 رمضان</div><div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 2</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-22"><div class="day-header">الأحد 05 رمضان</div><div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقه</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div></div>
         <div class="match-day-source" data-date="2026-02-21"><div class="day-header">السبت 04 رمضان</div><div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">0 - 2</span><span class="team">السوق</span></div><div class="match-time">انتهت</div></div></div>
@@ -108,10 +107,6 @@
             } catch (e) { document.getElementById('w-icon').innerText = "📍"; }
         }
         updateWeather();
-        function shareSite() {
-            if (navigator.share) { navigator.share({ title: 'بطولة القحمة 28', url: window.location.href }); }
-            else { window.open('https://wa.me/?text=' + encodeURIComponent(window.location.href)); }
-        }
     </script>
 </body>
 </html>
