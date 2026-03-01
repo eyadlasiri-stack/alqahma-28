@@ -7,69 +7,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* التصميم الجديد للمجموعات بناءً على الصورة */
-        .group-card {
-            background-color: #1e2227; /* خلفية داكنة نفس الصورة */
-            border-radius: 20px; 
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            border: 1px solid #2d323a;
+        /* إعادة تصميم المجموعة لليمين مع الخط الذهبي (التصميم القديم) */
+        .group-header { 
+            background-color: rgba(255, 255, 255, 0.05); 
+            color: #D4AF37; 
+            padding: 12px 15px; 
+            font-size: 0.9rem !important; 
+            font-weight: 900; 
+            text-align: right !important; 
+            display: flex; 
+            align-items: center;
+            justify-content: flex-start; 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
+            position: relative;
         }
-
-        .group-header {
-            background-color: #2a2e35;
-            color: #ffffff;
-            padding: 12px 15px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            text-align: right;
-            border-bottom: 1px solid #383d46;
+        .group-header::before {
+            content: "";
+            width: 3px;
+            height: 15px;
+            background-color: #D4AF37;
+            margin-left: 8px; 
+            border-radius: 2px;
         }
-
-        .group-table {
-            width: 100%;
-            border-collapse: collapse;
-            color: #ffffff;
-        }
-
-        .table-head-row {
-            background-color: #1a1d22;
-            color: #8e949b;
-            font-size: 0.75rem;
-        }
-
-        .group-table td, .group-table th {
-            padding: 12px 8px;
-            text-align: center;
-        }
-
-        .team-name-cell {
-            text-align: right !important;
-            padding-right: 15px !important;
-            font-weight: 700;
-            font-size: 0.9rem;
-            width: 45%;
-        }
-
-        /* مؤشر التأهل الأخضر الجانبي */
-        .q-line {
-            width: 4px;
-            height: 18px;
-            background-color: #2ecc71;
-            display: inline-block;
-            margin-left: 8px;
-            border-radius: 10px;
-            vertical-align: middle;
-        }
-
-        .rank-number { color: #8e949b; font-size: 0.8rem; }
-        .stat-bold { font-weight: bold; color: #fff; }
-
-        /* تنسيقات الموقع العامة */
-        .weather-mini-box { position: absolute; top: 15px; left: 15px; background: rgba(255, 255, 255, 0.05); padding: 5px 12px; border-radius: 30px; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(212,175,55,0.2); backdrop-filter: blur(5px); z-index: 1000; }
+        .weather-mini-box { position: absolute; top: 15px; left: 15px; background: rgba(255, 255, 255, 0.05); padding: 5px 12px; border-radius: 30px; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(212, 175, 55, 0.2); backdrop-filter: blur(5px); z-index: 1000; }
         .bottom-controls { position: fixed; bottom: 12px; left: 12px; display: flex; align-items: center; gap: 8px; z-index: 10000; }
-        .control-item { background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(212,175,55,0.3); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; color: #eee; backdrop-filter: blur(8px); cursor: pointer; }
+        .control-item { background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(212, 175, 55, 0.3); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; color: #eee; backdrop-filter: blur(8px); display: flex; align-items: center; gap: 5px; cursor: pointer; transition: 0.3s; }
+        .groups-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 10px; }
+        .group-card { background-color: rgba(255, 255, 255, 0.03); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.03); margin-bottom: 10px; }
+        .group-table { width: 100%; border-collapse: collapse; color: #fff; font-size: 0.8rem; }
+        .group-table td { padding: 12px 5px; text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
+        .team-name-cell { text-align: right !important; width: 45%; padding-right: 15px !important; position: relative; }
+        .rank-number { color: rgba(255, 255, 255, 0.7); font-weight: bold; margin-left: 5px; }
+        .qualified-row .team-name-cell::before { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 4px; background-color: #25D366; }
+        .final-prelim-badge { background: linear-gradient(45deg, #D4AF37, #8a6d1d); color: #000; font-size: 0.7rem; padding: 3px 10px; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
+        .footer-info { margin-top: 30px; padding: 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1); }
     </style>
 </head>
 <body>
@@ -80,7 +51,7 @@
 
     <div class="bottom-controls">
         <div class="control-item">👁️ <span id="count" style="color:#D4AF37; font-weight:900;">4619</span></div>
-        <div class="control-item" onclick="shareSite()">🔗 <b>نشر الموقع</b></div>
+        <div class="control-item" onclick="shareSite()">🔗 <span style="font-weight:bold;">نشر الموقع</span></div>
     </div>
 
     <div class="container">
@@ -90,76 +61,21 @@
         </header>
 
         <div class="tabs-nav">
-            <button class="tab-btn" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
-            <button class="tab-btn active" id="defaultOpen" onclick="openTab(event, 'groups-tab')">المجموعات</button>
-            <button class="tab-btn" onclick="openTab(event, 'previous-tab')">الأرشيف</button>
+            <button class="tab-btn active" id="defaultOpen" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
+            <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
+            <button class="tab-btn" onclick="openTab(event, 'previous-tab')">المباريات السابقة</button>
         </div>
 
-        <div id="today-tab" class="tab-content"><div id="today-matches-list" class="schedule-container"></div></div>
+        <div id="today-tab" class="tab-content active"><div id="today-matches-list" class="schedule-container"></div></div>
         
-        <div id="groups-tab" class="tab-content active" style="display: block;">
+        <div id="groups-tab" class="tab-content">
             <div class="groups-container">
-                
-                <div class="group-card">
-                    <div class="group-header">كأس مَجموعة 1</div>
-                    <table class="group-table">
-                        <tr class="table-head-row"><th>ن</th><th>=</th><th>ل</th><th class="team-name-cell">الفريق</th><th>م</th></tr>
-                        <tr><td class="stat-bold">6</td><td>+3</td><td>2</td><td class="team-name-cell"><div class="q-line"></div>السوق</td><td class="rank-number">1</td></tr>
-                        <tr><td>1</td><td>0</td><td>2</td><td class="team-name-cell">الفيض</td><td class="rank-number">2</td></tr>
-                        <tr><td>1</td><td>-3</td><td>2</td><td class="team-name-cell">جندلة</td><td class="rank-number">3</td></tr>
-                    </table>
-                </div>
-
-                <div class="group-card">
-                    <div class="group-header">كأس مَجموعة 2</div>
-                    <table class="group-table">
-                        <tr class="table-head-row"><th>ن</th><th>=</th><th>ل</th><th class="team-name-cell">الفريق</th><th>م</th></tr>
-                        <tr><td class="stat-bold">6</td><td>+3</td><td>2</td><td class="team-name-cell"><div class="q-line"></div>ساحل مغزل</td><td class="rank-number">1</td></tr>
-                        <tr><td>3</td><td>0</td><td>2</td><td class="team-name-cell">البرك</td><td class="rank-number">2</td></tr>
-                        <tr><td>0</td><td>-3</td><td>2</td><td class="team-name-cell">وحدة الرقة</td><td class="rank-number">3</td></tr>
-                    </table>
-                </div>
-
-                <div class="group-card">
-                    <div class="group-header">كأس مَجموعة 3</div>
-                    <table class="group-table">
-                        <tr class="table-head-row"><th>ن</th><th>=</th><th>ل</th><th class="team-name-cell">الفريق</th><th>م</th></tr>
-                        <tr><td class="stat-bold">6</td><td>+2</td><td>2</td><td class="team-name-cell"><div class="q-line"></div>الصقر</td><td class="rank-number">1</td></tr>
-                        <tr><td>3</td><td>+3</td><td>2</td><td class="team-name-cell">عمق</td><td class="rank-number">2</td></tr>
-                        <tr><td>0</td><td>-5</td><td>2</td><td class="team-name-cell">العرق</td><td class="rank-number">3</td></tr>
-                    </table>
-                </div>
-                
-                <div class="group-card">
-                    <div class="group-header">كأس مَجموعة 4</div>
-                    <table class="group-table">
-                        <tr class="table-head-row"><th>ن</th><th>=</th><th>ل</th><th class="team-name-cell">الفريق</th><th>م</th></tr>
-                        <tr><td class="stat-bold">6</td><td>+2</td><td>2</td><td class="team-name-cell"><div class="q-line"></div>الساحل الرياضي</td><td class="rank-number">1</td></tr>
-                        <tr><td>3</td><td>+1</td><td>2</td><td class="team-name-cell">مستقبل عرمرم</td><td class="rank-number">2</td></tr>
-                        <tr><td>0</td><td>-3</td><td>2</td><td class="team-name-cell">السلطان</td><td class="rank-number">3</td></tr>
-                    </table>
-                </div>
-
-                <div class="group-card">
-                    <div class="group-header">كأس مَجموعة 5</div>
-                    <table class="group-table">
-                        <tr class="table-head-row"><th>ن</th><th>=</th><th>ل</th><th class="team-name-cell">الفريق</th><th>م</th></tr>
-                        <tr><td class="stat-bold">3</td><td>+2</td><td>1</td><td class="team-name-cell">الفيصلي</td><td class="rank-number">1</td></tr>
-                        <tr><td class="stat-bold">3</td><td>+3</td><td>1</td><td class="team-name-cell">الوسام</td><td class="rank-number">2</td></tr>
-                        <tr><td>0</td><td>-5</td><td>2</td><td class="team-name-cell">خليج الصوالحة</td><td class="rank-number">3</td></tr>
-                    </table>
-                </div>
-
-                <div class="group-card">
-                    <div class="group-header">كأس مَجموعة 6</div>
-                    <table class="group-table">
-                        <tr class="table-head-row"><th>ن</th><th>=</th><th>ل</th><th class="team-name-cell">الفريق</th><th>م</th></tr>
-                        <tr><td class="stat-bold">4</td><td>+2</td><td>2</td><td class="team-name-cell">دبسا</td><td class="rank-number">1</td></tr>
-                        <tr><td>1</td><td>0</td><td>1</td><td class="team-name-cell">صقلية</td><td class="rank-number">2</td></tr>
-                        <tr><td>0</td><td>-2</td><td>1</td><td class="team-name-cell">عرمرم</td><td class="rank-number">3</td></tr>
-                    </table>
-                </div>
-
+                <div class="group-card"><span class="group-header">المجموعة 1</span><table class="group-table"><tbody><tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> السوق</td><td>2</td><td>+3</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> الفيض</td><td>2</td><td>0</td><td>1</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> جندلة</td><td>2</td><td>-3</td><td>1</td></tr></tbody></table></div>
+                <div class="group-card"><span class="group-header">المجموعة 2</span><table class="group-table"><tbody><tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> ساحل مغزل</td><td>2</td><td>+3</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> البرك</td><td>2</td><td>0</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> وحدة الرقه</td><td>2</td><td>-3</td><td>0</td></tr></tbody></table></div>
+                <div class="group-card"><span class="group-header">المجموعة 3</span><table class="group-table"><tbody><tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> الصقر</td><td>2</td><td>+2</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> عمق</td><td>2</td><td>+3</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> العرق</td><td>2</td><td>-5</td><td>0</td></tr></tbody></table></div>
+                <div class="group-card"><span class="group-header">المجموعة 4</span><table class="group-table"><tbody><tr class="qualified-row"><td class="team-name-cell"><span class="rank-number">1</span> الساحل الرياضي</td><td>2</td><td>+2</td><td>6</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> مستقبل عرمرم</td><td>2</td><td>+1</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> السلطان</td><td>2</td><td>-3</td><td>0</td></tr></tbody></table></div>
+                <div class="group-card"><span class="group-header">المجموعة 5</span><table class="group-table"><tbody><tr><td class="team-name-cell"><span class="rank-number">1</span> الفيصلي</td><td>1</td><td>+2</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> الوسام</td><td>1</td><td>+3</td><td>3</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> خليج الصوالحة</td><td>2</td><td>-5</td><td>0</td></tr></tbody></table></div>
+                <div class="group-card"><span class="group-header">المجموعة 6</span><table class="group-table"><tbody><tr><td class="team-name-cell"><span class="rank-number">1</span> دبسا</td><td>2</td><td>+2</td><td>4</td></tr><tr><td class="team-name-cell"><span class="rank-number">2</span> صقلية</td><td>1</td><td>0</td><td>1</td></tr><tr><td class="team-name-cell"><span class="rank-number">3</span> عرمرم</td><td>1</td><td>-2</td><td>0</td></tr></tbody></table></div>
             </div>
         </div>
 
@@ -182,7 +98,6 @@
 
     <script src="script.js"></script>
     <script>
-        // الكود البرمجي المعتاد
         async function updateWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
