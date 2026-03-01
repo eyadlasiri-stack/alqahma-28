@@ -20,7 +20,6 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* تنسيق المجموعات الاحترافي */
         .group-card { background: var(--card); border-radius: 12px; overflow-x: auto; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.03); }
         .group-header { background: rgba(255, 255, 255, 0.05); color: var(--gold); padding: 12px; font-weight: 900; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
         .group-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; min-width: 500px; }
@@ -30,13 +29,11 @@
         .qualified { border-right: 4px solid #25D366; }
         .points { font-weight: 900; color: var(--gold); }
 
-        /* تنسيق المباريات */
         .day-header { background: rgba(212,175,55,0.1); color: var(--gold); padding: 5px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; margin: 15px 0 10px; display: inline-block; border: 1px solid rgba(212,175,55,0.2); }
         .match-card { background: var(--card); border-radius: 10px; padding: 15px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.03); }
         .teams { display: flex; justify-content: space-between; align-items: center; }
         .team { width: 42%; text-align: center; font-weight: bold; font-size: 0.95rem; }
         .vs { color: var(--gold); font-weight: 900; font-size: 1.1rem; padding: 0 10px; }
-        .match-info { text-align: center; font-size: 0.65rem; color: #777; margin-top: 8px; }
 
         .weather-box { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 30px; border: 1px solid var(--gold); font-size: 0.75rem; }
         .footer { text-align: center; font-size: 0.7rem; color: #555; padding: 30px; border-top: 1px solid rgba(255,255,255,0.05); line-height: 1.6; }
@@ -44,51 +41,44 @@
 </head>
 <body>
 
-    <div class="weather-box"><span id="w-icon">☀️</span> <span id="w-temp">26°C</span></div>
+    <div class="weather-box"><span id="w-icon">☀️</span> <span id="w-temp">--°C</span></div>
 
     <div class="container">
         <header>
             <h1>بطولة القحمة الرمضانية 28</h1>
-            <p>التغطية المباشرة | رمضان 1447هـ</p>
+            <p>الموقع الرسمي للنتائج والترتيب</p>
         </header>
 
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">مباريات اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming')">الأدوار النهائية</button>
-            <button class="tab-btn" onclick="openTab(event, 'previous')">الأرشيف (1-11)</button>
-            <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات (1-6)</button>
+            <button class="tab-btn" onclick="openTab(event, 'previous')">المباريات السابقة</button>
+            <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
 
         <div id="today" class="tab-content active">
-            <div class="day-header">اليوم - الأحد 12 رمضان</div>
+            <div class="day-header">الأحد 12 رمضان</div>
             <div class="match-card">
                 <center><small style="color:var(--gold)">ختام التمهيدي</small></center>
                 <div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div>
-                <div class="match-info">11:30 م</div>
+                <div style="text-align:center; font-size:0.65rem; color:#777; margin-top:5px;">11:30 م</div>
             </div>
             <div class="match-card">
                 <center><small style="color:#25D366">المباراة المؤجلة</small></center>
                 <div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div>
-                <div class="match-info">12:45 ص</div>
+                <div style="text-align:center; font-size:0.65rem; color:#777; margin-top:5px;">12:45 ص</div>
             </div>
         </div>
 
         <div id="upcoming" class="tab-content">
-            <div class="day-header">الاثنين 13 رمضان</div>
-            <div class="match-card"><b>ربع النهائي (1)</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
+            <div class="day-header">ربع النهائي</div>
+            <div class="match-card"><b>ربع النهائي (1) - 13 رمضان</b><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
+            <div class="match-card"><b>ربع النهائي (2) - 14 رمضان</b><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
+            <div class="match-card"><b>ربع النهائي (3) - 15 رمضان</b><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
             
-            <div class="day-header">الثلاثاء 14 رمضان</div>
-            <div class="match-card"><b>ربع النهائي (2)</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
-
-            <div class="day-header">الأربعاء 15 رمضان</div>
-            <div class="match-card"><b>ربع النهائي (3)</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
-
             <div class="day-header">الأدوار الختامية</div>
-            <div class="match-card"><b>نصف النهائي</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
-            <div class="match-card" style="border: 1px solid var(--gold);">
-                <center><b style="color:var(--gold)">🏆 المباراة النهائية</b></center>
-                <div class="teams"><span class="team" style="color:var(--gold)">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:var(--gold)">يحدد لاحقاً</span></div>
-            </div>
+            <div class="match-card"><b>نصف النهائي</b><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
+            <div class="match-card" style="border:1px solid gold"><center><b style="color:var(--gold)">🏆 المباراة النهائية</b></center><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
         </div>
 
         <div id="previous" class="tab-content">
@@ -106,72 +96,58 @@
             <div class="day-header">الأربعاء 08 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div></div>
 
-            <div class="day-header">07 - 01 رمضان (مختصر)</div>
+            <div class="day-header">الثلاثاء 07 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div></div>
+            <div class="match-card"><div class="teams"><span class="team">دبسا</span><span class="vs">2 - 0</span><span class="team">عرمرم</span></div></div>
+
+            <div class="day-header">الاثنين 06 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div></div>
+
+            <div class="day-header">الأحد 05 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقة</span></div></div>
+            <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div></div>
+
+            <div class="day-header">السبت 04 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div></div>
+
+            <div class="day-header">الجمعة 03 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div></div>
+
+            <div class="day-header">الخميس 02 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div></div>
+            <div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div></div>
+
+            <div class="day-header">الأربعاء 01 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقة</span></div></div>
         </div>
 
         <div id="groups" class="tab-content">
-            <div class="group-card">
-                <div class="group-header">المجموعة 1</div>
-                <table class="group-table">
-                    <tr><th>الفريق</th><th>لعب</th><th>ف</th><th>ت</th><th>خ</th><th>له</th><th>عليه</th><th>ن</th></tr>
-                    <tr class="qualified"><td class="team-name">السوق</td><td>2</td><td>2</td><td>0</td><td>0</td><td>4</td><td>1</td><td class="points">6</td></tr>
-                    <tr><td class="team-name">الفيض</td><td>2</td><td>0</td><td>1</td><td>1</td><td>2</td><td>3</td><td class="points">1</td></tr>
-                    <tr><td class="team-name">جندلة</td><td>2</td><td>0</td><td>1</td><td>1</td><td>2</td><td>4</td><td class="points">1</td></tr>
-                </table>
-            </div>
-            <div class="group-card">
-                <div class="group-header">المجموعة 2</div>
-                <table class="group-table">
-                    <tr><th>الفريق</th><th>لعب</th><th>ف</th><th>ت</th><th>خ</th><th>له</th><th>عليه</th><th>ن</th></tr>
-                    <tr class="qualified"><td class="team-name">ساحل مغزل</td><td>2</td><td>2</td><td>0</td><td>0</td><td>4</td><td>1</td><td class="points">6</td></tr>
-                    <tr><td class="team-name">البرك</td><td>2</td><td>1</td><td>0</td><td>1</td><td>2</td><td>2</td><td class="points">3</td></tr>
-                    <tr><td class="team-name">وحدة الرقة</td><td>2</td><td>0</td><td>0</td><td>2</td><td>2</td><td>5</td><td class="points">0</td></tr>
-                </table>
-            </div>
-            <div class="group-card">
-                <div class="group-header">المجموعة 3</div>
-                <table class="group-table">
-                    <tr><th>الفريق</th><th>لعب</th><th>ف</th><th>ت</th><th>خ</th><th>له</th><th>عليه</th><th>ن</th></tr>
-                    <tr class="qualified"><td class="team-name">الصقر</td><td>2</td><td>2</td><td>0</td><td>0</td><td>3</td><td>1</td><td class="points">6</td></tr>
-                    <tr><td class="team-name">عمق</td><td>2</td><td>1</td><td>0</td><td>1</td><td>5</td><td>2</td><td class="points">3</td></tr>
-                    <tr><td class="team-name">العرق</td><td>2</td><td>0</td><td>0</td><td>2</td><td>0</td><td>5</td><td class="points">0</td></tr>
-                </table>
-            </div>
-            <div class="group-card">
-                <div class="group-header">المجموعة 4</div>
-                <table class="group-table">
-                    <tr><th>الفريق</th><th>لعب</th><th>ف</th><th>ت</th><th>خ</th><th>له</th><th>عليه</th><th>ن</th></tr>
-                    <tr class="qualified"><td class="team-name">الساحل</td><td>2</td><td>2</td><td>0</td><td>0</td><td>4</td><td>2</td><td class="points">6</td></tr>
-                    <tr><td class="team-name">مستقبل عرمرم</td><td>2</td><td>1</td><td>0</td><td>1</td><td>3</td><td>2</td><td class="points">3</td></tr>
-                    <tr><td class="team-name">السلطان</td><td>2</td><td>0</td><td>0</td><td>2</td><td>1</td><td>4</td><td class="points">0</td></tr>
-                </table>
-            </div>
-            <div class="group-card">
-                <div class="group-header">المجموعة 5</div>
-                <table class="group-table">
-                    <tr><th>الفريق</th><th>لعب</th><th>ف</th><th>ت</th><th>خ</th><th>له</th><th>عليه</th><th>ن</th></tr>
-                    <tr><td class="team-name">الفيصلي</td><td>1</td><td>1</td><td>0</td><td>0</td><td>2</td><td>0</td><td class="points">3</td></tr>
-                    <tr><td class="team-name">الوسام</td><td>1</td><td>1</td><td>0</td><td>0</td><td>4</td><td>1</td><td class="points">3</td></tr>
-                    <tr><td class="team-name">خليج الصوالحة</td><td>2</td><td>0</td><td>0</td><td>2</td><td>1</td><td>6</td><td class="points">0</td></tr>
-                </table>
-            </div>
-            <div class="group-card">
-                <div class="group-header">المجموعة 6</div>
-                <table class="group-table">
-                    <tr><th>الفريق</th><th>لعب</th><th>ف</th><th>ت</th><th>خ</th><th>له</th><th>عليه</th><th>ن</th></tr>
-                    <tr class="qualified"><td class="team-name">دبسا</td><td>2</td><td>1</td><td>1</td><td>0</td><td>2</td><td>0</td><td class="points">4</td></tr>
-                    <tr><td class="team-name">صقلية</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td class="points">1</td></tr>
-                    <tr><td class="team-name">عرمرم</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>2</td><td class="points">0</td></tr>
-                </table>
-            </div>
+            <script>
+                const groups = [
+                    {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,lh:4,cl:1,p:6,q:true},{t:"الفيض",l:2,f:0,te:1,x:1,lh:2,cl:3,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,lh:2,cl:4,p:1}]},
+                    {n:"2", teams:[{t:"ساحل مغزل",l:2,f:2,te:0,x:0,lh:4,cl:1,p:6,q:true},{t:"البرك",l:2,f:1,te:0,x:1,lh:2,cl:2,p:3},{t:"وحدة الرقة",l:2,f:0,te:0,x:2,lh:2,cl:5,p:0}]},
+                    {n:"3", teams:[{t:"الصقر",l:2,f:2,te:0,x:0,lh:3,cl:1,p:6,q:true},{t:"عمق",l:2,f:1,te:0,x:1,lh:5,cl:2,p:3},{t:"العرق",l:2,f:0,te:0,x:2,lh:0,cl:5,p:0}]},
+                    {n:"4", teams:[{t:"الساحل",l:2,f:2,te:0,x:0,lh:4,cl:2,p:6,q:true},{t:"مستقبل عرمرم",l:2,f:1,te:0,x:1,lh:3,cl:2,p:3},{t:"السلطان",l:2,f:0,te:0,x:2,lh:1,cl:4,p:0}]},
+                    {n:"5", teams:[{t:"الفيصلي",l:1,f:1,te:0,x:0,lh:2,cl:0,p:3},{t:"الوسام",l:1,f:1,te:0,x:0,lh:4,cl:1,p:3},{t:"خليج الصوالحة",l:2,f:0,te:0,x:2,lh:1,cl:6,p:0}]},
+                    {n:"6", teams:[{t:"دبسا",l:2,f:1,te:1,x:0,lh:2,cl:0,p:4,q:true},{t:"صقلية",l:1,f:0,te:1,x:0,lh:0,cl:0,p:1},{t:"عرمرم",l:1,f:0,te:0,x:1,lh:0,cl:2,p:0}]}
+                ];
+                document.write(groups.map(g => `
+                    <div class="group-card">
+                        <div class="group-header">المجموعة ${g.n}</div>
+                        <table class="group-table">
+                            <thead><tr><th class="team-name">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>له</th><th>عليه</th><th>ن</th></tr></thead>
+                            <tbody>${g.teams.map(t => `<tr class="${t.q?'qualified':''}">
+                                <td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td>${t.lh}</td><td>${t.cl}</td><td class="points">${t.p}</td>
+                            </tr>`).join('')}</tbody>
+                        </table>
+                    </div>
+                `).join(''));
+            </script>
         </div>
 
         <div class="footer">
             تطوير وتصميم: <b>إياد عسيري</b> | 0534987428<br>
-            إخلاء مسؤولية: هذا الموقع مجهود شخصي لتنظيم نتائج بطولة القحمة الرمضانية ولا يمثل جهة رسمية.
+            إخلاء مسؤولية: هذا الموقع مجهود شخصي ولا يمثل جهة رسمية.
         </div>
     </div>
 
@@ -179,19 +155,13 @@
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
+            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; tabcontent[i].classList.remove("active"); }
             tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
+            for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
             document.getElementById(tabName).style.display = "block";
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
-
         async function updateWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
