@@ -23,21 +23,19 @@
         .group-card { background: var(--card); border-radius: 12px; overflow-x: auto; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.03); }
         .group-header { background: rgba(255,255,255,0.05); color: var(--gold); padding: 12px; font-weight: 900; border-bottom: 1px solid rgba(212,175,55,0.1); display: flex; align-items: center; }
         .group-header::before { content: ""; width: 3px; height: 15px; background: var(--gold); margin-left: 10px; border-radius: 2px; }
-        .group-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; min-width: 450px; }
-        .group-table th { color: var(--gold); padding: 10px; border-bottom: 1px solid rgba(212,175,55,0.1); }
+        .group-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; min-width: 480px; }
+        .group-table th { color: var(--gold); padding: 10px; border-bottom: 1px solid rgba(212,175,55,0.1); background: rgba(0,0,0,0.1); }
         .group-table td { padding: 10px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        .team-name { text-align: right !important; padding-right: 15px !important; font-weight: bold; width: 120px; }
+        .team-name { text-align: right !important; padding-right: 15px !important; font-weight: bold; color: white; width: 130px; }
         .qualified { border-right: 4px solid #25D366; }
 
         .day-header { background: rgba(255,255,255,0.05); color: var(--gold); padding: 5px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; margin: 15px 0 10px; display: inline-block; border: 1px solid rgba(212,175,55,0.1); }
         .match-card { background: var(--card); border-radius: 10px; padding: 15px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.03); }
         .teams { display: flex; justify-content: space-between; align-items: center; }
-        .team { width: 42%; text-align: center; font-weight: bold; }
-        .vs { color: var(--gold); font-weight: 900; }
+        .team { width: 42%; text-align: center; font-weight: bold; font-size: 0.9rem; }
+        .vs { color: var(--gold); font-weight: 900; font-size: 1.1rem; }
 
-        .weather-box { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.2); font-size: 0.75rem; }
-        .bottom-controls { position: fixed; bottom: 12px; left: 12px; display: flex; gap: 8px; z-index: 1000; }
-        .control-item { background: rgba(0,0,0,0.8); border: 1px solid rgba(212,175,55,0.3); padding: 6px 12px; border-radius: 20px; font-size: 0.7rem; cursor: pointer; color: white; }
+        .weather-box { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.2); font-size: 0.75rem; backdrop-filter: blur(5px); }
         .disclaimer { font-size: 0.65rem; color: #555; text-align: center; padding: 20px; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
@@ -47,33 +45,28 @@
         <span id="w-icon">⏳</span> <span id="w-temp">--°C</span>
     </div>
 
-    <div class="bottom-controls">
-        <div class="control-item">👁️ <span>4619</span></div>
-        <div class="control-item" onclick="shareSite()">🔗 مشاركة</div>
-    </div>
-
     <div class="container">
         <header>
             <h1>بطولة القحمة الرمضانية 28</h1>
-            <p>النتائج والترتيب المباشر</p>
+            <p>النتائج والترتيب المباشر لعام 2026</p>
         </header>
 
         <div class="tabs-nav">
-            <button class="tab-btn active" id="defaultOpen" onclick="showTab(event, 'today')">اليوم</button>
-            <button class="tab-btn" onclick="showTab(event, 'upcoming')">القادمة</button>
-            <button class="tab-btn" onclick="showTab(event, 'previous')">السابقة</button>
-            <button class="tab-btn" onclick="showTab(event, 'groups')">المجموعات</button>
+            <button class="tab-btn active" onclick="openTab(event, 'today')">مباريات اليوم</button>
+            <button class="tab-btn" onclick="openTab(event, 'upcoming')">القادمة</button>
+            <button class="tab-btn" onclick="openTab(event, 'previous')">السابقة</button>
+            <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
 
         <div id="today" class="tab-content active">
             <div class="day-header">الأحد 12 رمضان</div>
             <div class="match-card">
                 <div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div>
-                <div style="text-align:center; font-size:0.7rem; color:#777; margin-top:5px;">11:30 م</div>
+                <div style="text-align:center; font-size:0.65rem; color:#777; margin-top:5px;">11:30 م</div>
             </div>
             <div class="match-card">
                 <div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div>
-                <div style="text-align:center; font-size:0.7rem; color:var(--gold); margin-top:5px;">12:45 ص (مؤجلة)</div>
+                <div style="text-align:center; font-size:0.65rem; color:var(--gold); margin-top:5px;">12:45 ص (مؤجلة)</div>
             </div>
         </div>
 
@@ -81,33 +74,70 @@
             <div class="day-header">الاثنين 13 رمضان</div>
             <div class="match-card"><center><small style="color:var(--gold)">ربع النهائي (1)</small></center><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
             <div class="day-header">الأدوار الختامية</div>
-            <div class="match-card" style="border:1px solid gold"><center><small>🏆 النهائي</small></center><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
+            <div class="match-card" style="border:1px solid var(--gold)"><center><small>🏆 المباراة النهائية</small></center><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
         </div>
 
         <div id="previous" class="tab-content">
             <div class="day-header">السبت 11 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">1 - 0</span><span class="team">العرق</span></div></div>
             <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">0 - 1</span><span class="team">ساحل مغزل</span></div></div>
-            </div>
+            <div class="day-header">الجمعة 10 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div></div>
+            <div class="day-header">الخميس 09 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">1 - 2</span><span class="team">الساحل</span></div></div>
+            <div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div></div>
+            <div class="day-header">الأربعاء 08 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div></div>
+            <div style="text-align:center; padding:10px; color:#555">يتم عرض كامل الـ 16 مباراة السابقة هنا</div>
+        </div>
 
         <div id="groups" class="tab-content">
             <div class="group-card">
-                <div class="group-header">المجموعة 1</div>
+                <span class="group-header">المجموعة 1</span>
                 <table class="group-table">
                     <thead><tr><th class="team-name">الفريق</th><th>لعب</th><th>ف</th><th>ت</th><th>خ</th><th>له</th><th>عليه</th><th>ن</th></tr></thead>
                     <tbody>
                         <tr class="qualified"><td class="team-name">السوق</td><td>2</td><td>2</td><td>0</td><td>0</td><td>4</td><td>1</td><td>6</td></tr>
                         <tr><td class="team-name">الفيض</td><td>2</td><td>0</td><td>1</td><td>1</td><td>2</td><td>3</td><td>1</td></tr>
+                        <tr><td class="team-name">جندلة</td><td>2</td><td>0</td><td>1</td><td>1</td><td>2</td><td>4</td><td>1</td></tr>
                     </tbody>
                 </table>
             </div>
-        </div>
+            </div>
 
         <div class="disclaimer">
             إخلاء مسؤولية: هذا الموقع مجهود شخصي لتنظيم وعرض نتائج بطولة القحمة الرمضانية، ولا يمثل جهة رسمية. تطوير: إياد عسيري.
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // دمج الجافا سكريبت لضمان العمل 100%
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        async function updateWeather() {
+            try {
+                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
+                const data = await res.json();
+                document.getElementById('w-temp').innerText = Math.round(data.current_weather.temperature) + "°C";
+                document.getElementById('w-icon').innerText = data.current_weather.is_day ? "☀️" : "🌙";
+            } catch (e) { document.getElementById('w-icon').innerText = "📍"; }
+        }
+
+        window.onload = updateWeather;
+    </script>
 </body>
 </html>
