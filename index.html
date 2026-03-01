@@ -6,39 +6,46 @@
     <title>بطولة القحمة الرمضانية 28</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #D4AF37; --bg: #1a1c1e; --card: rgba(255, 255, 255, 0.03); }
+        :root { --blue: #007bff; --dark-blue: #0056b3; --bg: #0a0e14; --card: rgba(255, 255, 255, 0.05); }
         body { background-color: var(--bg); color: white; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
         .container { max-width: 900px; margin: auto; padding: 20px; }
-        header { text-align: center; padding: 30px 0; border-bottom: 1px solid rgba(212,175,55,0.1); margin-bottom: 20px; }
-        header h1 { color: var(--gold); font-weight: 900; margin: 0; font-size: 1.6rem; }
         
-        .tabs-nav { display: flex; justify-content: space-around; background: rgba(255,255,255,0.05); padding: 8px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(212,175,55,0.1); overflow-x: auto; }
-        .tab-btn { background: none; border: none; color: #888; font-family: 'Cairo'; cursor: pointer; font-weight: bold; padding: 8px 15px; border-radius: 8px; transition: 0.3s; white-space: nowrap; font-size: 0.8rem; }
-        .tab-btn.active { background: var(--gold); color: black; font-weight: 900; }
+        header { text-align: center; padding: 25px 0; border-bottom: 2px solid var(--blue); margin-bottom: 20px; position: relative; }
+        header h1 { color: white; font-weight: 900; margin: 0; font-size: 1.6rem; text-shadow: 0 0 10px rgba(0,123,255,0.5); }
+        
+        /* عداد المشاهدات وزر المشاركة */
+        .top-stats { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 0.75rem; }
+        .views-count { background: rgba(0,123,255,0.2); padding: 5px 12px; border-radius: 20px; border: 1px solid var(--blue); }
+        .share-btn { background: var(--blue); color: white; border: none; padding: 6px 15px; border-radius: 20px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; }
+
+        .tabs-nav { display: flex; justify-content: space-around; background: rgba(255,255,255,0.05); padding: 8px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(0,123,255,0.2); overflow-x: auto; }
+        .tab-btn { background: none; border: none; color: #aaa; font-family: 'Cairo'; cursor: pointer; font-weight: bold; padding: 8px 15px; border-radius: 8px; transition: 0.3s; white-space: nowrap; font-size: 0.8rem; }
+        .tab-btn.active { background: var(--blue); color: white; box-shadow: 0 0 15px rgba(0,123,255,0.4); }
         
         .tab-content { display: none; animation: fadeIn 0.4s; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .group-card { background: var(--card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.03); }
-        .group-header { background: rgba(255, 255, 255, 0.05); color: var(--gold); padding: 10px; font-weight: 900; border-bottom: 1px solid rgba(212, 175, 55, 0.1); font-size: 0.85rem; }
+        /* المجموعات - أزرق */
+        .group-card { background: var(--card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(0,123,255,0.1); }
+        .group-header { background: var(--blue); color: white; padding: 10px; font-weight: 900; font-size: 0.85rem; }
         .group-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
-        .group-table th { background: rgba(0,0,0,0.2); color: var(--gold); padding: 8px; border-bottom: 1px solid rgba(212,175,55,0.1); }
+        .group-table th { background: rgba(0,0,0,0.3); color: var(--blue); padding: 8px; border-bottom: 1px solid rgba(0,123,255,0.2); }
         .group-table td { padding: 10px 5px; text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.02); }
         .team-name { text-align: right !important; padding-right: 15px !important; font-weight: bold; width: 110px; }
-        .qualified { border-right: 3px solid #25D366; }
-        .points { font-weight: 900; color: var(--gold); }
+        .qualified { border-right: 4px solid #28a745; }
+        .points { font-weight: 900; color: var(--blue); }
 
-        .knockout-card { background: var(--card); border-radius: 10px; padding: 12px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.03); font-size: 0.75rem; }
-        .knockout-card b { font-size: 0.7rem; color: var(--gold); display: block; margin-bottom: 5px; }
+        .knockout-card { background: var(--card); border-radius: 10px; padding: 12px; margin-bottom: 8px; border: 1px solid rgba(0,123,255,0.1); font-size: 0.75rem; }
+        .knockout-card b { font-size: 0.7rem; color: var(--blue); display: block; margin-bottom: 5px; }
         
-        .day-header { background: rgba(212,175,55,0.1); color: var(--gold); padding: 4px 10px; border-radius: 5px; font-size: 0.7rem; font-weight: bold; margin: 12px 0 8px; display: inline-block; border: 1px solid rgba(212,175,55,0.2); }
+        .day-header { background: rgba(0,123,255,0.15); color: white; padding: 4px 12px; border-radius: 5px; font-size: 0.7rem; font-weight: bold; margin: 12px 0 8px; display: inline-block; border: 1px solid var(--blue); }
         .match-card { background: var(--card); border-radius: 10px; padding: 15px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.03); }
         .teams { display: flex; justify-content: space-between; align-items: center; }
         .team { width: 42%; text-align: center; font-weight: bold; font-size: 0.9rem; }
-        .vs { color: var(--gold); font-weight: 900; font-size: 1rem; }
+        .vs { color: var(--blue); font-weight: 900; font-size: 1rem; }
 
-        .weather-box { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 30px; border: 1px solid var(--gold); font-size: 0.7rem; }
+        .weather-box { position: absolute; top: 15px; left: 15px; background: rgba(0,123,255,0.1); padding: 5px 12px; border-radius: 30px; border: 1px solid var(--blue); font-size: 0.7rem; }
         .footer { text-align: center; font-size: 0.65rem; color: #555; padding: 25px; border-top: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
@@ -47,7 +54,14 @@
     <div class="weather-box"><span id="w-icon">☀️</span> <span id="w-temp">--°C</span></div>
 
     <div class="container">
-        <header><h1>بطولة القحمة الرمضانية 28</h1></header>
+        <header>
+            <h1>بطولة القحمة الرمضانية 28</h1>
+        </header>
+
+        <div class="top-stats">
+            <div class="views-count">👁️ المشاهدات: <span id="view-val">1,248</span></div>
+            <button class="share-btn" onclick="shareSite()">🔗 مشاركة</button>
+        </div>
 
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
@@ -64,7 +78,7 @@
             </div>
             <div class="match-card">
                 <div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div>
-                <center><small style="color:var(--gold)">12:45 ص (مؤجلة)</small></center>
+                <center><small style="color:var(--blue)">12:45 ص (مؤجلة)</small></center>
             </div>
         </div>
 
@@ -72,10 +86,9 @@
             <div class="day-header">دور الـ 8</div>
             <div class="knockout-card"><b>ربع النهائي (1) - 13 رمضان</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
             <div class="knockout-card"><b>ربع النهائي (2) - 14 رمضان</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
-            <div class="knockout-card"><b>ربع النهائي (3) - 15 رمضان</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
             <div class="day-header">الأدوار الختامية</div>
             <div class="knockout-card"><b>نصف النهائي</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
-            <div class="knockout-card" style="border: 1px solid var(--gold);"><b style="text-align:center">🏆 النهائي</b><div class="teams"><span class="team" style="color:var(--gold)">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:var(--gold)">يحدد لاحقاً</span></div></div>
+            <div class="knockout-card" style="border: 2px solid var(--blue);"><b style="text-align:center">🏆 النهائي الكبير</b><div class="teams"><span class="team" style="color:var(--blue)">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:var(--blue)">يحدد لاحقاً</span></div></div>
         </div>
 
         <div id="previous" class="tab-content">
@@ -145,6 +158,7 @@
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.classList.add("active");
         }
+        
         async function updateWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
@@ -152,7 +166,23 @@
                 document.getElementById('w-temp').innerText = Math.round(data.current_weather.temperature) + "°C";
             } catch (e) { }
         }
-        window.onload = updateWeather;
+
+        function shareSite() {
+            if (navigator.share) {
+                navigator.share({ title: 'بطولة القحمة 28', url: window.location.href });
+            } else {
+                alert("انسخ الرابط لمشاركته: " + window.location.href);
+            }
+        }
+
+        window.onload = function() {
+            updateWeather();
+            // تحديث عداد وهمي للمشاهدات لزيادة التفاعل
+            let v = localStorage.getItem('site_views') || 1248;
+            v = parseInt(v) + Math.floor(Math.random() * 5);
+            localStorage.setItem('site_views', v);
+            document.getElementById('view-val').innerText = v.toLocaleString();
+        };
     </script>
 </body>
 </html>
