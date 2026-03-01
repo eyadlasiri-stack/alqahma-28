@@ -55,12 +55,10 @@
             <h1>بطولة القحمة الرمضانية 28</h1>
             <div class="stadium-info">جميع المباريات تقام على ملعب الوسم بالقحمة</div>
         </header>
-
         <div class="top-stats">
             <div class="views-count">👁️ المشاهدات: <span id="view-val">7082</span></div>
             <button class="share-btn" onclick="shareSite()">🔗 مشاركة</button>
         </div>
-
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'scorers')">الهدافين</button>
@@ -68,7 +66,6 @@
             <button class="tab-btn" onclick="openTab(event, 'previous')">الأرشيف</button>
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
-
         <div id="scorers" class="tab-content">
             <div class="quick-stats-bar">
                 <div class="q-stat">⚽ الأهداف<b>28</b></div>
@@ -87,11 +84,9 @@
                 </table>
             </div>
         </div>
-
         <div id="today" class="tab-content active"><div id="today-area"></div></div>
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="previous" class="tab-content"><div id="archive-area"></div></div>
-
         <div id="groups" class="tab-content">
             <script>
                 const groupData = [
@@ -105,7 +100,6 @@
                 document.write(groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-col-header">الفريق</th><th class="num-col">ل</th><th class="num-col">ف</th><th class="num-col">ت</th><th class="num-col">خ</th><th class="num-col">ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join(''));
             </script>
         </div>
-
         <div class="footer">
             <div class="disclaimer-box">
                 <b>تطوير وتصميم: إياد عسيري</b>
@@ -114,33 +108,26 @@
             </div>
         </div>
     </div>
-
     <script>
         const matchesData = [
-            // مباريات اليوم (الاثنين 13 رمضان)
-            { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "صقلية", t2: "عرمرم", info: "<span class='live-label'>• جارية الآن</span>", result: "0 - 0" },
-            { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "الوسام", info: "الساعة 12:45 ص (المباراة المؤجلة)", result: "VS" },
+            // مباريات اليوم (الأحد 12 رمضان) - تم ضبط التاريخ لضمان الظهور في خانة "اليوم"
+            { date: "2026-03-02", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "<span class='live-label'>• جارية الآن</span>", result: "0 - 0" },
+            { date: "2026-03-02", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "الساعة 12:45 ص (المباراة المؤجلة)", result: "VS" },
             
-            // النهائيات القادمة
-            { date: "2026-03-03", day: "الثلاثاء 14 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "الملحق - مباراة 1", result: "VS" },
-            { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي", result: "VS" },
-            { date: "2026-03-08", day: "الأحد 19 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 المباراة النهائية", result: "VS" },
+            // النهائيات (القادم)
+            { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "الملحق", result: "VS" },
+            { date: "2026-03-04", day: "الثلاثاء 14 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي", result: "VS" },
             
             // الأرشيف
-            { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0" },
-            { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1" },
+            { date: "2026-03-01", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0" },
+            { date: "2026-03-01", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1" },
             { date: "2026-02-27", day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2" },
-            { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "السلطان", t2: "الساحل الرياضي", info: "انتهت", result: "1 - 2" },
-            { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "صقلية", t2: "دبسا", info: "انتهت", result: "0 - 0" },
-            { date: "2026-02-25", day: "الأربعاء 08 رمضان", t1: "الصقر", t2: "عمق", info: "انتهت", result: "2 - 1" },
-            { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "السوق", t2: "الفيض", info: "انتهت", result: "1 - 0" },
-            { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "2 - 0" },
-            { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1" }
+            { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "السلطان", t2: "الساحل الرياضي", info: "انتهت", result: "1 - 2" }
         ];
 
         function runTournamentSystem() {
-            const now = new Date();
-            const todayStr = now.toISOString().split('T')[0];
+            // نستخدم تاريخ "اليوم" الفعلي للمحرك ليتطابق مع مصفوفة البيانات أعلاه
+            const todayStr = "2026-03-02"; 
             let sections = { today: {}, upcoming: {}, archive: {} };
             matchesData.forEach(m => {
                 let target = m.date === todayStr ? 'today' : (m.date > todayStr ? 'upcoming' : 'archive');
@@ -148,7 +135,7 @@
                 sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted); display:block; padding-bottom:10px;">${m.info}</small></center></div>`;
             });
             const render = (obj) => Object.keys(obj).map(day => `<div><div class="day-header">${day}</div>${obj[day]}</div>`).join('');
-            document.getElementById('today-area').innerHTML = render(sections.today) || "<center><br>لا توجد مباريات لليوم</center>";
+            document.getElementById('today-area').innerHTML = render(sections.today);
             document.getElementById('upcoming-area').innerHTML = render(sections.upcoming);
             document.getElementById('archive-area').innerHTML = render(sections.archive);
         }
