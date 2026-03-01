@@ -12,7 +12,7 @@
         .control-item { background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(212, 175, 55, 0.3); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; color: #eee; backdrop-filter: blur(8px); display: flex; align-items: center; gap: 5px; cursor: pointer; transition: 0.3s; }
         .groups-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 10px; }
         .group-card { background-color: rgba(255, 255, 255, 0.03); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.03); margin-bottom: 10px; }
-        .group-header { background-color: rgba(255, 255, 255, 0.05); color: #D4AF37; padding: 10px 15px; font-size: 0.9rem !important; font-weight: 700; text-align: right; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+        .group-header { background-color: rgba(255, 255, 255, 0.05); color: #D4AF37; padding: 10px 15px; font-size: 0.9rem !important; font-weight: 700; text-align: right; display: block; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
         .group-table { width: 100%; border-collapse: collapse; color: #fff; font-size: 0.8rem; }
         .group-table td { padding: 12px 5px; text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
         .team-name-cell { text-align: right !important; width: 45%; padding-right: 15px !important; position: relative; }
@@ -112,6 +112,10 @@
             } catch (e) { document.getElementById('w-icon').innerText = "📍"; }
         }
         updateWeather();
+        function shareSite() {
+            if (navigator.share) { navigator.share({ title: 'بطولة القحمة 28', url: window.location.href }); }
+            else { window.open('https://wa.me/?text=' + encodeURIComponent(window.location.href)); }
+        }
     </script>
 </body>
 </html>
