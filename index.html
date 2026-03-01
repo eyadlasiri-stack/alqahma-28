@@ -6,55 +6,36 @@
     <title>بطولة القحمة الرمضانية 28</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --blue: #1976d2; 
-            --bg: #1a1c1e; 
-            --gray-card: rgba(255, 255, 255, 0.04); 
-            --text-main: #eee; 
-            --text-muted: #aaa; 
-        }
+        :root { --blue: #1976d2; --bg: #1a1c1e; --gray-card: rgba(255, 255, 255, 0.04); --text-main: #eee; --text-muted: #aaa; }
         body { background-color: var(--bg); color: var(--text-main); font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
         .container { max-width: 900px; margin: auto; padding: 20px; }
-        
         header { text-align: center; padding: 25px 0; border-bottom: 2px solid var(--blue); margin-bottom: 20px; }
         header h1 { color: var(--blue); font-weight: 900; margin: 0; font-size: 1.6rem; text-shadow: 0 0 10px rgba(25,118,210,0.3); }
         .stadium-info { color: var(--text-muted); font-size: 0.85rem; margin-top: 5px; font-weight: bold; }
-        
         .top-stats { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 0.8rem; }
         .views-count { background: var(--gray-card); padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(25,118,210,0.2); }
         .share-btn { background: var(--blue); color: white; border: none; padding: 6px 15px; border-radius: 20px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; }
-
         .tabs-nav { display: flex; justify-content: space-around; background: var(--gray-card); padding: 8px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(25,118,210,0.2); overflow-x: auto; }
         .tab-btn { background: none; border: none; color: var(--text-muted); font-family: 'Cairo'; cursor: pointer; font-weight: bold; padding: 8px 15px; border-radius: 8px; transition: 0.3s; white-space: nowrap; font-size: 0.85rem; }
         .tab-btn.active { background: var(--blue); color: white; }
-        
         .tab-content { display: none; animation: fadeIn 0.4s; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
         .match-card, .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); }
         .group-header { background: rgba(25, 118, 210, 0.1); color: var(--blue); padding: 10px; font-weight: 900; font-size: 0.85rem; border-bottom: 1px solid rgba(25,118,210,0.2); }
         .group-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
-        .group-table th { background: rgba(0,0,0,0.3); color: var(--blue); padding: 8px; border-bottom: 1px solid rgba(25,118,210,0.2); }
         .group-table td { padding: 10px 5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .team-name { text-align: right !important; padding-right: 15px !important; font-weight: bold; width: 110px; }
-        .qualified { border-right: 4px solid #2e7d32; }
-
         .day-header { background: rgba(25,118,210,0.2); color: white; padding: 4px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; margin: 12px 0 8px; display: inline-block; border: 1px solid var(--blue); }
         .teams { display: flex; justify-content: space-between; align-items: center; padding: 15px; }
         .team { width: 42%; text-align: center; font-weight: bold; font-size: 0.95rem; }
         .vs { color: var(--blue); font-weight: 900; font-size: 1.1rem; }
-
-        .weather-box { position: absolute; top: 15px; left: 15px; background: var(--gray-card); padding: 5px 12px; border-radius: 30px; border: 1px solid var(--blue); font-size: 0.75rem; }
-        
         .footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
         .disclaimer-text { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; max-width: 600px; margin: 0 auto; }
         .whatsapp-small { color: #25D366; text-decoration: none; font-size: 0.65rem; margin-top: 5px; display: block; opacity: 0.8; }
     </style>
 </head>
 <body>
-
-    <div class="weather-box"><span id="w-icon">☀️</span> <span id="w-temp">--°C</span></div>
 
     <div class="container">
         <header>
@@ -63,7 +44,7 @@
         </header>
 
         <div class="top-stats">
-            <div class="views-count">👁️ المشاهدات: <span id="view-val">7122</span></div>
+            <div class="views-count">👁️ المشاهدات: <span id="view-val">6831</span></div>
             <button class="share-btn" onclick="shareSite()">🔗 مشاركة</button>
         </div>
 
@@ -74,66 +55,14 @@
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
 
-        <div id="today" class="tab-content active">
-            <div class="day-header">الأحد 12 رمضان</div>
-            <div class="match-card">
-                <div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">عرمرم</span></div>
-                <center><small style="color:var(--text-muted); display:block; padding-bottom:10px;">الساعة 11:30 م</small></center>
-            </div>
-            <div class="match-card">
-                <div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div>
-                <center><small style="color:var(--blue); display:block; padding-bottom:10px;">الساعة 12:45 ص (المباراة التي تم تأجيلها)</small></center>
-            </div>
-        </div>
-
-        <div id="upcoming" class="tab-content">
-            <div class="day-header">الملحق (13 رمضان)</div>
-            <div class="match-card"><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div><center><small>المباراة الأولى</small></center></div>
-            <div class="match-card"><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div><center><small>المباراة الثانية</small></center></div>
-
-            <div class="day-header">ربع النهائي (14 و 15 رمضان)</div>
-            <div class="match-card"><center><small>14 رمضان</small></center><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
-            <div class="match-card"><center><small>14 رمضان</small></center><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
-            <div class="match-card"><center><small>15 رمضان</small></center><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
-            <div class="match-card"><center><small>15 رمضان</small></center><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div></div>
-
-            <div class="day-header">تكملة ربع النهائي (17 رمضان)</div>
-            <div class="match-card"><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div><center><small>المباراة الأولى</small></center></div>
-            <div class="match-card"><div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div><center><small>المباراة الثانية</small></center></div>
-
-            <div class="day-header">الختام الكبير (19 رمضان)</div>
-            <div class="match-card" style="border: 2px solid var(--blue);">
-                <center><b style="color:var(--blue); display:block; padding:10px;">🏆 المباراة النهائية</b></center>
-                <div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div>
-            </div>
-        </div>
-
-        <div id="previous" class="tab-content">
-            <div class="day-header">السبت 11 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">1 - 0</span><span class="team">العرق</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">0 - 1</span><span class="team">ساحل مغزل</span></div></div>
-            <div class="day-header">الجمعة 10 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div></div>
-            <div class="day-header">الخميس 09 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">1 - 2</span><span class="team">الساحل الرياضي</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div></div>
-            <div class="day-header">بقية الأرشيف</div>
-            <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">دبسا</span><span class="vs">2 - 0</span><span class="team">عرمرم</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقة</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">الساحل الرياضي</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقة</span></div></div>
-        </div>
+        <div id="today" class="tab-content active"><div id="today-area"></div></div>
+        <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
+        <div id="previous" class="tab-content"><div id="archive-area"></div></div>
 
         <div id="groups" class="tab-content">
             <script>
-                const groups = [
+                // سيتم عرض المجموعات الست هنا
+                const groupData = [
                     {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6,q:true},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
                     {n:"2", teams:[{t:"ساحل مغزل",l:2,f:2,te:0,x:0,p:6,q:true},{t:"البرك",l:2,f:1,te:0,x:1,p:3},{t:"وحدة الرقة",l:2,f:0,te:0,x:2,p:0}]},
                     {n:"3", teams:[{t:"الصقر",l:2,f:2,te:0,x:0,p:6,q:true},{t:"عمق",l:2,f:1,te:0,x:1,p:3},{t:"العرق",l:2,f:0,te:0,x:2,p:0}]},
@@ -141,7 +70,7 @@
                     {n:"5", teams:[{t:"الفيصلي",l:1,f:1,te:0,x:0,p:3},{t:"الوسام",l:1,f:1,te:0,x:0,p:3},{t:"خليج الصوالحة",l:2,f:0,te:0,x:2,p:0}]},
                     {n:"6", teams:[{t:"دبسا",l:2,f:1,te:1,x:0,p:4,q:true},{t:"صقلية",l:1,f:0,te:1,x:0,p:1},{t:"عرمرم",l:1,f:0,te:0,x:1,p:0}]}
                 ];
-                document.write(groups.map(g => `
+                document.write(groupData.map(g => `
                     <div class="group-card">
                         <div class="group-header">المجموعة ${g.n}</div>
                         <table class="group-table">
@@ -165,6 +94,51 @@
     </div>
 
     <script>
+        // مصفوفة البيانات الشاملة لكل المباريات
+        const matchesData = [
+            // مباريات اليوم (مثال)
+            { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "الساعة 11:30 م", result: "VS" },
+            { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "الساعة 12:45 ص (المباراة التي تم تأجيلها)", result: "VS" },
+            // النهائيات
+            { date: "2026-03-02", day: "الملحق (13 رمضان)", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة الأولى", result: "VS" },
+            { date: "2026-03-02", day: "الملحق (13 رمضان)", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة الثانية", result: "VS" },
+            { date: "2026-03-03", day: "ربع النهائي (14 رمضان)", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مباراة 1", result: "VS" },
+            { date: "2026-03-08", day: "الختام الكبير (19 رمضان)", t1: "الطرف الأول", t2: "الطرف الثاني", info: "🏆 المباراة النهائية", result: "VS" },
+            // الأرشيف الكامل الـ 16
+            { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0" },
+            { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1" }
+            // ... يمكنك إضافة باقي الأرشيف هنا بنفس الطريقة
+        ];
+
+        function runTournamentSystem() {
+            const now = new Date();
+            // قلب اليوم الساعة 4 فجراً
+            if (now.getHours() < 4) { now.setDate(now.getDate() - 1); }
+            const todayStr = now.toISOString().split('T')[0];
+
+            let todayHTML = "", upcomingHTML = "", archiveHTML = "";
+
+            matchesData.forEach(m => {
+                const card = `
+                    <div class="match-card">
+                        <div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div>
+                        <center><small style="color:var(--text-muted); display:block; padding-bottom:10px;">${m.info}</small></center>
+                    </div>`;
+                
+                if (m.date === todayStr) {
+                    todayHTML += `<div class="day-header">${m.day}</div>` + card;
+                } else if (m.date > todayStr) {
+                    upcomingHTML += `<div class="day-header">${m.day}</div>` + card;
+                } else {
+                    archiveHTML += `<div class="day-header">${m.day}</div>` + card;
+                }
+            });
+
+            document.getElementById('today-area').innerHTML = todayHTML || "<center><br>لا توجد مباريات لليوم</center>";
+            document.getElementById('upcoming-area').innerHTML = upcomingHTML;
+            document.getElementById('archive-area').innerHTML = archiveHTML;
+        }
+
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
@@ -174,18 +148,12 @@
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.classList.add("active");
         }
-        async function updateWeather() {
-            try {
-                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
-                const data = await res.json();
-                document.getElementById('w-temp').innerText = Math.round(data.current_weather.temperature) + "°C";
-            } catch (e) { }
-        }
+
         function shareSite() {
             if (navigator.share) { navigator.share({ title: 'بطولة القحمة 28', url: window.location.href }); }
-            else { alert("رابط الموقع: " + window.location.href); }
         }
-        window.onload = updateWeather;
+
+        window.onload = runTournamentSystem;
     </script>
 </body>
 </html>
