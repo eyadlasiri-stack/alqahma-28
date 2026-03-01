@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --blue: #1976d2;  /* أزرق أساسي قوي */
-            --bg: #1a1c1e;   /* خلفية رمادي داكنة جداً للموقع */
-            --gray-card: rgba(255, 255, 255, 0.04); /* رمادي شفاف خفيف جداً للقوائم والكروت */
-            --text-main: #eee; /* لون نص أبيض مطفي */
-            --text-muted: #aaa; /* لون نص رمادي باهت */
+            --blue: #1976d2; 
+            --bg: #1a1c1e; 
+            --gray-card: rgba(255, 255, 255, 0.04); 
+            --text-main: #eee; 
+            --text-muted: #aaa; 
         }
         body { background-color: var(--bg); color: var(--text-main); font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
         .container { max-width: 900px; margin: auto; padding: 20px; }
@@ -19,7 +19,7 @@
         header { text-align: center; padding: 25px 0; border-bottom: 2px solid var(--blue); margin-bottom: 20px; }
         header h1 { color: var(--blue); font-weight: 900; margin: 0; font-size: 1.6rem; text-shadow: 0 0 10px rgba(25,118,210,0.3); }
         
-        .top-stats { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 0.8rem; color: var(--text-muted); }
+        .top-stats { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 0.8rem; }
         .views-count { background: var(--gray-card); padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(25,118,210,0.2); }
         .share-btn { background: var(--blue); color: white; border: none; padding: 6px 15px; border-radius: 20px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; }
 
@@ -31,7 +31,6 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* تنسيق القوائم - رمادي شفاف */
         .group-card, .match-card, .knockout-card { 
             background: var(--gray-card); 
             border-radius: 12px; 
@@ -40,20 +39,24 @@
             border: 1px solid rgba(255,255,255,0.03); 
         }
         .group-header { background: rgba(25, 118, 210, 0.1); color: var(--blue); padding: 10px; font-weight: 900; font-size: 0.85rem; border-bottom: 1px solid rgba(25,118,210,0.2); }
-        .group-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; color: var(--text-main); }
+        .group-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
         .group-table th { background: rgba(0,0,0,0.3); color: var(--blue); padding: 8px; border-bottom: 1px solid rgba(25,118,210,0.2); }
         .group-table td { padding: 10px 5px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        .team-name { text-align: right !important; padding-right: 15px !important; font-weight: bold; width: 110px; color: var(--text-main); }
-        .qualified { border-right: 5px solid #2e7d32; }
+        .team-name { text-align: right !important; padding-right: 15px !important; font-weight: bold; width: 110px; }
+        .qualified { border-right: 4px solid #2e7d32; }
         .points { font-weight: 900; color: var(--blue); }
 
         .day-header { background: rgba(25,118,210,0.2); color: white; padding: 4px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; margin: 12px 0 8px; display: inline-block; border: 1px solid var(--blue); }
         .teams { display: flex; justify-content: space-between; align-items: center; padding: 15px; }
-        .team { width: 42%; text-align: center; font-weight: bold; font-size: 0.95rem; color: var(--text-main); }
+        .team { width: 42%; text-align: center; font-weight: bold; font-size: 0.95rem; }
         .vs { color: var(--blue); font-weight: 900; font-size: 1.1rem; }
 
-        .weather-box { position: absolute; top: 15px; left: 15px; background: var(--gray-card); padding: 5px 12px; border-radius: 30px; border: 1px solid var(--blue); font-size: 0.75rem; color: var(--text-main); }
-        .footer { text-align: center; font-size: 0.75rem; color: var(--text-muted); padding: 30px; border-top: 1px solid rgba(255,255,255,0.05); line-height: 1.6; }
+        .weather-box { position: absolute; top: 15px; left: 15px; background: var(--gray-card); padding: 5px 12px; border-radius: 30px; border: 1px solid var(--blue); font-size: 0.75rem; }
+        
+        /* تذييل الصفحة المطور */
+        .footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
+        .whatsapp-link { color: #25D366; text-decoration: none; font-weight: 900; font-size: 1.1rem; display: block; margin-bottom: 15px; }
+        .disclaimer-box { font-size: 0.7rem; color: var(--text-muted); line-height: 1.6; max-width: 600px; margin: 0 auto; }
     </style>
 </head>
 <body>
@@ -64,8 +67,8 @@
         <header><h1>بطولة القحمة الرمضانية 28</h1></header>
 
         <div class="top-stats">
-            <div class="views-count">👁️ مشاهدات: <span id="view-val">1,248</span></div>
-            <button class="share-btn" onclick="shareSite()">🔗 مشاركة الموقع</button>
+            <div class="views-count">👁️ المشاهدات: <span id="view-val">6831</span></div>
+            <button class="share-btn" onclick="shareSite()">🔗 مشاركة</button>
         </div>
 
         <div class="tabs-nav">
@@ -79,20 +82,29 @@
             <div class="day-header">الأحد 12 رمضان</div>
             <div class="match-card">
                 <div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div>
-                <center><small style="color:var(--text-muted); padding-bottom:10px; display:block;">الساعة 11:30 م</small></center>
+                <center><small style="color:var(--text-muted); padding-bottom:10px; display:block;">11:30 م</small></center>
             </div>
             <div class="match-card">
                 <div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div>
-                <center><small style="color:var(--blue); padding-bottom:10px; display:block;">الساعة 12:45 ص (مؤجلة)</small></center>
+                <center><small style="color:var(--blue); padding-bottom:10px; display:block;">12:45 ص (مؤجلة)</small></center>
             </div>
         </div>
 
         <div id="upcoming" class="tab-content">
-            <div class="day-header">دور الـ 8</div>
-            <div class="match-card"><div class="teams"><span class="team" style="color:var(--text-muted)">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:var(--text-muted)">يحدد لاحقاً</span></div></div>
-            <div class="day-header">الأدوار الختامية</div>
-            <div class="match-card" style="border: 2px solid var(--blue);"><center><b style="padding:10px; display:block; color:var(--blue)">🏆 النهائي الكبير</b></center>
-                <div class="teams"><span class="team" style="color:var(--blue)">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:var(--blue)">يحدد لاحقاً</span></div>
+            <div class="day-header">ربع النهائي</div>
+            <div class="match-card"><center><small>13 رمضان</small></center><div class="teams"><span class="team">ربع النهائي 1</span><span class="vs">VS</span><span class="team">ربع النهائي 1</span></div><center><small>يحدد لاحقاً</small></center></div>
+            <div class="match-card"><center><small>14 رمضان</small></center><div class="teams"><span class="team">ربع النهائي 2</span><span class="vs">VS</span><span class="team">ربع النهائي 2</span></div><center><small>يحدد لاحقاً</small></center></div>
+            <div class="match-card"><center><small>15 رمضان</small></center><div class="teams"><span class="team">ربع النهائي 3</span><span class="vs">VS</span><span class="team">ربع النهائي 3</span></div><center><small>يحدد لاحقاً</small></center></div>
+            
+            <div class="day-header">نصف النهائي</div>
+            <div class="match-card"><div class="teams"><span class="team">نصف النهائي 1</span><span class="vs">VS</span><span class="team">نصف النهائي 1</span></div><center><small>يحدد لاحقاً</small></center></div>
+            <div class="match-card"><div class="teams"><span class="team">نصف النهائي 2</span><span class="vs">VS</span><span class="team">نصف النهائي 2</span></div><center><small>يحدد لاحقاً</small></center></div>
+            
+            <div class="day-header">الختام</div>
+            <div class="match-card" style="border: 2px solid var(--blue);">
+                <center><b style="padding:10px; display:block; color:var(--blue); font-size:1.1rem;">🏆 المباراة النهائية</b></center>
+                <div class="teams"><span class="team">الطرف الأول</span><span class="vs">VS</span><span class="team">الطرف الثاني</span></div>
+                <center><small>يحدد لاحقاً</small></center>
             </div>
         </div>
 
@@ -100,39 +112,15 @@
             <div class="day-header">السبت 11 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">1 - 0</span><span class="team">العرق</span></div></div>
             <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">0 - 1</span><span class="team">ساحل مغزل</span></div></div>
-
             <div class="day-header">الجمعة 10 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div></div>
-
             <div class="day-header">الخميس 09 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">1 - 2</span><span class="team">الساحل</span></div></div>
             <div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div></div>
-
-            <div class="day-header">الأربعاء 08 رمضان</div>
+            <div class="day-header">01 - 08 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div></div>
-
-            <div class="day-header">الثلاثاء 07 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">دبسا</span><span class="vs">2 - 0</span><span class="team">عرمرم</span></div></div>
-
-            <div class="day-header">الاثنين 06 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div></div>
-
-            <div class="day-header">الأحد 05 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقة</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div></div>
-
-            <div class="day-header">السبت 04 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div></div>
-
-            <div class="day-header">الجمعة 03 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div></div>
-
-            <div class="day-header">الخميس 02 رمضان</div>
-            <div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div></div>
-            <div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div></div>
-
-            <div class="day-header">الأربعاء 01 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقة</span></div></div>
         </div>
 
@@ -161,8 +149,13 @@
         </div>
 
         <div class="footer">
-            تطوير وتصميم: <b>إياد عسيري</b> | 0534987428 <br>
-            <b>إخلاء مسؤولية:</b> هذا الموقع مجهود شخصي لتنظيم نتائج بطولة القحمة الرمضانية 28 ولا يمثل جهة رسمية، المعلومات والنتائج تُحدث بشكل دوري.
+            <a href="https://wa.me/966534987428" class="whatsapp-link" target="_blank">
+                🟢 التواصل واتساب: 0534987428
+            </a>
+            <div class="disclaimer-box">
+                <b>تطوير وتصميم: إياد عسيري</b><br>
+                إخلاء مسؤولية: هذا الموقع مجهود شخصي لتنظيم وعرض نتائج بطولة القحمة الرمضانية 28 ولا يمثل جهة رسمية، يتم تحديث النتائج والبيانات بشكل دوري لخدمة الجماهير الرياضية.
+            </div>
         </div>
     </div>
 
@@ -190,13 +183,7 @@
                 alert("انسخ الرابط لمشاركته: " + window.location.href);
             }
         }
-        window.onload = function() {
-            updateWeather();
-            let v = localStorage.getItem('site_views') || 1248;
-            v = parseInt(v) + Math.floor(Math.random() * 3);
-            localStorage.setItem('site_views', v);
-            document.getElementById('view-val').innerText = v.toLocaleString();
-        };
+        window.onload = updateWeather;
     </script>
 </body>
 </html>
