@@ -20,7 +20,6 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* المجموعات - بدون له وعليه */
         .group-card { background: var(--card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.03); }
         .group-header { background: rgba(255, 255, 255, 0.05); color: var(--gold); padding: 10px; font-weight: 900; border-bottom: 1px solid rgba(212, 175, 55, 0.1); font-size: 0.85rem; }
         .group-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
@@ -30,7 +29,6 @@
         .qualified { border-right: 3px solid #25D366; }
         .points { font-weight: 900; color: var(--gold); }
 
-        /* تصغير خط الأدوار النهائية لتكون متناسقة */
         .knockout-card { background: var(--card); border-radius: 10px; padding: 12px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.03); font-size: 0.75rem; }
         .knockout-card b { font-size: 0.7rem; color: var(--gold); display: block; margin-bottom: 5px; }
         
@@ -49,9 +47,7 @@
     <div class="weather-box"><span id="w-icon">☀️</span> <span id="w-temp">--°C</span></div>
 
     <div class="container">
-        <header>
-            <h1>بطولة القحمة الرمضانية 28</h1>
-        </header>
+        <header><h1>بطولة القحمة الرمضانية 28</h1></header>
 
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
@@ -77,22 +73,38 @@
             <div class="knockout-card"><b>ربع النهائي (1) - 13 رمضان</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
             <div class="knockout-card"><b>ربع النهائي (2) - 14 رمضان</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
             <div class="knockout-card"><b>ربع النهائي (3) - 15 رمضان</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
-            
             <div class="day-header">الأدوار الختامية</div>
             <div class="knockout-card"><b>نصف النهائي</b><div class="teams"><span class="team" style="color:#555">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:#555">يحدد لاحقاً</span></div></div>
-            <div class="knockout-card" style="border: 1px solid var(--gold);">
-                <b style="text-align:center">🏆 النهائي</b>
-                <div class="teams"><span class="team" style="color:var(--gold)">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:var(--gold)">يحدد لاحقاً</span></div>
-            </div>
+            <div class="knockout-card" style="border: 1px solid var(--gold);"><b style="text-align:center">🏆 النهائي</b><div class="teams"><span class="team" style="color:var(--gold)">يحدد لاحقاً</span><span class="vs">VS</span><span class="team" style="color:var(--gold)">يحدد لاحقاً</span></div></div>
         </div>
 
         <div id="previous" class="tab-content">
             <div class="day-header">السبت 11 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">1 - 0</span><span class="team">العرق</span></div></div>
             <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">0 - 1</span><span class="team">ساحل مغزل</span></div></div>
-            <div class="day-header">10 رمضان - 01 رمضان</div>
+            <div class="day-header">الجمعة 10 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div></div>
+            <div class="day-header">الخميس 09 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">1 - 2</span><span class="team">الساحل</span></div></div>
+            <div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div></div>
+            <div class="day-header">الأربعاء 08 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div></div>
+            <div class="day-header">الثلاثاء 07 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div></div>
+            <div class="match-card"><div class="teams"><span class="team">دبسا</span><span class="vs">2 - 0</span><span class="team">عرمرم</span></div></div>
+            <div class="day-header">الاثنين 06 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div></div>
+            <div class="day-header">الأحد 05 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقة</span></div></div>
+            <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div></div>
+            <div class="day-header">السبت 04 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div></div>
+            <div class="day-header">الجمعة 03 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div></div>
+            <div class="day-header">الخميس 02 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div></div>
+            <div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div></div>
+            <div class="day-header">الأربعاء 01 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقة</span></div></div>
         </div>
 
