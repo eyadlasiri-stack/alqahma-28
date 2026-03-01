@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* إعادة تصميم المجموعة لليمين مع الخط الذهبي (التصميم القديم) */
+        /* تنسيق المجموعة (القديم المعتمد) */
         .group-header { 
             background-color: rgba(255, 255, 255, 0.05); 
             color: #D4AF37; 
@@ -46,7 +46,8 @@
 <body>
 
     <div class="weather-mini-box">
-        <span id="w-icon">⏳</span> <span id="w-temp">--°C</span>
+        <span id="w-icon" class="weather-icon">⏳</span>
+        <span id="w-temp" class="weather-temp-val">--°C</span>
     </div>
 
     <div class="bottom-controls">
@@ -62,11 +63,14 @@
 
         <div class="tabs-nav">
             <button class="tab-btn active" id="defaultOpen" onclick="openTab(event, 'today-tab')">مباريات اليوم</button>
-            <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
+            <button class="tab-btn" onclick="openTab(event, 'upcoming-tab')">المباريات القادمة</button>
             <button class="tab-btn" onclick="openTab(event, 'previous-tab')">المباريات السابقة</button>
+            <button class="tab-btn" onclick="openTab(event, 'groups-tab')">المجموعات</button>
         </div>
 
         <div id="today-tab" class="tab-content active"><div id="today-matches-list" class="schedule-container"></div></div>
+        <div id="upcoming-tab" class="tab-content"><div id="upcoming-matches-list" class="schedule-container"></div></div>
+        <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
         
         <div id="groups-tab" class="tab-content">
             <div class="groups-container">
@@ -79,25 +83,41 @@
             </div>
         </div>
 
-        <div id="previous-tab" class="tab-content"><div id="previous-matches-list" class="schedule-container"></div></div>
+        <div class="footer-info">
+            <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold; margin-bottom: 5px;">تطوير وتصميم: إياد عسيري</div>
+            <a href="https://wa.me/966534987428" target="_blank" style="text-decoration:none; color:#25D366; font-size:0.9rem; font-weight:bold;">📱 0534987428</a>
+        </div>
     </div>
 
     <div id="master-schedule" style="display: none;">
-        <div class="match-day-source" data-date="2026-02-28"><div class="day-header">11 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">1-0</span><span class="team">العرق</span></div></div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">0-1</span><span class="team">ساحل مغزل</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-27"><div class="day-header">10 رمضان</div><div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2-2</span><span class="team">الفيض</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">09 رمضان</div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">1-2</span><span class="team">الساحل</span></div></div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0-0</span><span class="team">دبسا</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2-1</span><span class="team">عمق</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1-0</span><span class="team">الفيض</span></div></div><div class="match-card"><div class="teams"><span class="team">دبسا</span><span class="vs">2-0</span><span class="team">عرمرم</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">06 رمضان</div><div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4-1</span><span class="team">خليج الصوالحة</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">05 رمضان</div><div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3-1</span><span class="team">وحدة الرقة</span></div></div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0-2</span><span class="team">مستقبل عرمرم</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">04 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2-0</span><span class="team">جندلة</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">03 رمضان</div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2-0</span><span class="team">خليج الصوالحة</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">02 رمضان</div><div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2-1</span><span class="team">مستقبل عرمرم</span></div></div><div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4-0</span><span class="team">العرق</span></div></div></div>
-        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2-1</span><span class="team">وحدة الرقة</span></div></div></div>
+        <div class="match-day-source" data-date="2026-02-28">
+            <div class="day-header">السبت 11 رمضان</div>
+            <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">1 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div>
+            <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">0 - 1</span><span class="team">ساحل مغزل</span></div><div class="match-time">انتهت</div></div>
+        </div>
+        <div class="match-day-source" data-date="2026-03-01">
+            <div class="day-header">الأحد 12 رمضان</div>
+            <div class="match-card"><center><span class="final-prelim-badge">ختام التمهيدي</span></center><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">11:30 م</div></div>
+            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time" style="color: #fbbf24;">(المؤجلة) 12:45 ص</div></div>
+        </div>
+        <div class="match-day-source" data-date="2026-02-27"><div class="day-header">الجمعة 10 رمضان</div><div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">الخميس 09 رمضان</div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">1 - 2</span><span class="team">الساحل الرياضي</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">دبسا</span><span class="vs">2 - 0</span><span class="team">عرمرم</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">06 رمضان</div><div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">05 رمضان</div><div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقة</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">04 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">03 رمضان</div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">02 رمضان</div><div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقة</span></div><div class="match-time">انتهت</div></div></div>
     </div>
 
     <script src="script.js"></script>
     <script>
+        const firebaseConfig = { databaseURL: "https://qahma-tournament-default-rtdb.firebaseio.com" };
+        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+        const db = firebase.database().ref('live_visitors_v28');
+        db.transaction(c => (c || 4230) + 1, (e, m, s) => { if(m) document.getElementById('count').innerText = s.val(); });
         async function updateWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
@@ -107,6 +127,10 @@
             } catch (e) { document.getElementById('w-icon').innerText = "📍"; }
         }
         updateWeather();
+        function shareSite() {
+            if (navigator.share) { navigator.share({ title: 'بطولة القحمة 28', url: window.location.href }); }
+            else { window.open('https://wa.me/?text=' + encodeURIComponent(window.location.href)); }
+        }
     </script>
 </body>
 </html>
