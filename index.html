@@ -7,16 +7,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* التعديل الجديد لمحاذاة عنوان المجموعة لليمين */
+        /* التعديل الجوهري لمحاذاة اسم المجموعة لليمين */
         .group-header { 
             background-color: rgba(255, 255, 255, 0.05); 
             color: #D4AF37; 
-            padding: 10px 15px; /* مسافة داخلية تعطي تناسق */
-            font-size: 0.95rem !important; 
+            padding: 12px 15px; 
+            font-size: 0.9rem !important; 
             font-weight: 900; 
-            text-align: right; /* محاذاة لليمين */
-            display: block; 
+            text-align: right !important; /* إجبار النص لليمين */
+            display: flex; /* استخدام flex للتأكد من التموضع */
+            align-items: center;
+            justify-content: flex-start; /* البداية من اليمين لأن الاتجاه RTL */
             border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
+            position: relative;
+        }
+
+        /* إضافة خط ذهبي عمودي صغير بجانب كلمة المجموعة لجمالية التصميم */
+        .group-header::before {
+            content: "";
+            width: 3px;
+            height: 15px;
+            background-color: #D4AF37;
+            margin-left: 8px; /* مسافة بين الخط والكلمة */
+            border-radius: 2px;
         }
 
         .weather-mini-box { position: absolute; top: 15px; left: 15px; background: rgba(255, 255, 255, 0.05); padding: 5px 12px; border-radius: 30px; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(212, 175, 55, 0.2); backdrop-filter: blur(5px); z-index: 1000; }
