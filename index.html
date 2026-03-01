@@ -18,6 +18,7 @@
         
         header { text-align: center; padding: 25px 0; border-bottom: 2px solid var(--blue); margin-bottom: 20px; }
         header h1 { color: var(--blue); font-weight: 900; margin: 0; font-size: 1.6rem; text-shadow: 0 0 10px rgba(25,118,210,0.3); }
+        .stadium-info { color: var(--text-muted); font-size: 0.85rem; margin-top: 5px; font-weight: bold; }
         
         .top-stats { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 0.8rem; }
         .views-count { background: var(--gray-card); padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(25,118,210,0.2); }
@@ -56,7 +57,10 @@
     <div class="weather-box"><span id="w-icon">☀️</span> <span id="w-temp">--°C</span></div>
 
     <div class="container">
-        <header><h1>بطولة القحمة الرمضانية 28</h1></header>
+        <header>
+            <h1>بطولة القحمة الرمضانية 28</h1>
+            <div class="stadium-info">جميع المباريات تقام على ملعب الوسم بالقحمة</div>
+        </header>
 
         <div class="top-stats">
             <div class="views-count">👁️ المشاهدات: <span id="view-val">6831</span></div>
@@ -78,7 +82,7 @@
             </div>
             <div class="match-card">
                 <div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div>
-                <center><small style="color:var(--blue); display:block; padding-bottom:10px;">الساعة 12:45 ص (مؤجلة)</small></center>
+                <center><small style="color:var(--blue); display:block; padding-bottom:10px;">الساعة 12:45 ص (المباراة التي تم تأجيلها)</small></center>
             </div>
         </div>
 
@@ -101,7 +105,6 @@
             <div class="match-card" style="border: 2px solid var(--blue);">
                 <center><b style="color:var(--blue); display:block; padding:10px;">🏆 المباراة النهائية</b></center>
                 <div class="teams"><span class="team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team">يحدد لاحقاً</span></div>
-                <center><small>يحدد لاحقاً</small></center>
             </div>
         </div>
 
@@ -114,7 +117,7 @@
             <div class="day-header">الخميس 09 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">1 - 2</span><span class="team">الساحل الرياضي</span></div></div>
             <div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div></div>
-            <div class="day-header">الأرشيف (1 - 8 رمضان)</div>
+            <div class="day-header">بقية الأرشيف</div>
             <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div></div>
             <div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div></div>
             <div class="match-card"><div class="teams"><span class="team">دبسا</span><span class="vs">2 - 0</span><span class="team">عرمرم</span></div></div>
@@ -155,7 +158,7 @@
         <div class="footer">
             <div class="disclaimer-text">
                 <b>تطوير وتصميم: إياد عسيري</b><br>
-                إخلاء مسؤولية: هذا الموقع مجهود شخصي لتنظيم وعرض نتائج بطولة القحمة الرمضانية 28 ولا يمثل جهة رسمية، يتم تحديث البيانات دورياً.
+                إخلاء مسؤولية: هذا الموقع مجهود شخصي لتنظيم وعرض نتائج بطولة القحمة الرمضانية 28 ولا يمثل جهة رسمية.
                 <a href="https://wa.me/966534987428" class="whatsapp-small" target="_blank">واتساب: 0534987428</a>
             </div>
         </div>
