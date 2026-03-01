@@ -6,7 +6,7 @@
     <title>بطولة القحمة الرمضانية 28</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --blue: #1976d2; --light-blue: #64b5f6; --bg: #1a1c1e; --gray-card: rgba(255, 255, 255, 0.04); --text-main: #eee; --text-muted: #aaa; --bracket-line: rgba(100, 181, 246, 0.4); }
+        :root { --blue: #1976d2; --light-blue: #64b5f6; --bg: #1a1c1e; --gray-card: rgba(255, 255, 255, 0.04); --text-main: #eee; --text-muted: #aaa; }
         body { background-color: var(--bg); color: var(--text-main); font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
         .container { max-width: 900px; margin: auto; padding: 20px; }
         header { text-align: center; padding: 25px 0; border-bottom: 2px solid var(--blue); margin-bottom: 20px; }
@@ -31,15 +31,8 @@
         .teams { display: flex; justify-content: space-between; align-items: center; padding: 15px; }
         .team { width: 42%; text-align: center; font-weight: bold; font-size: 0.95rem; }
         .vs { color: var(--blue); font-weight: 900; font-size: 1.1rem; }
-        
-        /* زر الشجرة */
-        .toggle-bracket-btn { background: rgba(100, 181, 246, 0.1); color: var(--light-blue); border: 1px dashed var(--light-blue); padding: 10px; width: 100%; border-radius: 10px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; margin-bottom: 20px; }
-        #bracket-view { display: none; flex-direction: column; align-items: center; overflow-x: auto; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 15px; }
-        .bracket-level { display: flex; justify-content: space-around; width: 100%; min-width: 550px; margin-bottom: 10px; }
-        .bracket-match { background: var(--gray-card); border: 1px solid rgba(100, 181, 246, 0.2); border-radius: 8px; width: 45%; padding: 5px; text-align: center; }
-        .line-v { width: 2px; height: 15px; background: var(--bracket-line); margin: 0 auto; }
-
         .footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; font-size: 0.65rem; color: var(--text-muted); }
+        .whatsapp-small { color: #25D366; text-decoration: none; display: block; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -62,23 +55,7 @@
         </div>
 
         <div id="today" class="tab-content active"><div id="today-area"></div></div>
-
-        <div id="upcoming" class="tab-content">
-            <button class="toggle-bracket-btn" onclick="toggleBracket()">عرض شجرة التصفيات 🏆</button>
-            <div id="list-view"><div id="upcoming-area"></div></div>
-            <div id="bracket-view">
-                <div class="bracket-level">
-                    <div class="bracket-match"><small>ربع النهائي 1</small><div class="teams"><span class="team">--</span><span class="vs">VS</span><span class="team">--</span></div></div>
-                    <div class="bracket-match"><small>ربع النهائي 2</small><div class="teams"><span class="team">--</span><span class="vs">VS</span><span class="team">--</span></div></div>
-                </div>
-                <div class="line-v"></div>
-                <div class="bracket-match" style="width:60%; margin:0 auto; border:2px solid var(--blue);">
-                    <center><b style="color:var(--blue)">🏆 النهائي</b></center>
-                    <div class="teams"><span class="team">؟</span><span class="vs">VS</span><span class="team">؟</span></div>
-                </div>
-            </div>
-        </div>
-
+        <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="previous" class="tab-content"><div id="archive-area"></div></div>
 
         <div id="groups" class="tab-content">
@@ -94,42 +71,41 @@
                 document.write(groupData.map(g => `
                     <div class="group-card"><div class="group-header">المجموعة ${g.n}</div>
                     <table class="group-table"><thead><tr><th class="team-name team-col-header">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead>
-                    <tbody>${g.teams.map(t => `<tr class="${t.q?'qualified':''}">
-                    <td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join(''));
+                    <tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join(''));
             </script>
         </div>
 
         <div class="footer">
             <b>تطوير وتصميم: إياد عسيري</b><br>
-            إخلاء مسؤولية: هذا الموقع مجهود شخصي لبطولة القحمة الرمضانية 28.<br>
-            <a href="https://wa.me/966534987428" style="color:#25D366; text-decoration:none;">واتساب: 0534987428</a>
+            <a href="https://wa.me/966534987428" class="whatsapp-small" target="_blank">واتساب: 0534987428</a>
         </div>
     </div>
 
     <script>
+        // مصفوفة البيانات (المحرك يقرأ من هنا)
         const matchesData = [
             { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "الساعة 11:30 م", result: "VS" },
-            { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "12:45 ص (المؤجلة)", result: "VS" },
-            { date: "2026-03-02", day: "الاثنين 13 رمضان (الملحق)", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة 1", result: "VS" },
-            { date: "2026-03-02", day: "الاثنين 13 رمضان (الملحق)", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة 2", result: "VS" },
-            { date: "2026-03-03", day: "الثلاثاء 14 رمضان (ربع النهائي)", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مباراة 1", result: "VS" },
+            { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "الساعة 12:45 ص (المؤجلة)", result: "VS" },
+            { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "الملحق - مباراة 1", result: "VS" },
+            { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "الملحق - مباراة 2", result: "VS" },
             { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0" },
-            { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1" },
-            { date: "2026-02-27", day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2" },
-            { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "السلطان", t2: "الساحل الرياضي", info: "انتهت", result: "1 - 2" },
-            { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1" }
+            { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1" }
         ];
 
         function runTournamentSystem() {
             const now = new Date();
+            // شرط الساعة 4 فجراً: إذا كانت الساعة أقل من 4، نعتبرنا ما زلنا في "اليوم السابق"
             if (now.getHours() < 4) { now.setDate(now.getDate() - 1); }
             const todayStr = now.toISOString().split('T')[0];
+
             let sections = { today: {}, upcoming: {}, archive: {} };
+
             matchesData.forEach(m => {
                 let target = m.date === todayStr ? 'today' : (m.date > todayStr ? 'upcoming' : 'archive');
                 if (!sections[target][m.day]) sections[target][m.day] = "";
                 sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted); padding-bottom:10px; display:block;">${m.info}</small></center></div>`;
             });
+
             const render = (obj) => Object.keys(obj).map(day => `<div><div class="day-header">${day}</div>${obj[day]}</div>`).join('');
             document.getElementById('today-area').innerHTML = render(sections.today) || "<center><br>لا توجد مباريات لليوم</center>";
             document.getElementById('upcoming-area').innerHTML = render(sections.upcoming);
@@ -146,17 +122,8 @@
             evt.currentTarget.classList.add("active");
         }
 
-        function toggleBracket() {
-            const list = document.getElementById('list-view');
-            const bracket = document.getElementById('bracket-view');
-            const btn = document.querySelector('.toggle-bracket-btn');
-            if (bracket.style.display === 'flex') {
-                bracket.style.display = 'none'; list.style.display = 'block'; btn.innerText = "عرض شجرة التصفيات 🏆";
-            } else {
-                bracket.style.display = 'flex'; list.style.display = 'none'; btn.innerText = "العودة للجدول العادي ⬅️";
-            }
-        }
         function shareSite() { if (navigator.share) navigator.share({ title: 'بطولة القحمة 28', url: window.location.href }); }
+        
         window.onload = runTournamentSystem;
     </script>
 </body>
