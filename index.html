@@ -7,27 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .group-header { 
-            background-color: rgba(255, 255, 255, 0.05); 
-            color: #D4AF37; 
-            padding: 12px 15px; 
-            font-size: 0.9rem !important; 
-            font-weight: 900; 
-            text-align: right !important; 
-            display: flex; 
-            align-items: center;
-            justify-content: flex-start; 
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1); 
-            position: relative;
-        }
-        .group-header::before {
-            content: "";
-            width: 3px;
-            height: 15px;
-            background-color: #D4AF37;
-            margin-left: 8px; 
-            border-radius: 2px;
-        }
+        /* التنسيقات الأساسية */
+        .group-header { background-color: rgba(255, 255, 255, 0.05); color: #D4AF37; padding: 12px 15px; font-size: 0.9rem !important; font-weight: 900; text-align: right !important; display: flex; align-items: center; justify-content: flex-start; border-bottom: 1px solid rgba(212, 175, 55, 0.1); position: relative; }
+        .group-header::before { content: ""; width: 3px; height: 15px; background-color: #D4AF37; margin-left: 8px; border-radius: 2px; }
+        
+        /* تصميم خاص للأدوار الإقصائية */
+        .knockout-badge { background: linear-gradient(45deg, #D4AF37, #8a6d1d); color: #000; font-size: 0.75rem; padding: 4px 12px; border-radius: 50px; font-weight: 900; display: inline-block; margin-bottom: 10px; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
+        .final-match-card { border: 2px solid #D4AF37 !important; background: rgba(212, 175, 55, 0.05) !important; position: relative; overflow: hidden; }
+        .final-match-card::after { content: "🏆"; position: absolute; top: -10px; left: -10px; font-size: 3rem; opacity: 0.1; transform: rotate(-20deg); }
+        .tbd-team { color: #888 !important; font-style: italic; font-size: 0.8rem; }
+        
         .weather-mini-box { position: absolute; top: 15px; left: 15px; background: rgba(255, 255, 255, 0.05); padding: 5px 12px; border-radius: 30px; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(212, 175, 55, 0.2); backdrop-filter: blur(5px); z-index: 1000; }
         .bottom-controls { position: fixed; bottom: 12px; left: 12px; display: flex; align-items: center; gap: 8px; z-index: 10000; }
         .control-item { background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(212, 175, 55, 0.3); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; color: #eee; backdrop-filter: blur(8px); display: flex; align-items: center; gap: 5px; cursor: pointer; transition: 0.3s; }
@@ -38,8 +27,8 @@
         .team-name-cell { text-align: right !important; width: 45%; padding-right: 15px !important; position: relative; }
         .rank-number { color: rgba(255, 255, 255, 0.7); font-weight: bold; margin-left: 5px; }
         .qualified-row .team-name-cell::before { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 4px; background-color: #25D366; }
-        .final-prelim-badge { background: linear-gradient(45deg, #D4AF37, #8a6d1d); color: #000; font-size: 0.7rem; padding: 3px 10px; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 8px; }
         .footer-info { margin-top: 30px; padding: 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1); }
+        .disclaimer { font-size: 0.7rem; color: #666; margin-top: 15px; line-height: 1.4; }
     </style>
 </head>
 <body>
@@ -85,32 +74,38 @@
         <div class="footer-info">
             <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold; margin-bottom: 5px;">تطوير وتصميم: إياد عسيري</div>
             <a href="https://wa.me/966534987428" target="_blank" style="text-decoration:none; color:#25D366; font-size:0.9rem; font-weight:bold;">📱 0534987428</a>
+            <div class="disclaimer">
+                إخلاء مسؤولية: هذا الموقع هو مجهود شخصي لتنظيم وعرض نتائج بطولة القحمة الرمضانية، ولا يمثل أي جهة رسمية. المعلومات الواردة تخضع للتحديث المستمر بناءً على سير المباريات.
+            </div>
         </div>
     </div>
 
     <div id="master-schedule" style="display: none;">
+        <div class="match-day-source" data-date="2026-03-02">
+            <div class="day-header">الاثنين 13 رمضان</div>
+            <div class="match-card"><center><span class="knockout-badge">ربع النهائي (1)</span></center><div class="teams"><span class="team tbd-team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team tbd-team">يحدد لاحقاً</span></div><div class="match-time">11:30 م</div></div>
+        </div>
+        <div class="match-day-source" data-date="2026-03-03">
+            <div class="day-header">الثلاثاء 14 رمضان</div>
+            <div class="match-card"><center><span class="knockout-badge">ربع النهائي (2)</span></center><div class="teams"><span class="team tbd-team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team tbd-team">يحدد لاحقاً</span></div><div class="match-time">11:30 م</div></div>
+        </div>
+        <div class="match-day-source" data-date="2026-03-04">
+            <div class="day-header">الأربعاء 15 رمضان</div>
+            <div class="match-card"><center><span class="knockout-badge">ربع النهائي (3)</span></center><div class="teams"><span class="team tbd-team">يحدد لاحقاً</span><span class="vs">VS</span><span class="team tbd-team">يحدد لاحقاً</span></div><div class="match-time">11:30 م</div></div>
+        </div>
+
+        <div class="match-day-source" data-date="2026-03-10">
+            <div class="day-header">الأدوار الختامية</div>
+            <div class="match-card"><center><span class="knockout-badge" style="background: #eee;">نصف النهائي</span></center><div class="teams"><span class="team tbd-team">فائز (1)</span><span class="vs">VS</span><span class="team tbd-team">فائز (2)</span></div><div class="match-time">يحدد لاحقاً</div></div>
+            <div class="match-card final-match-card"><center><span class="knockout-badge">🏆 المباراة النهائية</span></center><div class="teams"><span class="team tbd-team">طرف النهائي 1</span><span class="vs">VS</span><span class="team tbd-team">طرف النهائي 2</span></div><div class="match-time">يحدد لاحقاً</div></div>
+        </div>
+
         <div class="match-day-source" data-date="2026-02-28">
             <div class="day-header">السبت 11 رمضان</div>
             <div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">1 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div>
             <div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">0 - 1</span><span class="team">ساحل مغزل</span></div><div class="match-time">انتهت</div></div>
         </div>
-
-        <div class="match-day-source" data-date="2026-03-01">
-            <div class="day-header">الأحد 12 رمضان</div>
-            <div class="match-card"><center><span class="final-prelim-badge">ختام التمهيدي</span></center><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">11:30 م</div></div>
-            <div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">VS</span><span class="team">الوسام</span></div><div class="match-time" style="color: #fbbf24;">(المؤجلة) 12:45 ص</div></div>
-        </div>
-
-        <div class="match-day-source" data-date="2026-02-27"><div class="day-header">الجمعة 10 رمضان</div><div class="match-card"><div class="teams"><span class="team">جندلة</span><span class="vs">2 - 2</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-26"><div class="day-header">الخميس 09 رمضان</div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">1 - 2</span><span class="team">الساحل الرياضي</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">صقلية</span><span class="vs">0 - 0</span><span class="team">دبسا</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-25"><div class="day-header">08 رمضان</div><div class="match-card"><div class="teams"><span class="team">الصقر</span><span class="vs">2 - 1</span><span class="team">عمق</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-24"><div class="day-header">07 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">1 - 0</span><span class="team">الفيض</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">دبسا</span><span class="vs">2 - 0</span><span class="team">عرمرم</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-23"><div class="day-header">06 رمضان</div><div class="match-card"><div class="teams"><span class="team">الوسام</span><span class="vs">4 - 1</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-22"><div class="day-header">05 رمضان</div><div class="match-card"><div class="teams"><span class="team">ساحل مغزل</span><span class="vs">3 - 1</span><span class="team">وحدة الرقة</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">السلطان</span><span class="vs">0 - 2</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-21"><div class="day-header">04 رمضان</div><div class="match-card"><div class="teams"><span class="team">السوق</span><span class="vs">2 - 0</span><span class="team">جندلة</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-20"><div class="day-header">03 رمضان</div><div class="match-card"><div class="teams"><span class="team">الفيصلي</span><span class="vs">2 - 0</span><span class="team">خليج الصوالحة</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-19"><div class="day-header">02 رمضان</div><div class="match-card"><div class="teams"><span class="team">الساحل</span><span class="vs">2 - 1</span><span class="team">مستقبل عرمرم</span></div><div class="match-time">انتهت</div></div><div class="match-card"><div class="teams"><span class="team">عمق</span><span class="vs">4 - 0</span><span class="team">العرق</span></div><div class="match-time">انتهت</div></div></div>
-        <div class="match-day-source" data-date="2026-02-18"><div class="day-header">01 رمضان</div><div class="match-card"><div class="teams"><span class="team">البرك</span><span class="vs">2 - 1</span><span class="team">وحدة الرقة</span></div><div class="match-time">انتهت</div></div></div>
+        <div class="match-day-source" data-date="2026-03-01"><div class="day-header">الأحد 12 رمضان</div><div class="match-card"><center><span class="final-prelim-badge">ختام التمهيدي</span></center><div class="teams"><span class="team">صقلية</span><span class="vs">VS</span><span class="team">عرمرم</span></div><div class="match-time">11:30 م</div></div></div>
     </div>
 
     <script src="script.js"></script>
