@@ -41,10 +41,10 @@
         .team { width: 42%; text-align: center; font-weight: bold; font-size: 0.95rem; }
         .vs { color: var(--blue); font-weight: 900; font-size: 1.1rem; }
         .footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
-        .disclaimer-box { background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 15px; }
-        .disclaimer-box b { color: var(--blue); display: block; margin-bottom: 5px; font-size: 0.85rem; }
-        .disclaimer-box p { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
-        .whatsapp-link { color: #25D366; text-decoration: none; font-weight: bold; font-size: 0.75rem; }
+        .disclaimer-box { background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .disclaimer-box b { color: var(--blue); display: block; margin-bottom: 8px; font-size: 0.9rem; }
+        .disclaimer-box p { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; margin: 0 0 10px 0; }
+        .whatsapp-link { color: #25D366; text-decoration: none; font-weight: bold; font-size: 0.75rem; border-top: 1px solid rgba(255,255,255,0.05); display: block; padding-top: 10px; }
     </style>
 </head>
 <body>
@@ -107,19 +107,16 @@
         <div class="footer">
             <div class="disclaimer-box">
                 <b>تطوير وتصميم: إياد عسيري</b>
-                <p>إخلاء مسؤولية: هذا الموقع هو مجهود شخصي يهدف إلى تنظيم وتسهيل عرض نتائج بطولة القحمة الرمضانية الـ 28. الموقع لا يتبع لأي جهة رسمية، والمعلومات الواردة فيه تخضع للتحديث اليدوي بناءً على نتائج المباريات الميدانية.</p>
+                <p>إخلاء مسؤولية: هذا الموقع هو مجهود شخصي يهدف إلى تنظيم وتسهيل عرض نتائج بطولة القحمة الرمضانية الـ 28. الموقع لا يتبع لأي جهة رسمية، والمعلومات الواردة فيه تخضع للتحديث اليدوي بناءً على نتائج المباريات.</p>
+                <a href="https://wa.me/966534987428" class="whatsapp-link" target="_blank">واتساب: 0534987428</a>
             </div>
-            <a href="https://wa.me/966534987428" class="whatsapp-link" target="_blank">واتساب: 0534987428</a>
         </div>
     </div>
 
     <script>
         const matchesData = [
-            // مباريات الأحد 12 رمضان
             { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "الساعة 11:30 م", result: "VS" },
             { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "الساعة 12:45 ص (المباراة التي تم تأجيلها)", result: "VS" },
-            
-            // النهائيات
             { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "الملحق - مباراة 1", result: "VS" },
             { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "الملحق - مباراة 2", result: "VS" },
             { date: "2026-03-03", day: "الثلاثاء 14 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي - مباراة 1", result: "VS" },
@@ -129,8 +126,6 @@
             { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي - مباراة 1", result: "VS" },
             { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي - مباراة 2", result: "VS" },
             { date: "2026-03-08", day: "الأحد 19 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 المباراة النهائية", result: "VS" },
-            
-            // الأرشيف الكامل (16 مباراة)
             { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0" },
             { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1" },
             { date: "2026-02-27", day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2" },
@@ -148,7 +143,6 @@
             { date: "2026-02-19", day: "الخميس 02 رمضان", t1: "عمق", t2: "العرق", info: "انتهت", result: "4 - 0" },
             { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1" }
         ];
-
         function runTournamentSystem() {
             const now = new Date();
             if (now.getHours() < 4) now.setDate(now.getDate() - 1);
@@ -164,7 +158,6 @@
             document.getElementById('upcoming-area').innerHTML = render(sections.upcoming);
             document.getElementById('archive-area').innerHTML = render(sections.archive);
         }
-
         function openTab(evt, tabName) {
             var i, tabcontent = document.getElementsByClassName("tab-content"), tablinks = document.getElementsByClassName("tab-btn");
             for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
