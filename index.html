@@ -65,6 +65,7 @@
         <div class="footer-info">
             <div style="font-size: 0.85rem; color: #D4AF37; font-weight: bold; margin-bottom: 5px;">تطوير وتصميم: إياد عسيري</div>
             <a href="https://wa.me/966534987428" target="_blank" style="text-decoration:none; color:#25D366; font-size:0.9rem; font-weight:bold;">📱 0534987428</a>
+            <p style="font-size: 0.7rem; color: #666; font-style: italic; margin-top: 15px;">إخلاء مسؤولية: هذا الموقع تنظيمي ولا يمثل جهة رسمية.</p>
         </div>
     </div>
 
@@ -110,10 +111,6 @@
             } catch (e) { document.getElementById('w-icon').innerText = "📍"; }
         }
         updateWeather();
-        function shareSite() {
-            if (navigator.share) { navigator.share({ title: 'بطولة القحمة 28', url: window.location.href }); }
-            else { window.open('https://wa.me/?text=' + encodeURIComponent(window.location.href)); }
-        }
     </script>
 </body>
 </html>
