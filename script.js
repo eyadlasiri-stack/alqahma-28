@@ -1,43 +1,92 @@
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabcontent.length; i++) tabcontent[i].classList.remove("active");
-    tablinks = document.getElementsByClassName("tab-btn");
-    for (i = 0; i < tablinks.length; i++) tablinks[i].classList.remove("active");
-    document.getElementById(tabName).classList.add("active");
-    evt.currentTarget.classList.add("active");
-}
+/**
+ * نظام إدارة بطولة القحمة الرمضانية 28
+ * تطوير: إياد عسيري
+ */
 
-function distributeMatches() {
-    const todayStr = "2026-03-01"; // تثبيت تاريخ اليوم للتجربة أو استخدم New Date()...
-    const master = document.getElementById('master-schedule');
-    const matches = master.getElementsByClassName('match-item');
+// 1. دالة التبديل بين التبويبات (اليوم، القادمة، السابقة، المجموعات)
+function showTab(evt, tabName) {
+    // إخفاء جميع محتويات التبويبات
+    const tabContents = document.getElementsByClassName("tab-content");
+    for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove("active");
+        tabContents[i].style.display = "none";
+    }
+
+    // إلغاء تفعيل جميع الأزرار
+    const tabButtons = document.getElementsByClassName("tab-btn");
+    for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove("active");
+    }
+
+    // إظهار التبويب المطلوب وتفعيل الزر الخاص به
+    const activeTab = document.getElementById(tabName);
+    if (activeTab) {
+        activeTab.classList.add("active");
+        activeTab.style.display = "block";
+    }
     
-    const todayTab = document.getElementById('today-tab');
-    const upcomingTab = document.getElementById('upcoming-tab');
-    const previousTab = document.getElementById('previous-tab');
-
-    Array.from(matches).forEach(match => {
-        const matchDate = match.getAttribute('data-date');
-        const html = match.innerHTML;
-        if (matchDate === todayStr) todayTab.innerHTML += html;
-        else if (matchDate > todayStr) upcomingTab.innerHTML += html;
-        else previousTab.innerHTML += html;
-    });
+    if (evt) {
+        evt.currentTarget.classList.add("active");
+    }
 }
 
+// 2. دالة جلب حالة الطقس المباشرة لمدينة القحمة
 async function updateWeather() {
+    const tempElement = document.getElementById('w-temp');
+    const iconElement = document.getElementById('w-icon');
+
     try {
-        const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.01&longitude=41.69&current_weather=true');
-        const data = await res.json();
-        document.getElementById('w-temp').innerText = Math.round(data.current_weather.temperature) + "°C";
-        document.getElementById('w-icon').innerText = data.current_weather.is_day ? "☀️" : "🌙";
-    } catch (e) { document.getElementById('w-icon').innerText = "📍"; }
+        // إحداثيات القحمة التقريبية
+        const lat = 18.01;
+        const lon = 41.69;
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+        const data = await response.json();
+
+        if (data && data.current_weather) {
+            const temp = Math.round(data.current_weather.temperature);
+            const isDay = data.current_weather.is_day;
+
+            if (tempElement) tempElement.innerText = temp + "°C";
+            if (iconElement) iconElement.innerText = isDay ? "☀️" : "🌙";
+        }
+    } catch (error) {
+        console.error("خطأ في جلب بيانات الطقس:", error);
+        if (iconElement) iconElement.innerText = "📍";
+    }
 }
 
+// 3. دالة مشاركة الموقع عبر الواتساب أو تطبيقات التواصل
 function shareSite() {
-    if (navigator.share) navigator.share({ title: 'بطولة القحمة 28', url: window.location.href });
-    else window.open('https://wa.me/?text=' + encodeURIComponent(window.location.href));
+    const shareData = {
+        title: 'بطولة القحمة الرمضانية 28',
+        text: 'تابع نتائج وترتيب بطولة القحمة الرمضانية الـ 28 مباشرة عبر هذا الرابط:',
+        url: window.location.href
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData).catch((err) => console.log("خطأ في المشاركة:", err));
+    } else {
+        // إذا كان المتصفح لا يدعم المشاركة الأصلية، يفتح الواتساب مباشرة
+        const waUrl = `https://wa.me/?text=${encodeURIComponent(shareData.text + " " + shareData.url)}`;
+        window.open(waUrl, '_blank');
+    }
 }
 
-window.onload = () => { distributeMatches(); updateWeather(); };
+// 4. تشغيل الوظائف الأساسية عند تحميل الصفحة
+window.addEventListener('load', () => {
+    // تحديث الطقس فور التحميل
+    updateWeather();
+    
+    // تحديث الطقس تلقائياً كل 15 دقيقة
+    setInterval(updateWeather, 900000);
+
+    // التأكد من فتح أول تبويب تلقائياً (اليوم)
+    const defaultTab = document.getElementById('defaultOpen');
+    if (defaultTab) {
+        defaultTab.click();
+    } else {
+        // حل بديل إذا لم يوجد زر افتراضي
+        const firstBtn = document.querySelector('.tab-btn');
+        if (firstBtn) firstBtn.click();
+    }
+});
