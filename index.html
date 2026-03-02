@@ -24,7 +24,7 @@
         .stats-card { background: var(--gray-card); border-radius: 12px; padding: 15px; border: 1px solid rgba(255,255,255,0.03); margin-bottom: 20px; }
         .stats-title { color: var(--gold); font-weight: 900; margin-bottom: 12px; font-size: 0.95rem; border-bottom: 1px solid rgba(255,215,0,0.1); padding-bottom: 5px; }
         .scorers-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-        .scorers-table td { padding: 8px 5px; border-bottom: 1px solid rgba(255,255,255,0.02); }
+        .scorers-table td { padding: 10px 5px; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .goal-count { background: var(--blue); color: white; padding: 1px 8px; border-radius: 10px; font-weight: bold; }
         .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .group-header { background: rgba(25, 118, 210, 0.15); color: var(--blue); padding: 10px; font-weight: 900; border-bottom: 1px solid rgba(25,118,210,0.2); font-size: 0.85rem; }
@@ -50,11 +50,8 @@
             <h1>بطولة القحمة الرمضانية 28</h1>
             <div style="font-size: 0.8rem; color: var(--text-muted); margin-top:5px;">ملعب الوسم بالقحمة</div>
         </header>
-
         <div class="weather-bar">🌤️ حالة الطقس في القحمة الآن: <span>28°C - صافي</span></div>
-
         <div class="top-stats"><div class="views-count">👁️ المشاهدات: 8147</div></div>
-
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'scorers')">الهدافين</button>
@@ -62,7 +59,6 @@
             <button class="tab-btn" onclick="openTab(event, 'previous')">الأرشيف</button>
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
-
         <div id="today" class="tab-content active"><div id="today-area"></div></div>
         
         <div id="scorers" class="tab-content">
@@ -75,10 +71,7 @@
 
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="previous" class="tab-content"><div id="archive-area"></div></div>
-
-        <div id="groups" class="tab-content">
-            <div id="groups-area"></div>
-        </div>
+        <div id="groups" class="tab-content"><div id="groups-area"></div></div>
 
         <div class="footer">
             <div class="disclaimer-box">
@@ -91,7 +84,6 @@
 
     <script>
         const matchesData = [
-            // الملحق والنهائيات
             { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "الملحق 1 - 10:30 م", result: "VS", sc1:"", sc2:"" },
             { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق 2 - 12:30 ص", result: "VS", sc1:"", sc2:"" },
             { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي (1)", result: "VS", sc1:"", sc2:"" },
@@ -101,8 +93,6 @@
             { date: "2026-03-08", day: "نصف النهائي", t1: "لم يتم التحديد", t2: "لم يتم التحديد", info: "المباراة الأولى", result: "VS", sc1:"", sc2:"" },
             { date: "2026-03-08", day: "نصف النهائي", t1: "لم يتم التحديد", t2: "لم يتم التحديد", info: "المباراة الثانية", result: "VS", sc1:"", sc2:"" },
             { date: "2026-03-11", day: "المباراة النهائية", t1: "لم يتم التحديد", t2: "لم يتم التحديد", info: "🏆 النهائي", result: "VS", sc1:"", sc2:"" },
-
-            // الأرشيف الكامل (18 مباراة مصححة بناءً على طلبك)
             { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", sc1: "⚽ عامر الحزبي (2)<br>⚽ عواض الغشمي<br>⚽ حسين معفري", sc2: "⚽ مشعي مفرح" },
             { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", sc1: "", sc2: "⚽ متعب مفرح" },
             { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0", sc1: "⚽ خالد اليحياوي (عكسي)", sc2: "" },
@@ -137,35 +127,33 @@
             if (now.getHours() < 4) now.setDate(now.getDate() - 1);
             const todayStr = now.toISOString().split('T')[0];
             let sections = { today: {}, upcoming: {}, archive: {} };
-
             matchesData.forEach(m => {
                 let target = m.date === todayStr ? 'today' : (m.date > todayStr ? 'upcoming' : 'archive');
                 if (!sections[target][m.day]) sections[target][m.day] = "";
                 let scRow = (m.sc1 || m.sc2) ? `<div class="scorers-container"><div class="team-scorers">${m.sc1}</div><div style="width:16%"></div><div class="team-scorers">${m.sc2}</div></div>` : "";
                 sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center>${scRow}</div>`;
             });
-
             document.getElementById('today-area').innerHTML = renderSection(sections.today);
             document.getElementById('upcoming-area').innerHTML = renderSection(sections.upcoming);
             document.getElementById('archive-area').innerHTML = renderSection(sections.archive);
-            
-            // تعبئة المجموعات
             document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td style="text-align:right; padding-right:15px; font-weight:bold;">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue); font-weight:bold;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
             
-            // تعبئة الهدافين
-            const topScorers = [
+            // قائمة الهدافين الذهبية كاملة (29 هداف)
+            const allScorers = [
                 {n:"عبدالله معفري (الوسام)", g:2}, {n:"عامر الحزبي (صقلية)", g:2}, {n:"عبدالله العقيلي (السوق)", g:2},
                 {n:"عبدالله يحيى (عرمرم)", g:2}, {n:"يحيى القوزي (عمق)", g:2}, {n:"إبراهيم يحيى (الساحل)", g:2},
                 {n:"نايف شرفي (السوق)", g:1}, {n:"عواض الغشمي (صقلية)", g:1}, {n:"حسين معفري (صقلية)", g:1},
-                {n:"متعب مفرح (الوسام)", g:1}, {n:"مشعي مفرح (عرمرم)", g:1}, {n:"حسن بكري (مغزل)", g:1}
+                {n:"متعب مفرح (الوسام)", g:1}, {n:"سلطان معفري (الوسام)", g:1}, {n:"محمد براهيم (الوسام)", g:1},
+                {n:"مشعي مفرح (عرمرم)", g:1}, {n:"رامي شوهان (عرمرم)", g:1}, {n:"حسن بكري (مغزل)", g:1},
+                {n:"عبدالله عجيم (مغزل)", g:1}, {n:"خالد دماس (مغزل)", g:1}, {n:"حسن هداش (البرك)", g:1},
+                {n:"يحيى مهدلي (الساحل ر)", g:1}, {n:"داني (الساحل ر)", g:1}, {n:"ابراهيم الزيادي (السلطان)", g:1},
+                {n:"ريان عسيري (الصقر)", g:1}, {n:"حماده شامي (الصقر)", g:1}, {n:"أحمد شعبان (عمق)", g:1},
+                {n:"عبدالرحيم الهلالي (دبسا)", g:1}, {n:"سعيد الهلالي (دبسا)", g:1}, {n:"أحمد مبارك (الخليج)", g:1},
+                {n:"خالد اليحياوي (هدف عكسي لصالح الصقر)", g:1}, {n:"هادي عبدالرحمن (وحدة الرقة)", g:1}
             ];
-            document.getElementById('scorers-list').innerHTML = topScorers.map(s => `<tr><td>${s.n}</td><td style="text-align:left"><span class="goal-count">${s.g}</span></td></tr>`).join('');
+            document.getElementById('scorers-list').innerHTML = allScorers.map(s => `<tr><td>${s.n}</td><td style="text-align:left"><span class="goal-count">${s.g}</span></td></tr>`).join('');
         }
-
-        function renderSection(obj) {
-            return Object.keys(obj).map(day => `<div><div class="day-header">${day}</div>${obj[day]}</div>`).join('');
-        }
-
+        function renderSection(obj) { return Object.keys(obj).map(day => `<div><div class="day-header">${day}</div>${obj[day]}</div>`).join(''); }
         function openTab(evt, tabName) {
             var i, tabcontent = document.getElementsByClassName("tab-content"), tablinks = document.getElementsByClassName("tab-btn");
             for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
