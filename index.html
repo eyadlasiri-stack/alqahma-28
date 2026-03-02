@@ -47,7 +47,9 @@
         .commentators-names { font-size: 0.85rem; color: var(--text-main); font-weight: bold; }
 
         .footer { text-align: center; padding: 30px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
-        .contact-link { color: var(--green); font-weight: 900; font-size: 0.9rem; text-decoration: none; display: inline-block; margin-top: 10px; }
+        .disclaimer-box { background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .disclaimer-box p { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; margin: 0 0 10px 0; }
+        .contact-link { color: var(--green); font-weight: 900; font-size: 0.9rem; text-decoration: none; display: inline-block; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -81,7 +83,7 @@
 
         <div class="footer">
             <div class="disclaimer-box">
-                <p style="font-size: 0.7rem; color: var(--text-muted);"><b>تطوير وتصميم: إياد عسيري</b></p>
+                <p><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع مجهود شخصي غير رسمي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28 وتسهيل متابعتها للجمهور الكريم.</p>
                 <a href="https://wa.me/966534987428" class="contact-link">📱 واتساب: 0534987428</a>
             </div>
         </div>
@@ -89,19 +91,24 @@
 
 <script>
 const matchesData = [
-    // مباريات اليوم (الملحق) مع الأوقات الجديدة والنتيجة 0-0
+    // مباريات اليوم (الملحق)
     { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "الملحق 1 - 12:30 ص", result: "0 - 0" },
     { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق 2 - 1:45 ص", result: "0 - 0" },
     
-    // النهائيات
+    // النهائيات (تم استرجاعها كاملة)
     { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 1", result: "VS" },
-    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS" },
+    { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS" },
+    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS" },
+    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS" },
+    { date: "2026-03-08", day: "الأحد 19 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 1", result: "VS" },
+    { date: "2026-03-08", day: "الأحد 19 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 2", result: "VS" },
+    { date: "2026-03-11", day: "الأربعاء 22 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 النهائي الكبير", result: "VS" },
 
     // الأرشيف الكامل (18 مباراة)
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1" },
     { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0" },
-    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الالبرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1" },
+    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1" },
     { date: "2026-02-27", day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2" },
     { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "الساحل الرياضي", t2: "السلطان", info: "انتهت", result: "2 - 1" },
     { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "صقلية", t2: "دبسا", info: "انتهت", result: "0 - 0" },
@@ -119,7 +126,7 @@ const matchesData = [
 ];
 
 const groupData = [
-    {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الالفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
+    {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
     {n:"2", teams:[{t:"ساحل مغزل",l:2,f:2,te:0,x:0,p:6},{t:"البرك",l:2,f:1,te:0,x:1,p:3},{t:"وحدة الرقة",l:2,f:0,te:0,x:2,p:0}]},
     {n:"3", teams:[{t:"الصقر",l:2,f:2,te:0,x:0,p:6},{t:"عمق",l:2,f:1,te:0,x:1,p:3},{t:"العرق",l:2,f:0,te:0,x:2,p:0}]},
     {n:"4", teams:[{t:"الساحل الرياضي",l:2,f:2,te:0,x:0,p:6},{t:"مستقبل عرمرم",l:2,f:1,te:0,x:1,p:3},{t:"السلطان",l:2,f:0,te:0,x:2,p:0}]},
@@ -132,7 +139,7 @@ function runTournamentSystem() {
     let sections = { today: {}, upcoming: {}, archive: {} };
 
     matchesData.forEach(m => {
-        let target = m.date === todayStr ? 'today' : (m.date > todayStr ? 'upcoming' : 'archive');
+        let target = m.date === todayStr ? 'today' : (m.date >= "2026-03-04" ? 'upcoming' : 'archive');
         if (!sections[target][m.day]) sections[target][m.day] = "";
         sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center></div>`;
     });
