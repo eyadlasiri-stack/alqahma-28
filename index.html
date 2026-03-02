@@ -23,7 +23,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .stats-card { background: var(--gray-card); border-radius: 12px; padding: 15px; border: 1px solid rgba(255,255,255,0.03); margin-bottom: 20px; }
         .stats-title { color: var(--gold); font-weight: 900; margin-bottom: 12px; font-size: 0.95rem; border-bottom: 1px solid rgba(255,215,0,0.1); padding-bottom: 5px; }
-        .scorers-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .scorers-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         .scorers-table td { padding: 10px 5px; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .goal-count { background: var(--blue); color: white; padding: 1px 8px; border-radius: 10px; font-weight: bold; }
         .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
@@ -31,16 +31,12 @@
         .group-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; text-align: center; }
         .group-table th { background: rgba(0,0,0,0.2); padding: 8px 2px; color: var(--light-blue); }
         .group-table td { padding: 10px 2px; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        .match-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); padding-bottom: 10px; }
-        .teams { display: flex; justify-content: space-between; align-items: center; padding: 15px 15px 5px 15px; }
-        .team { width: 42%; text-align: center; font-weight: bold; font-size: 0.95rem; }
-        .vs { color: var(--blue); font-weight: 900; font-size: 1.1rem; }
-        .scorers-container { display: flex; justify-content: space-between; padding: 0 15px; margin-top: 2px; }
-        .team-scorers { width: 42%; font-size: 0.6rem; color: #8bc34a; line-height: 1.4; text-align: center; }
+        .match-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); padding: 15px 0; }
+        .teams { display: flex; justify-content: space-between; align-items: center; padding: 0 15px; }
+        .team { width: 42%; text-align: center; font-weight: bold; font-size: 1rem; }
+        .vs { color: var(--blue); font-weight: 900; font-size: 1.2rem; }
         .day-header { background: rgba(25,118,210,0.2); color: white; padding: 4px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; margin: 12px 0 8px; display: inline-block; border: 1px solid var(--blue); }
         .footer { text-align: center; padding: 30px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
-        .disclaimer-box { background: rgba(0, 0, 0, 0.2); padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
-        .disclaimer-box p { font-size: 0.55rem; color: var(--text-muted); line-height: 1.4; margin: 0; }
         .contact-num { color: var(--green); font-weight: 900; font-size: 0.85rem; display: block; margin-top: 8px; direction: ltr; text-decoration: none; }
     </style>
 </head>
@@ -50,7 +46,7 @@
             <h1>بطولة القحمة الرمضانية 28</h1>
             <div style="font-size: 0.8rem; color: var(--text-muted); margin-top:5px;">ملعب الوسم بالقحمة</div>
         </header>
-        <div class="weather-bar">🌤️ الطقس في القحمة الآن: <span>28°C - صافي</span></div>
+        <div class="weather-bar">🌤️ القحمة الآن: <span>28°C - صافي</span></div>
         <div class="top-stats"><div class="views-count">👁️ المشاهدات: 8147</div></div>
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
@@ -61,52 +57,49 @@
         </div>
 
         <div id="today" class="tab-content active"><div id="today-area"></div></div>
-        <div id="scorers" class="tab-content"><div class="stats-card"><div class="stats-title">🏆 قائمة الهدافين</div><table class="scorers-table" id="scorers-list"></table></div></div>
+        <div id="scorers" class="tab-content"><div class="stats-card"><div class="stats-title">🏆 قائمة هدافي البطولة الشاملة</div><table class="scorers-table" id="scorers-list"></table></div></div>
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="previous" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
 
         <div class="footer">
-            <div class="disclaimer-box">
-                <p style="font-weight:bold; color:var(--blue); margin-bottom:3px; font-size:0.75rem;">تطوير وتصميم: إياد عسيري</p>
-                <p>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28.</p>
-                <a href="https://wa.me/966534987428" class="contact-num">0534987428</a>
-            </div>
+            <p style="font-weight:bold; color:var(--blue); font-size:0.75rem;">تطوير وتصميم: إياد عسيري</p>
+            <a href="https://wa.me/966534987428" class="contact-num">0534987428</a>
         </div>
     </div>
 
 <script>
 const matchesData = [
     // النهائيات
-    { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "الملحق 1 - 10:30 م", result: "VS", sc1:"", sc2:"" },
-    { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق 2 - 12:30 ص", result: "VS", sc1:"", sc2:"" },
-    { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 1", result: "VS", sc1:"", sc2:"" },
-    { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", sc1:"", sc2:"" },
-    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", sc1:"", sc2:"" },
-    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", sc1:"", sc2:"" },
-    { date: "2026-03-08", day: "الأحد 19 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 1", result: "VS", sc1:"", sc2:"" },
-    { date: "2026-03-08", day: "الأحد 19 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 2", result: "VS", sc1:"", sc2:"" },
-    { date: "2026-03-11", day: "الأربعاء 22 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 النهائي الكبير", result: "VS", sc1:"", sc2:"" },
+    { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "الملحق 1 - 10:30 م", result: "VS" },
+    { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق 2 - 12:30 ص", result: "VS" },
+    { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 1", result: "VS" },
+    { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS" },
+    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS" },
+    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS" },
+    { date: "2026-03-08", day: "الأحد 19 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 1", result: "VS" },
+    { date: "2026-03-08", day: "الأحد 19 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 2", result: "VS" },
+    { date: "2026-03-11", day: "الأربعاء 22 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 النهائي", result: "VS" },
 
-    // الأرشيف (بياناتك فقط)
-    { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", sc1: "⚽ عامر الحزبي (2)<br>⚽ عواض الغشمي<br>⚽ حسين معفري", sc2: "⚽ مشعي مفرح" },
-    { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", sc1: "", sc2: "⚽ متعب مفرح" },
-    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0", sc1: "", sc2: "" },
-    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1", sc1: "", sc2: "⚽ حسن هداش" },
-    { date: "2026-02-27", day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2", sc1: "", sc2: "" },
-    { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "الساحل الرياضي", t2: "السلطان", info: "انتهت", result: "2 - 1", sc1: "⚽ يحيى مهدلي<br>⚽ داني", sc2: "⚽ ابراهيم الزيادي" },
-    { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "صقلية", t2: "دبسا", info: "انتهت", result: "0 - 0", sc1: "", sc2: "" },
-    { date: "2026-02-25", day: "الأربعاء 08 رمضان", t1: "الصقر", t2: "عمق", info: "انتهت", result: "2 - 1", sc1: "⚽ ريان عسيري<br>⚽ حماده شامي", sc2: "⚽ أحمد شعبان" },
-    { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "السوق", t2: "الفيض", info: "انتهت", result: "1 - 0", sc1: "⚽ عبدالله العقيلي", sc2: "" },
-    { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "2 - 0", sc1: "⚽ عبدالرحيم الهلالي<br>⚽ سعيد علي الهلالي", sc2: "" },
-    { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "الوسام", t2: "الخليج", info: "انتهت", result: "4 - 1", sc1: "⚽ عبدالله معفري (2)<br>⚽ سلطان معفري<br>⚽ محمد براهيم", sc2: "⚽ أحمد مبارك" },
-    { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "عمق", t2: "العرق", info: "انتهت", result: "4 - 0", sc1: "⚽ يحيى القوزي (2)", sc2: "" },
-    { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "مستقبل عرمرم", t2: "السلطان", info: "انتهت", result: "2 - 0", sc1: "⚽ عبدالله يحيى<br>⚽ رامي شوهان", sc2: "" },
-    { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "ساحل مغزل", t2: "وحدة الرقة", info: "انتهت", result: "3 - 1", sc1: "⚽ حسن بكري<br>⚽ عبدالله عجيم<br>⚽ خالد دماس", sc2: "⚽ هادي عبدالرحمن" },
-    { date: "2026-02-21", day: "السبت 04 رمضان", t1: "السوق", t2: "جندلة", info: "انتهت", result: "2 - 0", sc1: "⚽ عبدالله العقيلي<br>⚽ نايف شرفي", sc2: "" },
-    { date: "2026-02-20", day: "الجمعة 03 رمضان", t1: "الفيصلي", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 0", sc1: "", sc2: "" },
-    { date: "2026-02-19", day: "الخميس 02 رمضان", t1: "الساحل الرياضي", t2: "مستقبل عرمرم", info: "انتهت", result: "2 - 1", sc1: "⚽ إبراهيم يحيى (2)", sc2: "⚽ عبدالله يحيى" },
-    { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1", sc1: "", sc2: "" }
+    // الأرشيف (نتائج فقط بدون هدافين لتجنب اللخبطة)
+    { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1" },
+    { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1" },
+    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0" },
+    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1" },
+    { date: "2026-02-27", day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2" },
+    { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "الساحل الرياضي", t2: "السلطان", info: "انتهت", result: "2 - 1" },
+    { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "صقلية", t2: "دبسا", info: "انتهت", result: "0 - 0" },
+    { date: "2026-02-25", day: "الأربعاء 08 رمضان", t1: "الصقر", t2: "عمق", info: "انتهت", result: "2 - 1" },
+    { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "السوق", t2: "الفيض", info: "انتهت", result: "1 - 0" },
+    { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "2 - 0" },
+    { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "الوسام", t2: "الخليج", info: "انتهت", result: "4 - 1" },
+    { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "عمق", t2: "العرق", info: "انتهت", result: "4 - 0" },
+    { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "مستقبل عرمرم", t2: "السلطان", info: "انتهت", result: "2 - 0" },
+    { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "ساحل مغزل", t2: "وحدة الرقة", info: "انتهت", result: "3 - 1" },
+    { date: "2026-02-21", day: "السبت 04 رمضان", t1: "السوق", t2: "جندلة", info: "انتهت", result: "2 - 0" },
+    { date: "2026-02-20", day: "الجمعة 03 رمضان", t1: "الفيصلي", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 0" },
+    { date: "2026-02-19", day: "الخميس 02 رمضان", t1: "الساحل الرياضي", t2: "مستقبل عرمرم", info: "انتهت", result: "2 - 1" },
+    { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1" }
 ];
 
 const groupData = [
@@ -127,8 +120,7 @@ function runTournamentSystem() {
     matchesData.forEach(m => {
         let target = m.date === todayStr ? 'today' : (m.date > todayStr ? 'upcoming' : 'archive');
         if (!sections[target][m.day]) sections[target][m.day] = "";
-        let scRow = (m.sc1 || m.sc2) ? `<div class="scorers-container"><div class="team-scorers">${m.sc1}</div><div style="width:16%"></div><div class="team-scorers">${m.sc2}</div></div>` : "";
-        sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center>${scRow}</div>`;
+        sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center></div>`;
     });
 
     document.getElementById('today-area').innerHTML = Object.keys(sections.today).map(day => `<div><div class="day-header">${day}</div>${sections.today[day]}</div>`).join('') || "<center><br>لا توجد مباريات لليوم</center>";
@@ -136,9 +128,9 @@ function runTournamentSystem() {
     document.getElementById('archive-area').innerHTML = Object.keys(sections.archive).map(day => `<div><div class="day-header">${day}</div>${sections.archive[day]}</div>`).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td style="text-align:right; padding-right:15px; font-weight:bold;">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue); font-weight:bold;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     
-    const finalScorers = [
+    const allScorers = [
         {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر الحزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
-        {n:"يحيى القوزي", f:"عمق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2},
+        {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2},
         {n:"نايف شرفي", f:"السوق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:1},
         {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1},
         {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد براهيم", f:"الوسام", g:1}, {n:"أحمد مبارك", f:"الخليج", g:1},
@@ -148,7 +140,7 @@ function runTournamentSystem() {
         {n:"حسين معفري", f:"صقلية", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"متعب مفرح", f:"الوسام", g:1},
         {n:"حسن هداش", f:"ساحل مغزل", g:1}
     ];
-    document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td>${s.n} (${s.f})</td><td style="text-align:left"><span class="goal-count">${s.g}</span></td></tr>`).join('');
+    document.getElementById('scorers-list').innerHTML = allScorers.map(s => `<tr><td>${s.n} (${s.f})</td><td style="text-align:left"><span class="goal-count">${s.g}</span></td></tr>`).join('');
 }
 
 function openTab(evt, tabName) {
