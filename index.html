@@ -60,38 +60,31 @@
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
         <div id="today" class="tab-content active"><div id="today-area"></div></div>
-        
-        <div id="scorers" class="tab-content">
-            <div class="stats-card">
-                <div class="stats-title">🏆 قائمة هدافي البطولة</div>
-                <table class="scorers-table" id="scorers-list"></table>
-            </div>
-        </div>
-
+        <div id="scorers" class="tab-content"><div class="stats-card"><div class="stats-title">🏆 قائمة الهدافين</div><table class="scorers-table" id="scorers-list"></table></div></div>
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="previous" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
-
         <div class="footer">
             <div class="disclaimer-box">
                 <p style="font-weight:bold; color:var(--blue); margin-bottom:3px; font-size:0.75rem;">تطوير وتصميم: إياد عسيري</p>
-                <p>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28.</p>
+                <p>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم عرض نتائج بطولة القحمة الرمضانية 28.</p>
                 <a href="https://wa.me/966534987428" class="contact-num">0534987428</a>
             </div>
         </div>
     </div>
-
     <script>
         const matchesData = [
             // النهائيات
             { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "الملحق 1 - 10:30 م", result: "VS", sc1:"", sc2:"" },
             { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق 2 - 12:30 ص", result: "VS", sc1:"", sc2:"" },
-            { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي (1)", result: "VS", sc1:"", sc2:"" },
-            { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي (2)", result: "VS", sc1:"", sc2:"" },
-            { date: "2026-03-08", day: "نصف النهائي", t1: "لم يتم التحديد", t2: "لم يتم التحديد", info: "لم يتم التحديد", result: "VS", sc1:"", sc2:"" },
-            { date: "2026-03-11", day: "🏆 النهائي", t1: "لم يتم التحديد", t2: "لم يتم التحديد", info: "سيتم التحديد لاحقاً", result: "VS", sc1:"", sc2:"" },
+            { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 1", result: "VS", sc1:"", sc2:"" },
+            { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", sc1:"", sc2:"" },
+            { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", sc1:"", sc2:"" },
+            { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", sc1:"", sc2:"" },
+            { date: "2026-03-08", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مباراة 1", result: "VS", sc1:"", sc2:"" },
+            { date: "2026-03-11", day: "المباراة النهائية", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 النهائي", result: "VS", sc1:"", sc2:"" },
 
-            // الأرشيف الكامل (1-12 رمضان)
+            // الأرشيف كاملاً (18 مباراة)
             { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", sc1: "⚽ عامر الحزبي (2)<br>⚽ عواض الغشمي<br>⚽ حسين معفري", sc2: "⚽ مشعي مفرح" },
             { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", sc1: "", sc2: "⚽ متعب مفرح" },
             { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0", sc1: "", sc2: "" },
@@ -107,9 +100,9 @@
             { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "مستقبل عرمرم", t2: "السلطان", info: "انتهت", result: "2 - 0", sc1: "⚽ عبدالله يحيى<br>⚽ رامي شوهان", sc2: "" },
             { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "ساحل مغزل", t2: "وحدة الرقة", info: "انتهت", result: "3 - 1", sc1: "⚽ حسن بكري<br>⚽ عبدالله عجيم<br>⚽ خالد دماس", sc2: "⚽ هادي عبدالرحمن" },
             { date: "2026-02-21", day: "السبت 04 رمضان", t1: "السوق", t2: "جندلة", info: "انتهت", result: "2 - 0", sc1: "⚽ عبدالله العقيلي<br>⚽ نايف شرفي", sc2: "" },
-            { date: "2026-02-20", day: "الجمعة 03 رمضان", t1: "الفيصلي", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 0", sc1: "", sc2: "" },
-            { date: "2026-02-19", day: "الخميس 02 رمضان", t1: "الساحل الرياضي", t2: "مستقبل عرمرم", info: "انتهت", result: "2 - 1", sc1: "⚽ إبراهيم يحيى (2)", sc2: "⚽ عبدالله يحيى" },
-            { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1", sc1: "⚽ حسن هداش", sc2: "" }
+            { date: "2026-02-20", day: "الجمعة 03 رمضان", t1: "الفيصلي", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 0", sc1: "⚽ متعب مفرح", sc2: "" },
+            { date: "2026-02-19", day: "الخميس 02 رمضان", t1: "الساحل الرياضي", t2: "مستقبل عرمرم", info: "انتهت", result: "2 - 1", sc1: "⚽ ابراهيم يحيى (2)", sc2: "⚽ عبدالله يحيى" },
+            { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1", sc1: "", sc2: "" }
         ];
 
         const gData = [
@@ -126,12 +119,14 @@
             if (now.getHours() < 4) now.setDate(now.getDate() - 1);
             const todayStr = now.toISOString().split('T')[0];
             let sections = { today: {}, upcoming: {}, archive: {} };
+
             matchesData.forEach(m => {
                 let target = m.date === todayStr ? 'today' : (m.date > todayStr ? 'upcoming' : 'archive');
                 if (!sections[target][m.day]) sections[target][m.day] = "";
                 let scRow = (m.sc1 || m.sc2) ? `<div class="scorers-container"><div class="team-scorers">${m.sc1}</div><div style="width:16%"></div><div class="team-scorers">${m.sc2}</div></div>` : "";
                 sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center>${scRow}</div>`;
             });
+
             document.getElementById('today-area').innerHTML = renderSection(sections.today);
             document.getElementById('upcoming-area').innerHTML = renderSection(sections.upcoming);
             document.getElementById('archive-area').innerHTML = renderSection(sections.archive);
@@ -151,6 +146,7 @@
             ];
             document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td>${s.n} (${s.f})</td><td style="text-align:left"><span class="goal-count">${s.g}</span></td></tr>`).join('');
         }
+
         function renderSection(obj) { return Object.keys(obj).map(day => `<div><div class="day-header">${day}</div>${obj[day]}</div>`).join(''); }
         function openTab(evt, tabName) {
             var i, tabcontent = document.getElementsByClassName("tab-content"), tablinks = document.getElementsByClassName("tab-btn");
