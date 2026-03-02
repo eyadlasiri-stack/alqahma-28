@@ -25,7 +25,7 @@
         .stats-title { color: var(--gold); font-weight: 900; margin-bottom: 12px; font-size: 0.95rem; border-bottom: 1px solid rgba(255,215,0,0.1); padding-bottom: 5px; }
         .scorers-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
         .scorers-table td { padding: 8px 5px; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        .goal-count { background: var(--blue); color: white; padding: 1px 8px; border-radius: 10px; font-weight: bold; font-size: 0.75rem; }
+        .goal-count { background: var(--blue); color: white; padding: 1px 8px; border-radius: 10px; font-weight: bold; }
         .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); }
         .group-header { background: rgba(25, 118, 210, 0.1); color: var(--blue); padding: 10px; font-weight: 900; font-size: 0.85rem; border-bottom: 1px solid rgba(25,118,210,0.2); }
         .group-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; table-layout: fixed; }
@@ -40,10 +40,10 @@
         .team-scorers { width: 42%; font-size: 0.6rem; color: #8bc34a; line-height: 1.4; text-align: center; }
         .day-header { background: rgba(25,118,210,0.2); color: white; padding: 4px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; margin: 12px 0 8px; display: inline-block; border: 1px solid var(--blue); }
         .footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
-        .disclaimer-box { background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: right; }
+        .disclaimer-box { background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
         .disclaimer-box b { color: var(--blue); display: block; margin-bottom: 5px; font-size: 0.85rem; }
-        .disclaimer-box p { font-size: 0.6rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
-        .whatsapp-link { color: #25D366; text-decoration: none; font-weight: bold; font-size: 0.7rem; display: block; margin-top: 8px; }
+        .disclaimer-box p { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; margin: 5px 0; }
+        .whatsapp-link { color: #25D366; text-decoration: none; font-weight: bold; font-size: 0.75rem; display: block; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -54,7 +54,7 @@
         </header>
 
         <div class="top-stats">
-            <div class="views-count">👁️ المشاهدات: <span id="view-val">8009</span></div>
+            <div class="views-count">👁️ المشاهدات: <span id="view-val">8147</span></div>
             <button class="share-btn" onclick="shareSite()">🔗 مشاركة</button>
         </div>
 
@@ -70,31 +70,12 @@
             <div class="stats-card">
                 <div class="stats-title">🏆 قائمة هدافي البطولة</div>
                 <table class="scorers-table">
-                    <tr><td>عبدالله معفري</td><td>(الوسام)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
-                    <tr><td>عامر الحزبي</td><td>(صقلية)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
-                    <tr><td>عبدالله العقيلي</td><td>(السوق)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
-                    <tr><td>عبدالله يحيى</td><td>(مستقبل عرمرم)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
-                    <tr><td>يحيى القوزي</td><td>(عمق)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
-                    <tr><td>إبراهيم يحيى</td><td>(الساحل الرياضي)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
-                    <tr><td>عواض الغشمي</td><td>(صقلية)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>حسين معفري</td><td>(صقلية)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>متعب مفرح</td><td>(الوسام)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>مشعي مفرح</td><td>(عرمرم)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>حسن هداش</td><td>(ساحل مغزل)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>يحيى مهدلي</td><td>(الساحل الرياضي)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>داني</td><td>(الساحل الرياضي)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>ابراهيم الزيادي</td><td>(السلطان)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>ريان عسيري</td><td>(الصقر)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>حماده شامي</td><td>(الصقر)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>احمد شعبان</td><td>(عمق)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>سلطان معفري</td><td>(الوسام)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>محمد براهيم</td><td>(الوسام)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>احمد مبارك</td><td>(الخليج)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>حسن بكري</td><td>(ساحل مغزل)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>عبدالله عجيم</td><td>(ساحل مغزل)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>خالد دماس</td><td>(ساحل مغزل)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>رامي شوهان</td><td>(مستقبل عرمرم)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
-                    <tr><td>نايف شرفي</td><td>(السوق)</td><td style="text-align:left"><span class="goal-count">1</span></td></tr>
+                    <tr><td>عبدالله معفري (الوسام)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
+                    <tr><td>عامر الحزبي (صقلية)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
+                    <tr><td>عبدالله العقيلي (السوق)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
+                    <tr><td>عبدالله يحيى (عرمرم)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
+                    <tr><td>يحيى القوزي (عمق)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
+                    <tr><td>إبراهيم يحيى (الساحل)</td><td style="text-align:left"><span class="goal-count">2</span></td></tr>
                 </table>
             </div>
         </div>
@@ -120,15 +101,16 @@
         <div class="footer">
             <div class="disclaimer-box">
                 <b>تطوير وتصميم: إياد عسيري</b>
+                <p>واتساب: 0534987428</p>
                 <p>إخلاء مسؤولية: هذا الموقع هو مجهود شخصي يهدف إلى تنظيم وتسهيل عرض نتائج بطولة القحمة الرمضانية الـ 28. الموقع لا يتبع لأي جهة رسمية، والمعلومات الواردة فيه تخضع للتحديث اليدوي بناءً على نتائج المباريات.</p>
-                <a href="https://wa.me/966534987428" class="whatsapp-link" target="_blank">واتساب: 0534987428</a>
+                <a href="https://wa.me/966534987428" class="whatsapp-link" target="_blank">تواصل مباشر</a>
             </div>
         </div>
     </div>
 
     <script>
         const matchesData = [
-            // الملحق
+            // مباريات الملحق (اليوم)
             { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "المباراة الأولى - 10:30 م", result: "VS", sc1:"", sc2:"" },
             { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "المباراة الثانية - 12:30 ص", result: "VS", sc1:"", sc2:"" },
             
@@ -141,20 +123,23 @@
             { date: "2026-03-08", day: "الأحد 19 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي (2)", result: "VS", sc1:"", sc2:"" },
             { date: "2026-03-11", day: "الأربعاء 22 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 النهائي", result: "VS", sc1:"", sc2:"" },
 
-            // الأرشيف
+            // الأرشيف الكامل
             { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", sc1: "⚽ عامر الحزبي (2)<br>⚽ عواض الغشمي<br>⚽ حسين معفري", sc2: "⚽ مشعي مفرح" },
             { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", sc1: "", sc2: "⚽ متعب مفرح" },
             { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0", sc1: "⚽ خالد اليحياوي (عكسي)", sc2: "" },
             { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1", sc1: "", sc2: "⚽ حسن هداش" },
             { date: "2026-02-27", day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2", sc1: "", sc2: "" },
             { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "الساحل الرياضي", t2: "السلطان", info: "انتهت", result: "2 - 1", sc1: "⚽ يحيى مهدلي<br>⚽ داني", sc2: "⚽ ابراهيم الزيادي" },
+            { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "صقلية", t2: "دبسا", info: "انتهت", result: "0 - 0", sc1: "", sc2: "" },
             { date: "2026-02-25", day: "الأربعاء 08 رمضان", t1: "الصقر", t2: "عمق", info: "انتهت", result: "2 - 1", sc1: "⚽ ريان عسيري<br>⚽ حماده شامي", sc2: "⚽ احمد شعبان" },
             { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "السوق", t2: "الفيض", info: "انتهت", result: "1 - 0", sc1: "⚽ عبدالله العقيلي", sc2: "" },
             { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "2 - 0", sc1: "⚽ عبدالرحيم الهلالي<br>⚽ سعيد الهلالي", sc2: "" },
             { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "الوسام", t2: "الخليج", info: "انتهت", result: "4 - 1", sc1: "⚽ عبدالله معفري (2)<br>⚽ سلطان معفري<br>⚽ محمد براهيم", sc2: "⚽ احمد مبارك" },
+            { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "عمق", t2: "العرق", info: "انتهت", result: "4 - 0", sc1: "", sc2: "" },
             { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "ساحل مغزل", t2: "وحدة الرقة", info: "انتهت", result: "3 - 1", sc1: "⚽ حسن بكري<br>⚽ عبدالله عجيم<br>⚽ خالد دماس", sc2: "⚽ هادي عبدالرحمن" },
             { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "مستقبل عرمرم", t2: "السلطان", info: "انتهت", result: "2 - 0", sc1: "⚽ عبدالله يحيى<br>⚽ رامي شوهان", sc2: "" },
-            { date: "2026-02-21", day: "السبت 04 رمضان", t1: "السوق", t2: "جندلة", info: "انتهت", result: "2 - 0", sc1: "⚽ عبدالله العقيلي<br>⚽ نايف شرفي", sc2: "" }
+            { date: "2026-02-21", day: "السبت 04 رمضان", t1: "السوق", t2: "جندلة", info: "انتهت", result: "2 - 0", sc1: "⚽ عبدالله العقيلي<br>⚽ نايف شرفي", sc2: "" },
+            { date: "2026-02-20", day: "الجمعة 03 رمضان", t1: "الفيصلي", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 0", sc1: "", sc2: "" }
         ];
 
         function runTournamentSystem() {
@@ -169,9 +154,9 @@
                 
                 let scorersRow = (m.sc1 || m.sc2) ? `
                     <div class="scorers-container">
-                        <div class="team-scorers">${m.sc1}</div>
+                        <div class="team-scorers" style="text-align:center;">${m.sc1}</div>
                         <div style="width:16%"></div>
-                        <div class="team-scorers">${m.sc2}</div>
+                        <div class="team-scorers" style="text-align:center;">${m.sc2}</div>
                     </div>` : "";
 
                 sections[target][m.day] += `
@@ -181,7 +166,7 @@
                             <span class="vs">${m.result}</span>
                             <span class="team">${m.t2}</span>
                         </div>
-                        <center><small style="color:var(--text-muted); display:block;">${m.info}</small></center>
+                        <center><small style="color:var(--text-muted); display:block; padding-bottom:5px;">${m.info}</small></center>
                         ${scorersRow}
                     </div>`;
             });
