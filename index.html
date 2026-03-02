@@ -28,23 +28,16 @@
         .scorers-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         .scorers-table td { padding: 10px 5px; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .goal-count { background: var(--blue); color: white; padding: 2px 10px; border-radius: 10px; font-weight: bold; }
-        .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); }
-        .group-header { background: rgba(25, 118, 210, 0.1); color: var(--blue); padding: 10px; font-weight: 900; font-size: 0.85rem; border-bottom: 1px solid rgba(25,118,210,0.2); }
-        .group-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; table-layout: fixed; }
-        .group-table th, .group-table td { padding: 12px 2px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        .group-table th.team-col-header { color: var(--light-blue) !important; font-weight: 900; width: 35%; text-align: right; padding-right: 15px; }
-        .group-table td.team-name { text-align: right !important; padding-right: 15px !important; font-weight: bold; }
-        .num-col { width: 10%; }
-        .day-header { background: rgba(25,118,210,0.2); color: white; padding: 4px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; margin: 12px 0 8px; display: inline-block; border: 1px solid var(--blue); }
         .match-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); }
         .teams { display: flex; justify-content: space-between; align-items: center; padding: 15px; }
         .team { width: 42%; text-align: center; font-weight: bold; font-size: 0.95rem; }
         .vs { color: var(--blue); font-weight: 900; font-size: 1.1rem; }
+        .day-header { background: rgba(25,118,210,0.2); color: white; padding: 4px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; margin: 12px 0 8px; display: inline-block; border: 1px solid var(--blue); }
         .footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
         .disclaimer-box { background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
         .disclaimer-box b { color: var(--blue); display: block; margin-bottom: 8px; font-size: 0.9rem; }
         .disclaimer-box p { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; margin: 0 0 10px 0; }
-        .whatsapp-link { color: #25D366; text-decoration: none; font-weight: bold; font-size: 0.75rem; border-top: 1px solid rgba(255,255,255,0.05); display: block; padding-top: 10px; }
+        .whatsapp-link { color: #25D366; text-decoration: none; font-weight: bold; font-size: 0.75rem; }
     </style>
 </head>
 <body>
@@ -87,25 +80,12 @@
         <div id="today" class="tab-content active"><div id="today-area"></div></div>
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="previous" class="tab-content"><div id="archive-area"></div></div>
-
-        <div id="groups" class="tab-content">
-            <script>
-                const groupData = [
-                    {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
-                    {n:"2", teams:[{t:"ساحل مغزل",l:2,f:2,te:0,x:0,p:6},{t:"البرك",l:2,f:1,te:0,x:1,p:3},{t:"وحدة الرقة",l:2,f:0,te:0,x:2,p:0}]},
-                    {n:"3", teams:[{t:"الصقر",l:2,f:2,te:0,x:0,p:6},{t:"عمق",l:2,f:1,te:0,x:1,p:3},{t:"العرق",l:2,f:0,te:0,x:2,p:0}]},
-                    {n:"4", teams:[{t:"الساحل الرياضي",l:2,f:2,te:0,x:0,p:6},{t:"مستقبل عرمرم",l:2,f:1,te:0,x:1,p:3},{t:"السلطان",l:2,f:0,te:0,x:2,p:0}]},
-                    {n:"5", teams:[{t:"الوسام",l:2,f:2,te:0,x:0,p:6},{t:"الفيصلي",l:2,f:1,te:0,x:1,p:3},{t:"خليج الصوالحة",l:2,f:0,te:0,x:2,p:0}]},
-                    {n:"6", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
-                ];
-                document.write(groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-col-header">الفريق</th><th class="num-col">ل</th><th class="num-col">ف</th><th class="num-col">ت</th><th class="num-col">خ</th><th class="num-col">ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join(''));
-            </script>
-        </div>
+        <div id="groups" class="tab-content"><center><br>تبويب المجموعات (قيد التحديث)</center></div>
 
         <div class="footer">
             <div class="disclaimer-box">
                 <b>تطوير وتصميم: إياد عسيري</b>
-                <p>إخلاء مسؤولية: هذا الموقع هو مجهود شخصي يهدف إلى تنظيم وتسهيل عرض نتائج بطولة القحمة الرمضانية الـ 28. الموقع لا يتبع لأي جهة رسمية.</p>
+                <p>إخلاء مسؤولية: مجهود شخصي لبطولة القحمة الرمضانية الـ 28.</p>
                 <a href="https://wa.me/966534987428" class="whatsapp-link" target="_blank">واتساب: 0534987428</a>
             </div>
         </div>
@@ -113,21 +93,22 @@
 
     <script>
         const matchesData = [
-            // مباريات الملحق الليلة (الاثنين 13 رمضان)
-            { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "الملحق (1) - الساعة 10:30 م", result: "VS" },
-            { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق (2) - الساعة 12:30 ص", result: "VS" },
+            // الملحق - اليوم الاثنين 13 رمضان
+            { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "الملحق (1) - 10:30 م", result: "VS" },
+            { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق (2) - 12:30 ص", result: "VS" },
             
-            // دور الثمانية (الأربعاء والخميس)
-            { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي (1) - مباراتين", result: "VS" },
+            // دور الثمانية - تحت بعضها
+            { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي (1)", result: "VS" },
             { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي (2)", result: "VS" },
-            { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي (3) - مباراتين", result: "VS" },
+            { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي (3)", result: "VS" },
             { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي (4)", result: "VS" },
             
-            // الأدوار النهائية (لم يتم التحديد)
-            { date: "2026-12-31", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يتم التحديد", result: "VS" },
-            { date: "2026-12-31", day: "المباراة النهائية", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يتم التحديد", result: "VS" },
-            
-            // الأرشيف (مباريات الأحد وما قبلها)
+            // نصف النهائي والنهائي - لم يتم التحديد
+            { date: "2026-12-01", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة الأولى", result: "VS" },
+            { date: "2026-12-01", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة الثانية", result: "VS" },
+            { date: "2026-12-02", day: "المباراة النهائية", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 لم يتم التحديد", result: "VS" },
+
+            // الأرشيف الكامل (16 مباراة)
             { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1" },
             { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1" },
             { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0" },
@@ -143,28 +124,27 @@
             { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "الوسام", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 1" },
             { date: "2026-02-21", day: "السبت 04 رمضان", t1: "مستقبل عرمرم", t2: "السلطان", info: "انتهت", result: "2 - 1" },
             { date: "2026-02-20", day: "الجمعة 03 رمضان", t1: "الفيصلي", t2: "خليج الصوالحة", info: "انتهت", result: "1 - 0" },
-            { date: "2026-02-19", day: "الخميس 02 رمضان", t1: "الساحل الرياضي", t2: "مستقبل عرمرم", info: "انتهت", result: "2 - 1" },
-            { date: "2026-02-19", day: "الخميس 02 رمضان", t1: "السوق", t2: "جندلة", info: "انتهت", result: "1 - 0" },
             { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1" }
         ];
 
         function runTournamentSystem() {
             const now = new Date();
-            // المحرك الذكي: يغير اليوم عند الساعة 4 فجراً
             if (now.getHours() < 4) now.setDate(now.getDate() - 1);
             const todayStr = now.toISOString().split('T')[0];
-            
             let sections = { today: {}, upcoming: {}, archive: {} };
+
             matchesData.forEach(m => {
                 let target = m.date === todayStr ? 'today' : (m.date > todayStr ? 'upcoming' : 'archive');
                 if (!sections[target][m.day]) sections[target][m.day] = "";
                 sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted); display:block; padding-bottom:10px;">${m.info}</small></center></div>`;
             });
+
             const render = (obj) => Object.keys(obj).map(day => `<div><div class="day-header">${day}</div>${obj[day]}</div>`).join('');
-            document.getElementById('today-area').innerHTML = render(sections.today);
+            document.getElementById('today-area').innerHTML = render(sections.today) || "<center><br>لا توجد مباريات لليوم</center>";
             document.getElementById('upcoming-area').innerHTML = render(sections.upcoming);
             document.getElementById('archive-area').innerHTML = render(sections.archive);
         }
+
         function openTab(evt, tabName) {
             var i, tabcontent = document.getElementsByClassName("tab-content"), tablinks = document.getElementsByClassName("tab-btn");
             for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
