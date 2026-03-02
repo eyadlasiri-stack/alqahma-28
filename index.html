@@ -40,8 +40,11 @@
         .teams { display: flex; justify-content: space-between; align-items: center; padding: 0 15px; }
         .team { width: 42%; text-align: center; font-weight: bold; font-size: 1rem; }
         .vs { color: var(--blue); font-weight: 900; font-size: 1.2rem; }
-        .day-header { background: rgba(25,118,210,0.2); color: white; padding: 4px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; margin: 12px 0 8px; display: inline-block; border: 1px solid var(--blue); }
-        .commentator { color: var(--light-blue); font-size: 0.75rem; font-weight: bold; margin-top: 5px; }
+        .day-header { background: rgba(25, 118, 210, 0.2); color: white; padding: 4px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; margin: 12px 0 8px; display: inline-block; border: 1px solid var(--blue); }
+        
+        .commentators-box { background: rgba(100, 181, 246, 0.05); border: 1px solid rgba(100, 181, 246, 0.2); border-radius: 12px; padding: 12px; margin-top: 10px; text-align: center; }
+        .commentators-box span { color: var(--light-blue); font-weight: 900; display: block; margin-bottom: 5px; font-size: 0.9rem; }
+        .commentators-names { font-size: 0.85rem; color: var(--text-main); font-weight: bold; }
 
         .footer { text-align: center; padding: 30px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
         .disclaimer-box { background: rgba(0, 0, 0, 0.2); padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
@@ -65,7 +68,14 @@
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
 
-        <div id="today" class="tab-content active"><div id="today-area"></div></div>
+        <div id="today" class="tab-content active">
+            <div id="today-area"></div>
+            <div class="commentators-box">
+                <span>🎙️ طاقم التعليق لمباريات الليلة:</span>
+                <div class="commentators-names">أحمد البدوي - أبو طلال</div>
+            </div>
+        </div>
+
         <div id="scorers" class="tab-content"><div class="stats-card"><div class="stats-title">🏆 قائمة الهدافين</div><table class="scorers-table" id="scorers-list"></table></div></div>
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="previous" class="tab-content"><div id="archive-area"></div></div>
@@ -73,7 +83,7 @@
 
         <div class="footer">
             <div class="disclaimer-box">
-                <p><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم وعرض نتائج بطولة القحمة الرمضانية 28. المعلومات تخضع للتحديث اليدوي ولا يتبع لأي جهة رسمية.</p>
+                <p><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28.</p>
                 <a href="https://wa.me/966534987428" class="contact-link">📱 واتساب: 0534987428</a>
             </div>
         </div>
@@ -81,20 +91,19 @@
 
 <script>
 const matchesData = [
-    // الملحق (اليوم) - إضافة المعلقين
-    { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "الملحق 1 - 10:30 م", result: "VS", comment: "🎙️ المعلق: أحمد البدوي - أبو طلال" },
-    { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق 2 - 12:30 ص", result: "VS", comment: "🎙️ المعلق: أحمد البدوي - أبو طلال" },
+    { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "الملحق 1 - 10:30 م", result: "VS" },
+    { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق 2 - 12:30 ص", result: "VS" },
     
     // النهائيات
     { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 1", result: "VS" },
     { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS" },
     { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS" },
     { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS" },
-    { date: "2026-03-08", day: "نصف النهائي", t1: "لم يحدد بعد", t2: "لم يحدد بعد", info: "نصف النهائي 1", result: "VS" },
-    { date: "2026-03-08", day: "نصف النهائي", t1: "لم يحدد بعد", t2: "لم يحدد بعد", info: "نصف النهائي 2", result: "VS" },
-    { date: "2026-03-11", day: "النهائي", t1: "لم يحدد بعد", t2: "لم يحدد بعد", info: "🏆 المباراة الختامية", result: "VS" },
+    { date: "2026-03-08", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 1", result: "VS" },
+    { date: "2026-03-08", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 2", result: "VS" },
+    { date: "2026-03-11", day: "النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 النهائي الكبير", result: "VS" },
 
-    // الأرشيف (18 مباراة)
+    // الأرشيف
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1" },
     { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0" },
@@ -105,7 +114,7 @@ const matchesData = [
     { date: "2026-02-25", day: "الأربعاء 08 رمضان", t1: "الصقر", t2: "عمق", info: "انتهت", result: "2 - 1" },
     { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "السوق", t2: "الفيض", info: "انتهت", result: "1 - 0" },
     { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "2 - 0" },
-    { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "الالوسام", t2: "الخليج", info: "انتهت", result: "4 - 1" },
+    { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "الوسام", t2: "الخليج", info: "انتهت", result: "4 - 1" },
     { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "عمق", t2: "العرق", info: "انتهت", result: "4 - 0" },
     { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "مستقبل عرمرم", t2: "السلطان", info: "انتهت", result: "2 - 0" },
     { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "ساحل مغزل", t2: "وحدة الرقة", info: "انتهت", result: "3 - 1" },
@@ -133,10 +142,7 @@ function runTournamentSystem() {
     matchesData.forEach(m => {
         let target = m.date === todayStr ? 'today' : (m.date > todayStr ? 'upcoming' : 'archive');
         if (!sections[target][m.day]) sections[target][m.day] = "";
-        
-        let commentRow = m.comment ? `<center><div class="commentator">${m.comment}</div></center>` : "";
-
-        sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center>${commentRow}</div>`;
+        sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center></div>`;
     });
 
     document.getElementById('today-area').innerHTML = Object.keys(sections.today).map(day => `<div><div class="day-header">${day}</div>${sections.today[day]}</div>`).join('') || "<center><br>لا توجد مباريات لليوم</center>";
