@@ -11,7 +11,7 @@
         .container { max-width: 900px; margin: auto; padding: 20px; }
         header { text-align: center; padding: 20px 0; border-bottom: 2px solid var(--blue); margin-bottom: 15px; }
         header h1 { color: var(--blue); font-weight: 900; margin: 0; font-size: 1.6rem; }
-        .weather-bar { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; text-align: center; margin-bottom: 15px; font-size: 0.85rem; border: 1px solid rgba(100,181,246,0.2); }
+        .stadium-info { font-size: 0.85rem; color: var(--gold); margin-top: 8px; font-weight: bold; }
         .top-stats { display: flex; justify-content: flex-start; margin-bottom: 15px; padding-right: 5px; }
         .views-count { background: var(--gray-card); padding: 6px 20px; border-radius: 20px; border: 1px solid rgba(25,118,210,0.2); font-size: 0.85rem; }
         .tabs-nav { display: flex; justify-content: flex-start; background: var(--gray-card); padding: 8px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(25,118,210,0.2); overflow-x: auto; gap: 5px; }
@@ -21,149 +21,128 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
-        .group-header { background: rgba(25, 118, 210, 0.15); color: var(--blue); padding: 10px; font-weight: 900; border-bottom: 1px solid rgba(25,118,210,0.2); font-size: 0.9rem; }
-        .group-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-        .group-table th, .group-table td { padding: 12px 5px; text-align: center; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        .group-table th { color: var(--light-blue); font-weight: 900; background: rgba(0,0,0,0.1); }
-        .team-name { text-align: right !important; padding-right: 15px !important; width: 35%; font-weight: bold; }
-        .pts-col { color: var(--gold); font-weight: 900; }
-
-        .stats-card { background: var(--gray-card); border-radius: 12px; padding: 15px; border: 1px solid rgba(255,255,255,0.03); margin-bottom: 20px; }
-        .stats-title { color: var(--gold); font-weight: 900; margin-bottom: 12px; font-size: 0.95rem; border-bottom: 1px solid rgba(255,215,0,0.1); padding-bottom: 5px; }
-        .scorers-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-        .scorers-table td { padding: 10px 5px; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        .goal-count { background: var(--blue); color: white; padding: 1px 8px; border-radius: 10px; font-weight: bold; }
-        
         .match-card { background: var(--gray-card); border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); padding: 15px 0; }
         .teams { display: flex; justify-content: space-between; align-items: center; padding: 0 15px; }
         .team { width: 42%; text-align: center; font-weight: bold; font-size: 1rem; }
         .vs { color: var(--blue); font-weight: 900; font-size: 1.2rem; }
         .day-header { background: rgba(25, 118, 210, 0.2); color: white; padding: 4px 12px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; margin: 12px 0 8px; display: inline-block; border: 1px solid var(--blue); }
         
-        .no-matches { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.9rem; background: var(--gray-card); border-radius: 12px; border: 1px dashed rgba(255,255,255,0.1); }
+        .maintenance-box { text-align: center; padding: 50px 20px; background: rgba(255, 152, 0, 0.05); border: 1px dashed var(--orange); border-radius: 15px; margin-top: 10px; }
+        .maintenance-box h3 { color: var(--orange); margin-bottom: 10px; }
+        .maintenance-box p { color: var(--text-muted); font-size: 0.9rem; }
 
+        .scorers-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .scorers-table td { padding: 10px 5px; border-bottom: 1px solid rgba(255,255,255,0.02); }
+        .goal-count { background: var(--blue); color: white; padding: 1px 8px; border-radius: 10px; font-weight: bold; }
+        
         .footer { text-align: center; padding: 30px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
-        .disclaimer-box { background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
-        .disclaimer-box p { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
-        .contact-link { color: var(--green); font-weight: 900; font-size: 0.9rem; text-decoration: none; display: inline-block; margin-top: 10px; }
+        .contact-link { color: var(--green); font-weight: 900; font-size: 0.9rem; text-decoration: none; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>بطولة القحمة الرمضانية 28</h1>
-            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top:5px;">ملعب الوسم بالقحمة</div>
+            <div class="stadium-info">جميع مباريات البطولة تقام على ملعب الوسم بالقحمة</div>
         </header>
-        <div class="weather-bar">🌤️ الطقس في القحمة الآن: <span>28°C - صافي</span></div>
+
         <div class="top-stats"><div class="views-count">👁️ المشاهدات: 8821</div></div>
+
         <div class="tabs-nav">
-            <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
-            <button class="tab-btn" onclick="openTab(event, 'scorers')">الهدافين</button>
+            <button class="tab-btn active" onclick="openTab(event, 'today')">مباريات اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming')">النهائيات</button>
-            <button class="tab-btn" onclick="openTab(event, 'previous')">الأرشيف</button>
-            <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
+            <button class="tab-btn" onclick="openTab(event, 'scorers')">الهدافين</button>
+            <button class="tab-btn" onclick="openTab(event, 'archive')">الأرشيف</button>
         </div>
 
-        <div id="today" class="tab-content active">
-            <div id="today-area"></div>
-        </div>
-
-        <div id="scorers" class="tab-content"><div class="stats-card"><div class="stats-title">🏆 قائمة هدافي البطولة</div><table class="scorers-table" id="scorers-list"></table></div></div>
+        <div id="today" class="tab-content active"><div id="today-area"></div></div>
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
-        <div id="previous" class="tab-content"><div id="archive-area"></div></div>
-        <div id="groups" class="tab-content"><div id="groups-area"></div></div>
+        <div id="scorers" class="tab-content">
+            <div style="background: var(--gray-card); padding:15px; border-radius:12px;">
+                <h3 style="color:var(--gold); border-bottom:1px solid rgba(255,215,0,0.1); padding-bottom:10px;">🏆 قائمة الهدافين</h3>
+                <table class="scorers-table" id="scorers-list"></table>
+            </div>
+        </div>
+        <div id="archive" class="tab-content"><div id="archive-area"></div></div>
 
         <div class="footer">
-            <div class="disclaimer-box">
-                <p><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28. الموقع لا يتبع لأي جهة رسمية.</p>
-                <a href="https://wa.me/966534987428" class="contact-link">📱 واتساب: 0534987428</a>
-            </div>
+            <p style="font-size: 0.75rem;"><b>تطوير وتصميم: إياد عسيري</b></p>
+            <a href="https://wa.me/966534987428" class="contact-link">📱 واتساب: 0534987428</a>
         </div>
     </div>
 
 <script>
-// تحديد التاريخ الحالي برمجياً
+// تحديد الوقت الحالي
 const now = new Date();
+// نظام "4 الفجر": إذا كان الوقت قبل 4 الفجر، نعتبرنا في "يوم أمس"
 if (now.getHours() < 4) now.setDate(now.getDate() - 1);
-const todayISO = now.toISOString().split('T')[0];
+const todayStr = now.toISOString().split('T')[0];
 
 const matchesData = [
-    // مباريات اليوم (الثلاثاء) والأربعاء ستظهر "راحة" تلقائياً من خلال الكود أسفل
-    
-    // الملحق يوم الخميس
+    // القادم (الخميس والجمعة والسبت والنهائيات)
     { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق (استكمال) - 11:00 م", result: "1 - 0" },
-    
-    // دور الـ 8 يوم الجمعة والسبت
-    { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "الساحل الرياضي", t2: "ساحل مغزل", info: "دور الـ 8 - المباراة 1", result: "VS" },
-    { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "دور الـ 8 - المباراة 2", result: "VS" },
-    { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "دور الـ 8 - المباراة 3", result: "VS" },
-    { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "دور الـ 8 - المباراة 4", result: "VS" },
+    { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "الساحل الرياضي", t2: "ساحل مغزل", info: "ربع النهائي 1", result: "VS" },
+    { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS" },
+    { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS" },
+    { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS" },
+    { date: "2026-03-10", day: "الثلاثاء 21 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي", result: "VS" },
+    { date: "2026-03-13", day: "الجمعة 24 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "النهائي الكبير 🏆", result: "VS" },
 
-    // الأرشيف (بما في ذلك نتيجة عمق)
-    { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق 1", result: "3 - 0" },
+    // الأرشيف (تم نقل عمق هنا)
+    { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق", result: "3 - 0" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1" },
-    { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1" }
+    { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1" },
+    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0" },
+    { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "2 - 0" }
 ];
 
-const groupData = [
-    {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
-    {n:"2", teams:[{t:"ساحل مغزل",l:2,f:2,te:0,x:0,p:6},{t:"البرك",l:2,f:1,te:0,x:1,p:3},{t:"وحدة الرقة",l:2,f:0,te:0,x:2,p:0}]},
-    {n:"3", teams:[{t:"الصقر",l:2,f:2,te:0,x:0,p:6},{t:"عمق",l:2,f:1,te:0,x:1,p:3},{t:"العرق",l:2,f:0,te:0,x:2,p:0}]},
-    {n:"4", teams:[{t:"الساحل الرياضي",l:2,f:2,te:0,x:0,p:6},{t:"مستقبل عرمرم",l:2,f:1,te:0,x:1,p:3},{t:"السلطان",l:2,f:0,te:0,x:2,p:0}]},
-    {n:"5", teams:[{t:"الوسام",l:2,f:2,te:0,x:0,p:6},{t:"الفيصلي",l:2,f:1,te:0,x:1,p:3},{t:"خليج الصوالحة",l:2,f:0,te:0,x:2,p:0}]},
-    {n:"6", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
-];
-
-function runTournamentSystem() {
-    let sections = { today: {}, upcoming: {}, archive: {} };
+function init() {
+    let sections = { today: "", upcoming: "", archive: "" };
+    let hasToday = false;
 
     matchesData.forEach(m => {
-        let target = m.date === todayISO ? 'today' : (m.date > todayISO ? 'upcoming' : 'archive');
-        if (!sections[target][m.day]) sections[target][m.day] = "";
-        sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center></div>`;
+        let html = `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center></div>`;
+        
+        if (m.date === todayStr) {
+            sections.today += html;
+            hasToday = true;
+        } else if (m.date > todayStr) {
+            if (!sections.upcoming.includes(m.day)) sections.upcoming += `<div class="day-header">${m.day}</div>`;
+            sections.upcoming += html;
+        } else {
+            if (!sections.archive.includes(m.day)) sections.archive += `<div class="day-header">${m.day}</div>`;
+            sections.archive += html;
+        }
     });
 
-    // عرض رسالة راحة إذا لم توجد مباريات اليوم
-    let todayContent = Object.keys(sections.today).map(day => `<div><div class="day-header">${day}</div>${sections.today[day]}</div>`).join('');
-    document.getElementById('today-area').innerHTML = todayContent || `<div class="no-matches">☕ لا توجد مباريات لليوم (راحة)</div>`;
-    
-    document.getElementById('upcoming-area').innerHTML = Object.keys(sections.upcoming).map(day => `<div><div class="day-header">${day}</div>${sections.upcoming[day]}</div>`).join('') || `<div class="no-matches">سيتم تحديد المواعيد قريباً</div>`;
-    document.getElementById('archive-area').innerHTML = Object.keys(sections.archive).map(day => `<div><div class="day-header">${day}</div>${sections.archive[day]}</div>`).join('');
-    
-    document.getElementById('groups-area').innerHTML = groupData.map(g => `
-        <div class="group-card">
-            <div class="group-header">المجموعة ${g.n}</div>
-            <table class="group-table">
-                <thead><tr><th class="team-name">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th class="pts-col">ن</th></tr></thead>
-                <tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody>
-            </table>
-        </div>`).join('');
-    
-    const finalScorers = [
-        {n:"أحمد شعبان", f:"عمق", g:3},
-        {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر الحزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
-        {n:"يحيى القوزي", f:"عمق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2},
-        {n:"نايف شرفي", f:"السوق", g:1}, {n:"عمر المعشي", f:"عمق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1},
-        {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب مفرح", f:"الوسام", g:1},
-        {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد براهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1},
-        {n:"عبدالله عجيم", f:"ساحل مغزل", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1},
-        {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1},
-        {n:"إبراهيم الزيادي", f:"السلطان", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1},
-        {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"أحمد مبارك", f:"الخليج", g:1},
-        {n:"حسن هداش", f:"ساحل مغزل", g:1}
+    // خانة اليوم: صيانة وكهرباء إذا لم توجد مباريات
+    document.getElementById('today-area').innerHTML = hasToday ? sections.today : `
+        <div class="maintenance-box">
+            <h3>⚡ راحة وصيانة</h3>
+            <p>لا توجد مباريات لليوم الثلاثاء والاربعاء<br>نظراً لأعمال الصيانة الشاملة لكهرباء <b>ملعب الوسم بالقحمة</b></p>
+            <p style="color:var(--gold); font-size:0.8rem;">نلتقي يوم الخميس في استكمال الملحق</p>
+        </div>`;
+
+    document.getElementById('upcoming-area').innerHTML = sections.upcoming;
+    document.getElementById('archive-area').innerHTML = sections.archive;
+
+    // الهدافين
+    const scorers = [
+        {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"يحيى القوزي", f:"عمق", g:2},
+        {n:"عمر المعشي", f:"عمق", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}
     ];
-    document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td>${s.n} (${s.f})</td><td style="text-align:left"><span class="goal-count">${s.g}</span></td></tr>`).join('');
+    document.getElementById('scorers-list').innerHTML = scorers.map(s => `<tr><td>${s.n} (${s.f})</td><td style="text-align:left"><span class="goal-count">${s.g}</span></td></tr>`).join('');
 }
 
 function openTab(evt, tabName) {
-    var i, tabcontent = document.getElementsByClassName("tab-content"), tablinks = document.getElementsByClassName("tab-btn");
+    let i, tabcontent = document.getElementsByClassName("tab-content"), tablinks = document.getElementsByClassName("tab-btn");
     for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
     for (i = 0; i < tablinks.length; i++) tablinks[i].classList.remove("active");
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.classList.add("active");
 }
-window.onload = runTournamentSystem;
+
+window.onload = init;
 </script>
 </body>
 </html>
