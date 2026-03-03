@@ -51,7 +51,9 @@
             <span class="stadium-tag">جميع مباريات البطولة تقام على ملعب الوسم بالقحمة</span>
         </header>
 
-        <div class="top-stats"><div class="views-count">👁️ المشاهدات: 8821</div></div>
+        <div class="top-stats">
+            <div class="views-count">👁️ المشاهدات: <span id="view-counter">8900</span></div>
+        </div>
 
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
@@ -62,13 +64,7 @@
         </div>
 
         <div id="today" class="tab-content active">
-            <div id="today-area">
-                <div class="maintenance-box">
-                    <h3 style="color:var(--orange);">⚡ راحة وصيانة</h3>
-                    <p>لا توجد مباريات لليوم الثلاثاء والأربعاء<br>نظراً لأعمال الصيانة الشاملة لكهرباء <b>ملعب الوسم بالقحمة</b></p>
-                    <p style="color:var(--gold); font-size:0.8rem; margin-top:10px;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
-                </div>
-            </div>
+            <div id="today-area"></div>
         </div>
 
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
@@ -88,6 +84,20 @@
     </div>
 
 <script>
+// --- نظام عداد المشاهدات التلقائي (8900) ---
+function updateViews() {
+    let baseViews = 8900;
+    let storedViews = localStorage.getItem('tournament_views');
+    if (!storedViews || parseInt(storedViews) < baseViews) {
+        localStorage.setItem('tournament_views', baseViews);
+        storedViews = baseViews;
+    }
+    let newViews = parseInt(storedViews) + Math.floor(Math.random() * 3) + 1;
+    localStorage.setItem('tournament_views', newViews);
+    document.getElementById('view-counter').innerText = newViews;
+}
+
+// --- نظام الوقت الذكي (س 4 فجراً) ---
 const now = new Date();
 if (now.getHours() < 4) { now.setDate(now.getDate() - 1); }
 const todayISO = now.toISOString().split('T')[0];
@@ -107,8 +117,8 @@ const matchesData = [
     { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
     { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
     { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يحدد بعد", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "النهائي الكبير", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يحدد بعد", result: "VS", type: "up" },
+    { date: "لم يحدد", day: "نصف النهائي", t1: "لم يحدد بعد", t2: "لم يحدد بعد", info: "يحدد لاحقاً", result: "VS", type: "up" },
+    { date: "لم يحدد", day: "النهائي الكبير", t1: "لم يحدد بعد", t2: "لم يحدد بعد", info: "🏆 مسك الختام", result: "VS", type: "up" },
 
     { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق", result: "3 - 0", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
@@ -132,6 +142,8 @@ const matchesData = [
 ];
 
 function init() {
+    updateViews();
+    
     document.getElementById('groups-area').innerHTML = groupData.map(g => `
         <div class="group-card">
             <div class="group-header">المجموعة ${g.n}</div>
@@ -158,7 +170,12 @@ function init() {
         }
     });
 
-    if (foundToday) { document.getElementById('today-area').innerHTML = todayHTML; }
+    document.getElementById('today-area').innerHTML = foundToday ? todayHTML : `
+        <div class="maintenance-box">
+            <h3 style="color:var(--orange);">⚡ راحة وصيانة</h3>
+            <p>لا توجد مباريات لليوم الثلاثاء والأربعاء<br>نظراً لأعمال الصيانة الشاملة لكهرباء <b>ملعب الوسم بالقحمة</b></p>
+            <p style="color:var(--gold); font-size:0.8rem; margin-top:10px;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
+        </div>`;
 
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
