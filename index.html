@@ -62,7 +62,6 @@
             <button class="tab-btn" onclick="openTab(event, 'archive')">الأرشيف</button>
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
-
         <div id="today" class="tab-content active">
             <div class="news-summary">
                 <h4>📰 موجز البطولة</h4>
@@ -74,7 +73,6 @@
                 <p style="color:var(--gold); font-size: 0.95rem; margin-top:12px; font-weight: 700;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
             </div>
         </div>
-
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="scorers" class="tab-content">
             <div style="background: var(--gray-card); padding:15px; border-radius:12px; border: 1px solid rgba(255,255,255,0.03);">
@@ -84,9 +82,9 @@
         </div>
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
-
         <div class="footer">
             <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">تصميم وبرمجة: إياد عسيري</p>
+            <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; max-width: 80%; margin: auto;">إخلاء مسؤولية: موقع مجهود شخصي لتنظيم نتائج بطولة القحمة الرمضانية 28.</p>
             <div class="social-mini">
                 <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 سناب إياد</a>
                 <a href="https://www.tiktok.com/@u_vvw?_r=1&_t=ZS-94NnOApbsKQ" target="_blank" class="social-btn" style="border-color:var(--tiktok); color: #fff;">🎵 تيك توك</a>
@@ -101,7 +99,6 @@
             </div>
         </div>
     </div>
-
 <script>
 const groupData = [
     {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
@@ -113,7 +110,7 @@ const groupData = [
 ];
 
 const matchesData = [
-    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق - 11:00 م", result: "VS", type: "up" },
+    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق", result: "1 - 0", type: "up" },
     { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "الساحل الرياضي", t2: "ساحل مغزل", info: "ربع النهائي 1", result: "VS", type: "up" },
     { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
     { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
