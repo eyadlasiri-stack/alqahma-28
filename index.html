@@ -21,7 +21,6 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* المجموعات */
         .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .group-header { background: rgba(25, 118, 210, 0.15); color: var(--blue); padding: 10px; font-weight: 900; border-bottom: 1px solid rgba(25,118,210,0.2); font-size: 0.9rem; }
         .group-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
@@ -63,13 +62,7 @@
         </div>
 
         <div id="today" class="tab-content active">
-            <div id="today-area">
-                <div class="maintenance-box">
-                    <h3 style="color:var(--orange);">⚡ راحة وصيانة</h3>
-                    <p>لا توجد مباريات لليوم الثلاثاء والأربعاء<br>نظراً لأعمال الصيانة الشاملة لكهرباء <b>ملعب الوسم بالقحمة</b></p>
-                    <p style="color:var(--gold); font-size:0.8rem; margin-top:10px;">نلتقي الخميس فجرًا (س 4:00) لتحديث الجدول تلقائياً</p>
-                </div>
-            </div>
+            <div id="today-area"></div>
         </div>
 
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
@@ -113,12 +106,12 @@ const matchesData = [
     { date: "لم يحدد", day: "نصف النهائي", t1: "لم يحدد بعد", t2: "لم يحدد بعد", info: "يحدد لاحقاً", result: "VS", type: "up" },
     { date: "لم يحدد", day: "النهائي الكبير", t1: "لم يحدد بعد", t2: "لم يحدد بعد", info: "🏆 مسك الختام", result: "VS", type: "up" },
 
-    // الأرشيف - تم تثبيت مباراة عمق هنا بشكل نهائي (المباراة رقم 19)
-    { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق", result: "3 - 0", type: "ar" },
+    // الأرشيف (تعديل تاريخ عمق لضمان بقائها في الأرشيف)
+    { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق", result: "3 - 0", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
     { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0", type: "ar" },
-    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1", type: "ar" },
+    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الالبرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1", type: "ar" },
     { date: "2026-02-27", day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2", type: "ar" },
     { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "الساحل الرياضي", t2: "السلطان", info: "انتهت", result: "2 - 1", type: "ar" },
     { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "صقلية", t2: "دبسا", info: "انتهت", result: "0 - 0", type: "ar" },
@@ -151,8 +144,6 @@ function init() {
 
     matchesData.forEach(m => {
         let html = `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center></div>`;
-        
-        // نظام العرض: إذا كان تاريخ المباراة يطابق تاريخ اليوم (بعد س 4 الفجر)
         if (m.date === todayISO) {
             todayHTML += `<div class="day-header">${m.day}</div>` + html;
             foundToday = true;
@@ -165,15 +156,18 @@ function init() {
         }
     });
 
-    // تبويب اليوم: إذا وجدنا مباراة مجدولة لليوم تظهر، وإلا تظهر رسالة الصيانة يدوياً
-    if (foundToday) {
-        document.getElementById('today-area').innerHTML = todayHTML;
-    }
+    // تبويب اليوم: رسالة صيانة ثابتة إذا لم توجد مباريات
+    document.getElementById('today-area').innerHTML = foundToday ? todayHTML : `
+        <div class="maintenance-box">
+            <h3 style="color:var(--orange);">⚡ راحة وصيانة</h3>
+            <p>لا توجد مباريات لليوم الثلاثاء والأربعاء<br>نظراً لأعمال الصيانة الشاملة لكهرباء <b>ملعب الوسم بالقحمة</b></p>
+            <p style="color:var(--gold); font-size:0.8rem; margin-top:10px;">نلتقي الخميس فجرًا (س 4:00) لاستئناف الملحق</p>
+        </div>`;
 
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
 
-    // الهدافين الكاملين (29 لاعب)
+    // الهدافين
     const scorers = [
         {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر الحزبي", f:"صقلية", g:2},
         {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"إبراهيم يحيى", f:"الساحل", g:2},
