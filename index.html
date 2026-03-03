@@ -6,13 +6,12 @@
     <title>بطولة القحمة الرمضانية 28</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --blue: #1976d2; --light-blue: #64b5f6; --bg: #1a1c1e; --gray-card: rgba(255, 255, 255, 0.04); --text-main: #eee; --text-muted: #aaa; --gold: #ffd700; --green: #25D366; }
+        :root { --blue: #1976d2; --light-blue: #64b5f6; --bg: #1a1c1e; --gray-card: rgba(255, 255, 255, 0.04); --text-main: #eee; --text-muted: #aaa; --gold: #ffd700; --green: #25D366; --orange: #ff9800; }
         body { background-color: var(--bg); color: var(--text-main); font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
         .container { max-width: 900px; margin: auto; padding: 20px; }
         header { text-align: center; padding: 20px 0; border-bottom: 2px solid var(--blue); margin-bottom: 15px; }
         header h1 { color: var(--blue); font-weight: 900; margin: 0; font-size: 1.6rem; }
         .weather-bar { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; text-align: center; margin-bottom: 15px; font-size: 0.85rem; border: 1px solid rgba(100,181,246,0.2); }
-        .weather-bar span { color: var(--light-blue); font-weight: bold; }
         .top-stats { display: flex; justify-content: flex-start; margin-bottom: 15px; padding-right: 5px; }
         .views-count { background: var(--gray-card); padding: 6px 20px; border-radius: 20px; border: 1px solid rgba(25,118,210,0.2); font-size: 0.85rem; }
         .tabs-nav { display: flex; justify-content: flex-start; background: var(--gray-card); padding: 8px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(25,118,210,0.2); overflow-x: auto; gap: 5px; }
@@ -45,11 +44,10 @@
         .commentators-box { background: rgba(100, 181, 246, 0.05); border: 1px solid rgba(100, 181, 246, 0.2); border-radius: 12px; padding: 12px; margin-top: 10px; text-align: center; }
         .commentators-box span { color: var(--light-blue); font-weight: 900; display: block; margin-bottom: 5px; font-size: 0.9rem; }
         .commentators-names { font-size: 0.85rem; color: var(--text-main); font-weight: bold; }
+        .match-note { color: var(--orange); font-size: 0.7rem; font-weight: bold; margin-top: 5px; display: block; }
 
         .footer { text-align: center; padding: 30px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
-        .disclaimer-box { background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
-        .disclaimer-box p { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; margin: 0 0 10px 0; }
-        .contact-link { color: var(--green); font-weight: 900; font-size: 0.9rem; text-decoration: none; display: inline-block; margin-top: 5px; }
+        .contact-link { color: var(--green); font-weight: 900; font-size: 0.9rem; text-decoration: none; display: inline-block; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -59,7 +57,7 @@
             <div style="font-size: 0.8rem; color: var(--text-muted); margin-top:5px;">ملعب الوسم بالقحمة</div>
         </header>
         <div class="weather-bar">🌤️ الطقس في القحمة الآن: <span>28°C - صافي</span></div>
-        <div class="top-stats"><div class="views-count">👁️ المشاهدات: 8397</div></div>
+        <div class="top-stats"><div class="views-count">👁️ المشاهدات: 8147</div></div>
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'scorers')">الهدافين</button>
@@ -72,39 +70,29 @@
             <div id="today-area"></div>
             <div class="commentators-box">
                 <span>🎙️ طاقم التعليق لمباريات الليلة:</span>
-                <div class="commentators-names">ابراهيم البدوي - أبو طلال</div>
+                <div class="commentators-names">أحمد البدوي - أبو طلال</div>
             </div>
         </div>
 
-        <div id="scorers" class="tab-content"><div class="stats-card"><div class="stats-title">🏆 قائمة الهدافين</div><table class="scorers-table" id="scorers-list"></table></div></div>
+        <div id="scorers" class="tab-content"><div class="stats-card"><div class="stats-title">🏆 قائمة هدافي البطولة</div><table class="scorers-table" id="scorers-list"></table></div></div>
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="previous" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
 
         <div class="footer">
-            <div class="disclaimer-box">
-                <p><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع مجهود شخصي غير رسمي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28 وتسهيل متابعتها للجمهور الكريم.</p>
-                <a href="https://wa.me/966534987428" class="contact-link">📱 واتساب: 0534987428</a>
-            </div>
+            <p style="font-size: 0.75rem;"><b>تطوير وتصميم: إياد عسيري</b></p>
+            <a href="https://wa.me/966534987428" class="contact-link">📱 واتساب: 0534987428</a>
         </div>
     </div>
 
 <script>
 const matchesData = [
-    // مباريات اليوم (الملحق)
-    { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "الملحق 1 - انتهت:", result: "3 - 0" },
-    { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق 2 - تم تاجيلها ", result: "1 - 0" },
+    { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق 1", result: "3 - 0" },
+    { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "الفيصلي", t2: "دبسا", info: "الملحق 2 (مؤجلة)", result: "1 - 0", note: "⚠️ توقفت المباراة بسبب انقطاع الكهرباء" },
     
-    // النهائيات (تم استرجاعها كاملة)
     { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 1", result: "VS" },
-    { date: "2026-03-04", day: "الأربعاء 15 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS" },
-    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS" },
-    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS" },
-    { date: "2026-03-08", day: "الأحد 19 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 1", result: "VS" },
-    { date: "2026-03-08", day: "الأحد 19 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 2", result: "VS" },
-    { date: "2026-03-11", day: "الأربعاء 22 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 النهائي الكبير", result: "VS" },
+    { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS" },
 
-    // الأرشيف الكامل (18 مباراة)
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1" },
     { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0" },
@@ -141,10 +129,11 @@ function runTournamentSystem() {
     matchesData.forEach(m => {
         let target = m.date === todayStr ? 'today' : (m.date >= "2026-03-04" ? 'upcoming' : 'archive');
         if (!sections[target][m.day]) sections[target][m.day] = "";
-        sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center></div>`;
+        let noteHtml = m.note ? `<center><span class="match-note">${m.note}</span></center>` : "";
+        sections[target][m.day] += `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center>${noteHtml}</div>`;
     });
 
-    document.getElementById('today-area').innerHTML = Object.keys(sections.today).map(day => `<div><div class="day-header">${day}</div>${sections.today[day]}</div>`).join('') || "<center><br>لا توجد مباريات لليوم</center>";
+    document.getElementById('today-area').innerHTML = Object.keys(sections.today).map(day => `<div><div class="day-header">${day}</div>${sections.today[day]}</div>`).join('');
     document.getElementById('upcoming-area').innerHTML = Object.keys(sections.upcoming).map(day => `<div><div class="day-header">${day}</div>${sections.upcoming[day]}</div>`).join('');
     document.getElementById('archive-area').innerHTML = Object.keys(sections.archive).map(day => `<div><div class="day-header">${day}</div>${sections.archive[day]}</div>`).join('');
     
@@ -158,14 +147,15 @@ function runTournamentSystem() {
         </div>`).join('');
     
     const finalScorers = [
+        {n:"أحمد شعبان", f:"عمق", g:3},
         {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر الحزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
         {n:"يحيى القوزي", f:"عمق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2},
-        {n:"نايف شرفي", f:"السوق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1},
-        {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب مفرح", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1},
-        {n:"محمد براهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:1},
-        {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1},
-        {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"إبراهيم الزيادي", f:"السلطان", g:1},
-        {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"أحمد شعبان", f:"عمق", g:1},
+        {n:"نايف شرفي", f:"السوق", g:1}, {n:"عمر المعشي", f:"عمق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1},
+        {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب مفرح", f:"الوسام", g:1},
+        {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد براهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1},
+        {n:"عبدالله عجيم", f:"ساحل مغزل", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1},
+        {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1},
+        {n:"إبراهيم الزيادي", f:"السلطان", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1},
         {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"أحمد مبارك", f:"الخليج", g:1},
         {n:"حسن هداش", f:"ساحل مغزل", g:1}
     ];
