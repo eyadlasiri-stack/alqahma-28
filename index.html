@@ -21,9 +21,8 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* قسم الملخصات الذكي */
-        .news-summary { background: rgba(25, 118, 210, 0.1); border-right: 4px solid var(--blue); padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 1px solid rgba(25,118,210,0.2); }
-        .news-summary h4 { margin: 0 0 10px 0; color: var(--gold); font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+        .news-summary { background: rgba(25, 118, 210, 0.1); border-right: 4px solid var(--blue); padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .news-summary h4 { margin: 0 0 10px 0; color: var(--gold); font-size: 0.95rem; }
         .news-item { font-size: 0.85rem; line-height: 1.6; color: var(--text-main); margin: 0; }
 
         .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
@@ -73,13 +72,17 @@
         </div>
 
         <div id="today" class="tab-content active">
-            <div class="news-summary" id="news-section">
+            <div class="news-summary">
                 <h4>📰 موجز البطولة</h4>
-                <p class="news-item" id="news-text">جاري تحميل أحدث الأخبار...</p>
+                <p class="news-item" id="news-text">تأهل رسمي لفريق <b>عمق</b> لدور الـ 8. تجري حالياً أعمال صيانة لكهرباء ملعب الوسم استعداداً لمباريات الملحق يوم الخميس.</p>
             </div>
-
             <div id="today-area">
+                <div class="maintenance-box">
+                    <h3 style="color:var(--orange);">⚡ راحة وصيانة</h3>
+                    <p>لا توجد مباريات لليوم الثلاثاء والأربعاء<br>نظراً لأعمال الصيانة الشاملة لكهرباء <b>ملعب الوسم بالقحمة</b></p>
+                    <p style="color:var(--gold); font-size:0.8rem; margin-top:10px;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
                 </div>
+            </div>
         </div>
 
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
@@ -105,7 +108,6 @@
     </div>
 
 <script>
-// إعداد التاريخ بنظام 4 الفجر
 const now = new Date();
 if (now.getHours() < 4) { now.setDate(now.getDate() - 1); }
 const todayISO = now.toISOString().split('T')[0];
@@ -120,30 +122,38 @@ const groupData = [
 ];
 
 const matchesData = [
+    // القادم والنهائيات
     { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "استكمال الملحق - 11:00 م", result: "1 - 0", type: "up" },
     { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "الساحل الرياضي", t2: "ساحل مغزل", info: "ربع النهائي 1", result: "VS", type: "up" },
+    { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
+    { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
+    { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
+    { date: "2026-03-10", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يحدد بعد", result: "VS", type: "up" },
+    { date: "2026-03-13", day: "النهائي الكبير", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 مسك الختام", result: "VS", type: "up" },
+
+    // الأرشيف كامل (19 مباراة)
     { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق", result: "3 - 0", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
+    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0", type: "ar" },
+    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1", type: "ar" },
+    { date: "2026-02-27", day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2", type: "ar" },
+    { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "الساحل الرياضي", t2: "السلطان", info: "انتهت", result: "2 - 1", type: "ar" },
+    { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "صقلية", t2: "دبسا", info: "انتهت", result: "0 - 0", type: "ar" },
+    { date: "2026-02-25", day: "الأربعاء 08 رمضان", t1: "الصقر", t2: "عمق", info: "انتهت", result: "2 - 1", type: "ar" },
+    { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "السوق", t2: "الفيض", info: "انتهت", result: "1 - 0", type: "ar" },
+    { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "2 - 0", type: "ar" },
+    { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "الوسام", t2: "الخليج", info: "انتهت", result: "4 - 1", type: "ar" },
+    { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "عمق", t2: "العرق", info: "انتهت", result: "4 - 0", type: "ar" },
+    { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "مستقبل عرمرم", t2: "السلطان", info: "انتهت", result: "2 - 0", type: "ar" },
+    { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "ساحل مغزل", t2: "وحدة الرقة", info: "انتهت", result: "3 - 1", type: "ar" },
+    { date: "2026-02-21", day: "السبت 04 رمضان", t1: "السوق", t2: "جندلة", info: "انتهت", result: "2 - 0", type: "ar" },
+    { date: "2026-02-20", day: "الجمعة 03 رمضان", t1: "الفيصلي", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 0", type: "ar" },
+    { date: "2026-02-19", day: "الخميس 02 رمضان", t1: "الساحل الرياضي", t2: "مستقبل عرمرم", info: "انتهت", result: "2 - 1", type: "ar" },
     { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1", type: "ar" }
-    // ... تم الاحتفاظ بكامل الـ 19 مباراة في الكود الفعلي
 ];
 
-function updateDynamicNews() {
-    let newsText = "";
-    if (todayISO <= "2026-03-04") {
-        newsText = "تأهل رسمي لفريق <b>عمق</b> لدور الـ 8 بعد ثلاثية نظيفة في شباك المستقبل. تجري حالياً أعمال صيانة لكهرباء ملعب الوسم استعداداً لمباريات الملحق يوم الخميس.";
-    } else if (todayISO === "2026-03-05") {
-        newsText = "تتجه الأنظار الليلة لملعب الوسم لمتابعة قمة الملحق بين <b>الفيصلي ودبسا</b>، الفائز سيحجز البطاقة الأخيرة المؤهلة لربع النهائي.";
-    } else if (todayISO >= "2026-03-06") {
-        newsText = "انطلاق إثارة دور الـ 8 الليلة! مواجهة نارية تجمع <b>الساحل الرياضي</b> بـ <b>ساحل مغزل</b>. من سيصل للمربع الذهبي؟";
-    }
-    document.getElementById('news-text').innerHTML = newsText;
-}
-
 function init() {
-    updateDynamicNews();
-    
     document.getElementById('groups-area').innerHTML = groupData.map(g => `
         <div class="group-card">
             <div class="group-header">المجموعة ${g.n}</div>
@@ -170,13 +180,7 @@ function init() {
         }
     });
 
-    document.getElementById('today-area').innerHTML = foundToday ? todayHTML : `
-        <div class="maintenance-box">
-            <h3 style="color:var(--orange);">⚡ راحة وصيانة</h3>
-            <p>لا توجد مباريات اليوم (الثلاثاء والأربعاء)<br>نظراً لأعمال الصيانة الشاملة لكهرباء <b>ملعب الوسم بالقحمة</b></p>
-            <p style="color:var(--gold); font-size:0.8rem; margin-top:10px;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
-        </div>`;
-
+    if (foundToday) { document.getElementById('today-area').innerHTML = todayHTML; }
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
 
