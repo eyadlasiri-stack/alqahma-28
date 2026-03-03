@@ -6,7 +6,7 @@
     <title>بطولة القحمة الرمضانية 28</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --blue: #1976d2; --light-blue: #64b5f6; --bg: #1a1c1e; --gray-card: rgba(255, 255, 255, 0.04); --text-main: #eee; --text-muted: #aaa; --gold: #ffd700; --green: #25D366; --orange: #ff9800; }
+        :root { --blue: #1976d2; --light-blue: #64b5f6; --bg: #1a1c1e; --gray-card: rgba(255, 255, 255, 0.04); --text-main: #eee; --text-muted: #aaa; --gold: #ffd700; --green: #25D366; --orange: #ff9800; --snap: #FFFC00; --tiktok: #ff0050; }
         body { background-color: var(--bg); color: var(--text-main); font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
         .container { max-width: 900px; margin: auto; padding: 20px; }
         header { text-align: center; padding: 20px 0; border-bottom: 2px solid var(--blue); margin-bottom: 15px; }
@@ -40,8 +40,16 @@
         .scorers-table td { padding: 10px 5px; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .goal-count { background: var(--blue); color: white; padding: 1px 8px; border-radius: 10px; font-weight: bold; }
         
+        .social-section { background: var(--gray-card); border-radius: 15px; padding: 15px; margin: 20px 0; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .social-title { font-size: 0.9rem; color: var(--light-blue); font-weight: bold; margin-bottom: 15px; display: block; }
+        .social-links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .social-btn { display: flex; align-items: center; gap: 8px; padding: 10px 15px; border-radius: 10px; text-decoration: none; color: #fff; font-size: 0.75rem; font-weight: bold; transition: 0.3s; }
+        .social-btn.snap { background: #000; border: 1px solid var(--snap); color: var(--snap); }
+        .social-btn.tiktok { background: #000; border: 1px solid var(--tiktok); color: #fff; }
+        .social-btn.wa { background: var(--green); color: #fff; }
+        .social-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
         .footer { text-align: center; padding: 30px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
-        .contact-link { color: var(--green); font-weight: 900; font-size: 0.9rem; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -83,14 +91,21 @@
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
 
+        <div class="social-section">
+            <span class="social-title">📲 التغطية المباشرة والحسابات الرسمية</span>
+            <div class="social-links">
+                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn snap">👻 سناب إياد</a>
+                <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn snap">👻 سناب م. شداد</a>
+                <a href="https://wa.me/966534987428" target="_blank" class="social-btn wa">💬 واتساب</a>
+            </div>
+        </div>
+
         <div class="footer">
             <p style="font-size: 0.75rem;"><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28. الموقع لا يتبع لأي جهة رسمية.</p>
-            <a href="https://wa.me/966534987428" class="contact-link">📱 واتساب: 0534987428</a>
         </div>
     </div>
 
 <script>
-// --- الذكاء الزمني (تحديث س 4 فجراً) ---
 const now = new Date();
 if (now.getHours() < 4) { now.setDate(now.getDate() - 1); }
 const todayISO = now.toISOString().split('T')[0];
@@ -105,16 +120,14 @@ const groupData = [
 ];
 
 const matchesData = [
-    // القادم والنهائيات
     { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "استكمال الملحق - 11:00 م", result: "1 - 0", type: "up" },
     { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "الساحل الرياضي", t2: "ساحل مغزل", info: "ربع النهائي 1", result: "VS", type: "up" },
     { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
     { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
     { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "نصف النهائي", t1: "لم يحدد بعد", t2: "لم يحدد بعد", info: "يحدد لاحقاً", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "النهائي الكبير", t1: "لم يحدد بعد", t2: "لم يحدد بعد", info: "🏆 مسك الختام", result: "VS", type: "up" },
+    { date: "لم يحدد", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يحدد بعد", result: "VS", type: "up" },
+    { date: "لم يحدد", day: "النهائي الكبير", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يحدد بعد", result: "VS", type: "up" },
 
-    // الأرشيف كامل
     { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق", result: "3 - 0", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
@@ -164,7 +177,6 @@ function init() {
     });
 
     if (foundToday) { document.getElementById('today-area').innerHTML = todayHTML; }
-
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
 
@@ -174,7 +186,7 @@ function init() {
         {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"عمر المعشي", f:"عمق", g:1}, {n:"نايف شرفي", f:"السوق", g:1},
         {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1},
         {n:"متعب مفرح", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد براهيم", f:"الوسام", g:1},
-        {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:1}, {n:"خالد dماس", f:"ساحل مغزل", g:1},
+        {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1},
         {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل", g:1},
         {n:"داني", f:"الساحل", g:1}, {n:"إبراهيم الزيادي", f:"السلطان", g:1}, {n:"ريان عسيري", f:"الصقر", g:1},
         {n:"حماده شامي", f:"الصقر", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1},
