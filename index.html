@@ -8,48 +8,56 @@
     <style>
         :root { --blue: #1976d2; --light-blue: #64b5f6; --bg: #1a1c1e; --gray-card: rgba(255, 255, 255, 0.04); --text-main: #eee; --text-muted: #aaa; --gold: #ffd700; --green: #25D366; --orange: #ff9800; --snap: #FFFC00; --tiktok: #ff0050; }
         body { background-color: var(--bg); color: var(--text-main); font-family: 'Cairo', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        .container { max-width: 900px; margin: auto; padding: 20px; }
-        header { text-align: center; padding: 20px 0; border-bottom: 2px solid var(--blue); margin-bottom: 15px; }
+        .container { max-width: 900px; margin: auto; padding: 15px; }
+        header { text-align: center; padding: 25px 0; border-bottom: 2px solid var(--blue); margin-bottom: 15px; }
         header h1 { color: var(--blue); font-weight: 900; margin: 0; font-size: 1.6rem; }
         .stadium-tag { color: var(--gold); font-size: 0.85rem; font-weight: 700; margin-top: 5px; display: block; }
         
-        .views-count { background: var(--gray-card); padding: 6px 20px; border-radius: 20px; border: 1px solid rgba(25,118,210,0.2); font-size: 0.85rem; display: inline-block; margin-bottom: 15px; font-weight: 600; }
+        .views-count { background: var(--gray-card); padding: 6px 20px; border-radius: 20px; border: 1px solid rgba(25,118,210,0.2); font-size: 0.85rem; display: inline-block; margin-bottom: 20px; font-weight: 600; }
         .tabs-nav { display: flex; justify-content: flex-start; background: var(--gray-card); padding: 8px; border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(25,118,210,0.2); overflow-x: auto; gap: 5px; }
         .tab-btn { background: none; border: none; color: var(--text-muted); font-family: 'Cairo'; cursor: pointer; font-weight: 700; padding: 8px 18px; border-radius: 8px; transition: 0.3s; white-space: nowrap; font-size: 0.85rem; }
         .tab-btn.active { background: var(--blue); color: white; }
+        
         .tab-content { display: none; animation: fadeIn 0.4s; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
         /* الموجز */
-        .news-summary { background: rgba(25, 118, 210, 0.1); border-right: 4px solid var(--blue); padding: 15px; border-radius: 8px; margin-bottom: 20px; }
-        .news-summary h4 { margin: 0 0 10px 0; color: var(--gold); font-size: 0.95rem; font-weight: 900; }
-        .news-item { font-size: 0.85rem; line-height: 1.6; color: var(--text-main); margin: 0; }
+        .news-summary { background: rgba(25, 118, 210, 0.1); border-right: 4px solid var(--blue); padding: 18px; border-radius: 10px; margin-bottom: 20px; text-align: right; }
+        .news-summary h4 { margin: 0 0 10px 0; color: var(--gold); font-size: 1rem; font-weight: 900; }
+        .news-item { font-size: 0.9rem; line-height: 1.7; color: var(--text-main); margin: 0; }
 
-        .maintenance-clean { text-align: center; padding: 25px; color: var(--text-muted); border-top: 1px dashed rgba(255,255,255,0.1); font-size: 0.9rem; }
+        .maintenance-clean { text-align: center; padding: 30px 15px; color: var(--text-muted); border-top: 1px dashed rgba(255,255,255,0.1); font-size: 0.95rem; }
 
-        /* المجموعات */
+        /* المجموعات - محاذاة مرتبة */
         .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
-        .group-header { background: rgba(25, 118, 210, 0.15); color: var(--blue); padding: 12px; font-weight: 900; border-bottom: 1px solid rgba(25,118,210,0.2); font-size: 0.95rem; }
-        .group-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-        .group-table th, .group-table td { padding: 12px 5px; text-align: center; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        .team-name { text-align: right !important; padding-right: 15px !important; width: 35%; font-weight: 700; color: #fff; }
+        .group-header { background: rgba(25, 118, 210, 0.15); color: var(--blue); padding: 12px 15px; font-weight: 900; border-bottom: 1px solid rgba(25,118,210,0.2); font-size: 0.95rem; }
+        .group-table { width: 100%; border-collapse: collapse; }
+        .group-table th { padding: 12px 5px; color: var(--light-blue); font-weight: 700; font-size: 0.8rem; background: rgba(0,0,0,0.1); }
+        .group-table td { padding: 12px 5px; text-align: center; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
+        .team-name { text-align: right !important; padding-right: 15px !important; font-weight: 700; color: #fff; width: 40%; }
         .pts-col { color: var(--gold); font-weight: 900; }
 
-        /* الهدافين بدون تداخل */
+        /* الهدافين - محاذاة مرتبة */
         .scorers-table { width: 100%; border-collapse: collapse; }
-        .scorers-table td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
-        .scorer-name { text-align: right; font-weight: 700; color: #fff; }
-        .goal-count { background: var(--blue); color: white; padding: 2px 10px; border-radius: 12px; font-weight: 900; font-size: 0.8rem; float: left; }
+        .scorers-table tr:last-child td { border-bottom: none; }
+        .scorers-table td { padding: 14px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .scorer-name-box { text-align: right; font-weight: 700; color: #fff; font-size: 0.9rem; }
+        .scorer-team-label { color: var(--text-muted); font-size: 0.75rem; font-weight: 400; margin-right: 4px; }
+        .goal-count-box { text-align: left; }
+        .goal-badge { background: var(--blue); color: white; padding: 3px 12px; border-radius: 12px; font-weight: 900; font-size: 0.85rem; }
 
-        .match-card { background: var(--gray-card); border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); padding: 15px 0; }
-        .teams { display: flex; justify-content: space-between; align-items: center; padding: 0 15px; }
-        .vs { color: var(--blue); font-weight: 900; font-size: 1.2rem; }
-        .day-header { background: rgba(25, 118, 210, 0.2); color: white; padding: 5px 15px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; margin: 15px 0 10px; display: inline-block; border: 1px solid var(--blue); }
+        /* المباريات */
+        .match-card { background: var(--gray-card); border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); padding: 18px 0; }
+        .teams-row { display: flex; justify-content: space-around; align-items: center; padding: 0 15px; }
+        .team-item { width: 40%; text-align: center; font-weight: 700; font-size: 1rem; }
+        .vs-label { color: var(--blue); font-weight: 900; font-size: 1.2rem; }
+        .match-info { color: var(--text-muted); font-size: 0.8rem; font-weight: 700; margin-top: 8px; display: block; text-align: center; }
+        .day-header { background: rgba(25, 118, 210, 0.2); color: white; padding: 6px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; margin: 15px 0 10px; display: inline-block; border: 1px solid var(--blue); }
 
-        .footer { text-align: center; padding: 25px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 25px; }
-        .social-mini { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
-        .social-btn-s { display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; }
+        .footer { text-align: center; padding: 30px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 25px; }
+        .social-mini { display: flex; justify-content: center; gap: 12px; margin-top: 15px; flex-wrap: wrap; }
+        .social-btn { display: flex; align-items: center; gap: 6px; padding: 7px 15px; border-radius: 20px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; border: 1px solid; transition: 0.3s; }
     </style>
 </head>
 <body>
@@ -72,33 +80,37 @@
         <div id="today" class="tab-content active">
             <div class="news-summary">
                 <h4>📰 موجز البطولة</h4>
-                <p class="news-item">تأهل رسمي لفريق <b>عمق</b> لدور الـ 8 بعد ثلاثية نظيفة. تجري حالياً أعمال صيانة لكهرباء ملعب الوسم استعداداً لمباريات الملحق يوم الخميس.</p>
+                <p class="news-item">تأهل رسمي لفريق <b>عمق</b> لدور الـ 8 بعد ثلاثية نظيفة. تجري حالياً أعمال صيانة شاملة لكهرباء ملعب الوسم استعداداً لمباريات الحسم يوم الخميس القادم.</p>
             </div>
             <div id="today-area">
                 <div class="maintenance-clean">
                     <p>لا توجد مباريات لليوم الثلاثاء والأربعاء</p>
                     <p>نظراً لأعمال <b>الصيانة الشاملة لكهرباء ملعب الوسم بالقحمة</b></p>
-                    <p style="color:var(--gold); font-size: 0.9rem; margin-top:12px; font-weight: 700;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
+                    <p style="color:var(--gold); font-size: 0.95rem; margin-top:12px; font-weight: 700;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
                 </div>
             </div>
         </div>
 
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
+        
         <div id="scorers" class="tab-content">
-            <div style="background: var(--gray-card); padding:15px; border-radius:12px;">
-                <h3 style="color:var(--gold); border-bottom:1px solid rgba(255,215,0,0.1); padding-bottom:10px; font-weight: 900;">🏆 قائمة الهدافين</h3>
+            <div style="background: var(--gray-card); padding:15px; border-radius:12px; border: 1px solid rgba(255,255,255,0.03);">
+                <h3 style="color:var(--gold); border-bottom:1px solid rgba(255,215,0,0.1); padding-bottom:10px; font-weight: 900; margin-bottom: 5px;">🏆 قائمة الهدافين</h3>
                 <table class="scorers-table" id="scorers-list"></table>
             </div>
         </div>
+
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
 
         <div class="footer">
-            <p style="font-size: 0.85rem; font-weight: 700;"><b>تطوير وتصميم: إياد عسيري</b></p>
+            <p style="font-size: 0.9rem; font-weight: 700; margin-bottom: 5px;"><b>تصميم وبرمجة: إياد عسيري</b></p>
+            <p style="font-size: 0.65rem; color: var(--text-muted); line-height: 1.5; max-width: 85%; margin: auto;">إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28. الموقع لا يتبع لأي جهة رسمية.</p>
+            
             <div class="social-mini">
-                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn-s" style="border:1px solid var(--snap); color:var(--snap);">👻 إياد عسيري</a>
-                <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn-s" style="border:1px solid var(--snap); color:var(--snap);">👻 م. شداد</a>
-                <a href="https://www.tiktok.com/@u_vvw?_r=1&_t=ZS-94NnOApbsKQ" target="_blank" class="social-btn-s" style="border:1px solid var(--tiktok);">🎵 تيك توك</a>
+                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 إياد عسيري</a>
+                <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 م. شداد</a>
+                <a href="https://www.tiktok.com/@u_vvw?_r=1&_t=ZS-94NnOApbsKQ" target="_blank" class="social-btn" style="border-color:var(--tiktok);">🎵 تيك توك</a>
             </div>
         </div>
     </div>
@@ -148,29 +160,7 @@ const matchesData = [
 ];
 
 function init() {
-    document.getElementById('groups-area').innerHTML = groupData.map(g => `
-        <div class="group-card">
-            <div class="group-header">المجموعة ${g.n}</div>
-            <table class="group-table">
-                <thead><tr><th class="team-name">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th class="pts-col">ن</th></tr></thead>
-                <tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody>
-            </table>
-        </div>`).join('');
-
-    let upHTML = "", arHTML = "";
-    matchesData.forEach(m => {
-        let html = `<div class="match-card"><div class="teams"><span class="team" style="width:40%;">${m.t1}</span><span class="vs">${m.result}</span><span class="team" style="width:40%;">${m.t2}</span></div><center><small style="color:var(--text-muted); font-weight:700;">${m.info}</small></center></div>`;
-        if (m.type === "up") {
-            if (!upHTML.includes(m.day)) upHTML += `<div class="day-header">${m.day}</div>`;
-            upHTML += html;
-        } else {
-            if (!arHTML.includes(m.day)) arHTML += `<div class="day-header">${m.day}</div>`;
-            arHTML += html;
-        }
-    });
-    document.getElementById('upcoming-area').innerHTML = upHTML;
-    document.getElementById('archive-area').innerHTML = arHTML;
-
+    // عرض الهدافين بمحاذاة صحيحة
     const scorers = [
         {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر الحزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
         {n:"يحيى القوزي", f:"عمق", g:2}, {n:"إبراهيم يحيى", f:"الساحل", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"نايف شرفي", f:"السوق", g:1}, 
@@ -181,7 +171,36 @@ function init() {
         {n:"إبراهيم الزيادي", f:"السلطان", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, 
         {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"أحمد مبارك", f:"الخليج", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}
     ];
-    document.getElementById('scorers-list').innerHTML = scorers.map(s => `<tr><td class="scorer-name">${s.n} (${s.f})</td><td><span class="goal-count">${s.g}</span></td></tr>`).join('');
+    document.getElementById('scorers-list').innerHTML = scorers.map(s => `
+        <tr>
+            <td class="scorer-name-box">${s.n}<span class="scorer-team-label">(${s.f})</span></td>
+            <td class="goal-count-box"><span class="goal-badge">${s.g}</span></td>
+        </tr>`).join('');
+
+    // عرض المجموعات بمحاذاة صحيحة
+    document.getElementById('groups-area').innerHTML = groupData.map(g => `
+        <div class="group-card">
+            <div class="group-header">المجموعة ${g.n}</div>
+            <table class="group-table">
+                <thead><tr><th class="team-name">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead>
+                <tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody>
+            </table>
+        </div>`).join('');
+
+    // عرض المباريات والأرشيف
+    let upHTML = "", arHTML = "";
+    matchesData.forEach(m => {
+        let html = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
+        if (m.type === "up") {
+            if (!upHTML.includes(m.day)) upHTML += `<div class="day-header">${m.day}</div>`;
+            upHTML += html;
+        } else {
+            if (!arHTML.includes(m.day)) arHTML += `<div class="day-header">${m.day}</div>`;
+            arHTML += html;
+        }
+    });
+    document.getElementById('upcoming-area').innerHTML = upHTML;
+    document.getElementById('archive-area').innerHTML = arHTML;
 }
 
 function openTab(evt, tabName) {
