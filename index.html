@@ -80,7 +80,7 @@
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
 
         <div class="footer">
-            <p style="font-size: 0.75rem;"><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28.</p>
+            <p style="font-size: 0.75rem;"><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28. الموقع لا يتبع لأي جهة رسمية.</p>
             <a href="https://wa.me/966534987428" class="contact-link">📱 واتساب: 0534987428</a>
         </div>
     </div>
@@ -96,17 +96,16 @@ const groupData = [
 ];
 
 const matchesData = [
-    // النهائيات والملحق القادم
+    // القادم
     { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "استكمال الملحق - 11:00 م", result: "1 - 0", type: "up" },
     { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "الساحل الرياضي", t2: "ساحل مغزل", info: "ربع النهائي 1", result: "VS", type: "up" },
     { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
     { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
     { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة الأولى", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة الثانية", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "النهائي الكبير", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 مسك الختام", result: "VS", type: "up" },
+    { date: "لم يحدد", day: "نصف النهائي", t1: "لم يحدد", t2: "لم يحدد", info: "لم يحدد بعد", result: "VS", type: "up" },
+    { date: "لم يحدد", day: "النهائي الكبير", t1: "لم يحدد", t2: "لم يحدد", info: "لم يحدد بعد", result: "VS", type: "up" },
 
-    // الأرشيف (كل المباريات السابقة)
+    // الأرشيف (كامل الـ 19 مباراة)
     { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق", result: "3 - 0", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
@@ -139,7 +138,7 @@ function init() {
             </table>
         </div>`).join('');
 
-    // عرض النهائيات والأرشيف
+    // عرض القادم والأرشيف
     let upHTML = "", arHTML = "";
     matchesData.forEach(m => {
         let html = `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center></div>`;
