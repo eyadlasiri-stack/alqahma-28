@@ -61,7 +61,16 @@
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
 
-        <div id="today" class="tab-content active"><div id="today-area"></div></div>
+        <div id="today" class="tab-content active">
+            <div id="today-area">
+                <div class="maintenance-box">
+                    <h3 style="color:var(--orange);">⚡ راحة وصيانة</h3>
+                    <p>لا توجد مباريات اليوم (الثلاثاء والأربعاء)<br>نظراً لأعمال الصيانة الشاملة لكهرباء <b>ملعب الوسم بالقحمة</b></p>
+                    <p style="color:var(--gold); font-size:0.8rem; margin-top:10px;">نلتقي الخميس فجرًا (س 4:00) لاستئناف الملحق</p>
+                </div>
+            </div>
+        </div>
+
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="scorers" class="tab-content">
             <div style="background: var(--gray-card); padding:15px; border-radius:12px;">
@@ -73,16 +82,16 @@
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
 
         <div class="footer">
-            <p style="font-size: 0.75rem;"><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28. الموقع لا يتبع لأي جهة رسمية.</p>
+            <p style="font-size: 0.75rem;"><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28.</p>
             <a href="https://wa.me/966534987428" class="contact-link">📱 واتساب: 0534987428</a>
         </div>
     </div>
 
 <script>
-// --- منطق الوقت الذكي (تحديث س 4 فجراً) ---
+// --- الذكاء الزمني (تحديث س 4 فجراً) ---
 const now = new Date();
 if (now.getHours() < 4) { now.setDate(now.getDate() - 1); }
-const todayStr = now.toISOString().split('T')[0];
+const todayISO = now.toISOString().split('T')[0];
 
 const groupData = [
     {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
@@ -94,16 +103,16 @@ const groupData = [
 ];
 
 const matchesData = [
-    // القادم والنهائيات (تبدأ من الخميس 16 رمضان)
+    // القادم والنهائيات
     { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "استكمال الملحق - 11:00 م", result: "1 - 0", type: "up" },
     { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "الساحل الرياضي", t2: "ساحل مغزل", info: "ربع النهائي 1", result: "VS", type: "up" },
     { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
     { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
     { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "نصف النهائي", t1: "لم يحدد بعد", t2: "لم يحدد بعد", info: "يحدد لاحقاً", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "النهائي الكبير", t1: "لم يحدد بعد", t2: "لم يحدد بعد", info: "يحدد لاحقاً", result: "VS", type: "up" },
+    { date: "لم يحدد", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يحدد بعد", result: "VS", type: "up" },
+    { date: "لم يحدد", day: "النهائي الكبير", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يحدد بعد", result: "VS", type: "up" },
 
-    // الأرشيف (جميع الـ 19 مباراة)
+    // الأرشيف الكامل (19 مباراة)
     { date: "2026-03-03", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق", result: "3 - 0", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
@@ -113,7 +122,7 @@ const matchesData = [
     { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "الساحل الرياضي", t2: "السلطان", info: "انتهت", result: "2 - 1", type: "ar" },
     { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "صقلية", t2: "دبسا", info: "انتهت", result: "0 - 0", type: "ar" },
     { date: "2026-02-25", day: "الأربعاء 08 رمضان", t1: "الصقر", t2: "عمق", info: "انتهت", result: "2 - 1", type: "ar" },
-    { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "السوق", t2: "الفيض", info: "انتهت", result: "1 - 0", type: "ar" },
+    { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "السوق", t2: "الالفيض", info: "انتهت", result: "1 - 0", type: "ar" },
     { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "2 - 0", type: "ar" },
     { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "الوسام", t2: "الخليج", info: "انتهت", result: "4 - 1", type: "ar" },
     { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "عمق", t2: "العرق", info: "انتهت", result: "4 - 0", type: "ar" },
@@ -136,15 +145,15 @@ function init() {
             </table>
         </div>`).join('');
 
-    let todayHTML = "", upHTML = "", arHTML = "";
+    let upHTML = "", arHTML = "", todayHTML = "";
     let foundToday = false;
 
     matchesData.forEach(m => {
         let html = `<div class="match-card"><div class="teams"><span class="team">${m.t1}</span><span class="vs">${m.result}</span><span class="team">${m.t2}</span></div><center><small style="color:var(--text-muted);">${m.info}</small></center></div>`;
-        if (m.date === todayStr) {
+        if (m.date === todayISO) {
             todayHTML += `<div class="day-header">${m.day}</div>` + html;
             foundToday = true;
-        } else if (m.date > todayStr) {
+        } else if (m.date > todayISO) {
             if (!upHTML.includes(m.day)) upHTML += `<div class="day-header">${m.day}</div>`;
             upHTML += html;
         } else {
@@ -153,13 +162,10 @@ function init() {
         }
     });
 
-    // تبويب اليوم (رسالة الصيانة)
-    document.getElementById('today-area').innerHTML = foundToday ? todayHTML : `
-        <div class="maintenance-box">
-            <h3 style="color:var(--orange);">⚡ راحة وصيانة</h3>
-            <p>لا توجد مباريات اليوم (الثلاثاء والأربعاء)<br>نظراً لأعمال الصيانة الشاملة لكهرباء <b>ملعب الوسم بالقحمة</b></p>
-            <p style="color:var(--gold); font-size:0.8rem; margin-top:10px;">نلتقي الخميس فجرًا (س 4:00) لاستئناف الملحق</p>
-        </div>`;
+    // تبويب اليوم: إذا وجدت مباراة اليوم تظهر، وإلا تظهر رسالة الصيانة
+    if (foundToday) {
+        document.getElementById('today-area').innerHTML = todayHTML;
+    }
 
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
