@@ -21,6 +21,11 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
+        /* قسم الملخصات الجديد */
+        .news-summary { background: rgba(25, 118, 210, 0.1); border-right: 4px solid var(--blue); padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .news-summary h4 { margin: 0 0 10px 0; color: var(--light-blue); font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+        .news-item { font-size: 0.85rem; line-height: 1.6; color: var(--text-main); margin: 0; }
+
         .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .group-header { background: rgba(25, 118, 210, 0.15); color: var(--blue); padding: 10px; font-weight: 900; border-bottom: 1px solid rgba(25,118,210,0.2); font-size: 0.9rem; }
         .group-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
@@ -41,7 +46,6 @@
         .goal-count { background: var(--blue); color: white; padding: 1px 8px; border-radius: 10px; font-weight: bold; }
         
         .footer { text-align: center; padding: 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
-        
         .social-mini { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
         .social-btn-s { display: flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; text-decoration: none; font-size: 0.7rem; font-weight: bold; transition: 0.3s; color: #fff; }
         .btn-snap { background: rgba(255, 252, 0, 0.1); border: 1px solid var(--snap); color: var(--snap); }
@@ -69,6 +73,11 @@
         </div>
 
         <div id="today" class="tab-content active">
+            <div class="news-summary">
+                <h4>📰 موجز نتائج الجولة</h4>
+                <p class="news-item">نجح فريق <b>عمق</b> في حجز مقعده بالدور القادم بعد فوز مستحق على مستقبل عرمرم بنتيجة 3-0 في مباراة شهدت تألقاً كبيراً من اللاعب أحمد شعبان.</p>
+            </div>
+
             <div id="today-area">
                 <div class="maintenance-box">
                     <h3 style="color:var(--orange);">⚡ راحة وصيانة</h3>
