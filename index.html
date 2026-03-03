@@ -62,13 +62,19 @@
             <button class="tab-btn" onclick="openTab(event, 'archive')">الأرشيف</button>
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
+
         <div id="today" class="tab-content active">
             <div class="news-summary">
                 <h4>📰 موجز البطولة</h4>
-                <p class="news-item" id="dynamic-news">جاري التحديث...</p>
+                <p class="news-item">تأهل رسمي لفريق <b>عمق</b> لدور الـ 8 بعد ثلاثية نظيفة. تجري حالياً أعمال صيانة شاملة لكهرباء ملعب الوسم استعداداً لمباريات الحسم يوم الخميس القادم.</p>
             </div>
-            <div id="today-area"></div>
+            <div class="maintenance-clean">
+                <p>لا توجد مباريات لليوم (الثلاثاء والأربعاء)</p>
+                <p>نظراً لأعمال <b>الصيانة الشاملة لكهرباء ملعب الوسم بالقحمة</b></p>
+                <p style="color:var(--gold); font-size: 0.95rem; margin-top:12px; font-weight: 700;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
+            </div>
         </div>
+
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="scorers" class="tab-content">
             <div style="background: var(--gray-card); padding:15px; border-radius:12px; border: 1px solid rgba(255,255,255,0.03);">
@@ -78,6 +84,7 @@
         </div>
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
+
         <div class="footer">
             <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">تصميم وبرمجة: إياد عسيري</p>
             <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; max-width: 80%; margin: auto;">إخلاء مسؤولية: موقع مجهود شخصي لتنظيم نتائج بطولة القحمة الرمضانية 28.</p>
@@ -95,19 +102,9 @@
             </div>
         </div>
     </div>
+
 <script>
-const now = new Date();
-if (now.getHours() < 4) { now.setDate(now.getDate() - 1); }
-const todayISO = now.toISOString().split('T')[0];
-
-function updateNews() {
-    let news = "";
-    if (todayISO <= "2026-03-04") { news = "تأهل رسمي لفريق <b>عمق</b> لدور الـ 8 بعد ثلاثية نظيفة. تجري حالياً أعمال صيانة شاملة لكهرباء ملعب الوسم استعداداً لمباريات الحسم."; }
-    else if (todayISO === "2026-03-05") { news = "تتجه الأنظار الليلة لملعب الوسم لمتابعة قمة الملحق بين <b>الفيصلي ودبسا</b>، الفائز سيحجز البطاقة الأخيرة المؤهلة لربع النهائي."; }
-    else { news = "انطلاق إثارة دور الـ 8 الليلة! مواجهة نارية تجمع <b>الساحل الرياضي</b> بـ <b>ساحل مغزل</b> في افتتاح ربع النهائي."; }
-    document.getElementById('dynamic-news').innerHTML = news;
-}
-
+// حذفنا نظام التاريخ التلقائي لتبويب "اليوم" لضمان عدم اللخبطة
 const groupData = [
     {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
     {n:"2", teams:[{t:"ساحل مغزل",l:2,f:2,te:0,x:0,p:6},{t:"البرك",l:2,f:1,te:0,x:1,p:3},{t:"وحدة الرقة",l:2,f:0,te:0,x:2,p:0}]},
@@ -120,34 +117,13 @@ const groupData = [
 const matchesData = [
     { date: "2026-03-05", day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "استكمال الملحق - 11:00 م", result: "VS", type: "up" },
     { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "الساحل الرياضي", t2: "ساحل مغزل", info: "ربع النهائي 1", result: "VS", type: "up" },
-    { date: "2026-03-06", day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
-    { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
-    { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "يحدد لاحقاً", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "النهائي الكبير", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 مسك الختام", result: "VS", type: "up" },
     { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق", result: "3 - 0", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
-    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0", type: "ar" },
-    { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1", type: "ar" },
-    { date: "2026-02-27", day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2", type: "ar" },
-    { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "الساحل الرياضي", t2: "السلطان", info: "انتهت", result: "2 - 1", type: "ar" },
-    { date: "2026-02-26", day: "الخميس 09 رمضان", t1: "صقلية", t2: "دبسا", info: "انتهت", result: "0 - 0", type: "ar" },
-    { date: "2026-02-25", day: "الأربعاء 08 رمضان", t1: "الصقر", t2: "عمق", info: "انتهت", result: "2 - 1", type: "ar" },
-    { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "السوق", t2: "الفيض", info: "انتهت", result: "1 - 0", type: "ar" },
-    { date: "2026-02-24", day: "الثلاثاء 07 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "2 - 0", type: "ar" },
-    { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "الوسام", t2: "الخليج", info: "انتهت", result: "4 - 1", type: "ar" },
-    { date: "2026-02-23", day: "الاثنين 06 رمضان", t1: "عمق", t2: "العرق", info: "انتهت", result: "4 - 0", type: "ar" },
-    { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "مستقبل عرمرم", t2: "السلطان", info: "انتهت", result: "2 - 0", type: "ar" },
-    { date: "2026-02-22", day: "الأحد 05 رمضان", t1: "ساحل مغزل", t2: "وحدة الرقة", info: "انتهت", result: "3 - 1", type: "ar" },
-    { date: "2026-02-21", day: "السبت 04 رمضان", t1: "السوق", t2: "جندلة", info: "انتهت", result: "2 - 0", type: "ar" },
-    { date: "2026-02-20", day: "الجمعة 03 رمضان", t1: "الفيصلي", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 0", type: "ar" },
-    { date: "2026-02-19", day: "الخميس 02 رمضان", t1: "الساحل الرياضي", t2: "مستقبل عرمرم", info: "انتهت", result: "2 - 1", type: "ar" },
     { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1", type: "ar" }
 ];
 
 function init() {
-    updateNews();
     const finalScorers = [
         {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر الحزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
         {n:"يحيى القوزي", f:"عمق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"نايف شرفي", f:"السوق", g:1}, 
@@ -166,38 +142,12 @@ function init() {
                 <tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody>
             </table>
         </div>`).join('');
-
-    let upHTML = "", arHTML = "", todayHTML = "";
-    let foundToday = false;
-
+    let upHTML = "", arHTML = "";
     matchesData.forEach(m => {
         let html = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
-        
-        // شرط صارم: لا تظهر المباراة في "اليوم" إلا إذا كان تاريخها يطابق اليوم بالضبط
-        if (m.date === todayISO) {
-            todayHTML += `<div class="day-header">${m.day}</div>` + html;
-            foundToday = true;
-        } else if (m.date > todayISO) {
-            if (!upHTML.includes(m.day)) upHTML += `<div class="day-header">${m.day}</div>`;
-            upHTML += html;
-        } else {
-            if (!arHTML.includes(m.day)) arHTML += `<div class="day-header">${m.day}</div>`;
-            arHTML += html;
-        }
+        if (m.type === "up") { if (!upHTML.includes(m.day)) upHTML += `<div class="day-header">${m.day}</div>`; upHTML += html; }
+        else { if (!arHTML.includes(m.day)) arHTML += `<div class="day-header">${m.day}</div>`; arHTML += html; }
     });
-
-    // إذا كان اليوم هو الأربعاء 4 مارس، لا تعرض أي مباراة مهما حدث
-    if (todayISO === "2026-03-04") {
-        foundToday = false;
-    }
-
-    document.getElementById('today-area').innerHTML = foundToday ? todayHTML : `
-        <div class="maintenance-clean">
-            <p>لا توجد مباريات لليوم (الثلاثاء والأربعاء)</p>
-            <p>نظراً لأعمال <b>الصيانة الشاملة لكهرباء ملعب الوسم بالقحمة</b></p>
-            <p style="color:var(--gold); font-size: 0.95rem; margin-top:12px; font-weight: 700;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
-        </div>`;
-
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
 }
