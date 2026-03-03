@@ -22,14 +22,12 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* الموجز - خط أصغر وأنيق */
         .news-summary { background: rgba(25, 118, 210, 0.1); border-right: 4px solid var(--blue); padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: right; }
         .news-summary h4 { margin: 0 0 8px 0; color: var(--gold); font-size: 0.9rem; font-weight: 900; }
         .news-item { font-size: 0.8rem; line-height: 1.6; color: var(--text-main); margin: 0; }
 
         .maintenance-clean { text-align: center; padding: 30px 15px; color: var(--text-muted); border-top: 1px dashed rgba(255,255,255,0.1); font-size: 0.9rem; }
 
-        /* المجموعات */
         .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .group-header { background: rgba(25, 118, 210, 0.15); color: var(--blue); padding: 12px 15px; font-weight: 900; border-bottom: 1px solid rgba(25,118,210,0.2); font-size: 0.95rem; }
         .group-table { width: 100%; border-collapse: collapse; }
@@ -38,7 +36,6 @@
         .team-name { text-align: right !important; padding-right: 15px !important; font-weight: 700; color: #fff; width: 40%; }
         .pts-col { color: var(--gold); font-weight: 900; }
 
-        /* الهدافين */
         .scorers-table { width: 100%; border-collapse: collapse; }
         .scorers-table td { padding: 14px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .scorer-name-box { text-align: right; font-weight: 700; color: #fff; font-size: 0.9rem; }
@@ -78,33 +75,24 @@
         <div id="today" class="tab-content active">
             <div class="news-summary">
                 <h4>📰 موجز البطولة</h4>
-                <p class="news-item">تأهل رسمي لفريق <b>عمق</b> لدور الـ 8 بعد ثلاثية نظيفة. تجري حالياً أعمال صيانة شاملة لكهرباء ملعب الوسم استعداداً لمباريات الحسم يوم الخميس القادم.</p>
+                <p class="news-item" id="dynamic-news">جاري تحميل أحدث الأخبار...</p>
             </div>
             <div id="today-area">
-                <div class="maintenance-clean">
-                    <p>لا توجد مباريات لليوم الثلاثاء والأربعاء</p>
-                    <p>نظراً لأعمال <b>الصيانة الشاملة لكهرباء ملعب الوسم بالقحمة</b></p>
-                    <p style="color:var(--gold); font-size: 0.9rem; margin-top:12px; font-weight: 700;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
                 </div>
-            </div>
         </div>
 
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
-        
         <div id="scorers" class="tab-content">
             <div style="background: var(--gray-card); padding:15px; border-radius:12px; border: 1px solid rgba(255,255,255,0.03);">
                 <h3 style="color:var(--gold); border-bottom:1px solid rgba(255,215,0,0.1); padding-bottom:10px; font-weight: 900; margin-bottom: 5px;">🏆 قائمة الهدافين</h3>
                 <table class="scorers-table" id="scorers-list"></table>
             </div>
         </div>
-
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
 
         <div class="footer">
             <p style="font-size: 0.9rem; font-weight: 700; margin-bottom: 5px;"><b>تصميم وبرمجة: إياد عسيري</b></p>
-            <p style="font-size: 0.65rem; color: var(--text-muted); line-height: 1.5; max-width: 85%; margin: auto;">إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28.</p>
-            
             <div class="social-mini">
                 <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 إياد عسيري</a>
                 <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 م. شداد</a>
@@ -117,6 +105,19 @@
 const now = new Date();
 if (now.getHours() < 4) { now.setDate(now.getDate() - 1); }
 const todayISO = now.toISOString().split('T')[0];
+
+// تحديث الموجز تلقائياً حسب التاريخ
+function updateNews() {
+    let news = "";
+    if (todayISO <= "2026-03-04") {
+        news = "تأهل رسمي لفريق <b>عمق</b> لدور الـ 8 بعد ثلاثية نظيفة. تجري حالياً أعمال صيانة شاملة لكهرباء ملعب الوسم استعداداً لمباريات الحسم يوم الخميس القادم.";
+    } else if (todayISO === "2026-03-05") {
+        news = "تتجه الأنظار الليلة لملعب الوسم لمتابعة قمة الملحق بين <b>الفيصلي ودبسا</b>، الفائز سيحجز البطاقة الأخيرة المؤهلة لربع النهائي.";
+    } else if (todayISO >= "2026-03-06") {
+        news = "انطلاق إثارة دور الـ 8 الليلة! مواجهة نارية تجمع <b>الساحل الرياضي</b> بـ <b>ساحل مغزل</b> في افتتاح ربع النهائي.";
+    }
+    document.getElementById('dynamic-news').innerHTML = news;
+}
 
 const groupData = [
     {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
@@ -158,6 +159,7 @@ const matchesData = [
 ];
 
 function init() {
+    updateNews();
     const scorers = [
         {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر الحزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
         {n:"يحيى القوزي", f:"عمق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"نايف شرفي", f:"السوق", g:1}, 
@@ -168,25 +170,24 @@ function init() {
         {n:"إبراهيم الزيادي", f:"السلطان", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, 
         {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"أحمد مبارك", f:"الخليج", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}
     ];
-    document.getElementById('scorers-list').innerHTML = scorers.map(s => `
-        <tr>
-            <td class="scorer-name-box">${s.n}<span class="scorer-team-label">(${s.f})</span></td>
-            <td class="goal-count-box"><span class="goal-badge">${s.g}</span></td>
-        </tr>`).join('');
+    document.getElementById('scorers-list').innerHTML = scorers.map(s => `<tr><td class="scorer-name-box">${s.n}<span class="scorer-team-label">(${s.f})</span></td><td class="goal-count-box"><span class="goal-badge">${s.g}</span></td></tr>`).join('');
 
     document.getElementById('groups-area').innerHTML = groupData.map(g => `
-        <div class="group-card">
-            <div class="group-header">المجموعة ${g.n}</div>
+        <div class="group-card"><div class="group-header">المجموعة ${g.n}</div>
             <table class="group-table">
                 <thead><tr><th class="team-name">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead>
                 <tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody>
             </table>
         </div>`).join('');
 
-    let upHTML = "", arHTML = "";
+    let upHTML = "", arHTML = "", todayHTML = "";
+    let foundToday = false;
     matchesData.forEach(m => {
         let html = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
-        if (m.type === "up") {
+        if (m.date === todayISO) {
+            todayHTML += `<div class="day-header">${m.day}</div>` + html;
+            foundToday = true;
+        } else if (m.date > todayISO) {
             if (!upHTML.includes(m.day)) upHTML += `<div class="day-header">${m.day}</div>`;
             upHTML += html;
         } else {
@@ -194,6 +195,14 @@ function init() {
             arHTML += html;
         }
     });
+
+    document.getElementById('today-area').innerHTML = foundToday ? todayHTML : `
+        <div class="maintenance-clean">
+            <p>لا توجد مباريات لليوم (الثلاثاء والأربعاء)</p>
+            <p>نظراً لأعمال <b>الصيانة الشاملة لكهرباء ملعب الوسم بالقحمة</b></p>
+            <p style="color:var(--gold); font-size: 0.9rem; margin-top:12px; font-weight: 700;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
+        </div>`;
+
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
 }
