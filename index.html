@@ -40,16 +40,13 @@
         .scorers-table td { padding: 10px 5px; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .goal-count { background: var(--blue); color: white; padding: 1px 8px; border-radius: 10px; font-weight: bold; }
         
-        .social-section { background: var(--gray-card); border-radius: 15px; padding: 15px; margin: 20px 0; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
-        .social-title { font-size: 0.9rem; color: var(--light-blue); font-weight: bold; margin-bottom: 15px; display: block; }
-        .social-links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .social-btn { display: flex; align-items: center; gap: 8px; padding: 10px 15px; border-radius: 10px; text-decoration: none; color: #fff; font-size: 0.75rem; font-weight: bold; transition: 0.3s; }
-        .social-btn.snap { background: #000; border: 1px solid var(--snap); color: var(--snap); }
-        .social-btn.tiktok { background: #000; border: 1px solid var(--tiktok); color: #fff; }
-        .social-btn.wa { background: var(--green); color: #fff; }
-        .social-btn:hover { transform: translateY(-2px); opacity: 0.9; }
-
-        .footer { text-align: center; padding: 30px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
+        .footer { text-align: center; padding: 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
+        
+        .social-mini { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        .social-btn-s { display: flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; text-decoration: none; font-size: 0.7rem; font-weight: bold; transition: 0.3s; color: #fff; }
+        .btn-snap { background: rgba(255, 252, 0, 0.1); border: 1px solid var(--snap); color: var(--snap); }
+        .btn-tiktok { background: rgba(255, 0, 80, 0.1); border: 1px solid var(--tiktok); color: #fff; }
+        .btn-wa { background: rgba(37, 211, 102, 0.1); border: 1px solid var(--green); color: var(--green); }
     </style>
 </head>
 <body>
@@ -91,17 +88,16 @@
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
 
-        <div class="social-section">
-            <span class="social-title">📲 التغطية المباشرة والحسابات الرسمية</span>
-            <div class="social-links">
-                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn snap">👻 سناب إياد</a>
-                <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn snap">👻 سناب م. شداد</a>
-                <a href="https://wa.me/966534987428" target="_blank" class="social-btn wa">💬 واتساب</a>
-            </div>
-        </div>
-
         <div class="footer">
-            <p style="font-size: 0.75rem;"><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28. الموقع لا يتبع لأي جهة رسمية.</p>
+            <p style="font-size: 0.75rem; margin-bottom: 5px;"><b>تطوير وتصميم: إياد عسيري</b></p>
+            <p style="font-size: 0.6rem; color: var(--text-muted); line-height: 1.4;">إخلاء مسؤولية: هذا الموقع مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28. الموقع لا يتبع لأي جهة رسمية.</p>
+            
+            <div class="social-mini">
+                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn-s btn-snap">👻 سناب إياد</a>
+                <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn-s btn-snap">👻 سناب م. شداد</a>
+                <a href="https://www.tiktok.com/@u_vvw?_r=1&_t=ZS-94NnOApbsKQ" target="_blank" class="social-btn-s btn-tiktok">🎵 تيك توك</a>
+                <a href="https://wa.me/966534987428" target="_blank" class="social-btn-s btn-wa">💬 واتساب</a>
+            </div>
         </div>
     </div>
 
@@ -126,7 +122,7 @@ const matchesData = [
     { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
     { date: "2026-03-07", day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
     { date: "لم يحدد", day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يحدد بعد", result: "VS", type: "up" },
-    { date: "لم يحدد", day: "النهائي الكبير", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يحدد بعد", result: "VS", type: "up" },
+    { date: "لم يحدد", day: "النهائي الكبير", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 مسك الختام", result: "VS", type: "up" },
 
     { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق", result: "3 - 0", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
