@@ -47,7 +47,9 @@
         .match-note { color: var(--orange); font-size: 0.7rem; font-weight: bold; margin-top: 5px; display: block; }
 
         .footer { text-align: center; padding: 30px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
-        .contact-link { color: var(--green); font-weight: 900; font-size: 0.9rem; text-decoration: none; display: inline-block; margin-top: 10px; }
+        .disclaimer-box { background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .disclaimer-box p { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; margin: 0 0 10px 0; }
+        .contact-link { color: var(--green); font-weight: 900; font-size: 0.9rem; text-decoration: none; display: inline-block; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -57,7 +59,7 @@
             <div style="font-size: 0.8rem; color: var(--text-muted); margin-top:5px;">ملعب الوسم بالقحمة</div>
         </header>
         <div class="weather-bar">🌤️ الطقس في القحمة الآن: <span>28°C - صافي</span></div>
-        <div class="top-stats"><div class="views-count">👁️ المشاهدات: 8147</div></div>
+        <div class="top-stats"><div class="views-count">👁️ المشاهدات: 8821</div></div>
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'scorers')">الهدافين</button>
@@ -80,8 +82,10 @@
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
 
         <div class="footer">
-            <p style="font-size: 0.75rem;"><b>تطوير وتصميم: إياد عسيري</b></p>
-            <a href="https://wa.me/966534987428" class="contact-link">📱 واتساب: 0534987428</a>
+            <div class="disclaimer-box">
+                <p><b>تطوير وتصميم: إياد عسيري</b><br>إخلاء مسؤولية: هذا الموقع هو مجهود شخصي يهدف لتنظيم نتائج بطولة القحمة الرمضانية 28. الموقع لا يتبع لأي جهة رسمية، والمعلومات تخضع للتحديث اليدوي.</p>
+                <a href="https://wa.me/966534987428" class="contact-link">📱 للتواصل واتساب: 0534987428</a>
+            </div>
         </div>
     </div>
 
