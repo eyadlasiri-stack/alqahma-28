@@ -54,9 +54,7 @@
             <h1>بطولة القحمة الرمضانية 28</h1>
             <span class="stadium-tag">جميع مباريات البطولة تقام على ملعب الوسم بالقحمة</span>
         </header>
-
         <center><div class="views-count">👁️ المشاهدات: 9088</div></center>
-
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming')">النهائيات</button>
@@ -64,7 +62,6 @@
             <button class="tab-btn" onclick="openTab(event, 'archive')">الأرشيف</button>
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
-
         <div id="today" class="tab-content active">
             <div class="news-summary">
                 <h4>📰 موجز البطولة</h4>
@@ -72,7 +69,6 @@
             </div>
             <div id="today-area"></div>
         </div>
-
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
         <div id="scorers" class="tab-content">
             <div style="background: var(--gray-card); padding:15px; border-radius:12px; border: 1px solid rgba(255,255,255,0.03);">
@@ -82,12 +78,11 @@
         </div>
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
-
         <div class="footer">
             <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">تصميم وبرمجة: إياد عسيري</p>
             <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; max-width: 80%; margin: auto;">إخلاء مسؤولية: موقع مجهود شخصي لتنظيم نتائج بطولة القحمة الرمضانية 28.</p>
             <div class="social-mini">
-                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 إياد</a>
+                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 سناب إياد</a>
                 <a href="https://www.tiktok.com/@u_vvw?_r=1&_t=ZS-94NnOApbsKQ" target="_blank" class="social-btn" style="border-color:var(--tiktok); color: #fff;">🎵 تيك توك</a>
                 <a href="https://wa.me/966534987428" target="_blank" class="social-btn" style="border-color:var(--green); color:var(--green);">💬 0534987428</a>
             </div>
@@ -100,7 +95,6 @@
             </div>
         </div>
     </div>
-
 <script>
 const now = new Date();
 if (now.getHours() < 4) { now.setDate(now.getDate() - 1); }
@@ -133,7 +127,7 @@ const matchesData = [
     { date: "لم يحدد", day: "النهائي الكبير", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "🏆 مسك الختام", result: "VS", type: "up" },
     { date: "2026-03-02", day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت - الملحق", result: "3 - 0", type: "ar" },
     { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
-    { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الالفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
+    { date: "2026-03-01", day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
     { date: "2026-02-28", day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0", type: "ar" },
     { date: "2026-02-28", day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1", type: "ar" },
     { date: "2026-02-27", day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2", type: "ar" },
@@ -149,7 +143,7 @@ const matchesData = [
     { date: "2026-02-21", day: "السبت 04 رمضان", t1: "السوق", t2: "جندلة", info: "انتهت", result: "2 - 0", type: "ar" },
     { date: "2026-02-20", day: "الجمعة 03 رمضان", t1: "الفيصلي", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 0", type: "ar" },
     { date: "2026-02-19", day: "الخميس 02 رمضان", t1: "الساحل الرياضي", t2: "مستقبل عرمرم", info: "انتهت", result: "2 - 1", type: "ar" },
-    { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "الالبرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1", type: "ar" }
+    { date: "2026-02-18", day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1", type: "ar" }
 ];
 
 function init() {
@@ -172,20 +166,38 @@ function init() {
                 <tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody>
             </table>
         </div>`).join('');
+
     let upHTML = "", arHTML = "", todayHTML = "";
     let foundToday = false;
+
     matchesData.forEach(m => {
         let html = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
-        if (m.date === todayISO) { todayHTML += `<div class="day-header">${m.day}</div>` + html; foundToday = true; }
-        else if (m.date > todayISO) { if (!upHTML.includes(m.day)) upHTML += `<div class="day-header">${m.day}</div>`; upHTML += html; }
-        else { if (!arHTML.includes(m.day)) arHTML += `<div class="day-header">${m.day}</div>`; arHTML += html; }
+        
+        // شرط صارم: لا تظهر المباراة في "اليوم" إلا إذا كان تاريخها يطابق اليوم بالضبط
+        if (m.date === todayISO) {
+            todayHTML += `<div class="day-header">${m.day}</div>` + html;
+            foundToday = true;
+        } else if (m.date > todayISO) {
+            if (!upHTML.includes(m.day)) upHTML += `<div class="day-header">${m.day}</div>`;
+            upHTML += html;
+        } else {
+            if (!arHTML.includes(m.day)) arHTML += `<div class="day-header">${m.day}</div>`;
+            arHTML += html;
+        }
     });
+
+    // إذا كان اليوم هو الأربعاء 4 مارس، لا تعرض أي مباراة مهما حدث
+    if (todayISO === "2026-03-04") {
+        foundToday = false;
+    }
+
     document.getElementById('today-area').innerHTML = foundToday ? todayHTML : `
         <div class="maintenance-clean">
             <p>لا توجد مباريات لليوم (الثلاثاء والأربعاء)</p>
             <p>نظراً لأعمال <b>الصيانة الشاملة لكهرباء ملعب الوسم بالقحمة</b></p>
             <p style="color:var(--gold); font-size: 0.95rem; margin-top:12px; font-weight: 700;">نلتقي الخميس في استكمال الملحق (الفيصلي VS دبسا)</p>
         </div>`;
+
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
 }
