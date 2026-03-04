@@ -103,6 +103,7 @@
     </div>
 
 <script>
+// المجموعات كاملة بدون نقص
 const groupData = [
     {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
     {n:"2", teams:[{t:"ساحل مغزل",l:2,f:2,te:0,x:0,p:6},{t:"البرك",l:2,f:1,te:0,x:1,p:3},{t:"وحدة الرقة",l:2,f:0,te:0,x:2,p:0}]},
@@ -112,25 +113,42 @@ const groupData = [
     {n:"6", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
+// الأرشيف كامل من 1 إلى 13 رمضان
 const matchesData = [
     { day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "<span class='resume-badge'>استكمال</span> الملحق", result: "1 - 0", type: "up" },
     { day: "الجمعة 17 رمضان", t1: "الساحل الرياضي", t2: "ساحل مغزل", info: "ربع النهائي 1", result: "VS", type: "up" },
     { day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { day: "يحدد لاحقاً", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 1", result: "VS", type: "up" },
-    { day: "يحدد لاحقاً", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 2", result: "VS", type: "up" },
-    { day: "يحدد لاحقاً (النهائي)", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة النهائية", result: "VS", type: "up" },
+    // الأرشيف (من 1 رمضان إلى 13 رمضان)
     { day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت", result: "3 - 0", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
     { day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0", type: "ar" },
-    { day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1", type: "ar" }
+    { day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1", type: "ar" },
+    { day: "الجمعة 10 رمضان", t1: "السوق", t2: "الفيض", info: "انتهت", result: "2 - 1", type: "ar" },
+    { day: "الخميس 9 رمضان", t1: "الساحل الرياضي", t2: "السلطان", info: "انتهت", result: "3 - 0", type: "ar" },
+    { day: "الأربعاء 8 رمضان", t1: "وحدة الرقة", t2: "ساحل مغزل", info: "انتهت", result: "0 - 4", type: "ar" },
+    { day: "الثلاثاء 7 رمضان", t1: "الوسام", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 0", type: "ar" },
+    { day: "الاثنين 6 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "3 - 1", type: "ar" },
+    { day: "الأحد 5 رمضان", t1: "الصقر", t2: "عمق", info: "انتهت", result: "2 - 1", type: "ar" },
+    { day: "السبت 4 رمضان", t1: "السوق", t2: "جندلة", info: "انتهت", result: "1 - 0", type: "ar" },
+    { day: "الجمعة 3 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 0", type: "ar" },
+    { day: "الخميس 2 رمضان", t1: "الفيصلي", t2: "خليج الصوالحة", info: "انتهت", result: "1 - 0", type: "ar" },
+    { day: "الأربعاء 1 رمضان", t1: "صقلية", t2: "دبسا", info: "انتهت", result: "1 - 1", type: "ar" }
 ];
 
 function init() {
-    const finalScorers = [{n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2}];
+    // قائمة الهدافين كاملة
+    const finalScorers = [
+        {n:"أحمد شعبان", f:"عمق", g:3}, 
+        {n:"عبدالله معفري", f:"الوسام", g:2},
+        {n:"عبده صقلي", f:"صقلية", g:2},
+        {n:"محمد عسيري", f:"ساحل مغزل", g:2},
+        {n:"حسن دبيس", f:"دبسا", g:1}
+    ];
     document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td class="scorer-name-box">${s.n}<span class="scorer-team-label">(${s.f})</span></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
+    
     document.getElementById('groups-area').innerHTML = groupData.map(g => `
         <div class="group-card"><div class="group-header">المجموعة ${g.n}</div>
             <table class="group-table"><thead><tr><th class="team-name">الفريق</th><th>ل</th><th>ن</th></tr></thead>
@@ -151,6 +169,7 @@ function init() {
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
 }
+
 function openTab(evt, tabName) {
     let i, tabcontent = document.getElementsByClassName("tab-content"), tablinks = document.getElementsByClassName("tab-btn");
     for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
