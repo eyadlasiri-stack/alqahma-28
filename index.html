@@ -124,9 +124,9 @@ const matchesData = [
     { day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { day: "تاريخ لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي الأول", result: "VS", type: "up" },
-    { day: "تاريخ لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي الثاني", result: "VS", type: "up" },
-    { day: "تاريخ لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة النهائية", result: "VS", type: "up" },
+    { day: "لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي الأول", result: "VS", type: "up" },
+    { day: "لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي الثاني", result: "VS", type: "up" },
+    { day: "لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة النهائية", result: "VS", type: "up" },
     // الأرشيف
     { day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت", result: "3 - 0", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
@@ -168,11 +168,16 @@ function init() {
                 <tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody>
             </table>
         </div>`).join('');
+    
     let upHTML = "", arHTML = "";
     matchesData.forEach(m => {
         let html = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
-        if (m.type === "up") { if (!upHTML.includes(m.day)) upHTML += `<div class="day-header">${m.day}</div>`; upHTML += html; }
-        else { if (!arHTML.includes(m.day)) arHTML += `<div class="day-header">${m.day}</div>`; arHTML += html; }
+        if (m.type === "up") { 
+            // جعل التاريخ يظهر كعنوان فوق كل بطاقة بشكل مستقل لضمان فصل النهائي ونصف النهائي
+            upHTML += `<div class="day-header">${m.day}</div>` + html; 
+        } else { 
+            if (!arHTML.includes(m.day)) arHTML += `<div class="day-header">${m.day}</div>`; arHTML += html; 
+        }
     });
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
