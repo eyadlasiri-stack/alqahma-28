@@ -32,8 +32,8 @@
         .pts-col { color: var(--gold); font-weight: 900; }
         .scorers-table { width: 100%; border-collapse: collapse; }
         .scorers-table td { padding: 14px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .scorer-name-box { text-align: right; font-weight: 700; color: #fff; font-size: 0.9rem; }
-        .scorer-team-label { color: var(--text-muted); font-size: 0.75rem; font-weight: 400; margin-right: 4px; }
+        .scorer-name-box { text-align: right; font-weight: 700; color: #fff; font-size: 0.9rem; line-height: 1.4; }
+        .scorer-team-label { color: var(--text-muted); font-size: 0.75rem; font-weight: 400; }
         .goal-badge { background: var(--blue); color: white; padding: 3px 12px; border-radius: 12px; font-weight: 900; font-size: 0.85rem; float: left; }
         .match-card { background: var(--gray-card); border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); padding: 18px 0; }
         .teams-row { display: flex; justify-content: space-around; align-items: center; padding: 0 15px; }
@@ -53,12 +53,10 @@
             <h1>بطولة القحمة الرمضانية 28</h1>
             <span class="stadium-tag">جميع مباريات البطولة تقام على ملعب الوسم بالقحمة</span>
         </header>
-
         <div class="info-bar">
-            <div class="stat-badge"><span class="dot"></span> <span id="dynamic-activity">النشاط الآن: 9342</span></div>
-            <div class="stat-badge">☁️ 24°C - القحمة</div>
+            <div class="stat-badge"><span class="dot"></span> النشاط الآن: 9342</div>
+            <div class="stat-badge" id="weather-box">☁️ --°C - القحمة</div>
         </div>
-
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming')">النهائيات</button>
@@ -66,24 +64,16 @@
             <button class="tab-btn" onclick="openTab(event, 'archive')">الأرشيف</button>
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
         </div>
-
-        <div id="today" class="tab-content active">
-            <div id="today-matches-area">
-                </div>
-        </div>
-
+        <div id="today" class="tab-content active"><div id="today-matches-area"></div></div>
         <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
-        
         <div id="scorers" class="tab-content">
             <div style="background: var(--gray-card); padding:15px; border-radius:12px;">
                 <h3 style="color:var(--gold); border-bottom:1px solid rgba(255,215,0,0.1); padding-bottom:10px; font-weight: 900; margin-bottom: 5px;">🏆 قائمة الهدافين</h3>
                 <table class="scorers-table" id="scorers-list"></table>
             </div>
         </div>
-
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
-
         <div class="footer">
             <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">تصميم وبرمجة: إياد عسيري</p>
             <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; max-width: 80%; margin: 8px auto;">إخلاء مسؤولية: موقع مجهود شخصي لتنظيم نتائج بطولة القحمة الرمضانية 28 وغير رسمي ولا يمثل أي جهة منظمة.</p>
@@ -102,8 +92,13 @@
         </div>
     </div>
 <script>
-// دالة النشاط العشوائي
-document.getElementById('dynamic-activity').innerText = "النشاط الآن: " + (Math.floor(Math.random() * 800) + 9000);
+async function fetchWeather() {
+    try {
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.02&longitude=41.74&current_weather=true');
+        const data = await response.json();
+        document.getElementById('weather-box').innerHTML = `☁️ ${Math.round(data.current_weather.temperature)}°C - القحمة`;
+    } catch (e) { document.getElementById('weather-box').innerHTML = `☁️ 24°C - القحمة`; }
+}
 
 const groupData = [
     {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
@@ -120,9 +115,10 @@ const matchesData = [
     { day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { day: "لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي", result: "VS", type: "up" },
-    { day: "تاريخ لم يحدد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة النهائية", result: "VS", type: "up" },
-    // الأرشيف
+    { day: "نصف النهائي - لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 1", result: "VS", type: "up" },
+    { day: "نصف النهائي - لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي 2", result: "VS", type: "up" },
+    { day: "المباراة النهائية", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "لم يحدد بعد", result: "VS", type: "up" },
+    // الأرشيف كامل
     { day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت", result: "3 - 0", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
@@ -145,7 +141,7 @@ const matchesData = [
 ];
 
 function init() {
-    // الهدافين
+    fetchWeather();
     const finalScorers = [
         {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر الحزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
         {n:"يحيى القوزي", f:"عمق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"نايف شرفي", f:"السوق", g:1}, 
@@ -157,61 +153,27 @@ function init() {
         {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"أحمد مبارك", f:"الخليج", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}
     ];
     document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td class="scorer-name-box">${s.n}<br><span class="scorer-team-label">(${s.f})</span></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
-    
-    // المجموعات
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-name">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
-
-    // توزيع النهائيات والأرشيف
+    
     let upHTML = "", upDays = [], arHTML = "", arDays = [];
     matchesData.forEach(m => {
         let html = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
-        if (m.type === "up") { 
-            if (!upDays.includes(m.day)) { upHTML += `<div class="day-header">${m.day}</div>`; upDays.push(m.day); }
-            upHTML += html; 
-        } else { 
-            if (!arDays.includes(m.day)) { arHTML += `<div class="day-header">${m.day}</div>`; arDays.push(m.day); }
-            arHTML += html; 
-        }
+        if (m.type === "up") { if (!upDays.includes(m.day)) { upHTML += `<div class="day-header">${m.day}</div>`; upDays.push(m.day); } upHTML += html; }
+        else { if (!arDays.includes(m.day)) { arHTML += `<div class="day-header">${m.day}</div>`; arDays.push(m.day); } arHTML += html; }
     });
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
-
-    // برمجة تبويب اليوم (يتغير الساعة 4 فجراً)
     updateTodayTab();
 }
 
 function updateTodayTab() {
-    const now = new Date();
-    const hours = now.getHours();
-    // الحصول على التاريخ بصيغة رمضان بناءً على اليوم الحالي (مثال تقريبي)
-    // لاحظ: يمكنك تعديل هذه الشروط يدوياً كل يوم لتحديد ماذا يظهر في "اليوم"
-    let todayTitle = "";
-    
-    // منطق الساعة 4 فجراً: إذا كانت الساعة بين 0 و 4، نعتبرنا لسى في "يوم أمس"
-    if (hours < 4) {
-        // هنا نحدد يوم أمس (مثلاً الأربعاء)
-        todayTitle = "لا توجد مباريات (صيانة ملعب الوسم)";
+    const now = new Date(), hours = now.getHours(), day = now.getDay();
+    let content = "";
+    if ((day === 4 && hours >= 4) || (day === 5 && hours < 4)) {
+        content = `<div class="day-header">الخميس 16 رمضان</div><div class="match-card"><div class="teams-row"><span class="team-item">الفيصلي</span><span class="vs-label">VS</span><span class="team-item">دبسا</span></div><span class="match-info">استكمال الملحق (المؤجلة)</span></div>`;
     } else {
-        // هنا نحدد يوم اليوم (مثلاً الخميس)
-        todayTitle = "مباريات الخميس 16 رمضان";
+        content = `<div class="maintenance-clean"><p>بسبب أعمال <b>الصيانة الطارئة لكهرباء ملعب الوسم</b></p><p>لا توجد مباريات لليوم (الثلاثاء والأربعاء)</p><p style="color:var(--gold); font-size: 0.95rem; margin-top:12px; font-weight: 700;">موعدنا الخميس في استكمال المواجهة المؤجلة</p></div>`;
     }
-
-    let matchesToday = matchesData.filter(m => m.day.includes("الخميس") || m.day.includes("الأربعاء")); // فلترة تجريبية
-    
-    // نص الصيانه يظهر فقط إذا لم يكن هناك مباريات مجدولة لليوم المكتشف
-    let content = `
-        <div class="maintenance-clean">
-            <p>بسبب أعمال <b>الصيانة الطارئة لكهرباء ملعب الوسم</b></p>
-            <p>لا توجد مباريات لليوم (الثلاثاء والأربعاء)</p>
-            <p style="color:var(--gold); font-size: 0.95rem; margin-top:12px; font-weight: 700;">موعدنا الخميس في استكمال المواجهة المؤجلة</p>
-        </div>`;
-    
-    // إذا دخلنا يوم الخميس وتجاوزت الساعة 4 فجراً، اعرض مباريات الملحق في "اليوم"
-    if (now.getDay() === 4 && hours >= 4) { // 4 تعني الخميس في JS
-        content = `<div class="day-header">الخميس 16 رمضان</div>
-                   <div class="match-card"><div class="teams-row"><span class="team-item">الفيصلي</span><span class="vs-label">VS</span><span class="team-item">دبسا</span></div><span class="match-info">استكمال الملحق (المؤجلة)</span></div>`;
-    }
-
     document.getElementById('today-matches-area').innerHTML = content;
 }
 
