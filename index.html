@@ -126,10 +126,10 @@ const matchesData = [
     { day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { day: "لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي", result: "VS", type: "up" },
-    { day: "لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي", result: "VS", type: "up" },
-    { day: "تاريخ لم يحدد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة النهائية", result: "VS", type: "up" },
-    // الأرشيف كاملاً من 1 إلى 13
+    { day: "نصف النهائي (لم يحدد بعد)", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي - 1", result: "VS", type: "up" },
+    { day: "نصف النهائي (لم يحدد بعد)", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي - 2", result: "VS", type: "up" },
+    { day: "المباراة النهائية (لم يحدد بعد)", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة النهائية", result: "VS", type: "up" },
+    // الأرشيف كاملاً
     { day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت", result: "3 - 0", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
@@ -163,6 +163,7 @@ function init() {
         {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"أحمد مبارك", f:"الخليج", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}
     ];
     document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td class="scorer-name-box">${s.n}<br><span class="scorer-team-label">(${s.f})</span></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
+    
     document.getElementById('groups-area').innerHTML = groupData.map(g => `
         <div class="group-card"><div class="group-header">المجموعة ${g.n}</div>
             <table class="group-table">
@@ -171,21 +172,16 @@ function init() {
             </table>
         </div>`).join('');
 
-    let upHTML = "", upShownDays = [];
-    let arHTML = "", arShownDays = [];
+    let upHTML = "", upDays = [];
+    let arHTML = "", arDays = [];
 
     matchesData.forEach(m => {
         let html = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
         if (m.type === "up") { 
-            // فصل النهائي ونصف النهائي بحيث يظهر التاريخ لكل مباراة بشكل مستقل
-            if (m.day === "لم يحدد بعد" || m.day === "تاريخ لم يحدد") {
-                upHTML += `<div class="day-header">${m.day}</div>` + html;
-            } else {
-                if (!upShownDays.includes(m.day)) { upHTML += `<div class="day-header">${m.day}</div>`; upShownDays.push(m.day); }
-                upHTML += html;
-            }
+            if (!upDays.includes(m.day)) { upHTML += `<div class="day-header">${m.day}</div>`; upDays.push(m.day); }
+            upHTML += html; 
         } else { 
-            if (!arShownDays.includes(m.day)) { arHTML += `<div class="day-header">${m.day}</div>`; arShownDays.push(m.day); }
+            if (!arDays.includes(m.day)) { arHTML += `<div class="day-header">${m.day}</div>`; arDays.push(m.day); }
             arHTML += html; 
         }
     });
