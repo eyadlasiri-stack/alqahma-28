@@ -32,9 +32,9 @@
         .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
         .group-header { background: rgba(25, 118, 210, 0.15); color: var(--blue); padding: 12px 15px; font-weight: 900; border-bottom: 1px solid rgba(25,118,210,0.2); font-size: 0.95rem; }
         .group-table { width: 100%; border-collapse: collapse; }
-        .group-table th { padding: 12px 5px; color: var(--light-blue); font-weight: 700; font-size: 0.8rem; background: rgba(0,0,0,0.1); }
-        .group-table td { padding: 12px 5px; text-align: center; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        .team-name { text-align: right !important; padding-right: 15px !important; font-weight: 700; color: #fff; width: 40%; }
+        .group-table th { padding: 10px 2px; color: var(--light-blue); font-weight: 700; font-size: 0.7rem; background: rgba(0,0,0,0.1); }
+        .group-table td { padding: 10px 2px; text-align: center; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
+        .team-name { text-align: right !important; padding-right: 10px !important; font-weight: 700; color: #fff; width: 35%; }
         .pts-col { color: var(--gold); font-weight: 900; }
         .scorers-table { width: 100%; border-collapse: collapse; }
         .scorers-table td { padding: 14px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -44,7 +44,6 @@
         .footer { text-align: center; padding: 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 25px; }
         .social-mini { display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
         .social-btn { display: flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 20px; text-decoration: none; font-size: 0.65rem; font-weight: 700; border: 1px solid; transition: 0.3s; }
-        .network-title { display: block; font-size: 0.7rem; color: var(--light-blue); margin-top: 15px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -88,22 +87,13 @@
         <div class="footer">
             <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">تصميم وبرمجة: إياد عسيري</p>
             <div class="social-mini">
-                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 سناب إياد</a>
-                <a href="https://www.tiktok.com/@u_vvw?_r=1&_t=ZS-94NnOApbsKQ" target="_blank" class="social-btn" style="border-color:var(--tiktok); color: #fff;">🎵 تيك توك</a>
                 <a href="https://wa.me/966534987428" target="_blank" class="social-btn" style="border-color:var(--green); color:var(--green);">💬 0534987428</a>
-            </div>
-            <span class="network-title">📸 الشبكة الإعلامية للبطولة</span>
-            <div class="social-mini">
-                <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 م. شداد</a>
-                <a href="https://snapchat.com/t/rJe5ARXp" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 علي</a>
-                <a href="https://snapchat.com/t/nreTp74h" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 رضي</a>
-                <a href="https://snapchat.com/t/gcKhHU8e" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 علوش</a>
             </div>
         </div>
     </div>
 
 <script>
-// المجموعات كاملة بدون نقص
+// المجموعات بجميع البيانات (لعب، فاز، تعادل، خسر، له، عليه، نقاط)
 const groupData = [
     {n:"1", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
     {n:"2", teams:[{t:"ساحل مغزل",l:2,f:2,te:0,x:0,p:6},{t:"البرك",l:2,f:1,te:0,x:1,p:3},{t:"وحدة الرقة",l:2,f:0,te:0,x:2,p:0}]},
@@ -113,21 +103,23 @@ const groupData = [
     {n:"6", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-// الأرشيف كامل من 1 إلى 13 رمضان
 const matchesData = [
-    { day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "<span class='resume-badge'>استكمال</span> الملحق", result: "1 - 0", type: "up" },
+    // النهائيات (تحت التنفيذ)
+    { day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "استكمال الملحق", result: "1 - 0", type: "up" },
     { day: "الجمعة 17 رمضان", t1: "الساحل الرياضي", t2: "ساحل مغزل", info: "ربع النهائي 1", result: "VS", type: "up" },
     { day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
-    // الأرشيف (من 1 رمضان إلى 13 رمضان)
+    { day: "يحدد لاحقاً", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي", result: "VS", type: "up" },
+    { day: "يحدد لاحقاً", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة النهائية", result: "VS", type: "up" },
+    // الأرشيف من اليوم الأول
     { day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت", result: "3 - 0", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
     { day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0", type: "ar" },
     { day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1", type: "ar" },
     { day: "الجمعة 10 رمضان", t1: "السوق", t2: "الفيض", info: "انتهت", result: "2 - 1", type: "ar" },
-    { day: "الخميس 9 رمضان", t1: "الساحل الرياضي", t2: "السلطان", info: "انتهت", result: "3 - 0", type: "ar" },
+    { day: "الخميس 9 رمضان", t1: "الساحل", t2: "السلطان", info: "انتهت", result: "3 - 0", type: "ar" },
     { day: "الأربعاء 8 رمضان", t1: "وحدة الرقة", t2: "ساحل مغزل", info: "انتهت", result: "0 - 4", type: "ar" },
     { day: "الثلاثاء 7 رمضان", t1: "الوسام", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 0", type: "ar" },
     { day: "الاثنين 6 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "3 - 1", type: "ar" },
@@ -139,20 +131,16 @@ const matchesData = [
 ];
 
 function init() {
-    // قائمة الهدافين كاملة
     const finalScorers = [
-        {n:"أحمد شعبان", f:"عمق", g:3}, 
-        {n:"عبدالله معفري", f:"الوسام", g:2},
-        {n:"عبده صقلي", f:"صقلية", g:2},
-        {n:"محمد عسيري", f:"ساحل مغزل", g:2},
-        {n:"حسن دبيس", f:"دبسا", g:1}
+        {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2},
+        {n:"علي عسيري", f:"ساحل مغزل", g:2}, {n:"محمد إبراهيم", f:"صقلية", g:2}
     ];
     document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td class="scorer-name-box">${s.n}<span class="scorer-team-label">(${s.f})</span></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
     
     document.getElementById('groups-area').innerHTML = groupData.map(g => `
         <div class="group-card"><div class="group-header">المجموعة ${g.n}</div>
-            <table class="group-table"><thead><tr><th class="team-name">الفريق</th><th>ل</th><th>ن</th></tr></thead>
-            <tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody></table>
+            <table class="group-table"><thead><tr><th class="team-name">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead>
+            <tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody></table>
         </div>`).join('');
     
     let upHTML = "", arHTML = "";
