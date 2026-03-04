@@ -34,6 +34,12 @@
         .team-name { text-align: right !important; padding-right: 15px !important; font-weight: 700; color: #fff; width: 40%; }
         .pts-col { color: var(--gold); font-weight: 900; }
         
+        .scorers-table { width: 100%; border-collapse: collapse; }
+        .scorers-table td { padding: 14px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .scorer-name-box { text-align: right; font-weight: 700; color: #fff; font-size: 0.9rem; }
+        .scorer-team-label { color: var(--text-muted); font-size: 0.75rem; font-weight: 400; margin-right: 4px; }
+        .goal-badge { background: var(--blue); color: white; padding: 3px 12px; border-radius: 12px; font-weight: 900; font-size: 0.85rem; float: left; }
+        
         .match-card { background: var(--gray-card); border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); padding: 18px 0; }
         .teams-row { display: flex; justify-content: space-around; align-items: center; padding: 0 15px; }
         .team-item { width: 40%; text-align: center; font-weight: 700; font-size: 1rem; }
@@ -118,10 +124,10 @@ const matchesData = [
     { day: "الجمعة 17 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 2", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 3", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { day: "لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي", result: "VS", type: "up" },
-    { day: "لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي", result: "VS", type: "up" },
+    { day: "تاريخ لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي", result: "VS", type: "up" },
+    { day: "تاريخ لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "نصف النهائي", result: "VS", type: "up" },
     { day: "لم يحدد بعد", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "المباراة النهائية", result: "VS", type: "up" },
-    // الأرشيف كاملاً كما كان
+    // الأرشيف كاملاً
     { day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت", result: "3 - 0", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
@@ -154,7 +160,8 @@ function init() {
         {n:"إبراهيم الزيادي", f:"السلطان", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, 
         {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"أحمد مبارك", f:"الخليج", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}
     ];
-    document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td class="scorer-name-box">${s.n}<span class="scorer-team-label">(${s.f})</span></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
+    // رندرة الهدافين بالتصميم الأصلي المعتمد
+    document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td class="scorer-name-box">${s.n}<br><span class="scorer-team-label">(${s.f})</span></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
     
     document.getElementById('groups-area').innerHTML = groupData.map(g => `
         <div class="group-card"><div class="group-header">المجموعة ${g.n}</div>
@@ -163,16 +170,12 @@ function init() {
                 <tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody>
             </table>
         </div>`).join('');
-
+    
     let upHTML = "", arHTML = "";
     matchesData.forEach(m => {
         let html = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
         if (m.type === "up") { 
-            // الترتيب تحت بعض حسب اليوم
-            if (!upHTML.includes(`<div class="day-header">${m.day}</div>`)) {
-                upHTML += `<div class="day-header">${m.day}</div>`;
-            }
-            upHTML += html; 
+            upHTML += `<div class="day-header">${m.day}</div>` + html; 
         } else { 
             if (!arHTML.includes(`<div class="day-header">${m.day}</div>`)) arHTML += `<div class="day-header">${m.day}</div>`; 
             arHTML += html; 
