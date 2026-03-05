@@ -6,7 +6,7 @@
     <title>بطولة القحمة الرمضانية 28</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --blue: #1976d2; --light-blue: #64b5f6; --bg: #1a1c1e; --gray-card: rgba(255, 255, 255, 0.04); --text-main: #eee; --text-muted: #aaa; --gold: #ffd700; --green: #25D366; --orange: #ff9800; --snap: #FFFC00; --tiktok: #ff0050; }
+        :root { --blue: #1976d2; --light-blue: #64b5f6; --bg: #1a1c1e; --gray-card: rgba(255, 255, 255, 0.04); --text-main: #eee; --text-muted: #aaa; --gold: #ffd700; --green: #25D366; --snap: #FFFC00; --tiktok: #ff0050; }
         body { background-color: var(--bg); color: var(--text-main); font-family: 'Cairo', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         .container { max-width: 900px; margin: auto; padding: 15px; }
         header { text-align: center; padding: 25px 0; border-bottom: 2px solid var(--blue); margin-bottom: 15px; }
@@ -23,24 +23,17 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .maintenance-clean { text-align: center; padding: 40px 15px; color: var(--text-muted); border-top: 1px dashed rgba(255,255,255,0.1); font-size: 0.9rem; }
-        .group-card { background: var(--gray-card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
-        .group-header { background: rgba(25, 118, 210, 0.15); color: var(--blue); padding: 12px 15px; font-weight: 900; border-bottom: 1px solid rgba(25,118,210,0.2); font-size: 0.95rem; }
-        .group-table { width: 100%; border-collapse: collapse; }
-        .group-table th { padding: 12px 5px; color: var(--light-blue); font-weight: 700; font-size: 0.8rem; background: rgba(0,0,0,0.1); }
-        .group-table td { padding: 12px 5px; text-align: center; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        .team-name { text-align: right !important; padding-right: 15px !important; font-weight: 700; color: #fff; width: 40%; }
-        .pts-col { color: var(--gold); font-weight: 900; }
-        .scorers-table { width: 100%; border-collapse: collapse; }
-        .scorers-table td { padding: 14px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .scorer-name-box { text-align: right; font-weight: 700; color: #fff; font-size: 0.9rem; line-height: 1.4; }
-        .scorer-team-label { color: var(--text-muted); font-size: 0.75rem; font-weight: 400; }
-        .goal-badge { background: var(--blue); color: white; padding: 3px 12px; border-radius: 12px; font-weight: 900; font-size: 0.85rem; float: left; }
         .match-card { background: var(--gray-card); border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.03); padding: 18px 0; }
         .teams-row { display: flex; justify-content: space-around; align-items: center; padding: 0 15px; }
         .team-item { width: 40%; text-align: center; font-weight: 700; font-size: 1rem; }
         .vs-label { color: var(--blue); font-weight: 900; font-size: 1.2rem; }
         .match-info { color: var(--text-muted); font-size: 0.8rem; font-weight: 700; margin-top: 8px; display: block; text-align: center; }
         .day-header { background: rgba(25, 118, 210, 0.2); color: white; padding: 6px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; margin: 15px 0 10px; display: inline-block; border: 1px solid var(--blue); }
+        .scorers-table { width: 100%; border-collapse: collapse; }
+        .scorers-table td { padding: 14px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .scorer-name-box { text-align: right; font-weight: 700; color: #fff; font-size: 0.9rem; line-height: 1.4; }
+        .scorer-team-label { color: var(--text-muted); font-size: 0.75rem; font-weight: 400; }
+        .goal-badge { background: var(--blue); color: white; padding: 3px 12px; border-radius: 12px; font-weight: 900; font-size: 0.85rem; float: left; }
         .footer { text-align: center; padding: 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 25px; }
         .social-mini { display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
         .social-btn { display: flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 20px; text-decoration: none; font-size: 0.65rem; font-weight: 700; border: 1px solid; transition: 0.3s; }
@@ -54,7 +47,7 @@
             <span class="stadium-tag">جميع مباريات البطولة تقام على ملعب الوسم بالقحمة</span>
         </header>
         <div class="info-bar">
-            <div class="stat-badge"><span class="dot"></span> النشاط الآن: 9342</div>
+            <div class="stat-badge"><span class="dot"></span> النشاط الآن: 10019</div>
             <div class="stat-badge" id="weather-box">☁️ --°C - القحمة</div>
         </div>
         <div class="tabs-nav">
@@ -76,9 +69,11 @@
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
         <div class="footer">
             <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">تصميم وبرمجة: إياد عسيري</p>
+            <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; max-width: 80%; margin: 8px auto;">إخلاء مسؤولية: موقع مجهود شخصي لتنظيم نتائج بطولة القحمة الرمضانية 28 وغير رسمي ولا يمثل أي جهة منظمة.</p>
             <div class="social-mini">
                 <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap); color:var(--snap);">👻 سناب إياد</a>
                 <a href="https://www.tiktok.com/@u_vvw?_r=1&_t=ZS-94NnOApbsKQ" target="_blank" class="social-btn" style="border-color:var(--tiktok); color: #fff;">🎵 تيك توك</a>
+                <a href="https://wa.me/966534987428" target="_blank" class="social-btn" style="border-color:var(--green); color:var(--green);">💬 0534987428</a>
             </div>
             <span class="network-title">📸 الشبكة الإعلامية للبطولة</span>
             <div class="social-mini">
@@ -151,7 +146,6 @@ function init() {
     ];
     document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td class="scorer-name-box">${s.n}<br><span class="scorer-team-label">(${s.f})</span></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-name">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
-    
     updateTodayTab();
 }
 
@@ -162,13 +156,9 @@ function updateTodayTab() {
 
     matchesData.forEach(m => {
         let cardHTML = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
-        
-        // 1. منطق تبويب اليوم
         if (isTodayThursday && m.day === "الخميس 16 رمضان") {
             todayHTML += `<div class="day-header">${m.day}</div>` + cardHTML;
         }
-
-        // 2. منطق تبويب النهائيات (إخفاء مباريات اليوم والأرشيف)
         if (m.type === "up") {
             const isMatchShowingToday = isTodayThursday && m.day === "الخميس 16 رمضان";
             if (!isMatchShowingToday) {
@@ -176,16 +166,11 @@ function updateTodayTab() {
                 upHTML += cardHTML;
             }
         } else {
-            // 3. منطق الأرشيف
             if (!arDays.includes(m.day)) { arHTML += `<div class="day-header">${m.day}</div>`; arDays.push(m.day); }
             arHTML += cardHTML;
         }
     });
-
-    if (todayHTML === "") {
-        todayHTML = `<div class="maintenance-clean"><p>لا توجد مباريات جارية الآن</p></div>`;
-    }
-
+    if (todayHTML === "") { todayHTML = `<div class="maintenance-clean"><p>لا توجد مباريات جارية الآن</p></div>`; }
     document.getElementById('today-matches-area').innerHTML = todayHTML;
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
