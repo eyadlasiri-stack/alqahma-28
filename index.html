@@ -83,8 +83,7 @@
 
         .footer { text-align: center; padding: 40px 20px; background: rgba(0,0,0,0.3); margin-top: 50px; border-top-left-radius: 30px; border-top-right-radius: 30px; }
         .social-mini { display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
-        .social-btn { padding: 8px 15px; border-radius: 12px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); transition: 0.3s; }
-        .social-btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+        .social-btn { padding: 8px 15px; border-radius: 12px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
     </style>
 </head>
 <body>
@@ -207,11 +206,14 @@ function init() {
 function updateDisplay() {
     const now = new Date(), hours = now.getHours(), day = now.getDay();
     let todayHTML = "", upHTML = "", arHTML = "", upDays = [], arDays = [];
+    
+    // نظام الـ 4 فجراً المصحح
     const isTodayFri = (day === 5 && hours >= 4) || (day === 6 && hours < 4);
     const isTodaySat = (day === 6 && hours >= 4) || (day === 0 && hours < 4);
 
     matchesData.forEach(m => {
         let card = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
+        
         let inToday = false;
         if (isTodayFri && m.day === "الجمعة 17 رمضان") { todayHTML += card; inToday = true; }
         if (isTodaySat && m.day === "السبت 18 رمضان") { todayHTML += card; inToday = true; }
@@ -220,7 +222,7 @@ function updateDisplay() {
             if (!upDays.includes(m.day)) { upHTML += `<span class="day-header">${m.day}</span>`; upDays.push(m.day); }
             upHTML += card;
         } else if (m.type === "ar") {
-            if (!arDays.includes(m.day)) { arH += `<span class="day-header">${m.day}</span>`; arDays.push(m.day); }
+            if (!arDays.includes(m.day)) { arHTML += `<span class="day-header">${m.day}</span>`; arDays.push(m.day); }
             arHTML += card;
         }
     });
