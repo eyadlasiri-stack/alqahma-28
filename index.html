@@ -44,8 +44,8 @@
         }
         .tab-btn { 
             background: none; border: none; color: var(--text-muted); font-family: 'Cairo'; 
-            cursor: pointer; font-weight: 700; padding: 10px 20px; border-radius: 12px; 
-            transition: 0.4s; white-space: nowrap; font-size: 0.9rem; flex: 1;
+            cursor: pointer; font-weight: 700; padding: 10px 15px; border-radius: 12px; 
+            transition: 0.4s; white-space: nowrap; font-size: 0.85rem; flex: 1;
         }
         .tab-btn.active { background: var(--blue-grad); color: white; box-shadow: 0 5px 15px rgba(25,118,210,0.3); }
 
@@ -68,9 +68,14 @@
         }
         .match-info { color: var(--gold); font-size: 0.8rem; font-weight: 700; margin-top: 15px; display: block; text-align: center; letter-spacing: 1px; }
 
-        /* ستايل المعلقين تحت بعض */
         .comm-section { text-align: center; margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,215,0,0.1); }
         .comm-line { display: block; color: var(--gold); font-weight: 900; font-size: 0.85rem; line-height: 1.6; }
+
+        .about-card { background: var(--card-bg); border-radius: 15px; padding: 20px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 20px; }
+        .about-card h3 { color: var(--gold); border-bottom: 1px solid rgba(255,215,0,0.2); padding-bottom: 10px; margin-top: 0; font-size: 1rem; }
+        .about-text { font-size: 0.85rem; color: #ddd; line-height: 1.8; }
+        .about-list { padding-right: 20px; margin: 10px 0; }
+        .about-list li { margin-bottom: 8px; }
 
         .day-header { color: var(--text-muted); font-size: 0.85rem; font-weight: 700; margin: 25px 0 10px 10px; display: block; border-right: 3px solid var(--gold); padding-right: 10px; }
 
@@ -98,7 +103,7 @@
         </header>
 
         <div class="info-bar">
-            <div class="stat-badge"><span class="dot"></span> النشاط: 11,715</div>
+            <div class="stat-badge"><span class="dot"></span> النشاط: 11,432</div>
             <div class="stat-badge" id="weather-box">☁️ --°C</div>
         </div>
 
@@ -108,6 +113,7 @@
             <button class="tab-btn" onclick="openTab(event, 'scorers')">الهدافين</button>
             <button class="tab-btn" onclick="openTab(event, 'archive')">الأرشيف</button>
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
+            <button class="tab-btn" onclick="openTab(event, 'about')">حول البطولة</button>
         </div>
 
         <div id="today" class="tab-content active"><div id="today-area"></div></div>
@@ -120,21 +126,54 @@
         </div>
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
+        
+        <div id="about" class="tab-content">
+            <div class="about-card">
+                <h3>📜 نظام بطولة القحمة 28</h3>
+                <div class="about-text">
+                    تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون لكرة القدم 2026م.
+                    <br><br>
+                    <strong>دور المجموعات:</strong> (18) مباراة.
+                    <ul class="about-list">
+                        <li>18 فريقاً مقسمة إلى 6 مجموعات (كل مجموعة 3 فرق).</li>
+                        <li>تقام المباريات بنظام المجموعات من دور واحد.</li>
+                        <li>يتأهل متصدر كل مجموعة مباشرة (6 فرق).</li>
+                        <li>تتأهل أفضل 4 فرق حاصلة على المركز الثاني للملحق.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <h3>⚖️ معايير حسم التعادل</h3>
+                <div class="about-text">
+                    ترتيب الفرق يتم حسب: النقاط > فرق الأهداف > الأكثر تسجيلاً > ركلات الترجيح (إذا كان الفريقان في الملعب) > القرعة.
+                </div>
+            </div>
+
+            <div class="about-card">
+                <h3>⚔️ الأدوار النهائية والملحق</h3>
+                <div class="about-text">
+                    <strong>الملحق:</strong>
+                    <ul class="about-list">
+                        <li>المباراة 19: (1) ضد (2) والفائز يلحق بالمجموعة 7.</li>
+                        <li>المباراة 20: (3) ضد (4) والفائز يلحق بالمجموعة 8.</li>
+                    </ul>
+                    <strong>دور الثمانية:</strong>
+                    <ul class="about-list">
+                        <li>المباراة 21: أول المجموعات (1) ضد (3).</li>
+                        <li>المباراة 22: أول المجموعات (2) ضد (4).</li>
+                        <li>المباراة 23: أول المجموعات (5) ضد (8).</li>
+                        <li>المباراة 24: أول المجموعات (6) ضد (7).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <div class="footer">
             <p style="font-size: 0.9rem; font-weight: 900; margin-bottom: 5px;">إعداد وبرمجة: إياد عسيري</p>
-            <p style="font-size: 0.6rem; color: var(--text-muted); line-height: 1.4; max-width: 80%; margin: 0 auto 15px;">إخلاء مسؤولية: موقع مجهود شخصي لتنظيم نتائج بطولة القحمة الرمضانية 28 وغير رسمي ولا يمثل أي جهة منظمة.</p>
             <div class="social-mini">
                 <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap)">👻 سناب إياد</a>
-                <a href="https://www.tiktok.com/@u_vvw?_r=1&_t=ZS-94NnOApbsKQ" target="_blank" class="social-btn" style="border-color:var(--tiktok)">🎵 تيك توك</a>
                 <a href="https://wa.me/966534987428" target="_blank" class="social-btn" style="border-color:var(--green-neon)">💬 واتساب</a>
-            </div>
-            <p style="font-size: 0.7rem; color: var(--gold); margin-top: 25px; font-weight: bold;">📸 الشبكة الإعلامية للبطولة</p>
-            <div class="social-mini">
-                <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn">👻 م. شداد</a>
-                <a href="https://snapchat.com/t/rJe5ARXp" target="_blank" class="social-btn">👻 علي</a>
-                <a href="https://snapchat.com/t/nreTp74h" target="_blank" class="social-btn">👻 رضي</a>
-                <a href="https://snapchat.com/t/gcKhHU8e" target="_blank" class="social-btn">👻 علوش</a>
             </div>
         </div>
     </div>
@@ -162,46 +201,26 @@ const matchesData = [
     { day: "الجمعة 17 رمضان", t1: "الصقر", t2: "السوق", info: "ربع النهائي 2", result: "VS", type: "up", isCommMatch: true },
     { day: "السبت 18 رمضان", t1: "صقلية", t2: "الفيصلي", info: "ربع النهائي 3", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "عمق", t2: "الوسام", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مواجهة رقم 1", result: "VS", type: "up" },
-    { day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مواجهة رقم 2", result: "VS", type: "up" },
-    { day: "المباراة النهائية", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "ختام البطولة", result: "VS", type: "up" },
     { day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "انتهت", result: "1 - 0", type: "ar" },
     { day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت", result: "3 - 0", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
-    { day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" },
-    { day: "السبت 11 رمضان", t1: "الصقر", t2: "العرق", info: "انتهت", result: "1 - 0", type: "ar" },
-    { day: "السبت 11 رمضان", t1: "البرك", t2: "ساحل مغزل", info: "انتهت", result: "0 - 1", type: "ar" },
-    { day: "الجمعة 10 رمضان", t1: "جندلة", t2: "الفيض", info: "انتهت", result: "2 - 2", type: "ar" },
-    { day: "الخميس 09 رمضان", t1: "الساحل الرياضي", t2: "السلطان", info: "انتهت", result: "2 - 1", type: "ar" },
-    { day: "الخميس 09 رمضان", t1: "صقلية", t2: "دبسا", info: "انتهت", result: "0 - 0", type: "ar" },
-    { day: "الأربعاء 08 رمضان", t1: "الصقر", t2: "عمق", info: "انتهت", result: "2 - 1", type: "ar" },
-    { day: "الثلاثاء 07 رمضان", t1: "السوق", t2: "الفيض", info: "انتهت", result: "1 - 0", type: "ar" },
-    { day: "الثلاثاء 07 رمضان", t1: "دبسا", t2: "عرمرم", info: "انتهت", result: "2 - 0", type: "ar" },
-    { day: "الاثنين 06 رمضان", t1: "الوسام", t2: "الخليج", info: "انتهت", result: "4 - 1", type: "ar" },
-    { day: "الاثنين 06 رمضان", t1: "عمق", t2: "العرق", info: "انتهت", result: "4 - 0", type: "ar" },
-    { day: "الأحد 05 رمضان", t1: "مستقبل عرمرم", t2: "السلطان", info: "انتهت", result: "2 - 0", type: "ar" },
-    { day: "الأحد 05 رمضان", t1: "ساحل مغزل", t2: "وحدة الرقة", info: "انتهت", result: "3 - 1", type: "ar" },
-    { day: "السبت 04 رمضان", t1: "السوق", t2: "جندلة", info: "انتهت", result: "2 - 0", type: "ar" },
-    { day: "الجمعة 03 رمضان", t1: "الفيصلي", t2: "خليج الصوالحة", info: "انتهت", result: "2 - 0", type: "ar" },
-    { day: "الخميس 02 رمضان", t1: "الساحل الرياضي", t2: "مستقبل عرمرم", info: "انتهت", result: "2 - 1", type: "ar" },
-    { day: "الأربعاء 01 رمضان", t1: "البرك", t2: "وحدة الرقة", info: "انتهت", result: "2 - 1", type: "ar" }
+    { day: "الأحد 12 رمضان", t1: "الفيصلي", t2: "الوسام", info: "انتهت", result: "0 - 1", type: "ar" }
 ];
 
 function init() {
     fetchWeather();
     const finalScorers = [
         {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
-        {n:"يحيى القوزي", f:"عمق", g:2}, {n:"نايف شرفي", f:"السوق", g:1}, {n:"عمر المعشي", f:"عمق", g:1}, 
+        {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"نايف شرفي", f:"السوق", g:1}, {n:"عمر المعشي", f:"عمق", g:1}, 
         {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1},
         {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1},
         {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1},
         {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1},
         {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1},
         {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1},
-        {n:"احمد مبارك", f:"الخليج", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}
+        {n:"احمد مبارك", f:"الخليج", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}
     ];
     finalScorers.sort((a,b) => b.g - a.g);
-    
     document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td class="scorer-name-box">${s.n}<br><span style="color:var(--text-muted); font-size:0.7rem;">(${s.f})</span></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td style="text-align:right; padding-right:15px; font-weight:700;">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     updateDisplay();
@@ -214,16 +233,11 @@ function updateDisplay() {
     const isTodaySat = (day === 6 && hours >= 4) || (day === 0 && hours < 4);
 
     matchesData.forEach(m => {
-        // إضافة المعلقين نواف وعبدالمحسن تحت المباراة الثانية فقط في يوم الجمعة
         let comms = (m.isCommMatch && isTodayFri) ? `<div class="comm-section"><span class="comm-line">🎙️ المعلق: نواف الغبيشي</span><span class="comm-line">🎙️ المعلق: عبدالمحسن مظفر</span></div>` : "";
-        
         let card = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span>${comms}</div>`;
-        
-        let inToday = false;
-        if (isTodayFri && m.day === "الجمعة 17 رمضان") { todayHTML += card; inToday = true; }
-        if (isTodaySat && m.day === "السبت 18 رمضان") { todayHTML += card; inToday = true; }
-
-        if (m.type === "up" && !inToday) {
+        if (isTodayFri && m.day === "الجمعة 17 رمضان") todayHTML += card;
+        else if (isTodaySat && m.day === "السبت 18 رمضان") todayHTML += card;
+        else if (m.type === "up") {
             if (!upDays.includes(m.day)) { upHTML += `<span class="day-header">${m.day}</span>`; upDays.push(m.day); }
             upHTML += card;
         } else if (m.type === "ar") {
@@ -231,7 +245,6 @@ function updateDisplay() {
             arHTML += card;
         }
     });
-
     document.getElementById('today-area').innerHTML = todayHTML || `<div style="text-align:center; padding:40px; color:var(--text-muted);">لا توجد مباريات جارية حالياً</div>`;
     document.getElementById('upcoming-area').innerHTML = upHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
