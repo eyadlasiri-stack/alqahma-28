@@ -71,6 +71,8 @@
         .comm-section { text-align: center; margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,215,0,0.1); }
         .comm-line { display: block; color: var(--gold); font-weight: 900; font-size: 0.85rem; line-height: 1.6; }
 
+        .about-text-area { white-space: pre-wrap; font-size: 0.9rem; color: #eee; padding: 15px; background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.8; text-align: right; }
+
         .day-header { color: var(--text-muted); font-size: 0.85rem; font-weight: 700; margin: 25px 0 10px 10px; display: block; border-right: 3px solid var(--gold); padding-right: 10px; }
 
         .group-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.05); }
@@ -107,6 +109,7 @@
             <button class="tab-btn" onclick="openTab(event, 'scorers')">الهدافين</button>
             <button class="tab-btn" onclick="openTab(event, 'archive')">الأرشيف</button>
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
+            <button class="tab-btn" onclick="openTab(event, 'about')">حول البطولة</button>
         </div>
 
         <div id="today" class="tab-content active"><div id="today-area"></div></div>
@@ -119,6 +122,61 @@
         </div>
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
+        
+        <div id="about" class="tab-content">
+            <div class="about-text-area">تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون لكرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي
+
+دور المجموعات وعدد مبارياته (18) مباراة
+
+* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة
+* ⁠
+* تقام مباريات البطولة بنظام المجموعات من دور واحد
+* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق
+* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية
+* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي
+* مجموع النقاط
+* إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)
+* إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر
+* إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب
+* في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة
+* ⁠
+* آلية مباريات الملحق
+بعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:
+ * المباراة  رقم (19) 
+(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) 
+ * المباراة رقم ( 20) 
+(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) 
+
+* مباريات دور الثمانية
+رقم المباراة ( 21) 
+اول مج (1) مع اول مج(3)
+
+المبارة رقم (22) 
+اول مج (2)   مع أول مج ( 4) 
+ المباراة رقم ( 23)
+اول مج ( 5) مع اول مج ( 7 ) 
+المباراة رقم (24) 
+اول مج (6) مع اول مج ( 8) 
+
+(( ملاحظة مهمة)) 
+
+في حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: 
+المباراة رقم ( 23)
+ اول مج ( 5 ) مع أول مج ( 8 ) 
+المباراة رقم (24) 
+اول مج( 6) مع أول مج(7) 
+وذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية 
+
+مباريات نصف النهائي
+ المباراة رقم (25) 
+فائز (21) مع فائز( 23) 
+المباراة رقم (26)
+ فائز (22) مع فائز 24
+
+النهائي 
+المباراة رقم (27)
+فائز (25) مع فائز (26)</div>
+        </div>
 
         <div class="footer">
             <p style="font-size: 0.9rem; font-weight: 900; margin-bottom: 5px;">إعداد وبرمجة: إياد عسيري</p>
@@ -159,9 +217,9 @@ const matchesData = [
     { day: "الجمعة 17 رمضان", t1: "الصقر", t2: "السوق", info: "ربع النهائي 2", result: "VS", type: "up", isCommMatch: true },
     { day: "السبت 18 رمضان", t1: "صقلية", t2: "الفيصلي", info: "ربع النهائي 3", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "عمق", t2: "الوسام", info: "ربع النهائي 4", result: "VS", type: "up" },
-    { day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مواجهة 25", result: "VS", type: "up" },
-    { day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مواجهة 26", result: "VS", type: "up" },
-    { day: "النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مباراة 27", result: "VS", type: "up" },
+    { day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مواجهة رقم 25", result: "VS", type: "up" },
+    { day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مواجهة رقم 26", result: "VS", type: "up" },
+    { day: "المباراة النهائية", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مباراة 27", result: "VS", type: "up" },
     { day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "انتهت", result: "1 - 0", type: "ar" },
     { day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت", result: "3 - 0", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
@@ -198,6 +256,7 @@ function init() {
         {n:"احمد مبارك", f:"الخليج", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}
     ];
     finalScorers.sort((a,b) => b.g - a.g);
+    
     document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td class="scorer-name-box">${s.n}<br><span style="color:var(--text-muted); font-size:0.7rem;">(${s.f})</span></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td style="text-align:right; padding-right:15px; font-weight:700;">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     updateDisplay();
