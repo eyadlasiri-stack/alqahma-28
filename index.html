@@ -118,19 +118,19 @@
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
 
         <div class="footer">
-            <p style="font-size: 0.9rem; font-weight: 900;">إعداد وبرمجة: إياد عسيري</p>
-            <p style="font-size: 0.6rem; color: var(--text-muted); margin: 10px 0;">مجهود شخصي غير رسمي لتغطية نتائج البطولة</p>
+            <p style="font-size: 0.9rem; font-weight: 900; margin-bottom: 5px;">إعداد وبرمجة: إياد عسيري</p>
+            <p style="font-size: 0.6rem; color: var(--text-muted); line-height: 1.4; max-width: 80%; margin: 0 auto 15px;">إخلاء مسؤولية: موقع مجهود شخصي لتنظيم نتائج بطولة القحمة الرمضانية 28 وغير رسمي ولا يمثل أي جهة منظمة.</p>
             <div class="social-mini">
-                <a href="https://snapchat.com/t/TXTbTApk" class="social-btn" style="border-color:var(--snap)">👻 سناب إياد</a>
-                <a href="https://www.tiktok.com/@u_vvw?_r=1&_t=ZS-94NnOApbsKQ" class="social-btn" style="border-color:var(--tiktok)">🎵 تيك توك</a>
-                <a href="https://wa.me/966534987428" class="social-btn" style="border-color:var(--green-neon)">💬 واتساب</a>
+                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap)">👻 سناب إياد</a>
+                <a href="https://www.tiktok.com/@u_vvw?_r=1&_t=ZS-94NnOApbsKQ" target="_blank" class="social-btn" style="border-color:var(--tiktok)">🎵 تيك توك</a>
+                <a href="https://wa.me/966534987428" target="_blank" class="social-btn" style="border-color:var(--green-neon)">💬 واتساب</a>
             </div>
-            <p style="font-size: 0.7rem; color: var(--gold); margin-top: 20px; font-weight: bold;">📸 الشبكة الإعلامية</p>
+            <p style="font-size: 0.7rem; color: var(--gold); margin-top: 25px; font-weight: bold;">📸 الشبكة الإعلامية للبطولة</p>
             <div class="social-mini">
-                <a href="https://snapchat.com/t/2qKXdcpD" class="social-btn">م. شداد</a>
-                <a href="https://snapchat.com/t/rJe5ARXp" class="social-btn">علي</a>
-                <a href="https://snapchat.com/t/nreTp74h" class="social-btn">رضي</a>
-                <a href="https://snapchat.com/t/gcKhHU8e" class="social-btn">علوش</a>
+                <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn">👻 م. شداد</a>
+                <a href="https://snapchat.com/t/rJe5ARXp" target="_blank" class="social-btn">👻 علي</a>
+                <a href="https://snapchat.com/t/nreTp74h" target="_blank" class="social-btn">👻 رضي</a>
+                <a href="https://snapchat.com/t/gcKhHU8e" target="_blank" class="social-btn">👻 علوش</a>
             </div>
         </div>
     </div>
@@ -197,19 +197,17 @@ function init() {
     ];
     document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td class="scorer-name-box">${s.n}<br><span style="color:var(--text-muted); font-size:0.7rem;">(${s.f})</span></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td style="text-align:right; padding-right:15px; font-weight:700;">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
-    updateData();
+    updateDisplay();
 }
 
-function updateData() {
+function updateDisplay() {
     const now = new Date(), hours = now.getHours(), day = now.getDay();
     let todayHTML = "", upHTML = "", arHTML = "", upDays = [], arDays = [];
-    
     const isTodayFri = (day === 5 && hours >= 4) || (day === 6 && hours < 4);
     const isTodaySat = (day === 6 && hours >= 4) || (day === 0 && hours < 4);
 
     matchesData.forEach(m => {
         let card = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
-        
         let inToday = false;
         if (isTodayFri && m.day === "الجمعة 17 رمضان") { todayHTML += card; inToday = true; }
         if (isTodaySat && m.day === "السبت 18 رمضان") { todayHTML += card; inToday = true; }
