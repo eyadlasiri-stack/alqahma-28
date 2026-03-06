@@ -77,13 +77,14 @@
         .group-table td { padding: 15px 5px; text-align: center; font-size: 0.85rem; color: #fff; }
         .pts-col { color: var(--gold); font-weight: 900; font-size: 1rem; }
 
-        .scorers-table { width: 100%; }
-        .scorer-name-box { text-align: right; padding: 15px; font-weight: 700; }
+        .scorers-table { width: 100%; border-collapse: collapse; }
+        .scorer-name-box { text-align: right; padding: 15px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .goal-badge { background: var(--gold); color: #000; padding: 4px 12px; border-radius: 8px; font-weight: 900; float: left; }
 
         .footer { text-align: center; padding: 40px 20px; background: rgba(0,0,0,0.3); margin-top: 50px; border-top-left-radius: 30px; border-top-right-radius: 30px; }
         .social-mini { display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
-        .social-btn { padding: 8px 15px; border-radius: 12px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+        .social-btn { padding: 8px 15px; border-radius: 12px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); transition: 0.3s; }
+        .social-btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
     </style>
 </head>
 <body>
@@ -186,15 +187,18 @@ const matchesData = [
 function init() {
     fetchWeather();
     const finalScorers = [
-        {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر الحزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
+        {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
         {n:"يحيى القوزي", f:"عمق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"نايف شرفي", f:"السوق", g:1}, 
         {n:"عمر المعشي", f:"عمق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, 
-        {n:"متعب مفرح", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد براهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, 
-        {n:"عبدالله عجيم", f:"ساحل مغزل", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, 
+        {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, 
+        {n:"عبدالله عجيم", f:"ساحل مغزل", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"هادي عبدالرحمن", f:"الوحدة", g:1}, 
         {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, 
-        {n:"إبراهيم الزيادي", f:"السلطان", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, 
-        {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"أحمد مبارك", f:"الخليج", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}
+        {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, 
+        {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"الخليج", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1},
+        {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
     ];
+    finalScorers.sort((a,b) => b.g - a.g);
+    
     document.getElementById('scorers-list').innerHTML = finalScorers.map(s => `<tr><td class="scorer-name-box">${s.n}<br><span style="color:var(--text-muted); font-size:0.7rem;">(${s.f})</span></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td style="text-align:right; padding-right:15px; font-weight:700;">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     updateDisplay();
@@ -216,7 +220,7 @@ function updateDisplay() {
             if (!upDays.includes(m.day)) { upHTML += `<span class="day-header">${m.day}</span>`; upDays.push(m.day); }
             upHTML += card;
         } else if (m.type === "ar") {
-            if (!arDays.includes(m.day)) { arHTML += `<span class="day-header">${m.day}</span>`; arDays.push(m.day); }
+            if (!arDays.includes(m.day)) { arH += `<span class="day-header">${m.day}</span>`; arDays.push(m.day); }
             arHTML += card;
         }
     });
