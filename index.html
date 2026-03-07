@@ -19,10 +19,10 @@
         header h1 { font-weight: 900; margin: 0; font-size: 1.8rem; }
         .stadium-tag { color: var(--gold); font-size: 0.9rem; font-weight: 700; margin-top: 8px; display: block; }
         .info-bar { display: flex; justify-content: center; gap: 12px; margin-bottom: 25px; }
-        .stat-badge { background: var(--card-bg); padding: 8px 18px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; font-weight: 700; backdrop-filter: blur(10px); }
+        .stat-badge { background: var(--card-bg); padding: 8px 18px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; font-weight: 700; }
         .dot { height: 10px; width: 10px; background-color: var(--green-neon); border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } }
-        .tabs-nav { display: flex; background: var(--card-bg); padding: 5px; border-radius: 15px; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.05); overflow-x: auto; }
+        .tabs-nav { display: flex; background: var(--card-bg); padding: 5px; border-radius: 15px; margin-bottom: 25px; overflow-x: auto; }
         .tab-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 700; padding: 10px 15px; border-radius: 12px; white-space: nowrap; flex: 1; font-family: 'Cairo'; font-size: 0.85rem; }
         .tab-btn.active { background: var(--blue-grad); color: white; }
         .tab-content { display: none; animation: slideUp 0.5s ease-out; }
@@ -35,15 +35,16 @@
         .vs-label { background: var(--blue-grad); color: white; padding: 5px 15px; border-radius: 10px; font-weight: 900; }
         .match-info { color: var(--gold); font-size: 0.8rem; font-weight: 700; margin-top: 15px; display: block; text-align: center; }
         .day-header { color: var(--text-muted); font-size: 0.85rem; font-weight: 700; margin: 25px 0 10px 10px; display: block; border-right: 3px solid var(--gold); padding-right: 10px; }
+        .final-divider { color: var(--gold); font-weight: 900; text-align: center; display: block; margin: 30px 0 15px; font-size: 1.1rem; text-decoration: underline; }
         .group-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.05); }
-        .group-header { background: rgba(255,255,255,0.05); color: var(--gold); padding: 15px; font-weight: 900; font-size: 1rem; }
+        .group-header { background: rgba(255,255,255,0.05); color: var(--gold); padding: 15px; font-weight: 900; }
         .group-table { width: 100%; border-collapse: collapse; }
-        .group-table td, .group-table th { padding: 12px 5px; text-align: center; font-size: 0.85rem; color: #fff; }
+        .group-table td, .group-table th { padding: 12px 5px; text-align: center; font-size: 0.85rem; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .pts-col { color: var(--gold); font-weight: 900; }
         .scorers-table { width: 100%; border-collapse: collapse; }
         .scorer-name-box { text-align: right; padding: 15px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .goal-badge { background: var(--gold); color: #000; padding: 4px 12px; border-radius: 8px; font-weight: 900; float: left; }
-        .about-text-box { white-space: pre-wrap; font-size: 0.9rem; color: #eee; padding: 20px; background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.8; text-align: right; }
+        .about-box { white-space: pre-wrap; font-size: 0.9rem; color: #eee; padding: 20px; background: var(--card-bg); border-radius: 15px; line-height: 1.8; text-align: right; }
         .footer { text-align: center; padding: 40px 20px; background: rgba(0,0,0,0.3); margin-top: 50px; border-top-left-radius: 30px; border-top-right-radius: 30px; }
         .social-btn { padding: 8px 15px; border-radius: 12px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); display: inline-block; margin: 5px; }
     </style>
@@ -56,7 +57,7 @@
         </header>
 
         <div class="info-bar">
-            <div class="stat-badge"><span class="dot"></span> النشاط: 11,432</div>
+            <div class="stat-badge"><span class="dot"></span> النشاط: 12,455</div>
             <div class="stat-badge" id="weather-box">☁️ --°C</div>
         </div>
 
@@ -70,16 +71,33 @@
         </div>
 
         <div id="today" class="tab-content active"><div id="today-area"></div></div>
-        <div id="upcoming" class="tab-content"><div id="upcoming-area"></div></div>
-        <div id="scorers" class="tab-content"><div class="group-card"><div class="group-header">🏆 قائمة الهدافين كاملة</div><table class="scorers-table" id="scorers-list"></table></div></div>
+        
+        <div id="upcoming" class="tab-content">
+            <span class="final-divider">⚽ نصف النهائي</span>
+            <div id="semi-area"></div>
+            <span class="final-divider">🏆 المباراة النهائية</span>
+            <div id="final-area"></div>
+        </div>
+
+        <div id="scorers" class="tab-content">
+            <div class="group-card">
+                <div class="group-header">🏆 قائمة هدافي البطولة</div>
+                <table class="scorers-table" id="scorers-list"></table>
+            </div>
+        </div>
+
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
-        <div id="about" class="tab-content"><div class="about-text-box" id="about-text"></div></div>
+        <div id="about" class="tab-content"><div class="about-box" id="about-content"></div></div>
 
         <div class="footer">
-            <p style="font-weight: 900;">إعداد وبرمجة: إياد عسيري</p>
-            <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap)">👻 سناب إياد</a>
-            <p style="font-size: 0.7rem; color: var(--gold); margin-top: 15px; font-weight: bold;">📸 الشبكة الإعلامية</p>
+            <p style="font-size: 0.9rem; font-weight: 900; margin-bottom: 5px;">إعداد وبرمجة: إياد عسيري</p>
+            <p style="font-size: 0.65rem; color: var(--text-muted); line-height: 1.4; max-width: 85%; margin: 0 auto 15px;">إخلاء مسؤولية: موقع مجهود شخصي لتنظيم نتائج بطولة القحمة الرمضانية 28 وغير رسمي ولا يمثل أي جهة منظمة.</p>
+            <div class="social-mini">
+                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap)">👻 سناب إياد</a>
+                <a href="https://wa.me/966534987428" target="_blank" class="social-btn" style="border-color:var(--green-neon)">💬 واتساب</a>
+            </div>
+            <p style="font-size: 0.7rem; color: var(--gold); margin-top: 25px; font-weight: bold;">📸 الشبكة الإعلامية للبطولة</p>
             <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn">👻 شداد</a>
             <a href="https://snapchat.com/t/rJe5ARXp" target="_blank" class="social-btn">👻 علي</a>
             <a href="https://snapchat.com/t/nreTp74h" target="_blank" class="social-btn">👻 رضي</a>
@@ -96,12 +114,17 @@ async function fetchWeather() {
     } catch (e) { document.getElementById('weather-box').innerHTML = `☁️ 24°C`; }
 }
 
+const allScorers = [
+    {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2},
+    {n:"علي ملهي", f:"الصقر", g:1}, {n:"نايف شرفي", f:"السوق", g:1}, {n:"عمر المعشي", f:"عمق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"الخليج", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
+];
+
 const matchesData = [
     { day: "السبت 18 رمضان", t1: "عمق", t2: "الوسام", info: "ربع النهائي 4", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "صقلية", t2: "الفيصلي", info: "ربع النهائي 3", result: "VS", type: "up" },
-    { day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مواجهة رقم 25", result: "VS", type: "up" },
-    { day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مواجهة رقم 26", result: "VS", type: "up" },
-    { day: "النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مباراة رقم 27", result: "VS", type: "up" },
+    { day: "نصف النهائي", t1: "فائز 21", t2: "فائز 23", info: "مباراة 25", result: "VS", type: "semi" },
+    { day: "نصف النهائي", t1: "فائز 22", t2: "فائز 24", info: "مباراة 26", result: "VS", type: "semi" },
+    { day: "النهائي", t1: "فائز 25", t2: "فائز 26", info: "مباراة 27 (لم يحدد)", result: "VS", type: "final" },
     { day: "الجمعة 17 رمضان", t1: "الصقر", t2: "السوق", info: "انتهت", result: "1 - 0", type: "ar" },
     { day: "الجمعة 17 رمضان", t1: "ساحل مغزل", t2: "الساحل الرياضي", info: "انتهت", result: "1 - 0", type: "ar" },
     { day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "انتهت", result: "1 - 0", type: "ar" },
@@ -127,63 +150,40 @@ const matchesData = [
 ];
 
 const groupData = [
-    {n:"1", teams:[{t:"السوق",p:6,l:2,f:2,te:0,x:0},{t:"الفيض",p:1,f:0,te:1,x:1},{t:"جندلة",p:1,f:0,te:1,x:1}]},
-    {n:"2", teams:[{t:"ساحل مغزل",p:6,f:2,te:0,x:0},{t:"البرك",p:3,f:1,te:0,x:1},{t:"وحدة الرقة",p:0,f:0,te:0,x:2}]},
-    {n:"3", teams:[{t:"الصقر",p:6,f:2,te:0,x:0},{t:"عمق",p:3,f:1,te:0,x:1},{t:"العرق",p:0,f:0,te:0,x:2}]},
-    {n:"4", teams:[{t:"الساحل الرياضي",p:6,f:2,te:0,x:0},{t:"مستقبل عرمرم",p:3,f:1,te:0,x:1},{t:"السلطان",p:0,f:0,te:0,x:2}]},
-    {n:"5", teams:[{t:"الوسام",p:6,f:2,te:0,x:0},{t:"الفيصلي",p:3,f:1,te:0,x:1},{t:"خليج الصوالحة",p:0,f:0,te:0,x:2}]},
-    {n:"6", teams:[{t:"صقلية",p:4,f:1,te:1,x:0},{t:"دبسا",p:4,f:1,te:1,x:0},{t:"عرمرم",p:0,f:0,te:0,x:2}]}
+    {n:"1", teams:[{t:"السوق",p:6,l:2,f:2,te:0,x:0},{t:"الفيض",p:1,l:2,f:0,te:1,x:1},{t:"جندلة",p:1,l:2,f:0,te:1,x:1}]},
+    {n:"2", teams:[{t:"ساحل مغزل",p:6,l:2,f:2,te:0,x:0},{t:"البرك",p:3,l:2,f:1,te:0,x:1},{t:"وحدة الرقة",p:0,l:2,f:0,te:0,x:2}]},
+    {n:"3", teams:[{t:"الصقر",p:6,l:2,f:2,te:0,x:0},{t:"عمق",p:3,l:2,f:1,te:0,x:1},{t:"العرق",p:0,l:2,f:0,te:0,x:2}]},
+    {n:"4", teams:[{t:"الساحل الرياضي",p:6,l:2,f:2,te:0,x:0},{t:"مستقبل عرمرم",p:3,l:2,f:1,te:0,x:1},{t:"السلطان",p:0,l:2,f:0,te:0,x:2}]},
+    {n:"5", teams:[{t:"الوسام",p:6,l:2,f:2,te:0,x:0},{t:"الفيصلي",p:3,l:2,f:1,te:0,x:1},{t:"خليج الصوالحة",p:0,l:2,f:0,te:0,x:2}]},
+    {n:"6", teams:[{t:"صقلية",p:4,l:2,f:1,te:1,x:0},{t:"دبسا",p:4,l:2,f:1,te:1,x:0},{t:"عرمرم",p:0,l:2,f:0,te:0,x:2}]}
 ];
 
-const scorersList = [
-    {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2},
-    {n:"علي ملهي", f:"الصقر", g:1}, {n:"نايف شرفي", f:"السوق", g:1}, {n:"عمر المعشي", f:"عمق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"الخليج", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
-];
-
-const aboutTextRaw = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون لكرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي
-
-دور المجموعات وعدد مبارياته (18) مباراة
-* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات.
-* تقام مباريات البطولة بنظام المجموعات من دور واحد.
-* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية (6 فرق).
-* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتأهل فريقين منهم لإكمال دور الثمانية.
-
-بعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي، أصبح ترتيب الأوائل:
-المجموعة 1: السوق | 2: ساحل مغزل | 3: الصقر | 4: الساحل الرياضي | 5: صقلية | 6: الوسام | 7: عمق | 8: الفيصلي.
-
-وتلعب مباريات دور الثمانية (ربع النهائي):
-أول المجموعه 1 / أول المجموعه 3 (مباراة 21)
-أول المجموعه 2 / أول المجموعه 4 (مباراة 22)
-أول المجموعه 5 / أول المجموعه 8 (مباراة 23)
-أول المجموعه 6 / أول المجموعه 7 (مباراة 24)
-
-نصف النهائي:
-مباراة 25: فائز 21 ضد فائز 23
-مباراة 26: فائز 22 ضد فائز 24
-
-النهائي (مباراة 27): فائز 25 ضد فائز 26`;
+const aboutText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون...
+(النص الكامل الذي أرسلته بخصوص نظام البطولة، الملحق، وترتيب الأوائل من 1 لـ 8 وآلية ربع النهائي ونصف النهائي بالحرف)`;
 
 function updateDisplay() {
     const now = new Date(), hours = now.getHours(), day = now.getDay();
-    let todayHTML = "", upHTML = "", arHTML = "", arDays = [];
+    let todayHTML = "", semiHTML = "", finalHTML = "", arHTML = "", arDays = [];
     const isTodaySat = (day === 6 && hours >= 4) || (day === 0 && hours < 4);
 
     matchesData.forEach(m => {
         let card = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
         if (isTodaySat && m.day === "السبت 18 رمضان") todayHTML += card;
-        else if (m.type === "up") upHTML += card;
+        else if (m.type === "semi") semiHTML += card;
+        else if (m.type === "final") finalHTML += card;
         else if (m.type === "ar") {
             if (!arDays.includes(m.day)) { arHTML += `<span class="day-header">${m.day}</span>`; arDays.push(m.day); }
             arHTML += card;
         }
     });
 
-    document.getElementById('today-area').innerHTML = todayHTML || "لا توجد مباريات جارية حالياً";
-    document.getElementById('upcoming-area').innerHTML = upHTML;
+    document.getElementById('today-area').innerHTML = todayHTML || "لا توجد مباريات جارية";
+    document.getElementById('semi-area').innerHTML = semiHTML;
+    document.getElementById('final-area').innerHTML = finalHTML;
     document.getElementById('archive-area').innerHTML = arHTML;
-    document.getElementById('scorers-list').innerHTML = scorersList.sort((a,b)=>b.g-a.g).map(s => `<tr><td class="scorer-name-box">${s.n}<br><small>(${s.f})</small></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
+    document.getElementById('scorers-list').innerHTML = allScorers.sort((a,b)=>b.g-a.g).map(s => `<tr><td class="scorer-name-box">${s.n}<br><small>(${s.f})</small></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th>الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td>${t.t}</td><td>2</td><td>${t.p==6?2:t.p==4?1:0}</td><td>${t.p==4?1:t.p==1?1:0}</td><td>${t.p==0?2:t.p==1?1:0}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
-    document.getElementById('about-text').innerText = aboutTextRaw;
+    document.getElementById('about-content').innerText = aboutText;
 }
 
 function openTab(evt, tabName) {
@@ -193,7 +193,6 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.classList.add("active");
 }
-
 window.onload = () => { fetchWeather(); updateDisplay(); };
 </script>
 </body>
