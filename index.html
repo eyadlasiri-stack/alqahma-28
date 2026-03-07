@@ -35,10 +35,8 @@
         .vs-label { background: var(--blue-grad); color: white; padding: 5px 15px; border-radius: 10px; font-weight: 900; }
         .match-info { color: var(--gold); font-size: 0.8rem; font-weight: 700; margin-top: 10px; display: block; text-align: center; }
         
-        /* تنسيق المعلق والملعب الصغير داخل الإطار */
         .match-footer-info { display: flex; justify-content: center; gap: 15px; margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
         .mfi-item { display: flex; align-items: center; gap: 5px; }
-        .mfi-stadium { color: var(--gold); font-weight: 700; font-size: 0.7rem; display: block; text-align: center; margin-top: 2px; }
 
         .day-header { color: var(--gold); font-size: 0.9rem; font-weight: 900; margin: 25px 0 10px; display: block; border-right: 4px solid var(--gold); padding-right: 12px; text-align: right; }
         .final-divider { color: var(--gold); font-weight: 900; text-align: center; display: block; margin: 30px 0 15px; font-size: 1.1rem; text-decoration: underline; }
@@ -53,8 +51,10 @@
 
         .goal-badge { background: var(--gold); color: #000; padding: 4px 12px; border-radius: 8px; font-weight: 900; float: left; }
         .about-text-area { white-space: pre-wrap; font-size: 0.9rem; color: #eee; padding: 20px; background: var(--card-bg); border-radius: 15px; text-align: right; line-height: 1.8; border: 1px solid rgba(255,255,255,0.05); }
+        
         .footer { text-align: center; padding: 40px 20px; background: rgba(0,0,0,0.3); margin-top: 50px; border-top-left-radius: 30px; border-top-right-radius: 30px; }
         .social-btn { padding: 8px 15px; border-radius: 12px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); display: inline-block; margin: 5px; }
+        .social-mini { display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -90,11 +90,7 @@
             
             <div class="match-footer-info">
                 <div class="mfi-item">🎤 معلق المباريات: عبدالله دبابي</div>
-                <div class="mfi-item">
-                    <div>
-                        <span>🏟️ الملعب: الوسم بالقحمة</span>
-                    </div>
-                </div>
+                <div class="mfi-item">🏟️ الملعب: الوسم بالقحمة</div>
             </div>
         </div>
 
@@ -152,7 +148,7 @@
  اول مج ( 5 ) مع أول مج ( 8 ) 
 المباراة رقم (24) 
 اول مج( 6) مع أول مج(7) 
-وذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية 
+وذلك لتلافي مواجهة فريقان كان في نفس المجموعة في الأدوار التمهيدية 
 
 مباريات نصف النهاىي
  المباراة رقم (25) 
@@ -199,16 +195,16 @@
         <div class="footer">
             <p style="font-weight: 900; margin-bottom: 5px;">إعداد وبرمجة: إياد عسيري</p>
             <p style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 15px;">إخلاء مسؤولية: موقع مجهود شخصي لتنظيم نتائج بطولة القحمة الرمضانية 28 وغير رسمي ولا يمثل أي جهة منظمة.</p>
-            <div>
-                <a href="https://wa.me/966534987428" target="_blank" class="social-btn" style="border-color:var(--green-neon)">واتساب</a>
-                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap)">سناب</a>
+            <div class="social-mini">
+                <a href="https://wa.me/966534987428" target="_blank" class="social-btn" style="border-color:var(--green-neon)">واتساب إياد</a>
+                <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap)">سناب إياد</a>
             </div>
             <p style="font-size: 0.75rem; color: var(--gold); font-weight: 900; margin-top: 15px;">📸 الشبكة الإعلامية للبطولة</p>
-            <div>
+            <div class="social-mini">
                 <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn">شداد</a>
                 <a href="https://snapchat.com/t/rJe5ARXp" target="_blank" class="social-btn">علي</a>
-                <a href="https://snapchat.com/t/nreTp74h" target="_btn">رضي</a>
-                <a href="https://snapchat.com/t/gcKhHU8e" target="_btn">علوش</a>
+                <a href="https://snapchat.com/t/nreTp74h" target="_blank" class="social-btn">رضي</a>
+                <a href="https://snapchat.com/t/gcKhHU8e" target="_blank" class="social-btn">علوش</a>
             </div>
         </div>
     </div>
@@ -250,8 +246,7 @@ const groupData = [
 ];
 
 const scorers = [
-    {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2},
-    {n:"علي ملهي", f:"الصقر", g:1}, {n:"نايف شرفي", f:"السوق", g:1}, {n:"عمر المعشي", f:"عمق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"خالد dماس", f:"ساحل مغزل", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"الخليج", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
+    {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"نايف شرفي", f:"السوق", g:1}, {n:"عمر المعشي", f:"عمق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"الخليج", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
 ];
 
 function updateDisplay() {
