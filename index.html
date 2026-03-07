@@ -68,9 +68,6 @@
         }
         .match-info { color: var(--gold); font-size: 0.8rem; font-weight: 700; margin-top: 15px; display: block; text-align: center; letter-spacing: 1px; }
 
-        .comm-section { text-align: center; margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,215,0,0.1); }
-        .comm-line { display: block; color: var(--gold); font-weight: 900; font-size: 0.85rem; line-height: 1.6; }
-
         .about-text-area { white-space: pre-wrap; font-size: 0.9rem; color: #eee; padding: 15px; background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.8; text-align: right; }
 
         .day-header { color: var(--text-muted); font-size: 0.85rem; font-weight: 700; margin: 25px 0 10px 10px; display: block; border-right: 3px solid var(--gold); padding-right: 10px; }
@@ -99,7 +96,7 @@
         </header>
 
         <div class="info-bar">
-            <div class="stat-badge"><span class="dot"></span> النشاط: 12,051</div>
+            <div class="stat-badge"><span class="dot"></span> النشاط: 11,432</div>
             <div class="stat-badge" id="weather-box">☁️ --°C</div>
         </div>
 
@@ -245,13 +242,13 @@ const groupData = [
 ];
 
 const matchesData = [
-    { day: "الجمعة 17 رمضان", t1: "الساحل الرياضي", t2: "ساحل مغزل", info: "انتهت ربع النهائي 1", result: "0 - 1", type: "up" },
-    { day: "الجمعة 17 رمضان", t1: "الصقر", t2: "السوق", info: "انتهت ربع النهائي 2", result: "1 - 0", type: "up", isCommMatch: true },
-    { day: "السبت 18 رمضان", t1: "صقلية", t2: "الفيصلي", info: "ربع النهائي 3", result: "VS", type: "up" },
     { day: "السبت 18 رمضان", t1: "عمق", t2: "الوسام", info: "ربع النهائي 4", result: "VS", type: "up" },
+    { day: "السبت 18 رمضان", t1: "صقلية", t2: "الفيصلي", info: "ربع النهائي 3", result: "VS", type: "up" },
     { day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مواجهة رقم 25", result: "VS", type: "up" },
     { day: "نصف النهائي", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مواجهة رقم 26", result: "VS", type: "up" },
     { day: "المباراة النهائية", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "مباراة 27", result: "VS", type: "up" },
+    { day: "الجمعة 17 رمضان", t1: "الصقر", t2: "السوق", info: "انتهت", result: "1 - 0", type: "ar" },
+    { day: "الجمعة 17 رمضان", t1: "ساحل مغزل", t2: "الساحل الرياضي", info: "انتهت", result: "1 - 0", type: "ar" },
     { day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", info: "انتهت", result: "1 - 0", type: "ar" },
     { day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", info: "انتهت", result: "3 - 0", type: "ar" },
     { day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", info: "انتهت", result: "4 - 1", type: "ar" },
@@ -277,9 +274,9 @@ const matchesData = [
 function init() {
     fetchWeather();
     const finalScorers = [
-        {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
+        {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2},
         {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"نايف شرفي", f:"السوق", g:1}, {n:"عمر المعشي", f:"عمق", g:1}, 
-        {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1},
+        {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1},
         {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1},
         {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1},
         {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1},
@@ -301,8 +298,7 @@ function updateDisplay() {
     const isTodaySat = (day === 6 && hours >= 4) || (day === 0 && hours < 4);
 
     matchesData.forEach(m => {
-        let comms = (m.isCommMatch && isTodayFri) ? `<div class="comm-section"><span class="comm-line">🎙️ المعلق: نواف الغبيشي</span><span class="comm-line">🎙️ المعلق: عبدالمحسن مظفر</span></div>` : "";
-        let card = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span>${comms}</div>`;
+        let card = `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.result}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
         
         let inToday = false;
         if (isTodayFri && m.day === "الجمعة 17 رمضان") { todayHTML += card; inToday = true; }
