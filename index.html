@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بطولة القحمة الرمضانية 28 - النسخة المعتمدة</title>
+    <title>بطولة القحمة الرمضانية 28 - أدوار الحسم 1</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -15,9 +15,13 @@
         }
         body { background-color: var(--bg); color: var(--text-main); font-family: 'Cairo', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         .container { max-width: 900px; margin: auto; padding: 15px; }
-        header { text-align: center; padding: 35px 0; background: var(--blue-grad); border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 25px; }
+        
+        /* هيدر مطور بالشعار الشفاف */
+        header { text-align: center; padding: 30px 0; background: var(--blue-grad); border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 25px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .logo-img { width: 85px; height: auto; margin-bottom: 12px; filter: drop-shadow(0 0 8px rgba(255,215,0,0.4)); }
         header h1 { font-weight: 900; margin: 0; font-size: 1.8rem; }
         .stadium-tag { color: var(--gold); font-size: 0.9rem; font-weight: 700; margin-top: 8px; display: block; }
+        
         .info-bar { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
         .stat-badge { background: var(--card-bg); padding: 8px 18px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; font-weight: 700; }
         .dot { height: 10px; width: 10px; background-color: var(--green-neon); border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; margin-left: 5px; }
@@ -44,6 +48,7 @@
         .day-header { color: var(--gold); font-size: 0.9rem; font-weight: 900; margin: 25px 0 10px; display: block; border-right: 4px solid var(--gold); padding-right: 12px; text-align: right; }
         .final-divider { color: var(--gold); font-weight: 900; text-align: center; display: block; margin: 30px 0 15px; font-size: 1.1rem; text-decoration: underline; }
         
+        /* تصميم الهدافين الذهبي المتوهج 👑 */
         .group-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255,215,0,0.1); width: 100%; box-shadow: 0 0 15px rgba(255,215,0,0.05); }
         .group-header { background: rgba(255,255,255,0.05); color: var(--gold); padding: 12px; font-weight: 900; font-size: 1rem; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .group-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
@@ -54,6 +59,7 @@
         
         .about-text-area { white-space: pre-wrap; font-size: 0.85rem; color: #eee; padding: 25px; background: var(--card-bg); border-radius: 15px; text-align: right; line-height: 1.8; border: 1px solid rgba(255,255,255,0.05); font-family: 'Cairo'; }
         
+        /* فوتر مدمج وفخم بأزرار ميني */
         .footer { text-align: center; padding: 25px 15px; background: rgba(0,0,0,0.5); margin-top: 50px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid rgba(255,215,0,0.1); }
         .social-btn { padding: 6px 12px; border-radius: 10px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); display: inline-block; margin: 3px; font-family: 'Cairo'; }
         .social-mini { display: flex; justify-content: center; gap: 2px; flex-wrap: wrap; margin-top: 5px; }
@@ -63,6 +69,7 @@
 <body>
     <div class="container">
         <header>
+            <img src="https://i.ibb.co/3YvX1D0/6RYcWdr2.png" alt="شعار البطولة" class="logo-img">
             <h1>بطولة القحمة الرمضانية 28</h1>
             <span class="stadium-tag">🏆 أدوار الحسم - ملعب الوسم بالقحمة 🏆</span>
         </header>
@@ -109,7 +116,7 @@
             </div>
             <div id="teams-list" class="sub-content" style="display:none;">
                 <div class="group-card">
-                    <div class="group-header">📊 السجل الإحصائي للأندية</div>
+                    <div class="group-header">📊 السجل الإحصائي للأندية (تحديث الأرشيف)</div>
                     <table class="group-table" style="width:100%; border-collapse:collapse;">
                         <thead><tr><th style="width:35%; text-align:right; padding-right:15px;">الفريق</th><th>لعب</th><th>له</th><th>عليه</th><th>+/-</th></tr></thead>
                         <tbody id="teams-tbody"></tbody>
@@ -124,88 +131,45 @@
         <div id="about" class="tab-content">
             <div class="about-text-area">تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون لكرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي
 
-دور المجموعات وعدد مبارياته (18) مباراة
+**دور المجموعات وعدد مبارياته (18) مباراة**
 
-* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة
-* ⁠
+* يشارك بالبطولة عدد (18) فريقاً ويتم تقسيم الفرق إلى (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة
 * تقام مباريات البطولة بنظام المجموعات من دور واحد
-* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق
-* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية
+* يتأهل الفريق الحاصل على المركز الأول من كل مجموعة إلى دور الثمانية ويصبح عدد المتأهلين (6) فرق
+* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتأهل فريقين منهم لإكمال عدد فرق دور الثمانية
 * يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي
 * مجموع النقاط
 * إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)
 * إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر
 * إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب
-* في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة بحضور مندوبي الفرق الثلاثة
-* ⁠
-* آلية مباريات الملحق
-بعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:
- * المباراة رقم (19) 
-(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) 
- * المباراة رقم ( 20) 
-(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) 
+* في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف يتم اللجوء إلى القرعة لحسم الموقف بين الفرق المتعادلة بحضور مندوبي الفرق الثلاثة
 
-* مباريات دور الثمانية
-رقم المباراة ( 21) 
-اول مج (1) مع اول مج(3)
+**آلية مباريات الملحق**
+بعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) إلى (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:
+* المباراة رقم (19): (1) مع (2) والفائز يصبح أول المجموعة (السابعة)
+* المباراة رقم (20): (3) مع (4) والفائز يصبح أول المجموعة (الثامنة)
 
-المبارة رقم (22) 
-اول مج (2) مع أول مج ( 4) 
- المباراة رقم ( 23)
-اول مج ( 5) مع اول مج ( 7 ) 
-المباراة رقم (24) 
-اول مج (6) مع اول مج ( 8) 
+**مباريات دور الثمانية (ربع النهائي)**
+* رقم المباراة (21): أول مج (1) مع أول مج (3)
+* المباراة رقم (22): أول مج (2) مع أول مج (4)
+* المباراة رقم (23): أول مج (5) مع أول مج (7)
+* المباراة رقم (24): أول مج (6) مع أول مج (8)
 
-(( ملاحظة مهمة)) 
+*(( ملاحظة مهمة ))*
+في حال كان المتأهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي:
+* المباراة رقم (23): أول مج (5) مع أول مج (8)
+* المباراة رقم (24): أول مج (6) مع أول مج (7)
+وذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية
 
-في حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: 
-المباراة رقم ( 23)
- اول مج ( 5 ) مع أول مج ( 8 ) 
-المباراة رقم (24) 
-اول مج( 6) مع أول مج(7) 
-وذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية 
+**مباريات نصف النهائي**
+* المباراة رقم (25): فائز (21) مع فائز (23)
+* المباراة رقم (26): فائز (22) مع فائز (24)
 
-مباريات نصف النهاىي
- المباراة رقم (25) 
-فائز (21) مع فائز( 23) 
-المباراة رقم (26)
- فائز (22) مع فائز 24
+**المباراة النهائية**
+* المباراة رقم (27): فائز (25) مع فائز (26)
 
-النهائي 
-المباراة رقم (27)
-فائز (25) مع فائز (26)
-
-بعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي 
-تم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة 
-وبالتالي اصبح ترتيب الاوائل على النحو التالي :
-المجموعة الاولى فريق السوق 
-المجموعة الثانية فريق ساحل مغزل
-المجموعة الثالثة فريق الصقر 
-المجموعة الرابعة فريق الساحل الرياضي 
-المجموعه الخامسة فريق صقليه
-المجموعة السادسة فريق الوسام 
-المجموعة السابعة فريق عمق 
-المجموعة الثامنه فريق الفيصلي
-
-وتلعب مباريات دور الثمانية(ربع النهائي )
-
- حسب نظام البطولة 
-اول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)
-اول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم (22)
-—————————————————-
-وحسب نظام البطولة المعلن عنه سابقا في حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا في نفس المجموعه في الدور التمهيدي وهذا ما حدث فعلا
-اول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم (23)
-اول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم (24)
-——————————————————
-مباريات دور الاربعة ( نصف النهائي )
-رقم المباراة (25)
-فائز المباراة رقم (21) مع فائز المباراة رقم (23)
-رقم المباراة (26)
-فائز المباراة رقم (22) مع فائز المباراة رقم (24)
-——————————————————-
-المباراة النهائية 
-رقم المباراة (27)
-فائز المباراة رقم (25) مع فائز المباراة رقم (26)</div>
+بعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي، تم إضافة عمق إلى المجموعة السابعة والفيصلي إلى المجموعة الثامنة، وبالتالي أصبح ترتيب الأوائل على النحو التالي:
+المجموعة الأولى فريق السوق | الثانية ساحل مغزل | الثالثة الصقر | الرابعة الساحل الرياضي | الخامسة صقلية | السادسة الوسام | السابعة عمق | الثامنة الفيصلي.</div>
         </div>
 
         <div class="footer">
@@ -215,7 +179,7 @@
                 <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn">سناب</a>
             </div>
             
-            <p style="font-size: 0.7rem; color: var(--gold); font-weight: 900; margin: 15px 0 5px;">📸 الشبكة الإعلامية</p>
+            <p style="font-size: 0.7rem; color: var(--gold); font-weight: 900; margin: 15px 0 5px;">📸 الشبكة الإعلامية للبطولة</p>
             <div class="social-mini">
                 <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn">شداد</a>
                 <a href="https://snapchat.com/t/rJe5ARXp" target="_blank" class="social-btn">علي</a>
@@ -223,9 +187,7 @@
                 <a href="https://snapchat.com/t/gcKhHU8e" target="_blank" class="social-btn">علوش</a>
             </div>
             <div class="disclaimer">
-                هذا الموقع مخصص لعرض أخبار وجدول ونتائج بطولة القحمة الرمضانية 28.<br>
-                قد يتم تحديث أو تعديل المعلومات في أي وقت حسب ما يرد من اللجنة المنظمة.<br>
-                الموقع جهد شخصي، ولا نتحمل مسؤولية أي أخطاء غير مقصودة في المعلومات أو التحديثات.
+                هذا الموقع مخصص لعرض أخبار وجدول ونتائج بطولة القحمة الرمضانية 28. الموقع جهد شخصي، ولا نتحمل مسؤولية أي أخطاء غير مقصودة.
             </div>
         </div>
     </div>
