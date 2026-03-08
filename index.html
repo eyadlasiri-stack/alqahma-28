@@ -16,9 +16,8 @@
         body { background-color: var(--bg); color: var(--text-main); font-family: 'Cairo', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         .container { max-width: 900px; margin: auto; padding: 15px; }
         
-        /* هيدر مطور بالشعار الشفاف */
         header { text-align: center; padding: 30px 0; background: var(--blue-grad); border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 25px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .logo-img { width: 85px; height: auto; margin-bottom: 12px; filter: drop-shadow(0 0 8px rgba(255,215,0,0.4)); }
+        .logo-img { width: 90px; height: auto; margin-bottom: 12px; filter: drop-shadow(0 0 10px rgba(255,215,0,0.5)); }
         header h1 { font-weight: 900; margin: 0; font-size: 1.8rem; }
         .stadium-tag { color: var(--gold); font-size: 0.9rem; font-weight: 700; margin-top: 8px; display: block; }
         
@@ -45,10 +44,10 @@
         .team-item { width: 40%; text-align: center; font-weight: 900; font-size: 1.1rem; }
         .vs-label { background: var(--blue-grad); color: white; padding: 5px 15px; border-radius: 10px; font-weight: 900; }
         .match-info { color: var(--gold); font-size: 0.8rem; font-weight: 700; margin-top: 10px; display: block; text-align: center; }
+        
         .day-header { color: var(--gold); font-size: 0.9rem; font-weight: 900; margin: 25px 0 10px; display: block; border-right: 4px solid var(--gold); padding-right: 12px; text-align: right; }
         .final-divider { color: var(--gold); font-weight: 900; text-align: center; display: block; margin: 30px 0 15px; font-size: 1.1rem; text-decoration: underline; }
         
-        /* تصميم الهدافين الذهبي المتوهج 👑 */
         .group-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255,215,0,0.1); width: 100%; box-shadow: 0 0 15px rgba(255,215,0,0.05); }
         .group-header { background: rgba(255,255,255,0.05); color: var(--gold); padding: 12px; font-weight: 900; font-size: 1rem; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .group-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
@@ -59,17 +58,17 @@
         
         .about-text-area { white-space: pre-wrap; font-size: 0.85rem; color: #eee; padding: 25px; background: var(--card-bg); border-radius: 15px; text-align: right; line-height: 1.8; border: 1px solid rgba(255,255,255,0.05); font-family: 'Cairo'; }
         
-        /* فوتر مدمج وفخم بأزرار ميني */
         .footer { text-align: center; padding: 25px 15px; background: rgba(0,0,0,0.5); margin-top: 50px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid rgba(255,215,0,0.1); }
-        .social-btn { padding: 6px 12px; border-radius: 10px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); display: inline-block; margin: 3px; font-family: 'Cairo'; }
+        .social-btn { padding: 6px 12px; border-radius: 10px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); display: inline-block; margin: 3px; font-family: 'Cairo'; transition: 0.3s; }
+        .social-btn:hover { border-color: var(--gold); background: rgba(255,255,255,0.05); }
         .social-mini { display: flex; justify-content: center; gap: 2px; flex-wrap: wrap; margin-top: 5px; }
-        .disclaimer { font-size: 0.6rem; color: var(--text-muted); max-width: 600px; margin: 15px auto 0; line-height: 1.5; text-align: center; }
+        .disclaimer { font-size: 0.6rem; color: var(--text-muted); max-width: 600px; margin: 15px auto 0; line-height: 1.5; text-align: center; opacity: 0.8; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="https://i.ibb.co/3YvX1D0/6RYcWdr2.png" alt="شعار البطولة" class="logo-img">
+            <img src="https://i.ibb.co/Lkhwz6V6/logo-transparent.png" alt="شعار البطولة" class="logo-img">
             <h1>بطولة القحمة الرمضانية 28</h1>
             <span class="stadium-tag">🏆 أدوار الحسم - ملعب الوسم بالقحمة 🏆</span>
         </header>
@@ -116,7 +115,7 @@
             </div>
             <div id="teams-list" class="sub-content" style="display:none;">
                 <div class="group-card">
-                    <div class="group-header">📊 السجل الإحصائي للأندية (تحديث الأرشيف)</div>
+                    <div class="group-header">📊 السجل الإحصائي للأندية</div>
                     <table class="group-table" style="width:100%; border-collapse:collapse;">
                         <thead><tr><th style="width:35%; text-align:right; padding-right:15px;">الفريق</th><th>لعب</th><th>له</th><th>عليه</th><th>+/-</th></tr></thead>
                         <tbody id="teams-tbody"></tbody>
@@ -179,7 +178,7 @@
                 <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn">سناب</a>
             </div>
             
-            <p style="font-size: 0.7rem; color: var(--gold); font-weight: 900; margin: 15px 0 5px;">📸 الشبكة الإعلامية للبطولة</p>
+            <p style="font-size: 0.7rem; color: var(--gold); font-weight: 900; margin: 15px 0 5px;">📸 الشبكة الإعلامية</p>
             <div class="social-mini">
                 <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn">شداد</a>
                 <a href="https://snapchat.com/t/rJe5ARXp" target="_blank" class="social-btn">علي</a>
@@ -187,7 +186,8 @@
                 <a href="https://snapchat.com/t/gcKhHU8e" target="_blank" class="social-btn">علوش</a>
             </div>
             <div class="disclaimer">
-                هذا الموقع مخصص لعرض أخبار وجدول ونتائج بطولة القحمة الرمضانية 28. الموقع جهد شخصي، ولا نتحمل مسؤولية أي أخطاء غير مقصودة.
+                هذا الموقع مخصص لعرض أخبار وجدول ونتائج بطولة القحمة الرمضانية 28.<br>
+                الموقع جهد شخصي، ولا نتحمل مسؤولية أي أخطاء غير مقصودة في المعلومات أو التحديثات.
             </div>
         </div>
     </div>
