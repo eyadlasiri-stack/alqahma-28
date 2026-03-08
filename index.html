@@ -16,9 +16,8 @@
         body { background-color: var(--bg); color: var(--text-main); font-family: 'Cairo', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         .container { max-width: 900px; margin: auto; padding: 15px; }
         
-        header { text-align: center; padding: 30px 0; background: var(--blue-grad); border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 25px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        header { text-align: center; padding: 35px 0; background: var(--blue-grad); border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 25px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        /* معالجة الشفافية للشعار 👑 */
         .logo-container { background: none; padding: 0; margin-bottom: 12px; mix-blend-mode: screen; }
         .logo-img { width: 110px; height: auto; display: block; filter: brightness(1.1) drop-shadow(0 0 10px rgba(255,215,0,0.3)); }
         
@@ -42,27 +41,29 @@
         .tab-content.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .match-card { background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%); border-radius: 20px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.08); padding: 20px 15px; position: relative; }
-        .match-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue-grad); }
+        /* كارد ذهبي فخم للأرشيف والنهائيات ✨ */
+        .match-card { background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%); border-radius: 20px; margin-bottom: 15px; border: 1px solid rgba(255,215,0,0.2); padding: 20px 15px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .match-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); border-radius: 20px 0 0 20px; }
         .teams-row { display: flex; justify-content: space-around; align-items: center; }
         .team-item { width: 40%; text-align: center; font-weight: 900; font-size: 1.1rem; }
-        .vs-label { background: var(--blue-grad); color: white; padding: 5px 15px; border-radius: 10px; font-weight: 900; }
+        .vs-label { background: var(--blue-grad); color: white; padding: 5px 15px; border-radius: 10px; font-weight: 900; border: 1px solid rgba(255,215,0,0.3); }
         .match-info { color: var(--gold); font-size: 0.8rem; font-weight: 700; margin-top: 10px; display: block; text-align: center; }
+        .day-header { color: var(--gold); font-size: 0.9rem; font-weight: 900; margin: 25px 0 10px; display: block; border-right: 4px solid var(--gold); padding-right: 12px; text-align: right; }
         
-        .group-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255,215,0,0.1); width: 100%; box-shadow: 0 0 15px rgba(255,215,0,0.05); }
+        .group-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255,215,0,0.2); width: 100%; box-shadow: 0 0 15px rgba(255,215,0,0.05); }
         .group-header { background: rgba(255,255,255,0.05); color: var(--gold); padding: 12px; font-weight: 900; font-size: 1rem; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .group-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
         .group-table th { padding: 10px 5px; color: var(--text-muted); font-size: 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
-        .group-table td { padding: 12px 5px; text-align: center; font-size: 0.8rem; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.02); }
+        .group-table td { padding: 12px 5px; text-align: center; font-size: 0.85rem; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .team-name-cell { text-align: right !important; padding-right: 15px !important; font-weight: 700; width: 35%; }
         .goal-badge { background: var(--gold); color: #000; padding: 4px 10px; border-radius: 6px; font-weight: 900; float: left; font-size: 0.75rem; }
         
         .about-text-area { white-space: pre-wrap; font-size: 0.85rem; color: #eee; padding: 25px; background: var(--card-bg); border-radius: 15px; text-align: right; line-height: 1.8; border: 1px solid rgba(255,255,255,0.05); font-family: 'Cairo'; }
         
-        .footer { text-align: center; padding: 25px 15px; background: rgba(0,0,0,0.5); margin-top: 50px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid rgba(255,215,0,0.1); }
+        .footer { text-align: center; padding: 25px 15px; background: rgba(0,0,0,0.5); margin-top: 50px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid rgba(255,215,0,0.2); }
         .social-btn { padding: 6px 12px; border-radius: 10px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); display: inline-block; margin: 3px; font-family: 'Cairo'; transition: 0.3s; }
         .social-mini { display: flex; justify-content: center; gap: 2px; flex-wrap: wrap; margin-top: 5px; }
-        .disclaimer { font-size: 0.6rem; color: var(--text-muted); max-width: 600px; margin: 15px auto 0; line-height: 1.5; text-align: center; opacity: 0.8; }
+        .disclaimer { font-size: 0.6rem; color: var(--text-muted); max-width: 600px; margin: 15px auto 0; line-height: 1.5; text-align: center; }
     </style>
 </head>
 <body>
@@ -100,11 +101,11 @@
             <p style="text-align:center; color:var(--gold); font-weight:900; margin-top:10px;">⚽ ربع النهائي (مؤجل)</p>
             <div class="match-card"><div class="teams-row"><span class="team-item">عمق</span><span class="vs-label">VS</span><span class="team-item">الوسام</span></div><span class="match-info">لم يحدد التاريخ بعد</span></div>
             <div class="match-card"><div class="teams-row"><span class="team-item">صقلية</span><span class="vs-label">VS</span><span class="team-item">الفيصلي</span></div><span class="match-info">لم يحدد التاريخ بعد</span></div>
-            <span class="final-divider">⚽ نصف النهائي</span>
+            <span class="final-divider" style="color:var(--gold); font-weight:900; text-align:center; display:block; margin:30px 0 15px; font-size:1.1rem; text-decoration:underline;">⚽ نصف النهائي</span>
             <div class="match-card"><div class="teams-row"><span class="team-item">لم يحدد</span><span class="vs-label">VS</span><span class="team-item">لم يحدد</span></div><span class="match-info">المواجهة الأولى</span></div>
             <div class="match-card"><div class="teams-row"><span class="team-item">لم يحدد</span><span class="vs-label">VS</span><span class="team-item">لم يحدد</span></div><span class="match-info">المواجهة الثانية</span></div>
-            <span class="final-divider">🏆 المباراة النهائية</span>
-            <div class="match-card" style="border-color:var(--gold)"><div class="teams-row"><span class="team-item">لم يحدد</span><span class="vs-label">VS</span><span class="team-item">لم يحدد</span></div><span class="match-info">تحديد البطل</span></div>
+            <span class="final-divider" style="color:var(--gold); font-weight:900; text-align:center; display:block; margin:30px 0 15px; font-size:1.1rem; text-decoration:underline;">🏆 المباراة النهائية</span>
+            <div class="match-card" style="border-color:var(--gold); box-shadow: 0 0 20px rgba(255,215,0,0.2);"><div class="teams-row"><span class="team-item">لم يحدد</span><span class="vs-label">VS</span><span class="team-item">لم يحدد</span></div><span class="match-info">تحديد البطل</span></div>
         </div>
 
         <div id="scorers-main" class="tab-content">
@@ -117,7 +118,7 @@
             </div>
             <div id="teams-list" class="sub-content" style="display:none;">
                 <div class="group-card">
-                    <div class="group-header">📊 السجل الإحصائي للأندية (تحديث الأرشيف)</div>
+                    <div class="group-header">📊 السجل الإحصائي للأندية (مربوط بالأرشيف)</div>
                     <table class="group-table" style="width:100%; border-collapse:collapse;">
                         <thead><tr><th style="width:35%; text-align:right; padding-right:15px;">الفريق</th><th>لعب</th><th>له</th><th>عليه</th><th>+/-</th></tr></thead>
                         <tbody id="teams-tbody"></tbody>
@@ -147,11 +148,11 @@
 * إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)
 * إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر
 * إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب
-* في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة بحضور مندوبي الفرق الثلاثة
+* في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة
 * ⁠
 * آلية مباريات الملحق
 بعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:
- * المباراة رقم (19) 
+ * المباراة  رقم (19) 
 (1) مع( 2) والفائز يصبح اول المجموعه (السابعه) 
  * المباراة رقم ( 20) 
 (3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) 
@@ -210,7 +211,7 @@
 ——————————————————
 مباريات دور الاربعة ( نصف النهائي )
 رقم المباراة (25)
-فائز المباراة رقم (21) مع فائز المباراة رقم (23)
+فائز المباراة رقم  (21) مع فائز المباراة رقم  (23)
 رقم المباراة (26)
 فائز المباراة رقم (22) مع فائز المباراة رقم (24)
 ——————————————————-
@@ -220,13 +221,13 @@
         </div>
 
         <div class="footer">
-            <p style="font-weight: 900; margin-bottom: 2px; font-size: 0.8rem;">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
+            <p style="font-weight: 900; margin-bottom: 2px; font-size: 0.85rem;">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
             <div class="social-mini">
                 <a href="https://wa.me/966534987428" target="_blank" class="social-btn">واتساب</a>
                 <a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn">سناب</a>
             </div>
             
-            <p style="font-size: 0.7rem; color: var(--gold); font-weight: 900; margin: 15px 0 5px;">📸 الشبكة الإعلامية للبطولة</p>
+            <p style="font-size: 0.75rem; color: var(--gold); font-weight: 900; margin: 15px 0 5px;">📸 الشبكة الإعلامية للبطولة</p>
             <div class="social-mini">
                 <a href="https://snapchat.com/t/2qKXdcpD" target="_blank" class="social-btn">شداد</a>
                 <a href="https://snapchat.com/t/rJe5ARXp" target="_blank" class="social-btn">علي</a>
