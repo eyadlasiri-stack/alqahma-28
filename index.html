@@ -74,7 +74,7 @@
         <div id="today" class="tab-content active"><div id="today-match-area"></div></div>
         <div id="upcoming" class="tab-content">
             <span class="day-header">الثلاثاء 21 رمضان - ربع النهائي</span>
-            <div class="match-card"><div class="teams-row"><span class="team-item">عمق</span><span class="vs-label">VS</span><span class="team-item">الوسام</span></div><span class="match-info" id="wisam-note">المباراة رقم (24) | الساعة 22:45 - تم تقديمها نظراً لمشاركة الوسام في بطولة المليحة</span></div>
+            <div class="match-card"><div class="teams-row"><span class="team-item">عمق</span><span class="vs-label">VS</span><span class="team-item">الوسام</span></div><span class="match-info">المباراة رقم (24) | الساعة 22:45</span></div>
             <span class="day-header">الأربعاء 22 رمضان - ربع النهائي</span>
             <div class="match-card"><div class="teams-row"><span class="team-item">صقلية</span><span class="vs-label">VS</span><span class="team-item">الفيصلي</span></div><span class="match-info">المباراة رقم (23) | الساعة 22:45</span></div>
             <span class="day-header">الخميس 23 رمضان - نصف النهائي</span>
@@ -82,7 +82,7 @@
             <span class="day-header">الجمعة 24 رمضان - نصف النهائي</span>
             <div class="match-card"><div class="teams-row"><span class="team-item">الصقر</span><span class="vs-label">VS</span><span class="team-item">فائز مباراة (23)</span></div><span class="match-info">الساعة 22:45</span></div>
             <span class="day-header" style="color:var(--blue-light);">المباراة النهائية</span>
-            <div class="match-card" style="border-color:var(--blue-light);"><div class="teams-row"><span class="team-item">لم يحدد</span><span class="vs-label">VS</span><span class="team-item">لم يحدد</span></div><span class="match-info">بعد عيد الفطر المبارك | الساعة 22:45</span></div>
+            <div class="match-card" style="border-color:var(--blue-light);"><div class="teams-row"><span class="team-item">لم يحدد</span><span class="vs-label">VS</span><span class="team-item">لم يحدد</span></div><span class="match-info">بعد عيد الفطر المبارك</span></div>
         </div>
         <div id="scorers-main" class="tab-content">
             <div class="sub-tabs">
@@ -237,7 +237,6 @@ function updateTodayTab() {
     const now = new Date();
     const currentHour = now.getHours();
     const weekDays = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
-    // منطق الساعة 3 فجرا: إذا كنا قبل الـ 3 نأخذ يوم أمس
     let targetDay = (currentHour < 3) ? weekDays[new Date(now.getTime() - 86400000).getDay()] : weekDays[now.getDay()];
     let displayHTML = `<div style="text-align:center; padding: 40px 20px; color:var(--text-muted);"><p>لا توجد مباريات حالياً</p><small>يتم تحديث الجدول تلقائياً الساعة 3:00 فجراً</small></div>`;
     const match = finalsData.find(m => m.day === targetDay);
