@@ -74,15 +74,15 @@
         <div id="today" class="tab-content active"><div id="today-match-area"></div></div>
         <div id="upcoming" class="tab-content">
             <span class="day-header">الثلاثاء 21 رمضان - ربع النهائي</span>
-            <div class="match-card"><div class="teams-row"><span class="team-item">عمق</span><span class="vs-label">VS</span><span class="team-item">الوسام</span></div><span class="match-info" id="wisam-note">المباراة رقم (24) - تم تقديمها نظراً لمشاركة الوسام في بطولة المليحة</span></div>
+            <div class="match-card"><div class="teams-row"><span class="team-item">عمق</span><span class="vs-label">VS</span><span class="team-item">الوسام</span></div><span class="match-info" id="wisam-note">المباراة رقم (24) | الساعة 22:45 - تم تقديمها نظراً لمشاركة الوسام في بطولة المليحة</span></div>
             <span class="day-header">الأربعاء 22 رمضان - ربع النهائي</span>
-            <div class="match-card"><div class="teams-row"><span class="team-item">صقلية</span><span class="vs-label">VS</span><span class="team-item">الفيصلي</span></div><span class="match-info">المباراة رقم (23)</span></div>
+            <div class="match-card"><div class="teams-row"><span class="team-item">صقلية</span><span class="vs-label">VS</span><span class="team-item">الفيصلي</span></div><span class="match-info">المباراة رقم (23) | الساعة 22:45</span></div>
             <span class="day-header">الخميس 23 رمضان - نصف النهائي</span>
-            <div class="match-card"><div class="teams-row"><span class="team-item">ساحل مغزل</span><span class="vs-label">VS</span><span class="team-item">فائز مباراة (24)</span></div></div>
+            <div class="match-card"><div class="teams-row"><span class="team-item">ساحل مغزل</span><span class="vs-label">VS</span><span class="team-item">فائز مباراة (24)</span></div><span class="match-info">الساعة 22:45</span></div>
             <span class="day-header">الجمعة 24 رمضان - نصف النهائي</span>
-            <div class="match-card"><div class="teams-row"><span class="team-item">الصقر</span><span class="vs-label">VS</span><span class="team-item">فائز مباراة (23)</span></div></div>
+            <div class="match-card"><div class="teams-row"><span class="team-item">الصقر</span><span class="vs-label">VS</span><span class="team-item">فائز مباراة (23)</span></div><span class="match-info">الساعة 22:45</span></div>
             <span class="day-header" style="color:var(--blue-light);">المباراة النهائية</span>
-            <div class="match-card" style="border-color:var(--blue-light);"><div class="teams-row"><span class="team-item">لم يحدد</span><span class="vs-label">VS</span><span class="team-item">لم يحدد</span></div><span class="match-info">بعد عيد الفطر المبارك</span></div>
+            <div class="match-card" style="border-color:var(--blue-light);"><div class="teams-row"><span class="team-item">لم يحدد</span><span class="vs-label">VS</span><span class="team-item">لم يحدد</span></div><span class="match-info">بعد عيد الفطر المبارك | الساعة 22:45</span></div>
         </div>
         <div id="scorers-main" class="tab-content">
             <div class="sub-tabs">
@@ -142,10 +142,10 @@ const scorers = [
 ];
 
 const finalsData = [
-    { day: "الثلاثاء", ramadan: 21, t1: "عمق", t2: "الوسام", info: "المباراة رقم (24)" },
-    { day: "الأربعاء", ramadan: 22, t1: "صقلية", t2: "الفيصلي", info: "المباراة رقم (23)" },
-    { day: "الخميس", ramadan: 23, t1: "ساحل مغزل", t2: "فائز (24)", info: "نصف النهائي" },
-    { day: "الجمعة", ramadan: 24, t1: "الصقر", t2: "فائز (23)", info: "نصف النهائي" }
+    { day: "الثلاثاء", ramadan: 21, t1: "عمق", t2: "الوسام", info: "المباراة رقم (24) | الساعة 22:45" },
+    { day: "الأربعاء", ramadan: 22, t1: "صقلية", t2: "الفيصلي", info: "المباراة رقم (23) | الساعة 22:45" },
+    { day: "الخميس", ramadan: 23, t1: "ساحل مغزل", t2: "فائز (24)", info: "نصف النهائي | الساعة 22:45" },
+    { day: "الجمعة", ramadan: 24, t1: "الصقر", t2: "فائز (23)", info: "نصف النهائي | الساعة 22:45" }
 ];
 
 const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون لكرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي
@@ -237,6 +237,7 @@ function updateTodayTab() {
     const now = new Date();
     const currentHour = now.getHours();
     const weekDays = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+    // منطق الساعة 3 فجرا: إذا كنا قبل الـ 3 نأخذ يوم أمس
     let targetDay = (currentHour < 3) ? weekDays[new Date(now.getTime() - 86400000).getDay()] : weekDays[now.getDay()];
     let displayHTML = `<div style="text-align:center; padding: 40px 20px; color:var(--text-muted);"><p>لا توجد مباريات حالياً</p><small>يتم تحديث الجدول تلقائياً الساعة 3:00 فجراً</small></div>`;
     const match = finalsData.find(m => m.day === targetDay);
@@ -256,7 +257,7 @@ function updateDisplay() {
     });
     document.getElementById('archive-area').innerHTML = arHTML;
     document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map(s => `<tr><td style="padding:15px; text-align:right; font-weight:700; border-bottom:1px solid rgba(255,255,255,0.05);">${s.n}<br><small style="color:var(--text-muted)">(${s.f})</small></td><td style="padding:15px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.05);"><span style="background:var(--blue-main); color:#fff; padding:4px 8px; border-radius:5px; font-weight:900;">${s.g}</span></td></tr>`).join('');
-    document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue-light); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
+    document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:12px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue-light); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     const stats = {};
     archiveData.forEach(day => {
         day.matches.forEach(m => {
