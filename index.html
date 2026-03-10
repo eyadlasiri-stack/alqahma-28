@@ -36,7 +36,8 @@
         .match-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue-main); border-radius: 18px 0 0 18px; }
         .teams-row { display: flex; justify-content: space-around; align-items: center; }
         .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.95rem; }
-        .vs-label { background: var(--blue-grad); color: white; padding: 4px 12px; border-radius: 8px; font-weight: 900; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.1); }
+        .vs-label { background: var(--blue-grad); color: white; padding: 6px 14px; border-radius: 10px; font-weight: 900; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; line-height: 1.2; }
+        .penalty-small { font-size: 0.65rem; opacity: 0.9; margin-top: 2px; font-weight: 600; }
         .match-info { color: var(--blue-light); font-size: 0.8rem; font-weight: 700; margin-top: 8px; display: block; text-align: center; }
         .day-header { color: var(--text-main); font-size: 0.85rem; font-weight: 900; margin: 20px 0 10px; display: block; border-right: 3px solid var(--blue-main); padding-right: 10px; text-align: right; }
         .group-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); width: 100%; }
@@ -131,12 +132,13 @@ const scorers = [
     {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"نايف شرفي", f:"السوق", g:1}, {n:"عمر المعشي", f:"عمق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"خالد dماس", f:"ساحل مغزل", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"خليج الصوالحة", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
 ];
 
+// تعديل مباراة اليوم: شلت الوقت وحطيت النتيجة والركلات
 const finalsData = [
-    { day: "الثلاثاء", ramadan: 21, t1: "الوسام", t2: "عمق", info: "انتهت بركلات الترجيح | 23:00 PM", r: "1 (20) - (19) 1" },
-    { day: "الأربعاء", ramadan: 22, t1: "صقلية", t2: "الفيصلي", info: "22:45 PM", r: "" },
-    { day: "الخميس", ramadan: 23, t1: "ساحل مغزل", t2: "الوسام", info: "22:45 PM", r: "" },
-    { day: "الجمعة", ramadan: 24, t1: "الصقر", t2: "فائز مباراة (23)", info: "22:45 PM", r: "" },
-    { day: "النهائي", ramadan: "يحدد لاحقاً", t1: "لم يحدد", t2: "لم يحدد", info: "", r: "" }
+    { day: "الثلاثاء", ramadan: 21, t1: "الوسام", t2: "عمق", info: "انتهت بركلات الترجيح", r: "1 - 1", p: "(20) - (19)" },
+    { day: "الأربعاء", ramadan: 22, t1: "صقلية", t2: "الفيصلي", info: "22:45 PM", r: "", p: "" },
+    { day: "الخميس", ramadan: 23, t1: "ساحل مغزل", t2: "الوسام", info: "22:45 PM", r: "", p: "" },
+    { day: "الجمعة", ramadan: 24, t1: "الصقر", t2: "فائز مباراة (23)", info: "22:45 PM", r: "", p: "" },
+    { day: "النهائي", ramadan: "يحدد لاحقاً", t1: "لم يحدد", t2: "لم يحدد", info: "", r: "", p: "" }
 ];
 
 const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون لكرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي
@@ -236,14 +238,17 @@ function updateTodayTab() {
     const matchToday = finalsData.find(m => m.day === targetDay);
     if (matchToday) {
         let resLabel = matchToday.r ? matchToday.r : "VS";
-        displayHTML = `<span class="day-header">مباريات اليوم | ${matchToday.day} ${matchToday.ramadan} رمضان</span><div class="match-card"><div class="teams-row"><span class="team-item">${matchToday.t1}</span><span class="vs-label">${resLabel}</span><span class="team-item">${matchToday.t2}</span></div><span class="match-info">${matchToday.info}</span><span class="commentator-tag">🎙️ تعليق: عبدالمحسن مظفر</span></div>`;
+        let penLabel = matchToday.p ? `<span class="penalty-small">${matchToday.p}</span>` : "";
+        
+        displayHTML = `<span class="day-header">مباريات اليوم | ${matchToday.day} ${matchToday.ramadan} رمضان</span><div class="match-card"><div class="teams-row"><span class="team-item">${matchToday.t1}</span><span class="vs-label">${resLabel}${penLabel}</span><span class="team-item">${matchToday.t2}</span></div><span class="match-info">${matchToday.info}</span><span class="commentator-tag">🎙️ تعليق: عبدالمحسن مظفر</span></div>`;
     }
 
     finalsData.forEach(m => {
         if (m.day !== targetDay) {
             let resLabel = m.r ? m.r : "VS";
+            let penLabel = m.p ? `<span class="penalty-small">${m.p}</span>` : "";
             let ramTag = m.ramadan === "يحدد لاحقاً" ? "" : "رمضان";
-            finalsHTML += `<span class="day-header">${m.day} ${m.ramadan} ${ramTag}</span><div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${resLabel}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
+            finalsHTML += `<span class="day-header">${m.day} ${m.ramadan} ${ramTag}</span><div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${resLabel}${penLabel}</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
         }
     });
 
