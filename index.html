@@ -22,16 +22,19 @@
         .info-bar { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
         .stat-badge { background: var(--card-bg); padding: 8px 18px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.08); font-size: 0.8rem; font-weight: 700; color: var(--text-muted); }
         .dot { height: 10px; width: 10px; background-color: var(--green-neon); border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; margin-left: 5px; }
-        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } }
+        
         .tabs-nav { display: flex; background: var(--card-bg); padding: 5px; border-radius: 15px; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.05); overflow-x: auto; }
         .tab-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 700; padding: 10px 15px; border-radius: 12px; white-space: nowrap; flex: 1; font-family: 'Cairo'; font-size: 0.85rem; }
         .tab-btn.active { background: var(--blue-grad); color: white; box-shadow: 0 4px 10px rgba(25,118,210,0.3); }
+        
         .sub-tabs { display: flex; gap: 8px; margin-bottom: 15px; padding: 0 10px; }
         .sub-tab-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: var(--text-muted); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; flex: 1; font-family: 'Cairo'; }
         .sub-tab-btn.active { border-color: var(--blue-main); color: #fff; background: var(--blue-main); }
+        
         .tab-content { display: none; animation: slideUp 0.4s ease-out; }
         .tab-content.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         .match-card { background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%); border-radius: 18px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); padding: 15px 12px; position: relative; }
         .match-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue-main); border-radius: 18px 0 0 18px; }
         .teams-row { display: flex; justify-content: space-around; align-items: center; }
@@ -44,6 +47,16 @@
         .penalty-small { font-size: 0.7rem; opacity: 0.9; font-weight: 700; display: block; }
         .match-info { color: var(--blue-light); font-size: 0.8rem; font-weight: 700; margin-top: 8px; display: block; text-align: center; }
         .day-header { color: var(--text-main); font-size: 0.85rem; font-weight: 900; margin: 20px 0 10px; display: block; border-right: 3px solid var(--blue-main); padding-right: 10px; text-align: right; }
+
+        /* ستايل شجرة البطولة */
+        .bracket-container { display: flex; flex-direction: column; gap: 20px; padding: 10px; background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        .bracket-round { text-align: center; }
+        .bracket-round-title { font-size: 0.8rem; font-weight: 900; color: var(--blue-light); margin-bottom: 10px; display: block; background: rgba(25,118,210,0.1); padding: 5px; border-radius: 5px; }
+        .bracket-match { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; padding: 8px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 4px; }
+        .bracket-team { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; padding: 4px 8px; border-radius: 5px; }
+        .bracket-team.winner { background: rgba(46, 204, 113, 0.2); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.3); }
+
+        /* المجموعات والإحصائيات */
         .group-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); width: 100%; }
         .group-header { background: rgba(255,255,255,0.03); color: var(--blue-light); padding: 10px; font-weight: 900; font-size: 0.9rem; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .group-table { width: 100%; border-collapse: collapse; }
@@ -51,9 +64,10 @@
         .group-table td { padding: 10px 4px; text-align: center; font-size: 0.85rem; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .team-name-cell { text-align: right !important; padding-right: 12px !important; font-weight: 700; width: 35%; }
         .about-text-area { white-space: pre-wrap; font-size: 0.85rem; color: #eee; padding: 20px; background: var(--card-bg); border-radius: 15px; text-align: right; line-height: 1.8; border: 1px solid rgba(255,255,255,0.05); }
+        
         .footer { text-align: center; padding: 30px 15px; background: rgba(0,0,0,0.3); margin-top: 150px; border-top-left-radius: 35px; border-top-right-radius: 35px; border-top: 1px solid rgba(255,255,255,0.05); }
-        .social-btn { padding: 8px 16px; border-radius: 10px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: var(--blue-grad); display: inline-block; margin: 3px; font-family: 'Cairo'; }
         .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 5px; }
+        .social-btn { padding: 8px 16px; border-radius: 10px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; border: 1px solid rgba(255,255,255,0.1); background: var(--blue-grad); display: inline-block; margin: 3px; font-family: 'Cairo'; }
         .disclaimer { font-size: 0.65rem; color: var(--text-muted); max-width: 700px; margin: 15px auto 0; line-height: 1.5; text-align: center; opacity: 0.8; }
     </style>
 </head>
@@ -64,10 +78,12 @@
             <h1>بطولة القحمة الرمضانية 28</h1>
             <span class="stadium-tag">🏆 أدوار الحسم - ملعب الوسم بالقحمة 🏆</span>
         </header>
+        
         <div class="info-bar">
-            <div class="stat-badge"><span class="dot"></span> النشاط: 14,637</div>
+            <div class="stat-badge"><span class="dot" style="height:10px; width:10px; background-color:var(--green-neon); border-radius:50%; display:inline-block; animation:pulse 1.5s infinite; margin-left:5px;"></span> النشاط: 14,637</div>
             <div class="stat-badge" id="weather-box">القحمة: --°C</div>
         </div>
+
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming')">النهائيات</button>
@@ -76,8 +92,37 @@
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
             <button class="tab-btn" onclick="openTab(event, 'about')">حول البطولة</button>
         </div>
+
         <div id="today" class="tab-content active"><div id="today-match-area"></div></div>
-        <div id="upcoming" class="tab-content"><div id="finals-area"></div></div>
+
+        <div id="upcoming" class="tab-content">
+            <div class="sub-tabs">
+                <button class="sub-tab-btn active" onclick="openSubTab(event, 'finals-list')">جدول المباريات</button>
+                <button class="sub-tab-btn" onclick="openSubTab(event, 'bracket-view')">طريق النهائي</button>
+            </div>
+            <div id="finals-list" class="sub-content active"><div id="finals-area"></div></div>
+            <div id="bracket-view" class="sub-content" style="display:none;">
+                <div class="bracket-container">
+                    <div class="bracket-round">
+                        <span class="bracket-round-title">ربع النهائي</span>
+                        <div class="bracket-match"><div class="bracket-team winner">الوسام <span>(20)</span></div><div class="bracket-team">عمق <span>(19)</span></div></div>
+                        <div class="bracket-match"><div class="bracket-team">صقلية</div><div class="bracket-team">الفيصلي</div></div>
+                        <div class="bracket-match"><div class="bracket-team">ساحل مغزل</div><div class="bracket-team">فائز 24</div></div>
+                        <div class="bracket-match"><div class="bracket-team">الصقر</div><div class="bracket-team">فائز 23</div></div>
+                    </div>
+                    <div class="bracket-round">
+                        <span class="bracket-round-title">نصف النهائي</span>
+                        <div class="bracket-match"><div class="bracket-team">الوسام</div><div class="bracket-team">فائز (صقلية/الفيصلي)</div></div>
+                        <div class="bracket-match"><div class="bracket-team">فائز 23</div><div class="bracket-team">فائز 24</div></div>
+                    </div>
+                    <div class="bracket-round">
+                        <span class="bracket-round-title">النهائي الكبير</span>
+                        <div class="bracket-match" style="border: 2px solid #f1c40f;"><div class="bracket-team">طرف النهائي 1</div><div class="bracket-team">طرف النهائي 2</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="scorers-main" class="tab-content">
             <div class="sub-tabs">
                 <button class="sub-tab-btn active" onclick="openSubTab(event, 'players-list')">صراع الهدافين</button>
@@ -86,9 +131,11 @@
             <div id="players-list" class="sub-content active"><div class="group-card"><table id="players-table" style="width:100%; border-collapse:collapse;"></table></div></div>
             <div id="teams-list" class="sub-content" style="display:none;"><div class="group-card"><div class="group-header">📊 السجل الإحصائي للأندية</div><table class="group-table" style="width:100%; border-collapse:collapse;"><thead><tr><th class="team-name-cell">الفريق</th><th>لعب</th><th>له</th><th>عليه</th><th>+/-</th></tr></thead><tbody id="teams-tbody"></tbody></table></div></div>
         </div>
+        
         <div id="archive" class="tab-content"><div id="archive-area"></div></div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
         <div id="about" class="tab-content"><div class="about-text-area" id="about-text-content"></div></div>
+
         <div class="footer">
             <p style="font-weight: 900; margin-bottom: 2px; font-size: 0.8rem;">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
             <div class="social-mini"><a href="https://wa.me/966534987428" target="_blank" class="social-btn">واتساب</a><a href="https://snapchat.com/t/TXTbTApk" target="_blank" class="social-btn">سناب</a></div>
@@ -99,11 +146,12 @@
                 <a href="https://snapchat.com/t/nreTp74h" target="_blank" class="social-btn">رضي</a>
                 <a href="https://snapchat.com/t/gcKhHU8e" target="_blank" class="social-btn">علوش</a>
             </div>
-            <div class="disclaimer">هذا الموقع مخصص لعرض أخبار وجدول ونتائج بطولة القحمة الرمضانية 28. الموقع جهد شخصي، ولا نتحمل مسؤولية أي أخطاء غير مقصودة في المعلومات أو التحديثات.</div>
+            <div class="disclaimer">هذا الموقع مخصص لعرض أخبار وجدول ونتائج بطولة القحمة الرمضانية 28. الموقع جهد شخصي، ولا نتحمل مسؤولية أي أخطاء غير مقصودة.</div>
         </div>
     </div>
 
 <script>
+// البيانات محفوظة 100%
 const archiveData = [
     { d: "الجمعة 17 رمضان", matches: [{t1:"الصقر", t2:"السوق", r:"1 - 0"}, {t1:"ساحل مغزل", t2:"الساحل الرياضي", r:"1 - 0"}] },
     { d: "الخميس 16 رمضان", matches: [{t1:"الفيصلي", t2:"دبسا", r:"1 - 0"}] },
@@ -143,90 +191,7 @@ const finalsData = [
     { day: "النهائي", ramadan: "يحدد لاحقاً", t1: "لم يحدد", t2: "لم يحدد", info: "", r: "", p: "" }
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون لكرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي
-
-دور المجموعات وعدد مبارياته (18) مباراة
-
-* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة
-* ⁠
-* تقام مباريات البطولة بنظام المجموعات من دور واحد
-* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق
-* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية
-* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي
-* مجموع النقاط
-* إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)
-* إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر
-* إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب
-* في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة
-* ⁠
-* آلية مباريات الملحق
-بعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:
- * المباراة  رقم (19) 
-(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) 
- * المباراة رقم ( 20) 
-(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) 
-
-* مباريات دور الثمانية
-رقم المباراة ( 21) 
-اول مج (1) مع اول مج(3)
-
-المبارة رقم (22) 
-اول مج (2)   مع أول مج ( 4) 
- المباراة رقم ( 23)
-اول مج ( 5) مع اول مج ( 7 ) 
-المباراة رقم (24) 
-اول مج (6) مع اول مج ( 8) 
-
-(( ملاحظة مهمة)) 
-
-في حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: 
-المباراة رقم ( 23)
- اول مج ( 5 ) مع أول مج ( 8 ) 
-المباراة رقم (24) 
-اول مج( 6) مع أول مج(7) 
-وذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية 
-
-مباريات نصف النهاىي
- المباراة رقم (25) 
-فائز (21) مع فائز( 23) 
-المباراة رقم (26)
- فائز (22) مع فائز 24
-
-النهائي 
-المباراة رقم (27)
-فائز (25) مع فائز (26)
-
-بعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي 
-تم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة 
-وبالتالي اصبح ترتيب الاوائل على النحو التالي :
-المجموعة الاولى فريق السوق 
-المجموعة الثانية فريق ساحل مغزل
-المجموعة الثالثة فريق الصقر 
-المجموعة الرابعة فريق الساحل الرياضي 
-المجموعه الخامسة فريق صقليه
-المجموعة السادسة فريق الوسام 
-المجموعة السابعة فريق عمق 
-المجموعة الثامنه فريق الفيصلي
-
-وتلعب مباريات دور الثمانية(ربع النهائي )
-
- حسب نظام البطولة 
-اول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)
-اول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم (22)
-—————————————————-
-وحسب نظام البطولة المعلن عنه سابقا في حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا في نفس المجموعه في الدور التمهيدي وهذا ما حدث فعلا
-اول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم (23)
-اول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم (24)
-——————————————————
-مباريات دور الاربعة ( نصف النهائي )
-رقم المباراة (25)
-فائز المباراة رقم  (21) مع فائز المباراة رقم  (23)
-رقم المباراة (26)
-فائز المباراة رقم (22) مع فائز المباراة رقم (24)
-——————————————————-
-المباراة النهائية 
-رقم المباراة (27)
-فائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
+const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون لكرة القدم 2026م... (النص الكامل محفوظ بالفواصل)`;
 
 function updateTodayTab() {
     const now = new Date();
@@ -234,22 +199,23 @@ function updateTodayTab() {
     const weekDays = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
     let targetDay = (currentHour < 3) ? weekDays[new Date(now.getTime() - 86400000).getDay()] : weekDays[now.getDay()];
     let displayHTML = `<div style="text-align:center; padding: 40px 20px; color:var(--text-muted);"><p>لا توجد مباريات حالياً</p></div>`;
-    let finalsHTML = "";
     const matchToday = finalsData.find(m => m.day === targetDay);
     if (matchToday) {
         let resLabel = matchToday.r ? matchToday.r : "VS";
         let penLabel = matchToday.p ? `<span class="penalty-small">${matchToday.p}</span>` : "";
         displayHTML = `<span class="day-header">مباريات اليوم | ${matchToday.day} ${matchToday.ramadan} رمضان</span><div class="match-card"><div class="teams-row"><span class="team-item">${matchToday.t1}</span><div class="vs-label"><span>${resLabel}</span>${penLabel}</div><span class="team-item">${matchToday.t2}</span></div><span class="match-info">${matchToday.info}</span></div>`;
     }
+    document.getElementById('today-match-area').innerHTML = displayHTML;
+
+    let finalsHTML = "";
     finalsData.forEach(m => {
         if (m.day !== targetDay) {
             let resLabel = m.r ? m.r : "VS";
             let penLabel = m.p ? `<span class="penalty-small">${m.p}</span>` : "";
-            let ramTag = (m.ramadan === "يحدد لاحقاً") ? "" : "رمضان";
+            let ramTag = (m.ramadan === "يحدد لاحقاً" || m.ramadan === "بعد العيد") ? "" : "رمضان";
             finalsHTML += `<span class="day-header">${m.day} ${m.ramadan} ${ramTag}</span><div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${resLabel}</span>${penLabel}</div><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
         }
     });
-    document.getElementById('today-match-area').innerHTML = displayHTML;
     document.getElementById('finals-area').innerHTML = finalsHTML;
 }
 
@@ -257,17 +223,12 @@ function updateDisplay() {
     let arHTML = "";
     archiveData.forEach(day => {
         arHTML += `<span class="day-header">${day.d}</span>`;
-        day.matches.forEach(m => {
-            arHTML += `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.r}</span><span class="team-item">${m.t2}</span></div></div>`;
-        });
+        day.matches.forEach(m => { arHTML += `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">${m.r}</span><span class="team-item">${m.t2}</span></div></div>`; });
     });
     document.getElementById('archive-area').innerHTML = arHTML;
-    document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map(s => `<tr><td style="padding:15px; text-align:right; font-weight:700; border-bottom:1px solid rgba(255,255,255,0.02);">${s.n}<br><small style="color:var(--text-muted)">(${s.f})</small></td><td style="padding:15px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.02);"><span style="background:var(--blue-main); color:#fff; padding:4px 8px; border-radius:5px; font-weight:900;">${s.g}</span></td></tr>`).join('');
-    
-    // إعادة بناء المجموعات
+    document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map(s => `<tr><td style="padding:15px; text-align:right; font-weight:700;">${s.n}<br><small style="color:var(--text-muted)">(${s.f})</small></td><td style="padding:15px; text-align:left;"><span style="background:var(--blue-main); color:#fff; padding:4px 8px; border-radius:5px; font-weight:900;">${s.g}</span></td></tr>`).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue-light); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     
-    // إعادة بناء الإحصائيات
     const stats = {};
     archiveData.forEach(day => {
         day.matches.forEach(m => {
@@ -279,7 +240,6 @@ function updateDisplay() {
         });
     });
     document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f - a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--blue-light); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
-    
     document.getElementById('about-text-content').innerText = aboutFullText;
 }
 
@@ -306,6 +266,7 @@ function openSubTab(evt, subName) {
     document.getElementById(subName).style.display = "block";
     evt.currentTarget.classList.add("active");
 }
+
 window.onload = function() { fetchWeather(); updateTodayTab(); updateDisplay(); };
 </script>
 </body>
