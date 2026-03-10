@@ -131,11 +131,11 @@ const scorers = [
 ];
 
 const finalsData = [
-    { day: "الثلاثاء", ramadan: 21, t1: "عمق", t2: "الوسام", info: "22:45 PM" },
-    { day: "الأربعاء", ramadan: 22, t1: "صقلية", t2: "الفيصلي", info: "22:45 PM" },
-    { day: "الخميس", ramadan: 23, t1: "ساحل مغزل", t2: "فائز مباراة (24)", info: "22:45 PM" },
-    { day: "الجمعة", ramadan: 24, t1: "الصقر", t2: "فائز مباراة (23)", info: "22:45 PM" },
-    { day: "النهائي", ramadan: "بعد العيد", t1: "لم يحدد", t2: "لم يحدد", info: "" }
+    { day: "الثلاثاء", ramadan: 21, t1: "عمق", t2: "الوسام", info: "ربع النهائي | 22:45 PM" },
+    { day: "الأربعاء", ramadan: 22, t1: "صقلية", t2: "الفيصلي", info: "ربع النهائي | 22:45 PM" },
+    { day: "الخميس", ramadan: 23, t1: "ساحل مغزل", t2: "فائز مباراة (24)", info: "نصف النهائي | 22:45 PM" },
+    { day: "الجمعة", ramadan: 24, t1: "الصقر", t2: "فائز مباراة (23)", info: "نصف النهائي | 22:45 PM" },
+    { day: "النهائي", ramadan: "يحدد لاحقاً", t1: "لم يحدد", t2: "لم يحدد", info: "المباراة النهائية" }
 ];
 
 const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون لكرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي
@@ -239,7 +239,7 @@ function updateTodayTab() {
 
     finalsData.forEach(m => {
         if (m.day !== targetDay) {
-            finalsHTML += `<span class="day-header">${m.day} ${m.ramadan} رمضان</span><div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">VS</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
+            finalsHTML += `<span class="day-header">${m.day} ${m.ramadan}</span><div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><span class="vs-label">VS</span><span class="team-item">${m.t2}</span></div><span class="match-info">${m.info}</span></div>`;
         }
     });
 
