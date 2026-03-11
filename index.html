@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بطولة القحمة الرمضانية 28 - المربع الذهبي</title>
+    <title>بطولة القحمة الرمضانية 28 - المربع الذهبي الرسمي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -31,6 +31,7 @@
         @keyframes pulse-red { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
         .tabs-nav { display: flex; background: rgba(255,255,255,0.04); padding: 5px; border-radius: 15px; margin-bottom: 25px; border: 1px solid var(--card-border); overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
         .tab-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 700; padding: 10px 15px; border-radius: 12px; flex: 1; font-family: 'Cairo'; white-space: nowrap; font-size: 0.8rem; }
         .tab-btn.active { background: var(--blue-grad); color: white; }
         
@@ -56,15 +57,11 @@
         .group-table td { padding: 12px 4px; text-align: center; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .team-name-cell { text-align: right !important; padding-right: 15px !important; font-weight: 700; width: 35%; }
 
-        /* تعديل الخط هنا ليكون أصغر وأرتب */
-        .about-text-area { white-space: pre-wrap; font-size: 0.7rem; color: #eee; padding: 15px; background: var(--card-bg); border-radius: 15px; text-align: right; line-height: 1.5; border: 1px solid var(--card-border); }
-        
+        .about-text-area { white-space: pre-wrap; font-size: 0.8rem; color: #eee; padding: 20px; background: var(--card-bg); border-radius: 15px; text-align: right; line-height: 1.8; border: 1px solid var(--card-border); }
         .footer { text-align: center; padding: 40px 15px; background: rgba(0,0,0,0.3); margin-top: 100px; border-top-left-radius: 35px; border-top-right-radius: 35px; border-top: 1px solid var(--card-border); }
         .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 10px; }
         .social-btn { padding: 8px 15px; border-radius: 10px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--blue-grad); }
-        
-        /* تصغير خط إخلاء المسؤولية */
-        .disclaimer { font-size: 0.6rem; color: var(--text-muted); max-width: 700px; margin: 20px auto 0; line-height: 1.4; opacity: 0.7; }
+        .disclaimer { font-size: 0.65rem; color: var(--text-muted); max-width: 700px; margin: 20px auto 0; line-height: 1.5; opacity: 0.8; }
         
         .search-container { padding: 0 5px; margin-bottom: 15px; }
         .search-input { width: 100%; padding: 12px 15px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; color: var(--text-main); font-family: 'Cairo'; font-size: 0.85rem; box-sizing: border-box; }
@@ -78,7 +75,7 @@
         <header>
             <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img">
             <h1>بطولة القحمة الرمضانية 28</h1>
-            <span class="stadium-tag">🏆 أدوار الحسم - ملعب الوسم للقحمة 🏆</span>
+            <span class="stadium-tag">🏆 أدوار الحسم - المربع الذهبي الرسمي 🏆</span>
         </header>
         
         <div class="info-bar">
@@ -288,7 +285,7 @@ function searchList(type) {
 function updateDisplay() {
     const now = new Date(); const currentHour = now.getHours(); const weekDays = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
     
-    // شرط التبديل عند الساعة 3 فجراً
+    // شرط التبديل عند الساعة 3:00 فجراً
     let targetDay;
     if (currentHour < 3) {
         let prevDate = new Date(now);
