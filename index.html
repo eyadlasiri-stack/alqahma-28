@@ -33,7 +33,7 @@
         .sub-tab-btn { background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); color: var(--text-muted); padding: 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; flex: 1; font-family: 'Cairo'; max-width: 150px; }
         .sub-tab-btn.active { border-color: var(--blue-main); color: #fff; background: var(--blue-main); }
 
-        .tab-content { display: none; animation: slideUp 0.4s ease-out; }
+        .tab-content { display: none; animation: slideUp 0.4s ease-out; text-align: center; }
         .tab-content.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -47,14 +47,14 @@
         .group-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--card-border); }
         .group-header { background: rgba(255,255,255,0.03); color: var(--blue-light); padding: 12px; font-weight: 900; text-align: right; font-size: 0.85rem; }
         .group-table { width: 100%; border-collapse: collapse; }
-        .group-table th { padding: 8px; color: var(--text-muted); font-size: 0.75rem; border-bottom: 1px solid var(--card-border); text-align: center; }
-        .group-table td { padding: 12px 4px; text-align: center; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
+        .group-table th { padding: 8px; color: var(--text-muted); font-size: 0.7rem; border-bottom: 1px solid var(--card-border); text-align: center; }
+        .group-table td { padding: 12px 4px; text-align: center; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .team-name-cell { text-align: right !important; padding-right: 15px !important; font-weight: 700; width: 35%; }
 
-        .about-text-area { white-space: pre-wrap; font-size: 0.85rem; color: #eee; padding: 20px; background: var(--card-bg); border-radius: 15px; text-align: right; line-height: 1.8; border: 1px solid var(--card-border); }
+        .about-text-area { white-space: pre-wrap; font-size: 0.8rem; color: #eee; padding: 20px; background: var(--card-bg); border-radius: 15px; text-align: right; line-height: 1.8; border: 1px solid var(--card-border); }
         .footer { text-align: center; padding: 40px 15px; background: rgba(0,0,0,0.3); margin-top: 100px; border-top-left-radius: 35px; border-top-right-radius: 35px; border-top: 1px solid var(--card-border); }
         .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 10px; }
-        .social-btn { padding: 8px 15px; border-radius: 10px; text-decoration: none; font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--blue-grad); }
+        .social-btn { padding: 8px 15px; border-radius: 10px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--blue-grad); }
         .disclaimer { font-size: 0.65rem; color: var(--text-muted); max-width: 700px; margin: 20px auto 0; line-height: 1.5; opacity: 0.8; }
     </style>
 </head>
@@ -256,9 +256,6 @@ function openSubTab(evt, subName) {
     for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active");
     document.getElementById(subName).style.display = "block";
     if (evt) evt.currentTarget.classList.add("active");
-    else {
-        if (subName === 'players-list') document.getElementById('default-scorers').classList.add("active");
-    }
 }
 
 function updateDisplay() {
@@ -267,6 +264,7 @@ function updateDisplay() {
     const weekDays = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
     let targetDay = (currentHour < 3) ? weekDays[new Date(now.getTime() - 86400000).getDay()] : weekDays[now.getDay()];
     
+    // اليوم
     let matchToday = finalsData.find(m => m.day.includes(targetDay.substring(0,2)));
     let todayHTML = `<div style="text-align:center; padding: 40px; color:var(--text-muted);">لا توجد مباريات اليوم</div>`;
     if (matchToday) {
@@ -274,11 +272,19 @@ function updateDisplay() {
     }
     document.getElementById('today-match-area').innerHTML = todayHTML;
 
+    // النهائيات
     document.getElementById('finals-area').innerHTML = finalsData.map(m => `<span class="day-header">${m.day}</span><div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label">VS</div><span class="team-item">${m.t2}</span></div><span style="font-size:0.8rem; color:var(--blue-light);">${m.info}</span></div>`).join('');
-    document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${m.r}</span>${m.p ? `<span class="penalty-small">${m.p}</span>` : ""}</div><span class="team-item">${m.t2}</span></div></div>`).join('')).join('');
-    document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map(s => `<tr><td class="team-name-cell">${s.n}<br><small style="color:var(--text-muted)">(${s.f})</small></td><td style="padding:15px; text-align:left;"><span style="background:var(--blue-main); color:#fff; padding:4px 10px; border-radius:8px; font-weight:900;">${s.g}</span></td></tr>`).join('');
-    document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th>الفريق</th><th>ل</th><th>له</th><th>عل</th><th>+/-</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue-light); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
 
+    // الأرشيف
+    document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${m.r}</span>${m.p ? `<span class="penalty-small">${m.p}</span>` : ""}</div><span class="team-item">${m.t2}</span></div></div>`).join('')).join('');
+
+    // الهدافين
+    document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map(s => `<tr><td class="team-name-cell">${s.n}<br><small style="color:var(--text-muted)">(${s.f})</small></td><td style="padding:15px; text-align:left;"><span style="background:var(--blue-main); color:#fff; padding:4px 8px; border-radius:8px; font-weight:900;">${s.g}</span></td></tr>`).join('');
+    
+    // المجموعات - استعادة التصميم الأصلي والمحاذاة
+    document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue-light); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
+
+    // الإحصائيات (الأندية)
     const stats = {};
     archiveData.forEach(day => day.matches.forEach(m => {
         const res = m.r.split(' - ').map(Number);
