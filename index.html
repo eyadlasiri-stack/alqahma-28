@@ -18,39 +18,48 @@
         .logo-img { width: 100px; height: auto; display: block; margin: 0 auto 10px; filter: brightness(1.1); }
         header h1 { font-weight: 900; margin: 0; font-size: 1.5rem; }
         .stadium-tag { color: var(--text-main); font-size: 0.8rem; font-weight: 600; margin-top: 5px; display: block; opacity: 0.9; }
+        
         .info-bar { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
         .stat-badge { background: rgba(255,255,255,0.04); padding: 6px 15px; border-radius: 30px; border: 1px solid var(--card-border); font-size: 0.75rem; font-weight: 700; color: var(--text-muted); }
         .dot { height: 8px; width: 8px; background-color: var(--green-neon); border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; margin-left: 5px; }
         @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.5; } }
+
         .tabs-nav { display: flex; background: rgba(255,255,255,0.04); padding: 5px; border-radius: 15px; margin-bottom: 25px; border: 1px solid var(--card-border); overflow-x: auto; scrollbar-width: none; }
         .tabs-nav::-webkit-scrollbar { display: none; }
         .tab-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 700; padding: 10px 15px; border-radius: 12px; flex: 1; font-family: 'Cairo'; white-space: nowrap; font-size: 0.8rem; }
         .tab-btn.active { background: var(--blue-grad); color: white; }
-        .sub-tabs { display: flex; gap: 8px; margin-bottom: 15px; padding: 0 5px; justify-content: center; }
+        
+        .sub-tabs { display: flex; gap: 8px; margin-bottom: 20px; padding: 0 5px; justify-content: center; }
         .sub-tab-btn { background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); color: var(--text-muted); padding: 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; flex: 1; font-family: 'Cairo'; max-width: 150px; }
         .sub-tab-btn.active { border-color: var(--blue-main); color: #fff; background: var(--blue-main); }
+
         .tab-content { display: none; animation: slideUp 0.4s ease-out; text-align: center; }
         .tab-content.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         .match-card { background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%); border-radius: 18px; margin-bottom: 15px; border: 1px solid var(--card-border); padding: 15px; position: relative; }
         .teams-row { display: flex; justify-content: space-around; align-items: center; }
-        .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 1rem; }
+        .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.95rem; }
         .vs-label { background: var(--blue-grad); color: white; padding: 8px 15px; border-radius: 10px; font-weight: 900; font-size: 1rem; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 70px; }
         .penalty-small { font-size: 0.65rem; opacity: 0.9; display: block; }
         .day-header { color: var(--text-main); font-size: 0.8rem; font-weight: 900; margin: 20px 0 10px; display: block; border-right: 3px solid var(--blue-main); padding-right: 10px; text-align: right; }
+
         .group-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--card-border); }
         .group-header { background: rgba(255,255,255,0.03); color: var(--blue-light); padding: 12px; font-weight: 900; text-align: right; font-size: 0.85rem; }
         .group-table { width: 100%; border-collapse: collapse; }
         .group-table th { padding: 8px; color: var(--text-muted); font-size: 0.7rem; border-bottom: 1px solid var(--card-border); text-align: center; }
         .group-table td { padding: 12px 4px; text-align: center; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .team-name-cell { text-align: right !important; padding-right: 15px !important; font-weight: 700; width: 35%; }
+
         .about-text-area { white-space: pre-wrap; font-size: 0.8rem; color: #eee; padding: 20px; background: var(--card-bg); border-radius: 15px; text-align: right; line-height: 1.8; border: 1px solid var(--card-border); }
         .footer { text-align: center; padding: 40px 15px; background: rgba(0,0,0,0.3); margin-top: 100px; border-top-left-radius: 35px; border-top-right-radius: 35px; border-top: 1px solid var(--card-border); }
         .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 10px; }
         .social-btn { padding: 8px 15px; border-radius: 10px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--blue-grad); }
         .disclaimer { font-size: 0.65rem; color: var(--text-muted); max-width: 700px; margin: 20px auto 0; line-height: 1.5; opacity: 0.8; }
+        
         .search-container { padding: 0 5px; margin-bottom: 15px; }
         .search-input { width: 100%; padding: 12px 15px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; color: var(--text-main); font-family: 'Cairo'; font-size: 0.85rem; box-sizing: border-box; }
+        
         .a2hs-banner { position: fixed; bottom: -120px; left: 0; right: 0; background: var(--blue-grad); color: white; padding: 15px; text-align: center; z-index: 9999; box-shadow: 0 -5px 20px rgba(0,0,0,0.5); transition: 0.4s; display: flex; align-items: center; justify-content: center; gap: 10px; border-top-left-radius: 20px; border-top-right-radius: 20px; }
         .a2hs-banner.show { bottom: 0; }
     </style>
@@ -62,10 +71,12 @@
             <h1>بطولة القحمة الرمضانية 28</h1>
             <span class="stadium-tag">🏆 أدوار الحسم - ملعب الوسم للقحمة 🏆</span>
         </header>
+        
         <div class="info-bar">
             <div class="stat-badge"><span class="dot"></span> النشاط: 15,098</div>
             <div class="stat-badge" id="weather-box">القحمة: --°C</div>
         </div>
+
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming')">النهائيات</button>
@@ -74,8 +85,10 @@
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
             <button class="tab-btn" onclick="openTab(event, 'about')">حول البطولة</button>
         </div>
+
         <div id="today" class="tab-content active"><div id="today-match-area"></div></div>
         <div id="upcoming" class="tab-content"><div id="finals-area"></div></div>
+
         <div id="scorers-main" class="tab-content">
             <div class="sub-tabs">
                 <button id="default-scorers" class="sub-tab-btn active" onclick="openSubTab(event, 'players-list')">الهدافين</button>
@@ -85,12 +98,14 @@
             <div id="players-list" class="sub-content active"><div class="group-card"><table id="players-table" style="width:100%; border-collapse:collapse;"></table></div></div>
             <div id="teams-list" class="sub-content" style="display:none;"><div class="group-card"><div class="group-header">📊 سجل الأندية</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>له</th><th>عل</th><th>+/-</th></tr></thead><tbody id="teams-tbody"></tbody></table></div></div>
         </div>
+        
         <div id="archive" class="tab-content">
             <div class="search-container"><input type="text" class="search-input" id="archive-search" placeholder="ابحث عن مباراة..." onkeyup="searchList('archive')"></div>
             <div id="archive-area"></div>
         </div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
         <div id="about" class="tab-content"><div class="about-text-area" id="about-text-content"></div></div>
+
         <div class="footer">
             <p style="font-weight:900; margin-bottom:2px; font-size:0.75rem;">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
             <div class="social-mini"><a href="https://wa.me/966534987428" class="social-btn">واتساب</a><a href="https://snapchat.com/t/TXTbTApk" class="social-btn">سناب</a></div>
@@ -104,6 +119,7 @@
             <div class="disclaimer">هذا الموقع مخصص لعرض أخبار وجدول ونتائج بطولة القحمة الرمضانية 28. الموقع جهد شخصي، ولا نتحمل مسؤولية أي أخطاء غير مقصودة.</div>
         </div>
     </div>
+
     <div class="a2hs-banner" id="a2hs-banner">
         <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width:40px; height:40px; border-radius:10px;">
         <div style="flex:1; text-align:right;"><span style="font-weight:900; font-size:0.85rem; display:block;">تطبيق بطولة القحمة 28</span><span style="font-size:0.7rem; opacity:0.8;">تثبيت للوصول السريع</span></div>
@@ -112,7 +128,6 @@
     </div>
 
 <script>
-// --- البيانات الكاملة (المرجع الذهبي) ---
 const archiveData = [
     { d: "الثلاثاء 21 رمضان", matches: [{t1:"الوسام", t2:"عمق", r: "1 - 1", p: "(20) - (19)"}] },
     { d: "الجمعة 17 رمضان", matches: [{t1:"الصقر", t2:"السوق", r:"1 - 0"}, {t1:"ساحل مغزل", t2:"الساحل الرياضي", r:"1 - 0"}] },
@@ -136,6 +151,7 @@ const scorers = [
     {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عمر المعشي", f:"عمق", g:2}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"علي البارقي", f:"الوسام", g:1}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"نايف شرفي", f:"السوق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"خالد dماس", f:"ساحل مغزل", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"خليج الصوالحة", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
 ];
 
+// --- [ مصفوفة النهائيات - اعدل هنا ] ---
 const finalsData = [
     { day: "الأربعاء 22 رمضان", t1: "صقلية", t2: "الفيصلي", info: "دور الثمانية (23) | 22:45 PM", r: "  VS  " },
     { day: "الجمعة 24 رمضان", t1: "الصقر", t2: "فائز مباراة 23", info: "نصف النهائي (1) | 22:45 PM", r: "  VS  " },
@@ -149,12 +165,10 @@ const groupData = [
     {n:"3", teams:[{t:"الصقر",l:2,f:2,te:0,x:0,p:6},{t:"عمق",l:2,f:1,te:0,x:1,p:3},{t:"العرق",l:2,f:0,te:0,x:2,p:0}]},
     {n:"4", teams:[{t:"الساحل الرياضي",l:2,f:2,te:0,x:0,p:6},{t:"مستقبل عرمرم",l:2,f:1,te:0,x:1,p:3},{t:"السلطان",l:2,f:0,te:0,x:2,p:0}]},
     {n:"5", teams:[{t:"الوسام",l:2,f:2,te:0,x:0,p:6},{t:"الفيصلي",l:2,f:1,te:0,x:1,p:3},{t:"خليج الصوالحة",l:2,f:0,te:0,x:2,p:0}]},
-    {n:"6", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]},
-    {n:"7 (أوائل)", teams:[{t:"السوق",l:0,f:0,te:0,x:0,p:0},{t:"ساحل مغزل",l:0,f:0,te:0,x:0,p:0},{t:"عمق",l:0,f:0,te:0,x:0,p:0}]},
-    {n:"8 (أوائل)", teams:[{t:"الصقر",l:0,f:0,te:0,x:0,p:0},{t:"الفيصلي",l:0,f:0,te:0,x:0,p:0},{t:"الوسام",l:0,f:0,te:0,x:0,p:0}]}
+    {n:"6", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي... (النص الكامل محفوظ بالفواصل بآخر تعديل للمجموعات 7 و 8)`;
+const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي... (النص الكامل محفوظ)`;
 
 function openTab(evt, tabName) {
     let content = document.getElementsByClassName("tab-content"), btns = document.getElementsByClassName("tab-btn");
@@ -173,10 +187,10 @@ function openSubTab(evt, subName) {
 function searchList(type) {
     let input = document.getElementById(type === 'scorers' ? 'scorer-search' : 'archive-search');
     let filter = input.value.toUpperCase();
-    let cards = type === 'scorers' ? document.getElementById('players-table').getElementsByTagName('tr') : document.getElementById('archive-area').getElementsByClassName('match-card');
-    for (let i = 0; i < cards.length; i++) {
-        let txtValue = cards[i].textContent || cards[i].innerText;
-        cards[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+    let items = type === 'scorers' ? document.getElementById('players-table').getElementsByTagName('tr') : document.getElementById('archive-area').getElementsByClassName('match-card');
+    for (let i = 0; i < items.length; i++) {
+        let txt = items[i].textContent || items[i].innerText;
+        items[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "" : "none";
     }
 }
 function updateDisplay() {
