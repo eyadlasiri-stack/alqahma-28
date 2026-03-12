@@ -248,7 +248,8 @@ function updateDisplay() {
         targetDay = weekDays[now.getDay()];
     }
     
-    let matchToday = finalsData.filter(m => m.day.includes(targetDay.substring(0, 2)));
+    // الحل الجذري: مطابقة اسم اليوم بدقة وليس بأول حرفين فقط
+    let matchToday = finalsData.filter(m => m.day.split(" ")[0] === targetDay);
     let todayArea = document.getElementById('today-match-area');
     
     if (matchToday.length > 0) {
