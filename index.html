@@ -68,10 +68,36 @@
         .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.95rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
         
         .vs-label { background: var(--blue-grad); color: white; padding: 8px 15px; border-radius: 10px; font-weight: 900; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 65px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); font-size: 1rem; }
-        .penalty-small { font-size: 0.65rem; opacity: 0.9; display: block; }
+        .penalty-small { font-size: 0.65rem; opacity: 0.9; display: block; margin-top: 2px; }
         .day-header { color: var(--text-main); font-size: 0.8rem; font-weight: 900; margin: 20px 0 10px; display: block; border-right: 3px solid var(--blue-main); padding-right: 10px; text-align: right; }
 
-        /* شارة ركلات الترجيح الذهبية الجديدة */
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.15) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: var(--red-live);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            box-shadow: 0 0 8px rgba(239, 68, 68, 0.08);
+            animation: liveGlow 2s infinite;
+        }
+        .live-dot-red {
+            height: 5px; width: 5px;
+            background-color: var(--red-live);
+            border-radius: 50%; display: inline-block;
+            box-shadow: 0 0 4px var(--red-live);
+        }
+        @keyframes liveGlow {
+            0% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.25); }
+            50% { box-shadow: 0 0 12px rgba(239, 68, 68, 0.3); border-color: rgba(239, 68, 68, 0.5); }
+            100% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.25); }
+        }
+
         .penalty-indicator {
             display: inline-flex;
             align-items: center;
@@ -217,7 +243,9 @@
         <button style="background:none; border:none; color:white; font-size:1.2rem;" onclick="closeA2HS()">×</button>
     </div>
 <script>
+// تم إضافة مباراة الصقر والفيصلي بنتيجتها الماراثونية للأرشيف
 const archiveData = [
+    { d: "الجمعة 24 رمضان", matches: [{t1:"الصقر", t2:"الفيصلي", r: "1 - 1", p: "(11) - (12)"}] },
     { d: "الأربعاء 22 رمضان", matches: [{t1:"صقلية", t2:"الفيصلي", r: "0 - 1"}] },
     { d: "الثلاثاء 21 رمضان", matches: [{t1:"الوسام", t2:"عمق", r: "1 - 1", p: "(20) - (19)"}] },
     { d: "الجمعة 17 رمضان", matches: [{t1:"الصقر", t2:"السوق", r:"1 - 0"}, {t1:"ساحل مغزل", t2:"الساحل الرياضي", r:"1 - 0"}] },
@@ -241,10 +269,10 @@ const scorers = [
     {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عمر المعشي", f:"عمق", g:2}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"فهد عبده", f:"الفيصلي", g:1}, {n:"علي البارقي", f:"الوسام", g:1}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"خليج الصوالحة", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
 ];
 
+// تم تجهيز مباراة السبت والنهائي بوضع الفيصلي
 const finalsData = [
-    { id: "sf1", day: "الجمعة 24 رمضان", t1: "الصقر", t2: "الفيصلي", info: "نصف النهائي (1)", r: "1 - 1", time: "", comm: "", stad: "", note: "", h2h: "🛡️ <b>الصقر:</b> صدارة المجموعة الـ3 وشباك نظيفة في دور الثمانية.<br>⚔️ <b>الفيصلي:</b> تأهل من الملحق، وحقق فوزاً مثيراً أطاح بصقلية." },
-    { id: "sf2", day: "السبت 25 رمضان", t1: "ساحل مغزل", t2: "الوسام", info: "نصف النهائي (2)", r: " VS ", time: "", comm: "", stad: "", note: "", h2h: "🔥 <b>ساحل مغزل:</b> الفريق الذي لم يعرف الخسارة حتى الآن.<br>🎯 <b>الوسام:</b> صاحب أقوى هجوم في البطولة، قوة ضاربة." },
-    { id: "final", day: "النهائي الكبير", t1: "يحدد لاحقاً", t2: "يحدد لاحقاً", info: "بعد عيد الفطر المبارك", r: " VS ", time: "", comm: "", stad: "", note: "", h2h: null }
+    { id: "sf2", day: "السبت 25 رمضان", t1: "ساحل مغزل", t2: "الوسام", info: "نصف النهائي (2)", r: " VS ", time: "10:45 م", comm: "الشوالي", stad: "ملعب الوسم بالقحمة", note: "⚠️ نرجو من الفرق التقيد بالوقت", h2h: "🔥 <b>ساحل مغزل:</b> الفريق الذي لم يعرف الخسارة حتى الآن.<br>🎯 <b>الوسام:</b> صاحب أقوى هجوم في البطولة، قوة ضاربة." },
+    { id: "final", day: "النهائي الكبير", t1: "الفيصلي", t2: "يحدد لاحقاً", info: "بعد عيد الفطر المبارك", r: " VS ", time: "", comm: "", stad: "", note: "", h2h: null }
 ];
 
 const groupData = [
@@ -378,52 +406,38 @@ function updateDisplay() {
         targetDay = weekDays[now.getDay()];
     }
     
-    // المباشر شغال ولكن على وضع "ركلات الترجيح"
-    let isLive = true; 
+    // تم إطفاء المباشر لانتهاء المباراة
+    let isLive = false; 
 
     let matchToday = finalsData.filter(m => m.day.split(" ")[0] === targetDay);
     let todayArea = document.getElementById('today-match-area');
     
     if (matchToday.length > 0) {
         todayArea.innerHTML = `<span class="day-header">مباريات اليوم | ${matchToday[0].day.split(" ")[0]}</span>` + matchToday.map(m => {
-            let extraInfoHtml = '';
-            if (isLive) {
-                // شارة ركلات الترجيح الذهبية الجديدة
-                extraInfoHtml = `<div style="text-align:center; margin-top:15px;"><div class="penalty-indicator"><span class="penalty-dot"></span> ركلات الترجيح الآن</div></div>`;
-            } else {
-                extraInfoHtml = `
-                ${m.time ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; background:rgba(0,0,0,0.2); padding:5px; border-radius:8px;">
-                    <span>⏱️ ${m.time}</span>
-                    <span>🎙️ ${m.comm}</span>
-                    <span>🏟️ ${m.stad}</span>
-                </div>` : ''}
-                ${m.note ? `<span style="font-size:0.65rem; color:#ff4757; display:block; margin-top:6px; opacity:0.9; font-weight:700;">${m.note}</span>` : ''}`;
-            }
-
-            let team1CardHtml = '';
-            if (m.t1 === "الصقر") {
-                team1CardHtml = `<div class="red-card-icon-container"><span class="red-card-icon" title="بطاقة حمراء للصقر"></span></div>`;
-            }
+            let extraInfoHtml = `
+            ${m.time ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; background:rgba(0,0,0,0.2); padding:5px; border-radius:8px;">
+                <span>⏱️ ${m.time}</span>
+                <span>🎙️ ${m.comm}</span>
+                <span>🏟️ ${m.stad}</span>
+            </div>` : ''}
+            ${m.note ? `<span style="font-size:0.65rem; color:#ff4757; display:block; margin-top:6px; opacity:0.9; font-weight:700;">${m.note}</span>` : ''}`;
 
             return `
             <div class="match-card">
                 <div class="teams-row">
-                    <span class="team-item">
-                        <span>${m.t1}</span>
-                        ${team1CardHtml}
-                    </span>
+                    <span class="team-item"><span>${m.t1}</span></span>
                     <div class="vs-label"><span>${m.r}</span></div>
                     <span class="team-item">${m.t2}</span>
                 </div>
                 ${extraInfoHtml}
-                
                 <div class="match-footer-info">
                     <span class="info-tag-sm">${m.info}</span>
                 </div>
             </div>`;
         }).join('');
     } else {
-        todayArea.innerHTML = `<div style="text-align:center; padding: 40px; color:var(--text-muted);">لا توجد مباريات اليوم</div>`;
+        // رسالة تظهر بعد ما قفلنا مباراة اليوم (قبل الساعة 3 الفجر)
+        todayArea.innerHTML = `<div style="text-align:center; padding: 40px; color:var(--text-muted);">انتهت مباراة اليوم.<br><br>الفيصلي يتأهل للنهائي الكبير! 🏆<br><small>التفاصيل في تبويب الأرشيف</small></div>`;
     }
 
     let upcomingFinals = finalsData.filter(m => m.day.split(" ")[0] !== targetDay);
