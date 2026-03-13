@@ -32,7 +32,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3); margin-bottom: 25px; 
             margin-top: -15px; 
         }
-        .logo-img { width: 100px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
+        .logo-img { width: 100px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(0 4px 66px rgba(0,0,0,0.5)); }
         header h1 { font-weight: 900; margin: 0; font-size: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
         .stadium-tag { color: var(--blue-light); font-size: 0.8rem; font-weight: 600; margin-top: 5px; display: block; opacity: 0.9; }
         
@@ -62,30 +62,29 @@
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .match-card { border-radius: 18px; margin-bottom: 15px; padding: 15px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: transform 0.2s; overflow: hidden; }
-        .teams-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 5px; }
-        .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.95rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        .teams-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 5px; position: relative; }
+        .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.95rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; gap: 6px; }
         .vs-label { background: var(--blue-grad); color: white; padding: 8px 15px; border-radius: 10px; font-weight: 900; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 65px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); font-size: 1rem; }
         .penalty-small { font-size: 0.65rem; opacity: 0.9; display: block; }
         .day-header { color: var(--text-main); font-size: 0.8rem; font-weight: 900; margin: 20px 0 10px; display: block; border-right: 3px solid var(--blue-main); padding-right: 10px; text-align: right; }
 
-        /* تصميم شارة المباشر المصغّرة والأنيقة الجديدة */
         .live-indicator {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            padding: 3px 10px; /* تصغير البادينج */
+            padding: 3px 10px;
             border-radius: 50px;
             background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.15) 100%);
             border: 1px solid rgba(239, 68, 68, 0.25);
             color: var(--red-live);
-            font-size: 0.7rem; /* تصغير الخط */
+            font-size: 0.7rem;
             font-weight: 800;
             letter-spacing: 0.3px;
             box-shadow: 0 0 8px rgba(239, 68, 68, 0.08);
             animation: liveGlow 2s infinite;
         }
         .live-dot-red {
-            height: 5px; width: 5px; /* تصغير النقطة */
+            height: 5px; width: 5px;
             background-color: var(--red-live);
             border-radius: 50%; display: inline-block;
             box-shadow: 0 0 4px var(--red-live);
@@ -94,6 +93,26 @@
             0% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.25); }
             50% { box-shadow: 0 0 12px rgba(239, 68, 68, 0.3); border-color: rgba(239, 68, 68, 0.5); }
             100% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.25); }
+        }
+
+        /* تصميم شارة الكرت الأحمر الصغير RC جنب اسم الفريق */
+        .red-card-tag {
+            display: inline-block;
+            background-color: var(--red-live);
+            color: #fff;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-size: 0.55rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-right: -2px;
+            margin-top: -3px;
+            box-shadow: 0 0 5px rgba(239, 68, 68, 0.4);
+            animation: redCardFlash 1s infinite alternate;
+        }
+        @keyframes redCardFlash {
+            from { opacity: 1; box-shadow: 0 0 3px rgba(239, 68, 68, 0.4); }
+            to { opacity: 0.7; box-shadow: 0 0 10px rgba(239, 68, 68, 0.8); }
         }
 
         .match-footer-info {
@@ -224,9 +243,10 @@ const archiveData = [
 ];
 
 const scorers = [
-    {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عمر المعشي", f:"عمق", g:2}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"فهد عبده", f:"الفيصلي", g:1}, {n:"علي البارقي", f:"الوسام", g:1}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"خليج الصوالحة", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
+    {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عمر المعشي", f:"عمق", g:2}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"فهد عبده", f:"الفيصلي", g:1}, {n:"علي البارقي", f:"الوسام", g:1}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"نايف شرفي", f:"السوق", g:1}, {n:"حسن بكري", f:"ساحل مغزل", g:1}, {n:"خالد دماس", f:"ساحل مغزل", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"خليج الصوالحة", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
 ];
 
+// تم تحديث النتيجة إلى 1 - 1
 const finalsData = [
     { id: "sf1", day: "الجمعة 24 رمضان", t1: "الصقر", t2: "الفيصلي", info: "نصف النهائي (1)", r: "1 - 1", time: "", comm: "", stad: "", note: "", h2h: "🛡️ <b>الصقر:</b> صدارة المجموعة الـ3 وشباك نظيفة في دور الثمانية.<br>⚔️ <b>الفيصلي:</b> تأهل من الملحق، وحقق فوزاً مثيراً أطاح بصقلية." },
     { id: "sf2", day: "السبت 25 رمضان", t1: "ساحل مغزل", t2: "الوسام", info: "نصف النهائي (2)", r: " VS ", time: "", comm: "", stad: "", note: "", h2h: "🔥 <b>ساحل مغزل:</b> الفريق الذي لم يعرف الخسارة حتى الآن.<br>🎯 <b>الوسام:</b> صاحب أقوى هجوم في البطولة، قوة ضاربة." },
@@ -375,7 +395,7 @@ function updateDisplay() {
         todayArea.innerHTML = `<span class="day-header">مباريات اليوم | ${matchToday[0].day.split(" ")[0]}</span>` + matchToday.map(m => {
             let extraInfoHtml = '';
             if (isLive) {
-                // التصميم المصغّر الجديد بدون كلمة "مباشر"
+                // التصميم المصغّر الأنيق بدون كلمة "مباشر"
                 extraInfoHtml = `<div style="text-align:center; margin-top:15px;"><div class="live-indicator"><span class="live-dot-red"></span> تلعب الآن</div></div>`;
             } else {
                 extraInfoHtml = `
@@ -387,9 +407,15 @@ function updateDisplay() {
                 ${m.note ? `<span style="font-size:0.65rem; color:#ff4757; display:block; margin-top:6px; opacity:0.9; font-weight:700;">${m.note}</span>` : ''}`;
             }
 
+            // برمجة إظهار الكرت الأحمر RC جنب اسم فريق الصقر
+            let team1NameHtml = m.t1;
+            if (m.t1 === "الصقر") {
+                team1NameHtml = `<span class="red-card-tag">RC</span> ${m.t1}`;
+            }
+
             return `
             <div class="match-card">
-                <div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${m.r}</span></div><span class="team-item">${m.t2}</span></div>
+                <div class="teams-row"><span class="team-item">${team1NameHtml}</span><div class="vs-label"><span>${m.r}</span></div><span class="team-item">${m.t2}</span></div>
                 ${extraInfoHtml}
                 
                 <div class="match-footer-info">
