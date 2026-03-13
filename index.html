@@ -243,7 +243,6 @@
         <button style="background:none; border:none; color:white; font-size:1.2rem;" onclick="closeA2HS()">×</button>
     </div>
 <script>
-// تم إضافة مباراة الصقر والفيصلي بنتيجتها الماراثونية للأرشيف
 const archiveData = [
     { d: "الجمعة 24 رمضان", matches: [{t1:"الصقر", t2:"الفيصلي", r: "1 - 1", p: "(11) - (12)"}] },
     { d: "الأربعاء 22 رمضان", matches: [{t1:"صقلية", t2:"الفيصلي", r: "0 - 1"}] },
@@ -269,9 +268,9 @@ const scorers = [
     {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عمر المعشي", f:"عمق", g:2}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"فهد عبده", f:"الفيصلي", g:1}, {n:"علي البارقي", f:"الوسام", g:1}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"خليج الصوالحة", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
 ];
 
-// تم تجهيز مباراة السبت والنهائي بوضع الفيصلي
+// تم تفريغ خانة المعلق (comm: "") من مباراة السبت مع بقاء باقي التفاصيل
 const finalsData = [
-    { id: "sf2", day: "السبت 25 رمضان", t1: "ساحل مغزل", t2: "الوسام", info: "نصف النهائي (2)", r: " VS ", time: "10:45 م", comm: "الشوالي", stad: "ملعب الوسم بالقحمة", note: "⚠️ نرجو من الفرق التقيد بالوقت", h2h: "🔥 <b>ساحل مغزل:</b> الفريق الذي لم يعرف الخسارة حتى الآن.<br>🎯 <b>الوسام:</b> صاحب أقوى هجوم في البطولة، قوة ضاربة." },
+    { id: "sf2", day: "السبت 25 رمضان", t1: "ساحل مغزل", t2: "الوسام", info: "نصف النهائي (2)", r: " VS ", time: "10:45 م", comm: "", stad: "ملعب الوسم بالقحمة", note: "⚠️ نرجو من الفرق التقيد بالوقت", h2h: "🔥 <b>ساحل مغزل:</b> الفريق الذي لم يعرف الخسارة حتى الآن.<br>🎯 <b>الوسام:</b> صاحب أقوى هجوم في البطولة، قوة ضاربة." },
     { id: "final", day: "النهائي الكبير", t1: "الفيصلي", t2: "يحدد لاحقاً", info: "بعد عيد الفطر المبارك", r: " VS ", time: "", comm: "", stad: "", note: "", h2h: null }
 ];
 
@@ -406,7 +405,6 @@ function updateDisplay() {
         targetDay = weekDays[now.getDay()];
     }
     
-    // تم إطفاء المباشر لانتهاء المباراة
     let isLive = false; 
 
     let matchToday = finalsData.filter(m => m.day.split(" ")[0] === targetDay);
@@ -417,8 +415,8 @@ function updateDisplay() {
             let extraInfoHtml = `
             ${m.time ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; background:rgba(0,0,0,0.2); padding:5px; border-radius:8px;">
                 <span>⏱️ ${m.time}</span>
-                <span>🎙️ ${m.comm}</span>
-                <span>🏟️ ${m.stad}</span>
+                ${m.comm ? `<span>🎙️ ${m.comm}</span>` : ''}
+                ${m.stad ? `<span>🏟️ ${m.stad}</span>` : ''}
             </div>` : ''}
             ${m.note ? `<span style="font-size:0.65rem; color:#ff4757; display:block; margin-top:6px; opacity:0.9; font-weight:700;">${m.note}</span>` : ''}`;
 
@@ -436,7 +434,7 @@ function updateDisplay() {
             </div>`;
         }).join('');
     } else {
-        // رسالة تظهر بعد ما قفلنا مباراة اليوم (قبل الساعة 3 الفجر)
+        // رسالة تظهر بعد ما قفلنا مباراة الجمعة
         todayArea.innerHTML = `<div style="text-align:center; padding: 40px; color:var(--text-muted);">انتهت مباراة اليوم.<br><br>الفيصلي يتأهل للنهائي الكبير! 🏆<br><small>التفاصيل في تبويب الأرشيف</small></div>`;
     }
 
@@ -448,8 +446,8 @@ function updateDisplay() {
             <div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${m.r}</span></div><span class="team-item">${m.t2}</span></div>
             ${m.time ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; background:rgba(0,0,0,0.2); padding:5px; border-radius:8px;">
                 <span>⏱️ ${m.time}</span>
-                <span>🎙️ ${m.comm}</span>
-                <span>🏟️ ${m.stad}</span>
+                ${m.comm ? `<span>🎙️ ${m.comm}</span>` : ''}
+                ${m.stad ? `<span>🏟️ ${m.stad}</span>` : ''}
             </div>` : ''}
             ${m.note ? `<span style="font-size:0.65rem; color:#ff4757; display:block; margin-top:6px; opacity:0.9; font-weight:700;">${m.note}</span>` : ''}
             ${m.h2h ? `<button class="h2h-btn" onclick="let box = document.getElementById('h2h-${m.id}'); box.style.display = box.style.display === 'none' ? 'block' : 'none'">📊 إحصائيات المواجهة</button><div id="h2h-${m.id}" class="h2h-box" style="display:none">${m.h2h}</div>` : ''}
