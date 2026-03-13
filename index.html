@@ -13,6 +13,7 @@
             --glass-border: rgba(255, 255, 255, 0.08);
             --text-main: #f8fafc; --text-muted: #94a3b8; --green-neon: #10b981;
             --red-live: #ef4444;
+            --gold-penalty: #f59e0b;
         }
         html { background-color: #020617; }
         body { 
@@ -64,49 +65,44 @@
         .match-card { border-radius: 18px; margin-bottom: 15px; padding: 15px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: transform 0.2s; overflow: hidden; }
         .teams-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 5px; position: relative; }
         
-        /* تنسيق عمودي لاسم الفريق عشان البطاقة الحمراء تكون تحته */
         .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.95rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
         
         .vs-label { background: var(--blue-grad); color: white; padding: 8px 15px; border-radius: 10px; font-weight: 900; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 65px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); font-size: 1rem; }
         .penalty-small { font-size: 0.65rem; opacity: 0.9; display: block; }
         .day-header { color: var(--text-main); font-size: 0.8rem; font-weight: 900; margin: 20px 0 10px; display: block; border-right: 3px solid var(--blue-main); padding-right: 10px; text-align: right; }
 
-        .live-indicator {
+        /* شارة ركلات الترجيح الذهبية الجديدة */
+        .penalty-indicator {
             display: inline-flex;
             align-items: center;
             gap: 5px;
             padding: 3px 10px;
             border-radius: 50px;
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.15) 100%);
-            border: 1px solid rgba(239, 68, 68, 0.25);
-            color: var(--red-live);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.15) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--gold-penalty);
             font-size: 0.7rem;
             font-weight: 800;
             letter-spacing: 0.3px;
-            box-shadow: 0 0 8px rgba(239, 68, 68, 0.08);
-            animation: liveGlow 2s infinite;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.1);
+            animation: penaltyGlow 2s infinite;
         }
-        .live-dot-red {
+        .penalty-dot {
             height: 5px; width: 5px;
-            background-color: var(--red-live);
+            background-color: var(--gold-penalty);
             border-radius: 50%; display: inline-block;
-            box-shadow: 0 0 4px var(--red-live);
+            box-shadow: 0 0 4px var(--gold-penalty);
         }
-        @keyframes liveGlow {
-            0% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.25); }
-            50% { box-shadow: 0 0 12px rgba(239, 68, 68, 0.3); border-color: rgba(239, 68, 68, 0.5); }
-            100% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.25); }
+        @keyframes penaltyGlow {
+            0% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.25); }
+            50% { box-shadow: 0 0 12px rgba(245, 158, 11, 0.4); border-color: rgba(245, 158, 11, 0.6); }
+            100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.25); }
         }
 
-        /* تصميم الكرت الأحمر الصغيرRC الجديد على شكل بطاقة عمودية تحت الاسم */
         .red-card-icon-container { display: flex; justify-content: center; width: 100%; margin-top: -1px; }
         .red-card-icon {
-            display: block;
-            width: 8px; /* عرض البطاقة الصغيرةRC */
-            height: 12px; /* ارتفاع عمودي للبطاقة */
-            background-color: var(--red-live);
-            border-radius: 1px; /* زوايا منحنية قليلاً للبطاقة */
-            box-shadow: 0 0 5px rgba(239, 68, 68, 0.4);
+            display: block; width: 8px; height: 12px; background-color: var(--red-live);
+            border-radius: 1px; box-shadow: 0 0 5px rgba(239, 68, 68, 0.4);
             animation: redCardGlow 1.5s infinite;
         }
         @keyframes redCardGlow {
@@ -245,7 +241,6 @@ const scorers = [
     {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عمر المعشي", f:"عمق", g:2}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"فهد عبده", f:"الفيصلي", g:1}, {n:"علي البارقي", f:"الوسام", g:1}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"خليج الصوالحة", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}
 ];
 
-// تم تحديث النتيجة إلى 1 - 1 والشواهد ممسوحة
 const finalsData = [
     { id: "sf1", day: "الجمعة 24 رمضان", t1: "الصقر", t2: "الفيصلي", info: "نصف النهائي (1)", r: "1 - 1", time: "", comm: "", stad: "", note: "", h2h: "🛡️ <b>الصقر:</b> صدارة المجموعة الـ3 وشباك نظيفة في دور الثمانية.<br>⚔️ <b>الفيصلي:</b> تأهل من الملحق، وحقق فوزاً مثيراً أطاح بصقلية." },
     { id: "sf2", day: "السبت 25 رمضان", t1: "ساحل مغزل", t2: "الوسام", info: "نصف النهائي (2)", r: " VS ", time: "", comm: "", stad: "", note: "", h2h: "🔥 <b>ساحل مغزل:</b> الفريق الذي لم يعرف الخسارة حتى الآن.<br>🎯 <b>الوسام:</b> صاحب أقوى هجوم في البطولة، قوة ضاربة." },
@@ -375,7 +370,6 @@ function searchList(type) {
 function updateDisplay() {
     const now = new Date(); const currentHour = now.getHours(); const weekDays = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
     
-    // نظام 3 الفجر ثابت
     let targetDay;
     if (currentHour < 3) {
         let prevDate = new Date(now.getTime() - 86400000);
@@ -384,7 +378,7 @@ function updateDisplay() {
         targetDay = weekDays[now.getDay()];
     }
     
-    // المباشر شغال حالياً
+    // المباشر شغال ولكن على وضع "ركلات الترجيح"
     let isLive = true; 
 
     let matchToday = finalsData.filter(m => m.day.split(" ")[0] === targetDay);
@@ -394,7 +388,8 @@ function updateDisplay() {
         todayArea.innerHTML = `<span class="day-header">مباريات اليوم | ${matchToday[0].day.split(" ")[0]}</span>` + matchToday.map(m => {
             let extraInfoHtml = '';
             if (isLive) {
-                extraInfoHtml = `<div style="text-align:center; margin-top:15px;"><div class="live-indicator"><span class="live-dot-red"></span> تلعب الآن</div></div>`;
+                // شارة ركلات الترجيح الذهبية الجديدة
+                extraInfoHtml = `<div style="text-align:center; margin-top:15px;"><div class="penalty-indicator"><span class="penalty-dot"></span> ركلات الترجيح الآن</div></div>`;
             } else {
                 extraInfoHtml = `
                 ${m.time ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; background:rgba(0,0,0,0.2); padding:5px; border-radius:8px;">
@@ -405,10 +400,8 @@ function updateDisplay() {
                 ${m.note ? `<span style="font-size:0.65rem; color:#ff4757; display:block; margin-top:6px; opacity:0.9; font-weight:700;">${m.note}</span>` : ''}`;
             }
 
-            // برمجة إظهار البطاقة الحمراءRC الجديدة (شكل بطاقة صغيرة) تحت اسم الصقر
             let team1CardHtml = '';
             if (m.t1 === "الصقر") {
-                // الكرتRC الآن عبارة عن أيقونة بطاقة صغيرة عمودية
                 team1CardHtml = `<div class="red-card-icon-container"><span class="red-card-icon" title="بطاقة حمراء للصقر"></span></div>`;
             }
 
