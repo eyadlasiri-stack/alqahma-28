@@ -83,6 +83,29 @@
         .penalty-small { font-size: 0.65rem; opacity: 0.9; display: block; margin-top: 2px; }
         .day-header { color: var(--text-main); font-size: 0.8rem; font-weight: 900; margin: 20px 0 10px; display: block; border-right: 3px solid var(--blue-main); padding-right: 10px; text-align: right; }
 
+        /* ========= ستايل النبض الجديد (تلعب الآن) ========= */
+        .pulse-live {
+            display: none; /* مخفي، بيشتغل بالوقت عبر الجافاسكربت */
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: var(--red-live);
+            font-weight: 900;
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin: 0 auto 15px auto;
+            width: fit-content;
+            animation: pulse-red 1.5s infinite ease-in-out;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+        }
+        @keyframes pulse-red {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        /* ================================================= */
+
         .live-indicator {
             display: inline-flex;
             align-items: center;
@@ -255,7 +278,7 @@
         <button style="background:none; border:none; color:white; font-size:1.2rem;" onclick="closeA2HS()">×</button>
     </div>
 <script>
-// 🔄 التحديث التلقائي
+// 🔄 التحديث التلقائي للصفحة (10 ثواني)
 setTimeout(function(){ location.reload(); }, 10000);
 
 const archiveData = [
@@ -429,8 +452,10 @@ function updateDisplay() {
             </div>` : ''}
             ${m.note ? `<span style="font-size:0.65rem; color:#ff4757; display:block; margin-top:6px; opacity:0.9; font-weight:700;">${m.note}</span>` : ''}`;
 
+            // 🔴 إضافة كود النبض هنا في منطقة عرض المباراة
             return `
             <div class="match-card">
+                <div class="pulse-live">تلعب الآن 🔴</div>
                 <div class="teams-row">
                     <span class="team-item"><span>${m.t1}</span></span>
                     <div class="vs-label"><span>${m.r}</span></div>
@@ -485,6 +510,22 @@ function updateDisplay() {
     document.getElementById('about-text-content').innerText = aboutFullText;
 }
 
+// ⏱️ دالة فحص الوقت لتشغيل وإيقاف النبض الأحمر
+function checkLiveTime() {
+    const now = new Date();
+    const hour = now.getHours();
+    const min = now.getMinutes();
+    const timeVal = (hour * 100) + min;
+
+    // الشرط: من 23:20 (11:20 مساءً) إلى 00:50 (12:50 صباحاً)
+    const isLive = (timeVal >= 2320 || (hour === 0 && min <= 50));
+
+    const statuses = document.querySelectorAll('.pulse-live');
+    statuses.forEach(el => {
+        el.style.display = isLive ? 'block' : 'none';
+    });
+}
+
 let deferredPrompt; const banner = document.getElementById('a2hs-banner');
 window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; if (!sessionStorage.getItem('a2hs_dismissed')) setTimeout(() => banner.classList.add('show'), 3000); });
 document.getElementById('a2hs-install').addEventListener('click', async () => { if (!deferredPrompt) return; banner.classList.remove('show'); deferredPrompt.prompt(); deferredPrompt = null; });
@@ -492,7 +533,12 @@ function closeA2HS() { banner.classList.remove('show'); sessionStorage.setItem('
 
 async function fetchWeather() { try { const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.02&longitude=41.74&current_weather=true'); const data = await response.json(); document.getElementById('weather-box').innerHTML = `القحمة: ${Math.round(data.current_weather.temperature)}°C`; } catch (e) { document.getElementById('weather-box').innerHTML = "القحمة: 26°C"; } }
 
-window.onload = function() { fetchWeather(); updateDisplay(); };
+// تشغيل الدوال عند تحميل الصفحة (الطقس، عرض البيانات، وفحص وقت البث)
+window.onload = function() { 
+    fetchWeather(); 
+    updateDisplay(); 
+    checkLiveTime(); 
+};
 </script>
 </body>
 </html>
