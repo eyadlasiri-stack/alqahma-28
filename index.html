@@ -21,13 +21,13 @@
     <style>
         /* ========= ستايل الذهب الملكي (VIP Final Theme) ========= */
         :root { 
-            --gold-main: #d4af37; /* ذهبي كلاسيكي */
-            --gold-light: #f3e5ab; /* ذهبي فاتح للمعان */
-            --gold-dark: #aa8c2c; /* ذهبي غامق للحدود */
+            --gold-main: #d4af37; 
+            --gold-light: #f3e5ab; 
+            --gold-dark: #aa8c2c; 
             --gold-grad: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%);
-            --black-bg: #0a0a0a; /* أسود فاحم للخلفية */
-            --black-card: #141414; /* أسود رمادي للبطاقات */
-            --glass-border: rgba(212, 175, 55, 0.15); /* حدود ذهبية شفافة */
+            --black-bg: #0a0a0a; 
+            --black-card: #141414; 
+            --glass-border: rgba(212, 175, 55, 0.15); 
             --text-main: #f8fafc; 
             --text-muted: #a0a0a0; 
             --green-neon: #10b981;
@@ -59,7 +59,7 @@
         header::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.05), transparent); animation: shine 6s infinite; }
         @keyframes shine { 100% { left: 200%; } }
 
-        .logo-img { width: 110px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.2)); }
+        .logo-img { width: 100px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.2)); }
         header h1 { font-weight: 900; margin: 0; font-size: 1.5rem; color: var(--gold-light); text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
         .stadium-tag { color: var(--gold-main); font-size: 0.85rem; font-weight: 700; margin-top: 5px; display: block; letter-spacing: 1px; }
         
@@ -98,11 +98,11 @@
         .h2h-btn:hover { background: var(--gold-dark); color: #fff; border-color: transparent; }
         .h2h-box { background: rgba(0,0,0,0.5); padding: 12px; border-radius: 10px; font-size: 0.75rem; color: #ddd; margin-top: 8px; border: 1px solid var(--glass-border); line-height: 1.8; text-align: right; }
 
-        /* ========= ستايلات الحركات الجديدة (VIP) ========= */
+        /* ========= ستايلات الحركات الجديدة (VIP) مصغرة ومحسنة ========= */
         .glowing-trophy {
-            font-size: 4rem; 
+            font-size: 2.5rem; /* تصغير الأيقونة هنا */
             margin: 0 auto;
-            text-shadow: 0 0 20px rgba(212,175,55,0.6), 0 0 40px rgba(243,229,171,0.4);
+            text-shadow: 0 0 15px rgba(212,175,55,0.6), 0 0 30px rgba(243,229,171,0.4);
             animation: trophyPulse 2s infinite alternate;
             display: inline-block;
         }
@@ -111,7 +111,7 @@
             100% { transform: scale(1.1); filter: brightness(1.3); }
         }
 
-        .power-bar-bg { background: #222; border-radius: 10px; overflow: hidden; height: 8px; }
+        .power-bar-bg { background: #222; border-radius: 10px; overflow: hidden; height: 6px; } /* تصغير السمك */
         .power-bar-fill { background: var(--gold-grad); height: 100%; border-radius: 10px; }
         .power-bar-fill.red { background: linear-gradient(90deg, #ef4444, #b91c1c); }
         /* ================================================= */
@@ -123,7 +123,7 @@
         .group-table td { padding: 12px 4px; text-align: center; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.02); color: #eee; }
         .team-name-cell { text-align: right !important; padding-right: 15px !important; font-weight: 700; width: 35%; color: var(--gold-light); }
 
-        .about-text-area { white-space: pre-wrap; font-size: 0.8rem; padding: 20px; border-radius: 15px; text-align: right; line-height: 1.8; color: #ddd; }
+        .about-text-area { white-space: pre-wrap; font-size: 0.85rem; padding: 20px; border-radius: 15px; text-align: right; line-height: 1.8; color: #ddd; }
         
         .footer { text-align: center; padding: 40px 15px; background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent); margin-top: 35vh; border-top: 1px solid var(--glass-border); }
         .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 10px; }
@@ -158,7 +158,7 @@
             <button class="tab-btn" onclick="openTab(event, 'scorers-main'); openSubTab(null, 'players-list')">الهدافين</button>
             <button class="tab-btn" onclick="openTab(event, 'archive')">الأرشيف</button>
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
-            <button class="tab-btn" onclick="openTab(event, 'about')">عن البطولة</button>
+            <button class="tab-btn" onclick="openTab(event, 'about')">عن النهائي</button>
         </div>
 
         <div id="today" class="tab-content active"><div id="today-match-area"></div></div>
@@ -179,6 +179,7 @@
             <div id="archive-area"></div>
         </div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
+        
         <div id="about" class="tab-content"><div class="about-text-area" id="about-text-content"></div></div>
 
         <div class="footer">
@@ -240,11 +241,19 @@ const groupData = [
     {n:"6", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي
+// 🛑 تم تغيير نص "حول البطولة" ليكون نصاً حماسياً مخصصاً للنهائي الكبير 🛑
+const aboutFullText = `🏆 النهائي الحلم - بطولة القحمة الرمضانية 28 🏆
 
-دور المجموعات وعدد مبارياته (18) مباراة
-* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة
-* تقام مباريات البطولة بنظام المجموعات من دور واحد... (الخ النص كما هو بالأرشيف)`;
+بعد منافسات شرسة استمرت طوال شهر رمضان المبارك، ومباريات مليئة بالندية والإثارة، نصل أخيراً إلى المشهد الختامي والقمة المرتقبة.
+
+يسدل الستار على هذه النسخة الاستثنائية بمواجهة من العيار الثقيل تجمع بين:
+🦅 الفيصلي: الذي شق طريقه بثبات وحسم مبارياته المصيرية وعينه على الذهب.
+⚔️ الوسام: صاحب الهجوم الكاسح والأداء الممتع الذي لا يعرف المستحيل.
+
+📅 الموعد: بعد عيد الفطر المبارك (سيتم تحديد اليوم والتاريخ لاحقاً).
+🏟️ المكان: ملعب الوسم بالقحمة.
+
+كونوا على الموعد في ليلة التتويج، حيث سيكتب التاريخ بطلاً جديداً يرفع كأس القحمة 28. من سيحسم اللقب؟ الميدان يا حميدان!`;
 
 function openTab(evt, tabName) {
     let content = document.getElementsByClassName("tab-content"), btns = document.getElementsByClassName("tab-btn");
@@ -289,7 +298,6 @@ function searchList(type) {
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     
-    // 🛑 بطاقة الترقب بستايل الذهب الملكي 🛑
     todayArea.innerHTML = `
     <div style="text-align:center; padding: 25px 15px; background: rgba(20, 20, 20, 0.8); border-radius: 18px; border: 1px solid rgba(212, 175, 55, 0.3); margin-top: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.8); position:relative; overflow:hidden;">
         <div style="position:absolute; top:-20px; right:-20px; width:80px; height:80px; background:radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);"></div>
@@ -307,79 +315,67 @@ function updateDisplay() {
         <button onclick="openTab(event, 'upcoming')" style="margin-top: 15px; background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); color: #000; padding: 8px 15px; border-radius: 10px; font-family: 'Cairo'; font-weight: 900; font-size: 0.8rem; cursor: pointer; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);">تفاصيل المواجهة</button>
     </div>`;
 
-    // 🛑 تصميم واجهة النهائي الكبير (الكأس المضيء + أشرطة القوة + مشوار البطلين) 🛑
+    // 🛑 تصغير الأيقونات والخطوط في صفحة النهائي لتتناسب مع الجوال 🛑
     document.getElementById('finals-area').innerHTML = `
-        <div class="match-card" style="text-align:center; padding-top:30px; margin-top:20px; border:1px solid var(--gold-main); box-shadow: 0 10px 30px rgba(212,175,55,0.2);">
+        <div class="match-card" style="text-align:center; padding-top:20px; margin-top:15px; border:1px solid var(--gold-main); box-shadow: 0 10px 30px rgba(212,175,55,0.2);">
             
             <div class="glowing-trophy">🏆</div>
-            <h2 style="color: var(--gold-light); margin: 10px 0; font-size:1.8rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">النهائي الحلم</h2>
-            <p style="color: var(--gold-main); font-size: 0.85rem; font-weight:700;">موعدنا بعد عيد الفطر المبارك 🌙</p>
+            <h2 style="color: var(--gold-light); margin: 5px 0; font-size:1.4rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">النهائي الحلم</h2>
+            <p style="color: var(--gold-main); font-size: 0.8rem; font-weight:700;">موعدنا بعد عيد الفطر المبارك 🌙</p>
             
-            <div class="teams-row" style="margin-top: 20px; background: rgba(0,0,0,0.3); padding:15px; border-radius:15px;">
-                <span class="team-item" style="font-size: 1.4rem;">الفيصلي</span>
-                <div class="vs-label" style="font-size:1.5rem; padding:10px 20px;">VS</div>
-                <span class="team-item" style="font-size: 1.4rem;">الوسام</span>
+            <div class="teams-row" style="margin-top: 15px; background: rgba(0,0,0,0.3); padding:10px; border-radius:15px;">
+                <span class="team-item" style="font-size: 1.1rem;">الفيصلي</span>
+                <div class="vs-label" style="font-size:1.1rem; padding:6px 12px;">VS</div>
+                <span class="team-item" style="font-size: 1.1rem;">الوسام</span>
             </div>
-            <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-top:10px;">🏟️ ملعب الوسم بالقحمة</span>
+            <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-top:8px;">🏟️ ملعب الوسم بالقحمة</span>
 
-            <div style="margin-top: 30px; background: rgba(0,0,0,0.4); padding: 20px 15px; border-radius: 15px; border: 1px solid rgba(212,175,55,0.2);">
-                <h4 style="color: var(--gold-main); margin-top: 0; margin-bottom: 20px; border-bottom:1px solid rgba(212,175,55,0.2); padding-bottom:10px;">📊 مقارنة الأرقام (أشرطة القوة)</h4>
+            <div style="margin-top: 25px; background: rgba(0,0,0,0.4); padding: 15px 10px; border-radius: 15px; border: 1px solid rgba(212,175,55,0.2);">
+                <h4 style="color: var(--gold-main); font-size: 0.9rem; margin-top: 0; margin-bottom: 15px; border-bottom:1px solid rgba(212,175,55,0.2); padding-bottom:8px;">📊 أرقام الفريقين في البطولة</h4>
                 
-                <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:5px; font-weight:700;">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; font-weight:700;">
                     <span style="color:var(--gold-light);">5</span>
                     <span style="color:#ddd;">الأهداف المسجلة</span>
                     <span style="color:var(--gold-light);">7</span>
                 </div>
-                <div style="display:flex; gap:10px; margin-bottom:20px;">
-                    <div class="power-bar-bg" style="flex:1; direction:ltr;">
-                        <div class="power-bar-fill" style="width: 71%; float:right;"></div>
-                    </div>
-                    <div class="power-bar-bg" style="flex:1; direction:rtl;">
-                        <div class="power-bar-fill" style="width: 100%;"></div>
-                    </div>
+                <div style="display:flex; gap:8px; margin-bottom:15px;">
+                    <div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 71%; float:right;"></div></div>
+                    <div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 100%;"></div></div>
                 </div>
 
-                <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:5px; font-weight:700;">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; font-weight:700;">
                     <span style="color:var(--gold-light);">3</span>
                     <span style="color:#ddd;">شباك نظيفة</span>
                     <span style="color:var(--gold-light);">2</span>
                 </div>
-                <div style="display:flex; gap:10px; margin-bottom:20px;">
-                    <div class="power-bar-bg" style="flex:1; direction:ltr;">
-                        <div class="power-bar-fill" style="width: 100%; float:right;"></div>
-                    </div>
-                    <div class="power-bar-bg" style="flex:1; direction:rtl;">
-                        <div class="power-bar-fill" style="width: 66%;"></div>
-                    </div>
+                <div style="display:flex; gap:8px; margin-bottom:15px;">
+                    <div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 100%; float:right;"></div></div>
+                    <div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 66%;"></div></div>
                 </div>
                 
-                <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:5px; font-weight:700;">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; font-weight:700;">
                     <span style="color:#ef4444;">2</span>
                     <span style="color:#ddd;">أهداف مستقبلة</span>
                     <span style="color:#ef4444;">2</span>
                 </div>
-                <div style="display:flex; gap:10px; margin-bottom:5px;">
-                    <div class="power-bar-bg" style="flex:1; direction:ltr;">
-                        <div class="power-bar-fill red" style="width: 50%; float:right;"></div>
-                    </div>
-                    <div class="power-bar-bg" style="flex:1; direction:rtl;">
-                        <div class="power-bar-fill red" style="width: 50%;"></div>
-                    </div>
+                <div style="display:flex; gap:8px; margin-bottom:5px;">
+                    <div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill red" style="width: 50%; float:right;"></div></div>
+                    <div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill red" style="width: 50%;"></div></div>
                 </div>
             </div>
 
-            <button class="h2h-btn" onclick="let b = document.getElementById('road-box'); b.style.display = b.style.display === 'none' ? 'block' : 'none'" style="margin-top:20px; font-size:0.9rem; padding:12px; background:var(--gold-grad); color:#000; border:none;">🛤️ مشوار البطلين للنهائي (اضغط هنا)</button>
-            <div id="road-box" class="h2h-box" style="display:none; text-align:right; margin-top:15px; background:rgba(0,0,0,0.6); padding:20px;">
-                <h4 style="color:var(--gold-main); margin-top:0; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">🦅 مشوار الفيصلي:</h4>
-                <ul style="padding-right:20px; margin-bottom:20px; color:#ccc; font-size:0.85rem; line-height:1.8;">
+            <button class="h2h-btn" onclick="let b = document.getElementById('road-box'); b.style.display = b.style.display === 'none' ? 'block' : 'none'" style="margin-top:15px; font-size:0.85rem; padding:10px; background:var(--gold-grad); color:#000; border:none;">🛤️ مشوار البطلين للنهائي (اضغط هنا)</button>
+            <div id="road-box" class="h2h-box" style="display:none; text-align:right; margin-top:10px; background:rgba(0,0,0,0.6); padding:15px;">
+                <h4 style="color:var(--gold-main); margin-top:0; font-size: 0.85rem; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">🦅 مشوار الفيصلي:</h4>
+                <ul style="padding-right:20px; margin-bottom:15px; color:#ccc; font-size:0.8rem; line-height:1.6;">
                     <li>فوز على خليج الصوالحة (2 - 0)</li>
                     <li>خسارة من الوسام (0 - 1)</li>
                     <li>فوز على دبسا (1 - 0)</li>
                     <li>فوز على صقلية (1 - 0)</li>
                     <li>تعادل مع الصقر (1 - 1) وفوز بركلات الترجيح</li>
                 </ul>
-                <h4 style="color:var(--gold-main); margin-top:0; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">⚔️ مشوار الوسام:</h4>
-                <ul style="padding-right:20px; margin-bottom:0; color:#ccc; font-size:0.85rem; line-height:1.8;">
+                <h4 style="color:var(--gold-main); margin-top:0; font-size: 0.85rem; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">⚔️ مشوار الوسام:</h4>
+                <ul style="padding-right:20px; margin-bottom:0; color:#ccc; font-size:0.8rem; line-height:1.6;">
                     <li>فوز على خليج الصوالحة (4 - 1)</li>
                     <li>فوز على الفيصلي (1 - 0)</li>
                     <li>تعادل مع عمق (1 - 1) وفوز بركلات الترجيح</li>
