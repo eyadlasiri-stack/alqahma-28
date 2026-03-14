@@ -28,14 +28,28 @@
             --red-live: #ef4444;
             --gold-penalty: #f59e0b;
         }
-        html { background-color: #020617; touch-action: manipulation; }
+        
+        /* ========= ستايل الخلفية المتحركة الفخمة للنهائي ========= */
+        html { 
+            background-color: #020617; 
+            touch-action: manipulation; 
+        }
         body { 
             margin: 0; padding: 0; min-height: 100vh;
-            background: radial-gradient(circle at top right, #0f172a, #020617) no-repeat center center fixed; 
-            background-size: cover;
+            /* تدرج لوني متحرك ببطء */
+            background: linear-gradient(45deg, #020617, #0f172a, #0a0f1d, #020617);
+            background-size: 400% 400%;
+            animation: gradientBG 20s ease infinite;
             color: var(--text-main); font-family: 'Cairo', sans-serif; line-height: 1.6; font-size: 0.9rem; 
             -webkit-tap-highlight-color: transparent;
         }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* ========================================================== */
+
         .container { max-width: 900px; margin: auto; padding: 15px; min-height: 100vh; display: flex; flex-direction: column; }
         
         header { 
@@ -84,6 +98,14 @@
         .vs-label { background: var(--blue-grad); color: white; padding: 8px 15px; border-radius: 10px; font-weight: 900; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 65px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); font-size: 1.2rem; position: relative; }
         .penalty-small { font-size: 0.65rem; opacity: 0.9; display: block; margin-top: 2px; }
         
+        .match-ended-badge {
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255, 255, 255, 0.05); color: var(--text-muted);
+            font-weight: 700; font-size: 0.75rem; text-align: center;
+            padding: 4px 0; margin: 10px auto 0 auto; width: 100px;
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         .day-header { color: var(--text-main); font-size: 0.8rem; font-weight: 900; margin: 20px 0 10px; display: block; border-right: 3px solid var(--blue-main); padding-right: 10px; text-align: right; }
         .match-footer-info { border-top: 1px solid var(--glass-border); margin-top: 15px; padding-top: 8px; text-align: center; }
         .info-tag-sm { font-size: 0.65rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; display: inline-block; border: 1px solid rgba(255,255,255,0.03); padding: 2px 8px; border-radius: 4px; background: rgba(0,0,0,0.1); }
@@ -177,10 +199,9 @@
         <button style="background:none; border:none; color:white; font-size:1.2rem;" onclick="closeA2HS()">×</button>
     </div>
 <script>
-// 🔄 التحديث التلقائي كل 3 دقائق (المباريات انتهت)
+// 🔄 التحديث التلقائي كل 3 دقائق
 setTimeout(function(){ location.reload(); }, 180000);
 
-// 🛑 تم نقل نتيجة مباراة ساحل مغزل والوسام إلى الأرشيف بدون اسم اللاعب
 const archiveData = [
     { d: "السبت 25 رمضان", matches: [{t1:"ساحل مغزل", t2:"الوسام", r: "0 - 1"}] },
     { d: "الجمعة 24 رمضان", matches: [{t1:"الصقر", t2:"الفيصلي", r: "1 - 1", p: "(11) - (12)"}] },
@@ -207,7 +228,6 @@ const scorers = [
     {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عمر المعشي", f:"عمق", g:2}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"فهد عبده", f:"الفيصلي", g:1}, {n:"علي البارقي", f:"الوسام", g:2}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"خليج الصوالحة", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}, {n:"نافع الفضيلي", f:"الفيصلي", g:1}, {n:"سلطان عسيري", f:"الصقر", g:1}
 ];
 
-// 🛑 تم تجهيز بيانات النهائي الكبير 🛑
 const finalsData = [
     { id: "final", day: "النهائي الكبير", t1: "الفيصلي", t2: "الوسام", info: "موعدنا بعد عيد الفطر المبارك 🌙", r: " VS ", s1: "", s2: "", time: "يحدد لاحقاً", comm: "", stad: "ملعب الوسم بالقحمة", note: "🏆 القمة المنتظرة", h2h: "🔥 <b>الفيصلي:</b> طموح التتويج والذهب.<br>🎯 <b>الوسام:</b> قوة هجومية لا ترحم." }
 ];
@@ -387,21 +407,21 @@ function updateDisplay() {
             </div>`;
         }).join('');
     } else {
-        // 🛑 رسالة ترقب النهائي الجديد والمصممة بأسلوب فخم 🛑
+        // 🛑 بطاقة الترقب المعدلة (ملمومة ومناسبة لشاشات الجوال) 🛑
         todayArea.innerHTML = `
-        <div style="text-align:center; padding: 40px 20px; background: rgba(255,255,255,0.03); border-radius: 20px; border: 1px solid var(--glass-border); margin-top: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-            <span style="font-size: 3rem; display: block; margin-bottom: 10px;">⏳</span>
-            <h3 style="color: var(--blue-light); margin: 0 0 10px 0; font-weight: 900; font-size: 1.4rem;">اكتملت أضلاع المربع الذهبي!</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 20px;">
-                انتهت مواجهات نصف النهائي المثيرة.. والآن تتجه الأنظار نحو <strong style="color:white;">النهائي الكبير</strong>.<br>
+        <div style="text-align:center; padding: 25px 15px; background: rgba(255,255,255,0.03); border-radius: 18px; border: 1px solid var(--glass-border); margin-top: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">
+            <span style="font-size: 2.2rem; display: block; margin-bottom: 5px;">🏆</span>
+            <h3 style="color: var(--blue-light); margin: 0 0 8px 0; font-weight: 900; font-size: 1.1rem;">المربع الذهبي اكتمل</h3>
+            <p style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.6; margin-bottom: 15px;">
+                الأنظار تتجه نحو <strong style="color:white;">النهائي الكبير</strong>.<br>
                 هل يتوج <span style="color:#f59e0b;">الفيصلي</span> أم يخطفها <span style="color:#10b981;">الوسام</span>؟
             </p>
-            <div style="display: flex; justify-content: center; align-items: center; gap: 15px; font-weight: 900; font-size: 1.2rem; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; border: 1px dashed rgba(59, 130, 246, 0.3);">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 10px; font-weight: 900; font-size: 1rem; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 12px; border: 1px dashed rgba(59, 130, 246, 0.2);">
                 <span style="flex:1;">الفيصلي</span>
-                <span style="color: var(--blue-main); font-size: 0.8rem; background: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 10px;">ضد</span>
+                <span style="color: var(--blue-main); font-size: 0.7rem; background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 8px;">ضد</span>
                 <span style="flex:1;">الوسام</span>
             </div>
-            <button onclick="openTab(event, 'upcoming')" style="margin-top: 20px; background: var(--blue-grad); border: none; color: white; padding: 10px 20px; border-radius: 12px; font-family: 'Cairo'; font-weight: 700; cursor: pointer; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4);">تفاصيل النهائي</button>
+            <button onclick="openTab(event, 'upcoming')" style="margin-top: 15px; background: var(--blue-grad); border: none; color: white; padding: 8px 15px; border-radius: 10px; font-family: 'Cairo'; font-weight: 700; font-size: 0.8rem; cursor: pointer; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);">تفاصيل المواجهة</button>
         </div>`;
     }
 
