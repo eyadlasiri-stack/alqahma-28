@@ -2,7 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
     <title>بطولة القحمة الرمضانية 28 - المربع الذهبي الرسمي</title>
     
     <meta name="google-site-verification" content="UpHq0ul9TLm4xZavcz4MRcyO3QvTGEOHCJ2ANrYmVXA" />
@@ -27,12 +28,18 @@
             --red-live: #ef4444;
             --gold-penalty: #f59e0b;
         }
-        html { background-color: #020617; }
+        html { 
+            background-color: #020617; 
+            /* منع الزوم العشوائي باللمس */
+            touch-action: manipulation; 
+        }
         body { 
             margin: 0; padding: 0; min-height: 100vh;
             background: radial-gradient(circle at top right, #0f172a, #020617) no-repeat center center fixed; 
             background-size: cover;
             color: var(--text-main); font-family: 'Cairo', sans-serif; line-height: 1.6; font-size: 0.9rem; 
+            /* منع تحديد النصوص العشوائي عشان يحس إنه تطبيق */
+            -webkit-tap-highlight-color: transparent;
         }
         .container { max-width: 900px; margin: auto; padding: 15px; min-height: 100vh; display: flex; flex-direction: column; }
         
@@ -61,7 +68,6 @@
         .dot { height: 6px; width: 6px; background-color: var(--green-neon); border-radius: 50%; display: inline-block; animation: neonPulse 1.5s infinite; box-shadow: 0 0 8px var(--green-neon); }
         @keyframes neonPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.6; } }
 
-        /* ========= ستايل النقطة النابضة لحالها (تصميم نظيف) ========= */
         .live-pulse-dot {
             height: 10px; 
             width: 10px; 
@@ -77,7 +83,6 @@
             0%, 100% { transform: scale(1); opacity: 1; } 
             50% { transform: scale(1.5); opacity: 0.3; box-shadow: 0 0 15px var(--red-live); } 
         }
-        /* ================================================= */
 
         .tabs-nav { display: flex; padding: 5px; border-radius: 15px; margin-bottom: 25px; overflow-x: auto; scrollbar-width: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .tabs-nav::-webkit-scrollbar { display: none; }
@@ -504,7 +509,6 @@ function closeA2HS() { banner.classList.remove('show'); sessionStorage.setItem('
 
 async function fetchWeather() { try { const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.02&longitude=41.74&current_weather=true'); const data = await response.json(); document.getElementById('weather-box').innerHTML = `القحمة: ${Math.round(data.current_weather.temperature)}°C`; } catch (e) { document.getElementById('weather-box').innerHTML = "القحمة: 26°C"; } }
 
-// 💾 تشغيل دوال الاسترجاع عند تحديث الصفحة
 window.onload = function() { 
     fetchWeather(); 
     updateDisplay(); 
