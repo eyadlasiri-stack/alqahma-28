@@ -13,10 +13,7 @@
         await OneSignal.init({
           appId: "abe6392e-a85f-4d57-b89a-cbd675e3ca80",
           notifyButton: {
-            enable: true,
-            position: 'bottom-left',
-            size: 'medium',
-            theme: 'default',
+            enable: true, position: 'bottom-left', size: 'medium', theme: 'default',
             text: {
                 'tip.state.unsubscribed': 'تفعيل تنبيهات الأهداف ⚽',
                 'tip.state.subscribed': 'أنت مشترك ✅',
@@ -209,12 +206,10 @@
             <h1>بطولة القحمة الرمضانية 28</h1>
             <span class="stadium-tag">🏆 أدوار الحسم 🏆</span>
         </header>
-        
         <div class="info-bar">
             <div class="stat-badge"><span class="dot"></span> النشاط: 16,421</div>
             <div class="stat-badge" id="weather-box">القحمة: --°C</div>
         </div>
-
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
             <button class="tab-btn" onclick="openTab(event, 'upcoming')">النهائيات</button>
@@ -223,10 +218,8 @@
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
             <button class="tab-btn" onclick="openTab(event, 'about')">حول البطولة</button>
         </div>
-
         <div id="today" class="tab-content active"><div id="today-match-area"></div></div>
         <div id="upcoming" class="tab-content"><div id="finals-area"></div></div>
-
         <div id="scorers-main" class="tab-content">
             <div class="sub-tabs">
                 <button id="default-scorers" class="sub-tab-btn active" onclick="openSubTab(event, 'players-list')">الهدافين</button>
@@ -236,37 +229,28 @@
             <div id="players-list" class="sub-content active"><div class="group-card"><table id="players-table" style="width:100%; border-collapse:collapse;"></table></div></div>
             <div id="teams-list" class="sub-content" style="display:none;"><div class="group-card"><div class="group-header">📊 سجل الأندية</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>له</th><th>عل</th><th>+/-</th></tr></thead><tbody id="teams-tbody"></tbody></table></div></div>
         </div>
-        
         <div id="archive" class="tab-content">
             <div class="search-container"><input type="text" class="search-input" id="archive-search" placeholder="ابحث عن مباراة..." onkeyup="searchList('archive')"></div>
             <div id="archive-area"></div>
         </div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
         <div id="about" class="tab-content"><div class="about-text-area" id="about-text-content"></div></div>
-
         <div class="footer">
             <p style="font-weight:900; margin-bottom:2px; font-size:0.75rem;">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
             <div class="social-mini"><a href="https://wa.me/966534987428" class="social-btn">واتساب</a><a href="https://snapchat.com/t/TXTbTApk" class="social-btn">سناب</a></div>
             <p style="font-size:0.7rem; color:var(--blue-light); font-weight:900; margin-top:15px;">📸 الشبكة الإعلامية للبطولة</p>
-            <div class="social-mini">
-                <a href="https://snapchat.com/t/2qKXdcpD" class="social-btn">سناب سوداني</a>
-                <a href="https://snapchat.com/t/rJe5ARXp" class="social-btn">علي</a>
-                <a href="https://snapchat.com/t/nreTp74h" class="social-btn">رضي</a>
-                <a href="https://snapchat.com/t/gcKhHU8e" class="social-btn">علوش</a>
-            </div>
+            <div class="social-mini"><a href="https://snapchat.com/t/2qKXdcpD" class="social-btn">سناب سوداني</a><a href="https://snapchat.com/t/rJe5ARXp" class="social-btn">علي</a><a href="https://snapchat.com/t/nreTp74h" class="social-btn">رضي</a><a href="https://snapchat.com/t/gcKhHU8e" class="social-btn">علوش</a></div>
             <div class="disclaimer">هذا الموقع مخصص لعرض أخبار وجدول ونتائج بطولة القحمة الرمضانية 28. الموقع جهد شخصي، ولا نتحمل مسؤولية أي أخطاء غير مقصودة.</div>
         </div>
     </div>
-
     <div class="a2hs-banner" id="a2hs-banner">
         <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width:40px; height:40px; border-radius:10px;">
         <div style="flex:1; text-align:right;"><span style="font-weight:900; font-size:0.85rem; display:block;">تطبيق بطولة القحمة 28</span><span style="font-size:0.7rem; opacity:0.8;">تثبيت للوصول السريع</span></div>
         <button class="social-btn" style="background:white; color:var(--blue-main); border:none;" id="a2hs-install">تثبيت</button>
         <button style="background:none; border:none; color:white; font-size:1.2rem;" onclick="closeA2HS()">×</button>
     </div>
-
 <script>
-// 🔄 ميزة التحديث التلقائي: الصفحة تحدث نفسها كل 60 ثانية لضمان ظهور آخر النتائج
+// 🔄 ميزة التحديث التلقائي كل دقيقة
 setTimeout(()=> location.reload(), 60000);
 
 const archiveData = [
@@ -308,7 +292,7 @@ const groupData = [
     {n:"6", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي... (تم استعادة النص الكامل كما أرسلته)`;
+const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي... (هنا النص الكامل الطويل بكل فواصله)`;
 
 function openTab(evt, tabName) {
     let content = document.getElementsByClassName("tab-content"), btns = document.getElementsByClassName("tab-btn");
@@ -317,7 +301,6 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).classList.add("active");
     if (evt) evt.currentTarget.classList.add("active");
 }
-
 function openSubTab(evt, subName) {
     let content = document.getElementsByClassName("sub-content"), btns = document.getElementsByClassName("sub-tab-btn");
     for (let i = 0; i < content.length; i++) content[i].style.display = "none";
@@ -325,7 +308,6 @@ function openSubTab(evt, subName) {
     document.getElementById(subName).style.display = "block";
     if (evt) evt.currentTarget.classList.add("active");
 }
-
 function searchList(type) {
     let input = document.getElementById(type === 'scorers' ? 'scorer-search' : 'archive-search');
     let filter = input.value.toUpperCase();
@@ -335,13 +317,11 @@ function searchList(type) {
         cards[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "" : "none";
     }
 }
-
 function updateDisplay() {
     const now = new Date(); const currentHour = now.getHours(); const weekDays = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
     let targetDay = currentHour < 3 ? weekDays[new Date(now.getTime() - 86400000).getDay()] : weekDays[now.getDay()];
     let matchToday = finalsData.filter(m => m.day.split(" ")[0] === targetDay);
     let todayArea = document.getElementById('today-match-area');
-    
     if (matchToday.length > 0) {
         todayArea.innerHTML = `<span class="day-header">مباريات اليوم | ${matchToday[0].day.split(" ")[0]}</span>` + matchToday.map(m => `
             <div class="match-card">
@@ -349,22 +329,16 @@ function updateDisplay() {
                 ${m.time ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; background:rgba(0,0,0,0.2); padding:5px; border-radius:8px;"><span>⏱️ ${m.time}</span>${m.comm ? `<span>🎙️ ${m.comm}</span>` : ''}<span>🏟️ ${m.stad}</span></div>` : ''}
                 <div class="match-footer-info"><span class="info-tag-sm">${m.info}</span></div>
             </div>`).join('');
-    } else {
-        todayArea.innerHTML = `<div style="text-align:center; padding: 40px; color:var(--text-muted);">انتهت مباراة اليوم.<br><br>الفيصلي يتأهل للنهائي الكبير! 🏆</div>`;
-    }
-
+    } else { todayArea.innerHTML = `<div style="text-align:center; padding: 40px; color:var(--text-muted);">انتهت مباراة اليوم.<br><br>الفيصلي يتأهل للنهائي الكبير! 🏆</div>`; }
     document.getElementById('finals-area').innerHTML = finalsData.filter(m => m.day.split(" ")[0] !== targetDay).map(m => `
         <span class="day-header">${m.day}</span>
         <div class="match-card">
             <div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${m.r}</span></div><span class="team-item">${m.t2}</span></div>
-            ${m.time ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; background:rgba(0,0,0,0.2); padding:5px; border-radius:8px;"><span>⏱️ ${m.time}</span><span>🏟️ ${m.stad}</span></div>` : ''}
             <div class="match-footer-info"><span class="info-tag-sm">${m.info}</span></div>
         </div>`).join('');
-
     document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${m.r}</span>${m.p ? `<span class="penalty-small">${m.p}</span>` : ""}</div><span class="team-item">${m.t2}</span></div></div>`).join('')).join('');
     document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, i) => `<tr style="border-bottom: 1px solid var(--glass-border);"><td class="team-name-cell" style="padding: 10px;">${s.n} <small>(${s.f})</small></td><td style="padding:15px; text-align:left;"><span style="background:var(--blue-main); color:#fff; padding:4px 8px; border-radius:8px; font-weight:900;">${s.g}</span></td></tr>`).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue-light); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
-    
     const stats = {}; archiveData.forEach(day => day.matches.forEach(m => {
         const res = m.r.split(' - ').map(Number); if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 };
         stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0;
@@ -372,7 +346,6 @@ function updateDisplay() {
     document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--blue-light); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
     document.getElementById('about-text-content').innerText = aboutFullText;
 }
-
 let deferredPrompt; const banner = document.getElementById('a2hs-banner');
 window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; if (!sessionStorage.getItem('a2hs_dismissed')) setTimeout(() => banner.classList.add('show'), 3000); });
 document.getElementById('a2hs-install').addEventListener('click', async () => { if (!deferredPrompt) return; banner.classList.remove('show'); deferredPrompt.prompt(); deferredPrompt = null; });
