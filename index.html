@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>بطولة القحمة الرمضانية 28 - المربع الذهبي الرسمي</title>
+    <title>بطولة القحمة الرمضانية 28 - النهائي الكبير</title>
     
     <meta name="google-site-verification" content="UpHq0ul9TLm4xZavcz4MRcyO3QvTGEOHCJ2ANrYmVXA" />
 
     <meta name="description" content="الموقع والتطبيق الرسمي لبطولة القحمة الرمضانية 28 - نتائج المباريات، ترتيب المجموعات، وقائمة الهدافين أولاً بأول.">
-    <meta name="keywords" content="بطولة القحمة, القحمة 28, إياد عسيري, نتائج مباريات القحمة, بطولة القحمة الرمضانية, المربع الذهبي, رياضة القحمة">
+    <meta name="keywords" content="بطولة القحمة, القحمة 28, إياد عسيري, نتائج مباريات القحمة, بطولة القحمة الرمضانية, النهائي الكبير, رياضة القحمة">
     <meta name="author" content="إياد عسيري">
 
     <meta property="og:title" content="تطبيق بطولة القحمة الرمضانية 28">
@@ -19,121 +19,127 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
+        /* ========= ستايل الذهب الملكي (VIP Final Theme) ========= */
         :root { 
-            --blue-grad: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            --blue-main: #3b82f6; --blue-light: #93c5fd; 
-            --glass-bg: rgba(255, 255, 255, 0.04);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f8fafc; --text-muted: #94a3b8; --green-neon: #10b981;
+            --gold-main: #d4af37; /* ذهبي كلاسيكي */
+            --gold-light: #f3e5ab; /* ذهبي فاتح للمعان */
+            --gold-dark: #aa8c2c; /* ذهبي غامق للحدود */
+            --gold-grad: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%);
+            --black-bg: #0a0a0a; /* أسود فاحم للخلفية */
+            --black-card: #141414; /* أسود رمادي للبطاقات */
+            --glass-border: rgba(212, 175, 55, 0.15); /* حدود ذهبية شفافة */
+            --text-main: #f8fafc; 
+            --text-muted: #a0a0a0; 
+            --green-neon: #10b981;
             --red-live: #ef4444;
             --gold-penalty: #f59e0b;
         }
         
-        /* ========= ستايل الخلفية المتحركة الفخمة للنهائي ========= */
-        html { 
-            background-color: #020617; 
-            touch-action: manipulation; 
-        }
+        html { background-color: var(--black-bg); touch-action: manipulation; }
         body { 
             margin: 0; padding: 0; min-height: 100vh;
-            /* تدرج لوني متحرك ببطء */
-            background: linear-gradient(45deg, #020617, #0f172a, #0a0f1d, #020617);
-            background-size: 400% 400%;
-            animation: gradientBG 20s ease infinite;
+            background-color: var(--black-bg); 
+            /* إضافة باترن خفيف جداً يبرز الفخامة */
+            background-image: radial-gradient(circle at top right, rgba(212, 175, 55, 0.05), transparent 40%),
+                              radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.05), transparent 40%);
             color: var(--text-main); font-family: 'Cairo', sans-serif; line-height: 1.6; font-size: 0.9rem; 
             -webkit-tap-highlight-color: transparent;
         }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        /* ========================================================== */
-
         .container { max-width: 900px; margin: auto; padding: 15px; min-height: 100vh; display: flex; flex-direction: column; }
         
         header { 
             text-align: center; padding: 25px 0; 
-            background: rgba(30, 58, 138, 0.2); 
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            background: linear-gradient(to bottom, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.9));
             border: 1px solid var(--glass-border); border-top: none;
             border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3); margin-bottom: 25px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 25px; 
             margin-top: -15px; 
+            position: relative;
+            overflow: hidden;
         }
-        .logo-img { width: 100px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
-        header h1 { font-weight: 900; margin: 0; font-size: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        .stadium-tag { color: var(--blue-light); font-size: 0.8rem; font-weight: 600; margin-top: 5px; display: block; opacity: 0.9; }
+        /* لمعة خفيفة في الهيدر */
+        header::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.05), transparent);
+            animation: shine 6s infinite;
+        }
+        @keyframes shine { 100% { left: 200%; } }
+
+        .logo-img { width: 110px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.2)); }
+        header h1 { font-weight: 900; margin: 0; font-size: 1.5rem; color: var(--gold-light); text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
+        .stadium-tag { color: var(--gold-main); font-size: 0.85rem; font-weight: 700; margin-top: 5px; display: block; letter-spacing: 1px; }
         
         .info-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
         
         .stat-badge, .tabs-nav, .sub-tab-btn, .match-card, .group-card, .about-text-area, .search-input {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            background: var(--black-card);
             border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
-        .stat-badge { padding: 6px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; color: var(--text-muted); box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-flex; align-items: center; gap: 5px; }
-        .dot { height: 6px; width: 6px; background-color: var(--green-neon); border-radius: 50%; display: inline-block; animation: neonPulse 1.5s infinite; box-shadow: 0 0 8px var(--green-neon); }
-        @keyframes neonPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.6; } }
+        .stat-badge { padding: 6px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; color: var(--gold-light); display: inline-flex; align-items: center; gap: 5px; }
+        .dot { height: 6px; width: 6px; background-color: var(--gold-main); border-radius: 50%; display: inline-block; animation: goldPulse 2s infinite; box-shadow: 0 0 8px var(--gold-main); }
+        @keyframes goldPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.5; } }
 
-        .tabs-nav { display: flex; padding: 5px; border-radius: 15px; margin-bottom: 25px; overflow-x: auto; scrollbar-width: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .tabs-nav { display: flex; padding: 5px; border-radius: 15px; margin-bottom: 25px; overflow-x: auto; scrollbar-width: none; }
         .tabs-nav::-webkit-scrollbar { display: none; }
         .tab-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 700; padding: 10px 15px; border-radius: 12px; flex: 1; font-family: 'Cairo'; white-space: nowrap; font-size: 0.8rem; transition: 0.3s; }
-        .tab-btn.active { background: var(--blue-grad); color: white; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4); border: 1px solid rgba(255,255,255,0.1); }
+        .tab-btn.active { background: var(--gold-grad); color: #000; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); border: 1px solid rgba(255,255,255,0.2); }
         
         .sub-tabs { display: flex; gap: 8px; margin-bottom: 20px; padding: 0 5px; justify-content: center; }
         .sub-tab-btn { color: var(--text-muted); padding: 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; flex: 1; font-family: 'Cairo'; max-width: 150px; transition: 0.3s; }
-        .sub-tab-btn.active { background: var(--blue-main); color: #fff; border-color: transparent; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4); }
+        .sub-tab-btn.active { background: var(--gold-dark); color: #fff; border-color: var(--gold-main); box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2); }
 
         .tab-content { display: none; animation: slideUp 0.4s ease-out; text-align: center; flex-grow: 1; }
         .tab-content.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .match-card { border-radius: 18px; margin-bottom: 15px; padding: 15px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: transform 0.2s; overflow: hidden; }
+        .match-card { border-radius: 18px; margin-bottom: 15px; padding: 15px; position: relative; transition: transform 0.2s; overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.3); }
         .teams-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 5px; position: relative; }
         
-        .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.95rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+        .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.95rem; color: var(--gold-light); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
         
-        .vs-label { background: var(--blue-grad); color: white; padding: 8px 15px; border-radius: 10px; font-weight: 900; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 65px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); font-size: 1.2rem; position: relative; }
-        .penalty-small { font-size: 0.65rem; opacity: 0.9; display: block; margin-top: 2px; }
+        .vs-label { background: var(--gold-grad); color: #000; padding: 8px 15px; border-radius: 10px; font-weight: 900; border: 1px solid rgba(255,255,255,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 65px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); font-size: 1.2rem; position: relative; }
+        .penalty-small { font-size: 0.65rem; opacity: 0.9; display: block; margin-top: 2px; color: #333; }
         
         .match-ended-badge {
             display: flex; align-items: center; justify-content: center;
-            background: rgba(255, 255, 255, 0.05); color: var(--text-muted);
+            background: rgba(212, 175, 55, 0.05); color: var(--gold-main);
             font-weight: 700; font-size: 0.75rem; text-align: center;
             padding: 4px 0; margin: 10px auto 0 auto; width: 100px;
-            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        .day-header { color: var(--text-main); font-size: 0.8rem; font-weight: 900; margin: 20px 0 10px; display: block; border-right: 3px solid var(--blue-main); padding-right: 10px; text-align: right; }
-        .match-footer-info { border-top: 1px solid var(--glass-border); margin-top: 15px; padding-top: 8px; text-align: center; }
-        .info-tag-sm { font-size: 0.65rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; display: inline-block; border: 1px solid rgba(255,255,255,0.03); padding: 2px 8px; border-radius: 4px; background: rgba(0,0,0,0.1); }
+        .day-header { color: var(--gold-main); font-size: 0.85rem; font-weight: 900; margin: 25px 0 10px; display: block; border-right: 3px solid var(--gold-main); padding-right: 10px; text-align: right; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .match-footer-info { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 15px; padding-top: 8px; text-align: center; }
+        .info-tag-sm { font-size: 0.65rem; color: var(--gold-light); font-weight: 600; letter-spacing: 0.5px; display: inline-block; border: 1px solid rgba(212, 175, 55, 0.2); padding: 2px 8px; border-radius: 4px; background: rgba(212, 175, 55, 0.05); }
 
-        .h2h-btn { background: rgba(255,255,255,0.05); border: 1px dashed rgba(255,255,255,0.2); color: var(--text-main); padding: 6px 10px; border-radius: 10px; font-family: 'Cairo'; font-size: 0.75rem; cursor: pointer; margin-top: 10px; width: 100%; transition: 0.3s; font-weight: 700; }
-        .h2h-btn:hover { background: var(--blue-main); border-color: transparent; }
-        .h2h-box { background: rgba(0,0,0,0.3); padding: 12px; border-radius: 10px; font-size: 0.75rem; color: #eee; margin-top: 8px; border: 1px solid var(--glass-border); line-height: 1.8; text-align: right; }
+        .h2h-btn { background: rgba(212, 175, 55, 0.05); border: 1px dashed rgba(212, 175, 55, 0.3); color: var(--gold-main); padding: 6px 10px; border-radius: 10px; font-family: 'Cairo'; font-size: 0.75rem; cursor: pointer; margin-top: 10px; width: 100%; transition: 0.3s; font-weight: 700; }
+        .h2h-btn:hover { background: var(--gold-dark); color: #fff; border-color: transparent; }
+        .h2h-box { background: rgba(0,0,0,0.5); padding: 12px; border-radius: 10px; font-size: 0.75rem; color: #ddd; margin-top: 8px; border: 1px solid var(--glass-border); line-height: 1.8; text-align: right; }
 
-        .group-card { border-radius: 15px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-        .group-header { background: rgba(255,255,255,0.02); color: var(--blue-light); padding: 12px; font-weight: 900; text-align: right; font-size: 0.85rem; border-bottom: 1px solid var(--glass-border); }
+        .group-card { border-radius: 15px; overflow: hidden; margin-bottom: 20px; }
+        .group-header { background: rgba(212, 175, 55, 0.1); color: var(--gold-main); padding: 12px; font-weight: 900; text-align: right; font-size: 0.85rem; border-bottom: 1px solid var(--glass-border); }
         .group-table { width: 100%; border-collapse: collapse; }
-        .group-table th { padding: 10px 8px; color: var(--text-muted); font-size: 0.7rem; border-bottom: 1px solid var(--glass-border); text-align: center; }
-        .group-table td { padding: 12px 4px; text-align: center; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
-        .team-name-cell { text-align: right !important; padding-right: 15px !important; font-weight: 700; width: 35%; }
+        .group-table th { padding: 10px 8px; color: var(--text-muted); font-size: 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .group-table td { padding: 12px 4px; text-align: center; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.02); color: #eee; }
+        .team-name-cell { text-align: right !important; padding-right: 15px !important; font-weight: 700; width: 35%; color: var(--gold-light); }
 
-        .about-text-area { white-space: pre-wrap; font-size: 0.8rem; padding: 20px; border-radius: 15px; text-align: right; line-height: 1.8; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        .about-text-area { white-space: pre-wrap; font-size: 0.8rem; padding: 20px; border-radius: 15px; text-align: right; line-height: 1.8; color: #ddd; }
         
-        .footer { text-align: center; padding: 40px 15px; background: rgba(0,0,0,0.3); margin-top: 35vh; border-top-left-radius: 35px; border-top-right-radius: 35px; border-top: 1px solid var(--glass-border); backdrop-filter: blur(5px); }
+        .footer { text-align: center; padding: 40px 15px; background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent); margin-top: 35vh; border-top: 1px solid var(--glass-border); }
         .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 10px; }
-        .social-btn { padding: 8px 15px; border-radius: 10px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--blue-grad); border: 1px solid rgba(255,255,255,0.1); }
-        .disclaimer { font-size: 0.65rem; color: var(--text-muted); max-width: 700px; margin: 20px auto 0; line-height: 1.5; opacity: 0.8; }
+        .social-btn { padding: 8px 15px; border-radius: 10px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: #000; background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2); }
+        .disclaimer { font-size: 0.65rem; color: var(--text-muted); max-width: 700px; margin: 20px auto 0; line-height: 1.5; opacity: 0.6; }
         
         .search-container { padding: 0 5px; margin-bottom: 15px; }
-        .search-input { width: 100%; padding: 12px 15px; border-radius: 12px; color: var(--text-main); font-family: 'Cairo'; font-size: 0.85rem; box-sizing: border-box; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+        .search-input { width: 100%; padding: 12px 15px; border-radius: 12px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212, 175, 55, 0.2); font-family: 'Cairo'; font-size: 0.85rem; box-sizing: border-box; }
         .search-input::placeholder { color: var(--text-muted); }
+        .search-input:focus { outline: none; border-color: var(--gold-main); box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
 
-        .a2hs-banner { position: fixed; bottom: -120px; left: 0; right: 0; background: var(--blue-grad); color: white; padding: 15px; text-align: center; z-index: 9999; box-shadow: 0 -5px 20px rgba(0,0,0,0.5); transition: 0.4s; display: flex; align-items: center; justify-content: center; gap: 10px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .a2hs-banner { position: fixed; bottom: -120px; left: 0; right: 0; background: var(--black-card); color: white; padding: 15px; text-align: center; z-index: 9999; box-shadow: 0 -5px 30px rgba(0,0,0,0.8); transition: 0.4s; display: flex; align-items: center; justify-content: center; gap: 10px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-top: 1px solid var(--gold-main); }
         .a2hs-banner.show { bottom: 0; }
+        /* ====================================================================== */
     </style>
 </head>
 <body>
@@ -141,7 +147,7 @@
         <header>
             <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img">
             <h1>بطولة القحمة الرمضانية 28</h1>
-            <span class="stadium-tag">🏆 أدوار الحسم 🏆</span>
+            <span class="stadium-tag">🏆 النهائي الكبير 🏆</span>
         </header>
         
         <div class="info-bar">
@@ -151,11 +157,11 @@
 
         <div class="tabs-nav">
             <button class="tab-btn active" onclick="openTab(event, 'today')">اليوم</button>
-            <button class="tab-btn" onclick="openTab(event, 'upcoming')">النهائيات</button>
+            <button class="tab-btn" onclick="openTab(event, 'upcoming')">النهائي</button>
             <button class="tab-btn" onclick="openTab(event, 'scorers-main'); openSubTab(null, 'players-list')">الهدافين</button>
             <button class="tab-btn" onclick="openTab(event, 'archive')">الأرشيف</button>
             <button class="tab-btn" onclick="openTab(event, 'groups')">المجموعات</button>
-            <button class="tab-btn" onclick="openTab(event, 'about')">حول البطولة</button>
+            <button class="tab-btn" onclick="openTab(event, 'about')">عن البطولة</button>
         </div>
 
         <div id="today" class="tab-content active"><div id="today-match-area"></div></div>
@@ -179,9 +185,9 @@
         <div id="about" class="tab-content"><div class="about-text-area" id="about-text-content"></div></div>
 
         <div class="footer">
-            <p style="font-weight:900; margin-bottom:2px; font-size:0.75rem;">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
+            <p style="font-weight:900; margin-bottom:2px; font-size:0.75rem; color:var(--gold-main);">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
             <div class="social-mini"><a href="https://wa.me/966534987428" class="social-btn">واتساب</a><a href="https://snapchat.com/t/TXTbTApk" class="social-btn">سناب</a></div>
-            <p style="font-size:0.7rem; color:var(--blue-light); font-weight:900; margin-top:15px;">📸 الشبكة الإعلامية للبطولة</p>
+            <p style="font-size:0.7rem; color:var(--gold-light); font-weight:900; margin-top:15px;">📸 الشبكة الإعلامية للبطولة</p>
             <div class="social-mini">
                 <a href="https://snapchat.com/t/2qKXdcpD" class="social-btn">سناب سوداني</a>
                 <a href="https://snapchat.com/t/rJe5ARXp" class="social-btn">علي</a>
@@ -193,10 +199,10 @@
     </div>
 
     <div class="a2hs-banner" id="a2hs-banner">
-        <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width:40px; height:40px; border-radius:10px;">
-        <div style="flex:1; text-align:right;"><span style="font-weight:900; font-size:0.85rem; display:block;">تطبيق بطولة القحمة 28</span><span style="font-size:0.7rem; opacity:0.8;">تثبيت للوصول السريع</span></div>
-        <button class="social-btn" style="background:white; color:var(--blue-main); border:none;" id="a2hs-install">تثبيت</button>
-        <button style="background:none; border:none; color:white; font-size:1.2rem;" onclick="closeA2HS()">×</button>
+        <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width:40px; height:40px; border-radius:10px; border:1px solid var(--gold-main);">
+        <div style="flex:1; text-align:right;"><span style="font-weight:900; font-size:0.85rem; display:block; color:var(--gold-light);">تطبيق بطولة القحمة 28</span><span style="font-size:0.7rem; opacity:0.8; color:#ccc;">تثبيت للوصول السريع</span></div>
+        <button class="social-btn" style="background:var(--gold-grad); color:#000; border:none;" id="a2hs-install">تثبيت</button>
+        <button style="background:none; border:none; color:var(--gold-main); font-size:1.5rem;" onclick="closeA2HS()">×</button>
     </div>
 <script>
 // 🔄 التحديث التلقائي كل 3 دقائق
@@ -380,24 +386,24 @@ function updateDisplay() {
     if (matchToday.length > 0) {
         todayArea.innerHTML = `<span class="day-header">مباريات اليوم | ${matchToday[0].day.split(" ")[0]}</span>` + matchToday.map(m => {
             let extraInfoHtml = `
-            ${m.time ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; background:rgba(0,0,0,0.2); padding:5px; border-radius:8px;">
-                <span>⏱️ ${m.time}</span>
-                ${m.comm ? `<span>🎙️ ${m.comm}</span>` : ''}
-                ${m.stad ? `<span>🏟️ ${m.stad}</span>` : ''}
+            ${m.time ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; background:rgba(0,0,0,0.5); padding:5px; border-radius:8px; border:1px solid rgba(212,175,55,0.1);">
+                <span style="color:var(--gold-light);">⏱️ ${m.time}</span>
+                ${m.comm ? `<span style="color:var(--gold-light);">🎙️ ${m.comm}</span>` : ''}
+                ${m.stad ? `<span style="color:var(--gold-light);">🏟️ ${m.stad}</span>` : ''}
             </div>` : ''}
-            ${m.note ? `<span style="font-size:0.65rem; color:#ff4757; display:block; margin-top:6px; opacity:0.9; font-weight:700;">${m.note}</span>` : ''}`;
+            ${m.note ? `<span style="font-size:0.65rem; color:var(--gold-main); display:block; margin-top:6px; opacity:0.9; font-weight:700;">${m.note}</span>` : ''}`;
 
             return `
             <div class="match-card">
                 <div class="teams-row">
                     <span class="team-item">
                         <span>${m.t1}</span>
-                        ${m.s1 ? `<span style="font-size:0.7rem; color:#10b981; margin-top:4px;">${m.s1}</span>` : ''}
+                        ${m.s1 ? `<span style="font-size:0.7rem; color:var(--gold-main); margin-top:4px;">${m.s1}</span>` : ''}
                     </span>
                     <div class="vs-label"><span>${m.r}</span></div>
                     <span class="team-item">
                         <span>${m.t2}</span>
-                        ${m.s2 ? `<span style="font-size:0.7rem; color:#10b981; margin-top:4px;">${m.s2}</span>` : ''}
+                        ${m.s2 ? `<span style="font-size:0.7rem; color:var(--gold-main); margin-top:4px;">${m.s2}</span>` : ''}
                     </span>
                 </div>
                 ${extraInfoHtml}
@@ -407,21 +413,22 @@ function updateDisplay() {
             </div>`;
         }).join('');
     } else {
-        // 🛑 بطاقة الترقب المعدلة (ملمومة ومناسبة لشاشات الجوال) 🛑
+        // 🛑 بطاقة الترقب بستايل الذهب الملكي 🛑
         todayArea.innerHTML = `
-        <div style="text-align:center; padding: 25px 15px; background: rgba(255,255,255,0.03); border-radius: 18px; border: 1px solid var(--glass-border); margin-top: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">
-            <span style="font-size: 2.2rem; display: block; margin-bottom: 5px;">🏆</span>
-            <h3 style="color: var(--blue-light); margin: 0 0 8px 0; font-weight: 900; font-size: 1.1rem;">المربع الذهبي اكتمل</h3>
+        <div style="text-align:center; padding: 25px 15px; background: rgba(20, 20, 20, 0.8); border-radius: 18px; border: 1px solid rgba(212, 175, 55, 0.3); margin-top: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.8); position:relative; overflow:hidden;">
+            <div style="position:absolute; top:-20px; right:-20px; width:80px; height:80px; background:radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);"></div>
+            <span style="font-size: 2.2rem; display: block; margin-bottom: 5px; text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);">🏆</span>
+            <h3 style="color: var(--gold-light); margin: 0 0 8px 0; font-weight: 900; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">المربع الذهبي اكتمل</h3>
             <p style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.6; margin-bottom: 15px;">
-                الأنظار تتجه نحو <strong style="color:white;">النهائي الكبير</strong>.<br>
-                هل يتوج <span style="color:#f59e0b;">الفيصلي</span> أم يخطفها <span style="color:#10b981;">الوسام</span>؟
+                الأنظار تتجه نحو <strong style="color:var(--gold-main);">النهائي الكبير</strong>.<br>
+                قمة مرتقبة تجمع بين <span style="color:#fff; font-weight:bold;">الفيصلي</span> و <span style="color:#fff; font-weight:bold;">الوسام</span>
             </p>
-            <div style="display: flex; justify-content: center; align-items: center; gap: 10px; font-weight: 900; font-size: 1rem; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 12px; border: 1px dashed rgba(59, 130, 246, 0.2);">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 10px; font-weight: 900; font-size: 1rem; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 12px; border: 1px dashed rgba(212, 175, 55, 0.3); color: var(--gold-light);">
                 <span style="flex:1;">الفيصلي</span>
-                <span style="color: var(--blue-main); font-size: 0.7rem; background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 8px;">ضد</span>
+                <span style="color: #000; font-size: 0.7rem; background: var(--gold-grad); padding: 3px 8px; border-radius: 8px;">ضد</span>
                 <span style="flex:1;">الوسام</span>
             </div>
-            <button onclick="openTab(event, 'upcoming')" style="margin-top: 15px; background: var(--blue-grad); border: none; color: white; padding: 8px 15px; border-radius: 10px; font-family: 'Cairo'; font-weight: 700; font-size: 0.8rem; cursor: pointer; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);">تفاصيل المواجهة</button>
+            <button onclick="openTab(event, 'upcoming')" style="margin-top: 15px; background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); color: #000; padding: 8px 15px; border-radius: 10px; font-family: 'Cairo'; font-weight: 900; font-size: 0.8rem; cursor: pointer; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);">تفاصيل المواجهة</button>
         </div>`;
     }
 
@@ -433,20 +440,20 @@ function updateDisplay() {
             <div class="teams-row">
                 <span class="team-item">
                     <span>${m.t1}</span>
-                    ${m.s1 ? `<span style="font-size:0.7rem; color:#10b981; margin-top:4px;">${m.s1}</span>` : ''}
+                    ${m.s1 ? `<span style="font-size:0.7rem; color:var(--gold-main); margin-top:4px;">${m.s1}</span>` : ''}
                 </span>
                 <div class="vs-label"><span>${m.r}</span></div>
                 <span class="team-item">
                     <span>${m.t2}</span>
-                    ${m.s2 ? `<span style="font-size:0.7rem; color:#10b981; margin-top:4px;">${m.s2}</span>` : ''}
+                    ${m.s2 ? `<span style="font-size:0.7rem; color:var(--gold-main); margin-top:4px;">${m.s2}</span>` : ''}
                 </span>
             </div>
-            ${m.time ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; background:rgba(0,0,0,0.2); padding:5px; border-radius:8px;">
-                <span>⏱️ ${m.time}</span>
-                ${m.comm ? `<span>🎙️ ${m.comm}</span>` : ''}
-                ${m.stad ? `<span>🏟️ ${m.stad}</span>` : ''}
+            ${m.time ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:6px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; background:rgba(0,0,0,0.5); padding:5px; border-radius:8px; border:1px solid rgba(212,175,55,0.1);">
+                <span style="color:var(--gold-light);">⏱️ ${m.time}</span>
+                ${m.comm ? `<span style="color:var(--gold-light);">🎙️ ${m.comm}</span>` : ''}
+                ${m.stad ? `<span style="color:var(--gold-light);">🏟️ ${m.stad}</span>` : ''}
             </div>` : ''}
-            ${m.note ? `<span style="font-size:0.65rem; color:#ff4757; display:block; margin-top:6px; opacity:0.9; font-weight:700;">${m.note}</span>` : ''}
+            ${m.note ? `<span style="font-size:0.65rem; color:var(--gold-main); display:block; margin-top:6px; opacity:0.9; font-weight:700; text-align:center;">${m.note}</span>` : ''}
             ${m.h2h ? `<button class="h2h-btn" onclick="let box = document.getElementById('h2h-${m.id}'); box.style.display = box.style.display === 'none' ? 'block' : 'none'">📊 إحصائيات المواجهة</button><div id="h2h-${m.id}" class="h2h-box" style="display:none">${m.h2h}</div>` : ''}
             
             <div class="match-footer-info">
@@ -461,16 +468,16 @@ function updateDisplay() {
         if (index === 0) { medal = '🥇'; rowStyle = 'background: rgba(212, 175, 55, 0.15);'; }
         else if (index === 1) { medal = '🥈'; rowStyle = 'background: rgba(192, 192, 192, 0.1);'; }
         else if (index === 2) { medal = '🥉'; rowStyle = 'background: rgba(205, 127, 50, 0.1);'; }
-        return `<tr style="${rowStyle} border-bottom: 1px solid var(--glass-border);"><td class="team-name-cell" style="padding: 10px;">${medal} ${s.n}<br><small style="color:var(--text-muted)">(${s.f})</small></td><td style="padding:15px; text-align:left;"><span style="background:var(--blue-main); color:#fff; padding:4px 8px; border-radius:8px; font-weight:900;">${s.g}</span></td></tr>`;
+        return `<tr style="${rowStyle} border-bottom: 1px solid rgba(255,255,255,0.05);"><td class="team-name-cell" style="padding: 10px;">${medal} ${s.n}<br><small style="color:var(--text-muted)">(${s.f})</small></td><td style="padding:15px; text-align:left;"><span style="background:var(--gold-grad); color:#000; padding:4px 8px; border-radius:8px; font-weight:900; box-shadow: 0 2px 5px rgba(212,175,55,0.3);">${s.g}</span></td></tr>`;
     }).join('');
 
-    document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--blue-light); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
+    document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--gold-main); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     
     const stats = {}; archiveData.forEach(day => day.matches.forEach(m => {
         const res = m.r.split(' - ').map(Number); if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 };
         stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0;
     }));
-    document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--blue-light); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
+    document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--gold-main); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
     document.getElementById('about-text-content').innerText = aboutFullText;
 }
 
