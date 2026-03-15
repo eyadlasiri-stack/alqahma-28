@@ -127,7 +127,7 @@
         </header>
         
         <div class="info-bar">
-            <div class="stat-badge"><span class="dot"></span> النشاط: 17,088</div>
+            <div class="stat-badge"><span class="dot"></span> النشاط: 17,366</div>
             <div class="stat-badge" id="weather-box">القحمة: --°C</div>
         </div>
 
@@ -265,18 +265,6 @@ function updateDots() {
     });
 }
 
-// 🔔 زر المنبه
-function downloadICS() {
-    const icsData = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:النهائي الكبير - بطولة القحمة 28\nDTSTART:20260324T190000Z\nDTEND:20260324T210000Z\nDESCRIPTION:المباراة النهائية لبطولة القحمة الرمضانية 28 بين الفيصلي والوسام. كن على الموعد!\nLOCATION:ملعب الوسم بالقحمة\nEND:VEVENT\nEND:VCALENDAR";
-    const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.download = 'Alqahma_Final.ics';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     
@@ -296,7 +284,7 @@ function updateDisplay() {
         </p>
     </div>`;
 
-    // 🌟 صفحة النهائي (بطاقات أنحف وصغيرة، وتعديل أهداف الفيصلي لـ 5) 🌟
+    // 🌟 صفحة النهائي (بطاقات أنحف وصغيرة، بدون زر التذكير) 🌟
     document.getElementById('finals-area').innerHTML = `
         <div class="match-card" style="text-align:center; padding: 15px 10px; margin-top:12px; border:1px solid var(--gold-main); box-shadow: 0 4px 15px rgba(212,175,55,0.15);">
             <div style="font-size: 1.5rem; margin-bottom: 5px; text-shadow: 0 0 8px rgba(212,175,55,0.5);">🏆</div>
@@ -310,7 +298,6 @@ function updateDisplay() {
                 <div class="vs-label" style="font-size:0.9rem; padding:4px 8px; min-width:35px;">VS</div>
                 <span class="team-item" style="font-size: 1rem;">الوسام</span>
             </div>
-            <button onclick="downloadICS()" style="margin-top:12px; background:rgba(212,175,55,0.1); border:1px solid var(--gold-main); color:var(--gold-light); padding:6px 12px; border-radius:12px; font-size:0.75rem; font-weight:bold; cursor:pointer; width:100%; font-family:'Cairo';">📅 ذكرني بموعد النهائي</button>
         </div>
 
         <div class="slider-wrapper">
