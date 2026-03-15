@@ -93,19 +93,12 @@
         .power-bar-fill { background: var(--gold-grad); height: 100%; border-radius: 10px; }
         .power-bar-fill.red { background: linear-gradient(90deg, #ef4444, #b91c1c); }
 
-        /* ========= ستايلات التصويت المبسط ========= */
-        .vote-container { margin-top: 20px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); }
-        .vote-btns { display: flex; gap: 10px; }
-        .vote-btn { flex: 1; padding: 8px; border-radius: 10px; border: none; font-family: 'Cairo'; font-weight: 700; font-size: 0.8rem; cursor: pointer; color: #fff; transition: 0.3s; }
-        .btn-f { background: rgba(212, 175, 55, 0.2); border: 1px solid var(--gold-main); color: var(--gold-main); }
-        .btn-w { background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #10b981; }
-
-        /* ========= ستايلات صانع VIP ========= */
-        .vip-generator { background: rgba(0,0,0,0.4); border: 1px solid var(--gold-main); border-radius: 15px; padding: 15px; margin-top: 20px; text-align: center; }
+        /* ========= ستايلات التصويت وصانع VIP المدمج ========= */
+        .vip-generator { background: rgba(0,0,0,0.4); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 15px; padding: 15px; margin-top: 20px; text-align: center; }
         .vip-input { width: 90%; padding: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.5); background: #111; color: #fff; font-family: 'Cairo'; margin-bottom: 10px; text-align: center; outline: none; transition: 0.3s;}
         .vip-input:focus { border-color: var(--gold-main); box-shadow: 0 0 8px rgba(212,175,55,0.5); }
-        .vip-select { width: 90%; padding: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.5); background: #111; color: #fff; font-family: 'Cairo'; margin-bottom: 10px; text-align: center; outline: none;}
-        .vip-generate-btn { background: var(--gold-grad); color: #000; border: none; padding: 10px 20px; border-radius: 10px; font-family: 'Cairo'; font-weight: 900; cursor: pointer; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+        .vip-select { width: 90%; padding: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.5); background: #111; color: #fff; font-family: 'Cairo'; margin-bottom: 15px; text-align: center; outline: none;}
+        .vip-generate-btn { background: var(--gold-grad); color: #000; border: none; padding: 10px 20px; border-radius: 10px; font-family: 'Cairo'; font-weight: 900; cursor: pointer; box-shadow: 0 0 10px rgba(212,175,55,0.4); width: 90%; font-size: 0.9rem;}
 
         .group-card { border-radius: 15px; overflow: hidden; margin-bottom: 20px; }
         .group-header { background: rgba(212, 175, 55, 0.1); color: var(--gold-main); padding: 12px; font-weight: 900; text-align: right; font-size: 0.85rem; border-bottom: 1px solid var(--glass-border); }
@@ -264,39 +257,29 @@ function searchList(type) {
     }
 }
 
-// 🎚️ 1. التصويت بدون أرقام أو رسائل مزعجة
-let hasVoted = localStorage.getItem('hasVoted') === 'true';
-function submitVote(team) {
-    let msgElement = document.getElementById('vote-msg');
-    if(hasVoted) { 
-        if(msgElement) { msgElement.innerText = "لقد قمت بالتصويت مسبقاً يا بطل! 🌟"; msgElement.style.display = 'block'; }
-        return; 
-    }
-    hasVoted = true;
-    localStorage.setItem('hasVoted', 'true');
-    localStorage.setItem('votedTeam', team);
-    
-    if(msgElement) { msgElement.innerText = "تم تسجيل توقعك بنجاح للنهائي الكبير! 🏆"; msgElement.style.display = 'block'; }
-    document.querySelectorAll('.vote-btn').forEach(btn => btn.style.opacity = '0.4');
-    document.querySelector(team === 'F' ? '.btn-f' : '.btn-w').style.opacity = '1';
-}
-
-// 🪪 2. صانع بطاقات VIP (للتصوير)
-function generateVIPCard() {
+// 🪪 + 🎚️ الميزة المدمجة (توقع + تذكرة)
+function generateAndVote() {
     let name = document.getElementById('vip-name').value;
     if(!name) {
         document.getElementById('vip-name').style.borderColor = '#ef4444';
         setTimeout(() => document.getElementById('vip-name').style.borderColor = 'rgba(212,175,55,0.5)', 2000);
         return;
     }
+    
     let team = document.getElementById('vip-team').value;
     let color = team === 'الفيصلي' ? '#d4af37' : '#10b981';
+    
+    // تسجيل التصويت (بدون رسائل مزعجة)
+    localStorage.setItem('hasVoted', 'true');
+    localStorage.setItem('votedTeam', team);
+
+    // إخفاء منطقة الإدخال وعرض البطاقة ورسالة النجاح
+    document.getElementById('vip-inputs-area').style.display = 'none';
     let resultDiv = document.getElementById('vip-result');
     
-    document.getElementById('vip-inputs-area').style.display = 'none';
-
     resultDiv.innerHTML = `
-        <div style="background: linear-gradient(135deg, #111, #222); border: 2px solid ${color}; padding: 25px 20px; border-radius: 15px; margin-top: 15px; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.8); text-align:center;">
+        <h4 style="color:var(--gold-main); margin-top:0; font-size:0.9rem;">تم تسجيل توقعك بنجاح! 🏆</h4>
+        <div style="background: linear-gradient(135deg, #111, #222); border: 2px solid ${color}; padding: 25px 20px; border-radius: 15px; margin-top: 10px; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.8); text-align:center;">
             <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--black-card); padding: 2px 15px; color: ${color}; font-weight: 900; border: 1px solid ${color}; border-radius: 20px; font-size: 0.75rem;">تذكرة كبار الشخصيات</div>
             <span style="font-size: 3rem; display:block; margin-top:10px;">🎫</span>
             <h2 style="color:#fff; margin:15px 0 5px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.8); font-size:1.6rem;">${name}</h2>
@@ -304,19 +287,11 @@ function generateVIPCard() {
             <hr style="border:0; border-top:1px dashed rgba(255,255,255,0.2); margin:20px 0;">
             <p style="font-size:0.75rem; color:#888; margin:0; font-weight:600;">النهائي الكبير - بطولة القحمة الرمضانية 28</p>
         </div>
-        
         <p style="font-size:0.8rem; color:var(--text-main); margin-top:15px; font-weight:bold; background:rgba(212,175,55,0.1); padding:10px; border-radius:10px; border:1px dashed var(--gold-main);">📸 صوّر الشاشة وانشرها في السناب لدعم فريقك!</p>
-        
-        <button onclick="resetVIP()" style="margin-top:10px; background:transparent; border:1px solid rgba(255,255,255,0.2); color:#aaa; padding:8px 15px; border-radius:10px; font-family:'Cairo'; font-size:0.75rem; cursor:pointer; width:100%;">تعديل البطاقة</button>
     `;
 }
 
-function resetVIP() {
-    document.getElementById('vip-inputs-area').style.display = 'block';
-    document.getElementById('vip-result').innerHTML = '';
-}
-
-// 🔔 3. زر المنبه
+// 🔔 زر المنبه
 function downloadICS() {
     const icsData = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:النهائي الكبير - بطولة القحمة 28\nDTSTART:20260324T190000Z\nDTEND:20260324T210000Z\nDESCRIPTION:المباراة النهائية لبطولة القحمة الرمضانية 28 بين الفيصلي والوسام. كن على الموعد!\nLOCATION:ملعب الوسم بالقحمة\nEND:VEVENT\nEND:VCALENDAR";
     const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
@@ -337,20 +312,6 @@ function updateDisplay() {
         <h3 style="color: var(--gold-light); margin: 0 0 8px 0; font-weight: 900; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">المربع الذهبي اكتمل</h3>
         <p style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.6; margin-bottom: 15px;">الأنظار تتجه نحو <strong style="color:var(--gold-main);">النهائي الكبير</strong>.<br>قمة مرتقبة تجمع بين <span style="color:#fff;">الفيصلي</span> و <span style="color:#fff;">الوسام</span></p>
         <button onclick="openTab(event, 'upcoming')" style="background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); color: #000; padding: 8px 15px; border-radius: 10px; font-family: 'Cairo'; font-weight: 900; font-size: 0.8rem; cursor: pointer;">تفاصيل المواجهة</button>
-    </div>
-    
-    <div class="vip-generator">
-        <div id="vip-inputs-area">
-            <h3 style="color:var(--gold-main); margin-top:0; font-size:1rem;">🪪 إصدار تذكرة النهائي</h3>
-            <p style="font-size:0.75rem; color:#ccc; margin-bottom:15px;">اكتب اسمك لدعم فريقك في التذكرة</p>
-            <input type="text" id="vip-name" class="vip-input" placeholder="اكتب اسمك هنا">
-            <select id="vip-team" class="vip-select">
-                <option value="الفيصلي">أدعم: الفيصلي 🦅</option>
-                <option value="الوسام">أدعم: الوسام ⚔️</option>
-            </select>
-            <button onclick="generateVIPCard()" class="vip-generate-btn">إصدار التذكرة ✨</button>
-        </div>
-        <div id="vip-result"></div>
     </div>
     
     <div style="margin-top: 20px; text-align:right; padding: 20px; background: rgba(0,0,0,0.4); border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.2);">
@@ -374,13 +335,18 @@ function updateDisplay() {
             </div>
             <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-top:8px;">🏟️ ملعب الوسم بالقحمة</span>
 
-            <div class="vote-container">
-                <h4 style="color:var(--gold-main); margin-top:0; margin-bottom:10px; font-size:0.8rem;">🔥 توقعات الجماهير (من سيفوز؟)</h4>
-                <div class="vote-btns">
-                    <button class="vote-btn btn-f" onclick="submitVote('F')">الفيصلي</button>
-                    <button class="vote-btn btn-w" onclick="submitVote('W')">الوسام</button>
+            <div class="vip-generator" style="margin-top:25px;">
+                <div id="vip-inputs-area">
+                    <h3 style="color:var(--gold-main); margin-top:0; font-size:1rem;">🔥 توقعات الجماهير + تذكرة VIP</h3>
+                    <p style="font-size:0.75rem; color:#ccc; margin-bottom:15px;">سجل توقعك وأصدر تذكرتك الخاصة لدعم فريقك</p>
+                    <input type="text" id="vip-name" class="vip-input" placeholder="اكتب اسمك هنا (مثال: محمد)">
+                    <select id="vip-team" class="vip-select">
+                        <option value="الفيصلي">أتوقع فوز: الفيصلي 🦅</option>
+                        <option value="الوسام">أتوقع فوز: الوسام ⚔️</option>
+                    </select>
+                    <button onclick="generateAndVote()" class="vip-generate-btn">سجل التوقع وأصدر التذكرة ✨</button>
                 </div>
-                <div id="vote-msg" style="color:var(--gold-light); font-size:0.8rem; margin-top:10px; display:none; font-weight:bold;"></div>
+                <div id="vip-result"></div>
             </div>
 
             <div style="margin-top: 25px; background: rgba(0,0,0,0.4); padding: 15px 10px; border-radius: 15px; border: 1px solid rgba(212,175,55,0.2);">
@@ -411,16 +377,23 @@ function updateDisplay() {
     document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--gold-main); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
     document.getElementById('about-text-content').innerText = aboutFullText;
 
-    // استرجاع حالة التصويت إن وجدت
-    if(hasVoted) {
-        let votedTeam = localStorage.getItem('votedTeam');
-        let msgElement = document.getElementById('vote-msg');
-        if(msgElement) { msgElement.innerText = "لقد قمت بالتصويت مسبقاً يا بطل! 🌟"; msgElement.style.display = 'block'; }
-        if(votedTeam) {
-            document.querySelectorAll('.vote-btn').forEach(btn => btn.style.opacity = '0.4');
-            let btn = document.querySelector(votedTeam === 'F' ? '.btn-f' : '.btn-w');
-            if(btn) btn.style.opacity = '1';
-        }
+    // استرجاع البطاقة والتوقع إذا كان قد صوّت مسبقاً
+    let hasVotedCheck = localStorage.getItem('hasVoted') === 'true';
+    if(hasVotedCheck) {
+        let team = localStorage.getItem('votedTeam') || 'الفيصلي';
+        let color = team === 'الفيصلي' ? '#d4af37' : '#10b981';
+        document.getElementById('vip-inputs-area').style.display = 'none';
+        document.getElementById('vip-result').innerHTML = `
+            <h4 style="color:var(--gold-main); margin-top:0; font-size:0.9rem;">توقعك مسجل مسبقاً! 🏆</h4>
+            <div style="background: linear-gradient(135deg, #111, #222); border: 2px solid ${color}; padding: 25px 20px; border-radius: 15px; margin-top: 10px; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.8); text-align:center;">
+                <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--black-card); padding: 2px 15px; color: ${color}; font-weight: 900; border: 1px solid ${color}; border-radius: 20px; font-size: 0.75rem;">تذكرة كبار الشخصيات</div>
+                <span style="font-size: 3rem; display:block; margin-top:10px;">🎫</span>
+                <p style="color:${color}; font-weight:900; margin:10px 0; font-size:1.1rem;">أدعم ${team} 🏆</p>
+                <hr style="border:0; border-top:1px dashed rgba(255,255,255,0.2); margin:20px 0;">
+                <p style="font-size:0.75rem; color:#888; margin:0; font-weight:600;">النهائي الكبير - بطولة القحمة الرمضانية 28</p>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-main); margin-top:15px; font-weight:bold; background:rgba(212,175,55,0.1); padding:10px; border-radius:10px; border:1px dashed var(--gold-main);">📸 صوّر الشاشة وانشرها في السناب لدعم فريقك!</p>
+        `;
     }
 }
 
