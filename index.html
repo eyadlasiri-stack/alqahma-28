@@ -82,7 +82,7 @@
         .match-footer-info { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 15px; padding-top: 8px; text-align: center; }
         .info-tag-sm { font-size: 0.65rem; color: var(--gold-light); font-weight: 600; letter-spacing: 0.5px; display: inline-block; border: 1px solid rgba(212, 175, 55, 0.2); padding: 2px 8px; border-radius: 4px; background: rgba(212, 175, 55, 0.05); }
 
-        .h2h-btn { background: rgba(212, 175, 55, 0.05); border: 1px dashed rgba(212, 175, 55, 0.3); color: var(--gold-main); padding: 6px 10px; border-radius: 10px; font-family: 'Cairo'; font-size: 0.75rem; cursor: pointer; margin-top: 10px; width: 100%; transition: 0.3s; font-weight: 700; }
+        .h2h-btn { background: rgba(212, 175, 55, 0.05); border: 1px dashed rgba(212, 175, 55, 0.3); color: var(--gold-main); padding: 10px; border-radius: 10px; font-family: 'Cairo'; font-size: 0.85rem; cursor: pointer; margin-top: 10px; width: 100%; transition: 0.3s; font-weight: 700; }
         .h2h-btn:hover { background: var(--gold-dark); color: #fff; border-color: transparent; }
         .h2h-box { background: rgba(0,0,0,0.5); padding: 12px; border-radius: 10px; font-size: 0.75rem; color: #ddd; margin-top: 8px; border: 1px solid var(--glass-border); line-height: 1.8; text-align: right; }
 
@@ -93,8 +93,8 @@
         .power-bar-fill { background: var(--gold-grad); height: 100%; border-radius: 10px; }
         .power-bar-fill.red { background: linear-gradient(90deg, #ef4444, #b91c1c); }
 
-        /* ========= ستايلات التصويت وصانع VIP المدمج ========= */
-        .vip-generator { background: rgba(0,0,0,0.4); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 15px; padding: 15px; margin-top: 20px; text-align: center; }
+        /* ========= ستايلات صانع VIP المدمج ========= */
+        .vip-generator { background: rgba(0,0,0,0.4); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 15px; padding: 15px; margin-top: 10px; text-align: center; }
         .vip-input { width: 90%; padding: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.5); background: #111; color: #fff; font-family: 'Cairo'; margin-bottom: 10px; text-align: center; outline: none; transition: 0.3s;}
         .vip-input:focus { border-color: var(--gold-main); box-shadow: 0 0 8px rgba(212,175,55,0.5); }
         .vip-select { width: 90%; padding: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.5); background: #111; color: #fff; font-family: 'Cairo'; margin-bottom: 15px; text-align: center; outline: none;}
@@ -257,7 +257,17 @@ function searchList(type) {
     }
 }
 
-// 🪪 + 🎚️ الميزة المدمجة (توقع + تذكرة)
+// 🪪 + 🎚️ الميزة المدمجة المخفية داخل الزر
+function showVIPSection() {
+    let box = document.getElementById('vip-generator-box');
+    if (box.style.display === 'none' || box.style.display === '') {
+        box.style.display = 'block';
+        setTimeout(() => box.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+    } else {
+        box.style.display = 'none';
+    }
+}
+
 function generateAndVote() {
     let name = document.getElementById('vip-name').value;
     if(!name) {
@@ -269,11 +279,9 @@ function generateAndVote() {
     let team = document.getElementById('vip-team').value;
     let color = team === 'الفيصلي' ? '#d4af37' : '#10b981';
     
-    // تسجيل التصويت (بدون رسائل مزعجة)
     localStorage.setItem('hasVoted', 'true');
     localStorage.setItem('votedTeam', team);
 
-    // إخفاء منطقة الإدخال وعرض البطاقة ورسالة النجاح
     document.getElementById('vip-inputs-area').style.display = 'none';
     let resultDiv = document.getElementById('vip-result');
     
@@ -335,10 +343,19 @@ function updateDisplay() {
             </div>
             <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-top:8px;">🏟️ ملعب الوسم بالقحمة</span>
 
-            <div class="vip-generator" style="margin-top:25px;">
+            <div style="margin-top: 25px; background: rgba(0,0,0,0.4); padding: 15px 10px; border-radius: 15px; border: 1px solid rgba(212,175,55,0.2);">
+                <h4 style="color: var(--gold-main); font-size: 0.9rem; margin-top: 0; margin-bottom: 15px; border-bottom:1px solid rgba(212,175,55,0.2); padding-bottom:8px;">📊 أرقام الفريقين في البطولة</h4>
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; font-weight:700;"><span style="color:var(--gold-light);">5</span><span style="color:#ddd;">الأهداف المسجلة</span><span style="color:var(--gold-light);">7</span></div>
+                <div style="display:flex; gap:8px; margin-bottom:15px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 71%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 100%;"></div></div></div>
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; font-weight:700;"><span style="color:var(--gold-light);">3</span><span style="color:#ddd;">شباك نظيفة</span><span style="color:var(--gold-light);">2</span></div>
+                <div style="display:flex; gap:8px; margin-bottom:15px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 100%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 66%;"></div></div></div>
+            </div>
+
+            <button class="h2h-btn" onclick="showVIPSection()" style="margin-top:15px; font-size:0.85rem; padding:12px; background:transparent; border:1px solid var(--gold-main); color:var(--gold-light); border-radius:12px;">🔥 أدخل توقعك وأصدر تذكرة VIP (اضغط هنا)</button>
+            
+            <div id="vip-generator-box" class="vip-generator" style="display:none;">
                 <div id="vip-inputs-area">
-                    <h3 style="color:var(--gold-main); margin-top:0; font-size:1rem;">🔥 توقعات الجماهير + تذكرة VIP</h3>
-                    <p style="font-size:0.75rem; color:#ccc; margin-bottom:15px;">سجل توقعك وأصدر تذكرتك الخاصة لدعم فريقك</p>
+                    <p style="font-size:0.75rem; color:#ccc; margin-top:0; margin-bottom:15px;">اكتب اسمك لتسجيل التوقع وإصدار تذكرتك الخاصة</p>
                     <input type="text" id="vip-name" class="vip-input" placeholder="اكتب اسمك هنا (مثال: محمد)">
                     <select id="vip-team" class="vip-select">
                         <option value="الفيصلي">أتوقع فوز: الفيصلي 🦅</option>
@@ -349,23 +366,31 @@ function updateDisplay() {
                 <div id="vip-result"></div>
             </div>
 
-            <div style="margin-top: 25px; background: rgba(0,0,0,0.4); padding: 15px 10px; border-radius: 15px; border: 1px solid rgba(212,175,55,0.2);">
-                <h4 style="color: var(--gold-main); font-size: 0.9rem; margin-top: 0; margin-bottom: 15px; border-bottom:1px solid rgba(212,175,55,0.2); padding-bottom:8px;">📊 أرقام الفريقين في البطولة</h4>
-                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; font-weight:700;"><span style="color:var(--gold-light);">5</span><span style="color:#ddd;">الأهداف المسجلة</span><span style="color:var(--gold-light);">7</span></div>
-                <div style="display:flex; gap:8px; margin-bottom:15px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 71%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 100%;"></div></div></div>
-                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; font-weight:700;"><span style="color:var(--gold-light);">3</span><span style="color:#ddd;">شباك نظيفة</span><span style="color:var(--gold-light);">2</span></div>
-                <div style="display:flex; gap:8px; margin-bottom:15px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 100%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 66%;"></div></div></div>
-            </div>
-
-            <button class="h2h-btn" onclick="let b = document.getElementById('road-box'); b.style.display = b.style.display === 'none' ? 'block' : 'none'" style="margin-top:15px; font-size:0.85rem; padding:10px; background:var(--gold-grad); color:#000; border:none;">🛤️ مشوار البطلين للنهائي</button>
-            <div id="road-box" class="h2h-box" style="display:none; text-align:right; margin-top:10px; background:rgba(0,0,0,0.6); padding:15px;">
-                <h4 style="color:var(--gold-main); margin-top:0; font-size: 0.85rem; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">🦅 مشوار الفيصلي:</h4>
-                <ul style="padding-right:20px; margin-bottom:15px; color:#ccc; font-size:0.8rem; line-height:1.6;">
-                    <li>فوز على خليج الصوالحة (2 - 0)</li><li>خسارة من الوسام (0 - 1)</li><li>فوز على دبسا (1 - 0)</li><li>فوز على صقلية (1 - 0)</li><li>تعادل مع الصقر (1 - 1) وفوز ترجيح</li>
+            <button class="h2h-btn" onclick="let b = document.getElementById('road-box'); b.style.display = b.style.display === 'none' ? 'block' : 'none'" style="margin-top:15px; font-size:0.85rem; padding:12px; background:var(--gold-grad); color:#000; border:none;">🛤️ مشوار البطلين للنهائي (اضغط هنا)</button>
+            <div id="road-box" class="h2h-box" style="display:none; text-align:right; margin-top:10px; background:rgba(0,0,0,0.6); padding:15px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.2);">
+                <h4 style="color:var(--gold-main); margin-top:0; font-size: 0.9rem; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">🦅 مشوار الفيصلي:</h4>
+                <div style="background:rgba(255,255,255,0.03); padding:8px; border-radius:8px; margin-bottom:10px; font-size:0.75rem; color:var(--gold-light);">
+                    ⭐ <strong>الهداف الأبرز:</strong> فهد عبده (1 هدف)<br>
+                    🛡️ <strong>شباك نظيفة:</strong> 3 مباريات
+                </div>
+                <ul style="padding-right:20px; margin-bottom:20px; color:#ccc; font-size:0.8rem; line-height:1.8;">
+                    <li>دور المجموعات: فوز على خليج الصوالحة (2 - 0)</li>
+                    <li>دور المجموعات: خسارة من الوسام (0 - 1)</li>
+                    <li>دور الملحق: فوز على دبسا (1 - 0)</li>
+                    <li>ربع النهائي: فوز على صقلية (1 - 0)</li>
+                    <li>نصف النهائي: تعادل مع الصقر (1 - 1) وفوز دراماتيكي بركلات الترجيح (12-11)</li>
                 </ul>
-                <h4 style="color:var(--gold-main); margin-top:0; font-size: 0.85rem; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">⚔️ مشوار الوسام:</h4>
-                <ul style="padding-right:20px; margin-bottom:0; color:#ccc; font-size:0.8rem; line-height:1.6;">
-                    <li>فوز على خليج الصوالحة (4 - 1)</li><li>فوز على الفيصلي (1 - 0)</li><li>تعادل مع عمق (1 - 1) وفوز ترجيح</li><li>فوز على ساحل مغزل (1 - 0)</li>
+
+                <h4 style="color:var(--gold-main); margin-top:0; font-size: 0.9rem; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">⚔️ مشوار الوسام:</h4>
+                <div style="background:rgba(255,255,255,0.03); padding:8px; border-radius:8px; margin-bottom:10px; font-size:0.75rem; color:var(--gold-light);">
+                    ⭐ <strong>الهداف الأبرز:</strong> علي البارقي وعبدالله معفري (هدفين لكل منهما)<br>
+                    🔥 <strong>قوة هجومية:</strong> أقوى هجوم بين طرفي النهائي (7 أهداف)
+                </div>
+                <ul style="padding-right:20px; margin-bottom:0; color:#ccc; font-size:0.8rem; line-height:1.8;">
+                    <li>دور المجموعات: فوز عريض على خليج الصوالحة (4 - 1)</li>
+                    <li>دور المجموعات: فوز على الفيصلي (1 - 0)</li>
+                    <li>ربع النهائي: تعادل مع عمق (1 - 1) وفوز ماراثوني بركلات الترجيح (20-19)</li>
+                    <li>نصف النهائي: فوز مستحق على ساحل مغزل (1 - 0)</li>
                 </ul>
             </div>
         </div>`;
@@ -382,18 +407,22 @@ function updateDisplay() {
     if(hasVotedCheck) {
         let team = localStorage.getItem('votedTeam') || 'الفيصلي';
         let color = team === 'الفيصلي' ? '#d4af37' : '#10b981';
-        document.getElementById('vip-inputs-area').style.display = 'none';
-        document.getElementById('vip-result').innerHTML = `
-            <h4 style="color:var(--gold-main); margin-top:0; font-size:0.9rem;">توقعك مسجل مسبقاً! 🏆</h4>
-            <div style="background: linear-gradient(135deg, #111, #222); border: 2px solid ${color}; padding: 25px 20px; border-radius: 15px; margin-top: 10px; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.8); text-align:center;">
-                <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--black-card); padding: 2px 15px; color: ${color}; font-weight: 900; border: 1px solid ${color}; border-radius: 20px; font-size: 0.75rem;">تذكرة كبار الشخصيات</div>
-                <span style="font-size: 3rem; display:block; margin-top:10px;">🎫</span>
-                <p style="color:${color}; font-weight:900; margin:10px 0; font-size:1.1rem;">أدعم ${team} 🏆</p>
-                <hr style="border:0; border-top:1px dashed rgba(255,255,255,0.2); margin:20px 0;">
-                <p style="font-size:0.75rem; color:#888; margin:0; font-weight:600;">النهائي الكبير - بطولة القحمة الرمضانية 28</p>
-            </div>
-            <p style="font-size:0.8rem; color:var(--text-main); margin-top:15px; font-weight:bold; background:rgba(212,175,55,0.1); padding:10px; border-radius:10px; border:1px dashed var(--gold-main);">📸 صوّر الشاشة وانشرها في السناب لدعم فريقك!</p>
-        `;
+        
+        let vipBox = document.getElementById('vip-generator-box');
+        if(vipBox) {
+            document.getElementById('vip-inputs-area').style.display = 'none';
+            document.getElementById('vip-result').innerHTML = `
+                <h4 style="color:var(--gold-main); margin-top:0; font-size:0.9rem;">توقعك مسجل مسبقاً! 🏆</h4>
+                <div style="background: linear-gradient(135deg, #111, #222); border: 2px solid ${color}; padding: 25px 20px; border-radius: 15px; margin-top: 10px; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.8); text-align:center;">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--black-card); padding: 2px 15px; color: ${color}; font-weight: 900; border: 1px solid ${color}; border-radius: 20px; font-size: 0.75rem;">تذكرة كبار الشخصيات</div>
+                    <span style="font-size: 3rem; display:block; margin-top:10px;">🎫</span>
+                    <p style="color:${color}; font-weight:900; margin:10px 0; font-size:1.1rem;">أدعم ${team} 🏆</p>
+                    <hr style="border:0; border-top:1px dashed rgba(255,255,255,0.2); margin:20px 0;">
+                    <p style="font-size:0.75rem; color:#888; margin:0; font-weight:600;">النهائي الكبير - بطولة القحمة الرمضانية 28</p>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-main); margin-top:15px; font-weight:bold; background:rgba(212,175,55,0.1); padding:10px; border-radius:10px; border:1px dashed var(--gold-main);">📸 صوّر الشاشة وانشرها في السناب لدعم فريقك!</p>
+            `;
+        }
     }
 }
 
