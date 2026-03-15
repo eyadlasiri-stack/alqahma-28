@@ -19,7 +19,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* ========= ستايل الذهب الملكي (VIP Final Theme) ========= */
+        /* ========= ستايل الذهب الملكي (VIP Minimal Theme) ========= */
         :root { 
             --gold-main: #d4af37; --gold-light: #f3e5ab; --gold-dark: #aa8c2c; 
             --gold-grad: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%);
@@ -37,90 +37,84 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        .container { max-width: 900px; margin: auto; padding: 15px; min-height: 100vh; display: flex; flex-direction: column; }
+        .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
         
         header { 
-            text-align: center; padding: 25px 0; 
+            text-align: center; padding: 20px 0; 
             background: linear-gradient(to bottom, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.9));
-            border: 1px solid var(--glass-border); border-top: none; border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 25px; margin-top: -15px; position: relative; overflow: hidden;
+            border: 1px solid var(--glass-border); border-top: none; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6); margin-bottom: 20px; margin-top: -12px; position: relative; overflow: hidden;
         }
         header::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.05), transparent); animation: shine 6s infinite; }
         @keyframes shine { 100% { left: 200%; } }
 
-        .logo-img { width: 100px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.2)); }
-        header h1 { font-weight: 900; margin: 0; font-size: 1.5rem; color: var(--gold-light); text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
-        .stadium-tag { color: var(--gold-main); font-size: 0.85rem; font-weight: 700; margin-top: 5px; display: block; letter-spacing: 1px; }
+        .logo-img { width: 90px; height: auto; display: block; margin: 0 auto 8px; filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.2)); }
+        header h1 { font-weight: 900; margin: 0; font-size: 1.3rem; color: var(--gold-light); text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
+        .stadium-tag { color: var(--gold-main); font-size: 0.75rem; font-weight: 700; margin-top: 5px; display: block; letter-spacing: 1px; }
         
-        .info-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
-        .stat-badge, .tabs-nav, .sub-tab-btn, .match-card, .group-card, .about-text-area, .search-input { background: var(--black-card); border: 1px solid var(--glass-border); box-shadow: 0 8px 20px rgba(0,0,0,0.5); }
-        .stat-badge { padding: 6px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; color: var(--gold-light); display: inline-flex; align-items: center; gap: 5px; }
+        .info-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .stat-badge, .tabs-nav, .sub-tab-btn, .match-card, .group-card, .about-text-area, .search-input { background: var(--black-card); border: 1px solid var(--glass-border); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .stat-badge { padding: 5px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; color: var(--gold-light); display: inline-flex; align-items: center; gap: 5px; }
         .dot { height: 6px; width: 6px; background-color: var(--gold-main); border-radius: 50%; display: inline-block; animation: goldPulse 2s infinite; box-shadow: 0 0 8px var(--gold-main); }
         @keyframes goldPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.5; } }
 
-        .tabs-nav { display: flex; padding: 5px; border-radius: 15px; margin-bottom: 25px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav { display: flex; padding: 5px; border-radius: 12px; margin-bottom: 20px; overflow-x: auto; scrollbar-width: none; }
         .tabs-nav::-webkit-scrollbar { display: none; }
-        .tab-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 700; padding: 10px 15px; border-radius: 12px; flex: 1; font-family: 'Cairo'; white-space: nowrap; font-size: 0.8rem; transition: 0.3s; }
+        .tab-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 700; padding: 8px 12px; border-radius: 10px; flex: 1; font-family: 'Cairo'; white-space: nowrap; font-size: 0.8rem; transition: 0.3s; }
         .tab-btn.active { background: var(--gold-grad); color: #000; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); border: 1px solid rgba(255,255,255,0.2); }
         
-        .sub-tabs { display: flex; gap: 8px; margin-bottom: 20px; padding: 0 5px; justify-content: center; }
-        .sub-tab-btn { color: var(--text-muted); padding: 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; flex: 1; font-family: 'Cairo'; max-width: 150px; transition: 0.3s; }
+        .sub-tabs { display: flex; gap: 8px; margin-bottom: 15px; padding: 0 5px; justify-content: center; }
+        .sub-tab-btn { color: var(--text-muted); padding: 6px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; flex: 1; font-family: 'Cairo'; max-width: 150px; transition: 0.3s; }
         .sub-tab-btn.active { background: var(--gold-dark); color: #fff; border-color: var(--gold-main); box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2); }
 
         .tab-content { display: none; animation: slideUp 0.4s ease-out; text-align: center; flex-grow: 1; }
         .tab-content.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .match-card { border-radius: 18px; margin-bottom: 15px; padding: 15px; position: relative; overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.3); }
+        .match-card { border-radius: 15px; margin-bottom: 12px; padding: 12px; position: relative; overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.3); }
+
         .teams-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 5px; position: relative; }
-        .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.95rem; color: var(--gold-light); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
-        .vs-label { background: var(--gold-grad); color: #000; padding: 8px 15px; border-radius: 10px; font-weight: 900; border: 1px solid rgba(255,255,255,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 65px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); font-size: 1.2rem; position: relative; }
-        .penalty-small { font-size: 0.65rem; opacity: 0.9; display: block; margin-top: 2px; color: #333; }
+        .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.9rem; color: var(--gold-light); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+        .vs-label { background: var(--gold-grad); color: #000; padding: 6px 12px; border-radius: 8px; font-weight: 900; border: 1px solid rgba(255,255,255,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 50px; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4); font-size: 1rem; position: relative; }
+        .penalty-small { font-size: 0.6rem; opacity: 0.9; display: block; margin-top: 2px; color: #333; }
 
-        .day-header { color: var(--gold-main); font-size: 0.85rem; font-weight: 900; margin: 25px 0 10px; display: block; border-right: 3px solid var(--gold-main); padding-right: 10px; text-align: right; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-        .match-footer-info { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 15px; padding-top: 8px; text-align: center; }
-        .info-tag-sm { font-size: 0.65rem; color: var(--gold-light); font-weight: 600; letter-spacing: 0.5px; display: inline-block; border: 1px solid rgba(212, 175, 55, 0.2); padding: 2px 8px; border-radius: 4px; background: rgba(212, 175, 55, 0.05); }
-
-        /* ========= ستايلات السلايدر (البطاقات الانزلاقية) ========= */
-        .slider-wrapper { margin: 20px -15px 0; overflow: hidden; position: relative; }
-        .slider-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 10px 15px 20px; gap: 15px; scroll-behavior: smooth; }
+        .day-header { color: var(--gold-main); font-size: 0.8rem; font-weight: 900; margin: 20px 0 8px; display: block; border-right: 3px solid var(--gold-main); padding-right: 8px; text-align: right; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        
+        /* ========= ستايلات السلايدر (البطاقات الانزلاقية - أنحف وأرتب) ========= */
+        .slider-wrapper { margin: 15px -12px 0; overflow: hidden; position: relative; }
+        .slider-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 5px 12px 15px; gap: 12px; scroll-behavior: smooth; }
         .slider-container::-webkit-scrollbar { display: none; }
-        .slide-card { flex: 0 0 85%; scroll-snap-align: center; background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.6); position: relative; overflow: hidden; }
-        .slide-card::before { content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 4px; background: var(--gold-grad); }
+        .slide-card { flex: 0 0 88%; scroll-snap-align: center; background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.3); border-radius: 15px; padding: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); position: relative; overflow: hidden; }
+        .slide-card::before { content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 3px; background: var(--gold-grad); }
         
-        .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: -5px; margin-bottom: 20px; }
-        .dot-s { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: 0.3s; }
-        .dot-s.active { background: var(--gold-main); transform: scale(1.3); box-shadow: 0 0 8px var(--gold-main); }
-
-        .vip-input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.5); background: #0a0a0a; color: #fff; font-family: 'Cairo'; margin-bottom: 12px; text-align: center; outline: none; transition: 0.3s; box-sizing: border-box;}
-        .vip-input:focus { border-color: var(--gold-main); box-shadow: 0 0 8px rgba(212,175,55,0.5); }
-        .vip-select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.5); background: #0a0a0a; color: #fff; font-family: 'Cairo'; margin-bottom: 15px; text-align: center; outline: none; box-sizing: border-box;}
-        .vip-generate-btn { background: var(--gold-grad); color: #000; border: none; padding: 12px 20px; border-radius: 12px; font-family: 'Cairo'; font-weight: 900; cursor: pointer; box-shadow: 0 4px 15px rgba(212,175,55,0.4); width: 100%; font-size: 0.95rem; transition: 0.3s;}
+        .slider-dots { display: flex; justify-content: center; gap: 6px; margin-top: 0; margin-bottom: 15px; }
+        .dot-s { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: 0.3s; }
+        .dot-s.active { background: var(--gold-main); transform: scale(1.3); box-shadow: 0 0 5px var(--gold-main); }
         
-        .power-bar-bg { background: #222; border-radius: 10px; overflow: hidden; height: 6px; }
+        .power-bar-bg { background: #222; border-radius: 10px; overflow: hidden; height: 4px; margin-bottom: 8px; }
         .power-bar-fill { background: var(--gold-grad); height: 100%; border-radius: 10px; }
         .power-bar-fill.red { background: linear-gradient(90deg, #ef4444, #b91c1c); }
 
-        .group-card { border-radius: 15px; overflow: hidden; margin-bottom: 20px; }
-        .group-header { background: rgba(212, 175, 55, 0.1); color: var(--gold-main); padding: 12px; font-weight: 900; text-align: right; font-size: 0.85rem; border-bottom: 1px solid var(--glass-border); }
+        .group-card { border-radius: 12px; overflow: hidden; margin-bottom: 15px; }
+        .group-header { background: rgba(212, 175, 55, 0.1); color: var(--gold-main); padding: 10px; font-weight: 900; text-align: right; font-size: 0.8rem; border-bottom: 1px solid var(--glass-border); }
         .group-table { width: 100%; border-collapse: collapse; }
-        .group-table th { padding: 10px 8px; color: var(--text-muted); font-size: 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
-        .group-table td { padding: 12px 4px; text-align: center; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.02); color: #eee; }
-        .team-name-cell { text-align: right !important; padding-right: 15px !important; font-weight: 700; width: 35%; color: var(--gold-light); }
+        .group-table th { padding: 8px 6px; color: var(--text-muted); font-size: 0.65rem; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .group-table td { padding: 10px 4px; text-align: center; font-size: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.02); color: #eee; }
+        .team-name-cell { text-align: right !important; padding-right: 12px !important; font-weight: 700; width: 35%; color: var(--gold-light); }
 
-        .about-text-area { white-space: pre-wrap; font-size: 0.85rem; padding: 20px; border-radius: 15px; text-align: right; line-height: 1.8; color: #ddd; }
+        .about-text-area { white-space: pre-wrap; font-size: 0.8rem; padding: 15px; border-radius: 12px; text-align: right; line-height: 1.8; color: #ddd; }
         
-        .footer { text-align: center; padding: 40px 15px; background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent); margin-top: 35vh; border-top: 1px solid var(--glass-border); }
-        .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 10px; }
-        .social-btn { padding: 8px 15px; border-radius: 10px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: #000; background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2); }
-        .disclaimer { font-size: 0.65rem; color: var(--text-muted); max-width: 700px; margin: 20px auto 0; line-height: 1.5; opacity: 0.6; }
+        .footer { text-align: center; padding: 30px 12px; background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent); margin-top: 35vh; border-top: 1px solid var(--glass-border); }
+        .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+        .social-btn { padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 0.65rem; font-weight: 700; color: #000; background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 2px 5px rgba(212, 175, 55, 0.2); }
+        .disclaimer { font-size: 0.6rem; color: var(--text-muted); max-width: 700px; margin: 15px auto 0; line-height: 1.5; opacity: 0.6; }
         
-        .search-container { padding: 0 5px; margin-bottom: 15px; }
-        .search-input { width: 100%; padding: 12px 15px; border-radius: 12px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212, 175, 55, 0.2); font-family: 'Cairo'; font-size: 0.85rem; box-sizing: border-box; }
+        .search-container { padding: 0; margin-bottom: 12px; }
+        .search-input { width: 100%; padding: 10px 12px; border-radius: 10px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212, 175, 55, 0.2); font-family: 'Cairo'; font-size: 0.8rem; box-sizing: border-box; }
         .search-input::placeholder { color: var(--text-muted); }
-        .search-input:focus { outline: none; border-color: var(--gold-main); box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+        .search-input:focus { outline: none; border-color: var(--gold-main); box-shadow: 0 0 8px rgba(212, 175, 55, 0.2); }
 
-        .a2hs-banner { position: fixed; bottom: -120px; left: 0; right: 0; background: var(--black-card); color: white; padding: 15px; text-align: center; z-index: 9999; box-shadow: 0 -5px 30px rgba(0,0,0,0.8); transition: 0.4s; display: flex; align-items: center; justify-content: center; gap: 10px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-top: 1px solid var(--gold-main); }
+        .a2hs-banner { position: fixed; bottom: -120px; left: 0; right: 0; background: var(--black-card); color: white; padding: 12px; text-align: center; z-index: 9999; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); transition: 0.4s; display: flex; align-items: center; justify-content: center; gap: 10px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-top: 1px solid var(--gold-main); }
         .a2hs-banner.show { bottom: 0; }
     </style>
 </head>
@@ -182,10 +176,10 @@
     </div>
 
     <div class="a2hs-banner" id="a2hs-banner">
-        <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width:40px; height:40px; border-radius:10px; border:1px solid var(--gold-main);">
-        <div style="flex:1; text-align:right;"><span style="font-weight:900; font-size:0.85rem; display:block; color:var(--gold-light);">تطبيق بطولة القحمة 28</span><span style="font-size:0.7rem; opacity:0.8; color:#ccc;">تثبيت للوصول السريع</span></div>
+        <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width:30px; height:30px; border-radius:8px; border:1px solid var(--gold-main);">
+        <div style="flex:1; text-align:right;"><span style="font-weight:900; font-size:0.75rem; display:block; color:var(--gold-light);">تطبيق بطولة القحمة 28</span><span style="font-size:0.65rem; opacity:0.8; color:#ccc;">تثبيت للوصول السريع</span></div>
         <button class="social-btn" style="background:var(--gold-grad); color:#000; border:none;" id="a2hs-install">تثبيت</button>
-        <button style="background:none; border:none; color:var(--gold-main); font-size:1.5rem;" onclick="closeA2HS()">×</button>
+        <button style="background:none; border:none; color:var(--gold-main); font-size:1.2rem;" onclick="closeA2HS()">×</button>
     </div>
 
 <script>
@@ -214,7 +208,7 @@ const archiveData = [
 ];
 
 const scorers = [
-    {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عمر المعشي", f:"عمق", g:2}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"فهد عبده", f:"الفيصلي", g:1}, {n:"علي البارقي", f:"الوسام", g:2}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"خليج الصوالحة", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}, {n:"نافع الفضيلي", f:"الفيصلي", g:1}, {n:"سلطان عسيري", f:"الصقر", g:1}
+    {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عمر المعشي", f:"عمق", g:2}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"فهد عبده", f:"الفيصلي", g:1}, {n:"عبدالله خلاف", f:"الفيصلي", g:1}, {n:"عبدالوهاب الصبيحي", f:"الفيصلي", g:1}, {n:"علي البارقي", f:"الوسام", g:2}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"خليج الصوالحة", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}, {n:"نافع الفضيلي", f:"الفيصلي", g:1}, {n:"سلطان عسيري", f:"الصقر", g:1}
 ];
 
 const groupData = [
@@ -258,49 +252,17 @@ function searchList(type) {
     }
 }
 
-// 🎚️ تحديث نقاط السلايدر عند السحب
+// 🎚️ تحديث نقاط السلايدر (للبطاقتين فقط)
 function updateDots() {
     const slider = document.getElementById('finalSlider');
     if(!slider) return;
     const scrollPos = Math.abs(slider.scrollLeft); 
-    const slideWidth = slider.querySelector('.slide-card').offsetWidth + 15; 
+    const slideWidth = slider.querySelector('.slide-card').offsetWidth + 12; 
     let index = Math.round(scrollPos / slideWidth);
-    if(index > 2) index = 2; 
+    if(index > 1) index = 1; 
     document.querySelectorAll('.dot-s').forEach((d, i) => {
         d.classList.toggle('active', i === index);
     });
-}
-
-// 🪪 الميزة المدمجة: التوقع + التذكرة
-function generateAndVote() {
-    let name = document.getElementById('vip-name').value;
-    if(!name) {
-        document.getElementById('vip-name').style.borderColor = '#ef4444';
-        setTimeout(() => document.getElementById('vip-name').style.borderColor = 'rgba(212,175,55,0.5)', 2000);
-        return;
-    }
-    
-    let team = document.getElementById('vip-team').value;
-    let color = team === 'الفيصلي' ? '#d4af37' : '#10b981';
-    
-    localStorage.setItem('hasVoted', 'true');
-    localStorage.setItem('votedTeam', team);
-
-    document.getElementById('vip-inputs-area').style.display = 'none';
-    let resultDiv = document.getElementById('vip-result');
-    
-    resultDiv.innerHTML = `
-        <h4 style="color:var(--gold-main); margin-top:0; font-size:0.9rem;">تم تسجيل توقعك بنجاح! 🏆</h4>
-        <div style="background: linear-gradient(135deg, #111, #222); border: 2px solid ${color}; padding: 20px 15px; border-radius: 15px; margin-top: 10px; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.8); text-align:center;">
-            <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--black-card); padding: 2px 10px; color: ${color}; font-weight: 900; border: 1px solid ${color}; border-radius: 20px; font-size: 0.7rem;">تذكرة VIP</div>
-            <span style="font-size: 2.5rem; display:block; margin-top:5px;">🎫</span>
-            <h2 style="color:#fff; margin:10px 0 5px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.8); font-size:1.4rem;">${name}</h2>
-            <p style="color:${color}; font-weight:900; margin:0; font-size:1rem;">يدعم ${team} 🏆</p>
-            <hr style="border:0; border-top:1px dashed rgba(255,255,255,0.2); margin:15px 0;">
-            <p style="font-size:0.65rem; color:#888; margin:0; font-weight:600;">النهائي الكبير - بطولة القحمة 28</p>
-        </div>
-        <p style="font-size:0.75rem; color:var(--text-main); margin-top:15px; font-weight:bold; background:rgba(212,175,55,0.1); padding:8px; border-radius:8px; border:1px dashed var(--gold-main);">📸 صوّر الشاشة وانشرها لدعم فريقك!</p>
-    `;
 }
 
 // 🔔 زر المنبه
@@ -318,74 +280,65 @@ function downloadICS() {
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     
-    // صفحة اليوم
+    // صفحة اليوم (بطاقة ذكية ومدمجة وصغيرة)
     todayArea.innerHTML = `
-    <div style="text-align:center; padding: 25px 15px; background: rgba(20, 20, 20, 0.8); border-radius: 18px; border: 1px solid rgba(212, 175, 55, 0.3); margin-top: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.8); position:relative; overflow:hidden;">
-        <span style="font-size: 2.2rem; display: block; margin-bottom: 5px; text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);">🏆</span>
-        <h3 style="color: var(--gold-light); margin: 0 0 8px 0; font-weight: 900; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">المربع الذهبي اكتمل</h3>
-        <p style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.6; margin-bottom: 15px;">الأنظار تتجه نحو <strong style="color:var(--gold-main);">النهائي الكبير</strong>.<br>قمة مرتقبة تجمع بين <span style="color:#fff;">الفيصلي</span> و <span style="color:#fff;">الوسام</span></p>
-        <button onclick="openTab(event, 'upcoming')" style="background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); color: #000; padding: 8px 15px; border-radius: 10px; font-family: 'Cairo'; font-weight: 900; font-size: 0.8rem; cursor: pointer;">تفاصيل المواجهة</button>
-    </div>
-    <div style="margin-top: 20px; text-align:right; padding: 20px; background: rgba(0,0,0,0.4); border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.2);">
-        <h4 style="color: var(--gold-main); margin-top: 0; margin-bottom: 15px; border-bottom: 1px dashed rgba(212, 175, 55, 0.3); padding-bottom: 10px; font-size: 1rem; text-align: center;">🏆 تقديم القمة المرتقبة 🏆</h4>
-        <p style="color: #ddd; font-size: 0.85rem; line-height: 1.8; margin-bottom: 15px;">بعد منافسات شرسة استمرت طوال شهر رمضان المبارك، نصل أخيراً إلى المشهد الختامي والنهائي الحلم لبطولة القحمة 28.</p>
-        <p style="color: #ddd; font-size: 0.85rem; line-height: 1.8; margin-bottom: 15px;">يسدل الستار على هذه النسخة بمواجهة من العيار الثقيل تجمع بين:<br><strong style="color: var(--gold-light);">🦅 الفيصلي:</strong> الذي شق طريقه بثبات وحسم مبارياته المصيرية.<br><strong style="color: var(--gold-light);">⚔️ الوسام:</strong> صاحب الهجوم الكاسح الذي لا يعرف المستحيل.</p>
+    <div style="background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 15px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+        <div style="display:flex; align-items:center; gap:10px; border-bottom: 1px dashed rgba(212,175,55,0.3); padding-bottom: 10px; margin-bottom: 10px;">
+            <div style="font-size:1.8rem; text-shadow:0 0 10px rgba(212,175,55,0.5);">🏆</div>
+            <div style="text-align:right; flex:1;">
+                <h3 style="color:var(--gold-light); margin:0 0 2px 0; font-size:1rem; font-weight:900;">النهائي الكبير</h3>
+                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">الفيصلي <span style="color:var(--gold-main); margin:0 3px;">VS</span> الوسام</span>
+            </div>
+            <button onclick="openTab(event, 'upcoming')" style="background:var(--gold-grad); color:#000; border:none; padding:6px 12px; border-radius:8px; font-weight:900; font-family:'Cairo'; font-size:0.75rem; cursor:pointer;">التفاصيل ←</button>
+        </div>
+        <p style="font-size:0.75rem; color:#ccc; line-height:1.6; margin:0; text-align:right;">
+            بعد منافسات شرسة، يسدل الستار على هذه النسخة بمواجهة من العيار الثقيل. الفيصلي الصلب دفاعياً في مواجهة الوسام الكاسح هجومياً. الميدان يا حميدان! 🔥
+        </p>
     </div>`;
 
-    // 🌟 صفحة النهائي (بنظام السلايدر الانزلاقي) 🌟
+    // 🌟 صفحة النهائي (بطاقات أنحف وصغيرة، وتعديل أهداف الفيصلي لـ 5) 🌟
     document.getElementById('finals-area').innerHTML = `
-        <div class="match-card" style="text-align:center; padding: 20px 15px; margin-top:15px; border:1px solid var(--gold-main); box-shadow: 0 5px 20px rgba(212,175,55,0.15);">
-            <div style="font-size: 1.8rem; margin-bottom: 5px; text-shadow: 0 0 10px rgba(212,175,55,0.5);">🏆</div>
-            <h2 style="color: var(--gold-light); margin: 0 0 8px 0; font-size:1.2rem;">النهائي الحلم</h2>
-            <div style="display:flex; justify-content:center; gap:8px; font-size:0.75rem; color:var(--text-muted); margin-bottom:15px;">
+        <div class="match-card" style="text-align:center; padding: 15px 10px; margin-top:12px; border:1px solid var(--gold-main); box-shadow: 0 4px 15px rgba(212,175,55,0.15);">
+            <div style="font-size: 1.5rem; margin-bottom: 5px; text-shadow: 0 0 8px rgba(212,175,55,0.5);">🏆</div>
+            <h2 style="color: var(--gold-light); margin: 0 0 6px 0; font-size:1.1rem;">النهائي الحلم</h2>
+            <div style="display:flex; justify-content:center; gap:6px; font-size:0.7rem; color:var(--text-muted); margin-bottom:12px;">
                 <span style="background:rgba(212,175,55,0.1); padding:4px 8px; border-radius:6px; color:var(--gold-main); font-weight:bold;">🌙 بعد عيد الفطر</span>
                 <span style="background:rgba(255,255,255,0.05); padding:4px 8px; border-radius:6px;">🏟️ ملعب الوسم</span>
             </div>
-            <div class="teams-row" style="background: rgba(0,0,0,0.3); padding:12px 10px; border-radius:12px; border:1px solid rgba(255,255,255,0.05);">
-                <span class="team-item" style="font-size: 1.1rem;">الفيصلي</span>
-                <div class="vs-label" style="font-size:1rem; padding:4px 10px; min-width:40px;">VS</div>
-                <span class="team-item" style="font-size: 1.1rem;">الوسام</span>
+            <div class="teams-row" style="background: rgba(0,0,0,0.3); padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
+                <span class="team-item" style="font-size: 1rem;">الفيصلي</span>
+                <div class="vs-label" style="font-size:0.9rem; padding:4px 8px; min-width:35px;">VS</div>
+                <span class="team-item" style="font-size: 1rem;">الوسام</span>
             </div>
-            <button onclick="downloadICS()" style="margin-top:15px; background:rgba(212,175,55,0.2); border:1px solid var(--gold-main); color:var(--gold-light); padding:8px 15px; border-radius:20px; font-size:0.8rem; font-weight:bold; cursor:pointer; width:100%; font-family:'Cairo';">📅 ذكرني بموعد النهائي</button>
+            <button onclick="downloadICS()" style="margin-top:12px; background:rgba(212,175,55,0.1); border:1px solid var(--gold-main); color:var(--gold-light); padding:6px 12px; border-radius:12px; font-size:0.75rem; font-weight:bold; cursor:pointer; width:100%; font-family:'Cairo';">📅 ذكرني بموعد النهائي</button>
         </div>
 
         <div class="slider-wrapper">
             <div class="slider-container" id="finalSlider" onscroll="updateDots()">
                 
                 <div class="slide-card">
-                    <h3 style="color:var(--gold-main); margin-top:0; font-size:1rem; text-align:center; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">🎫 التوقع وتذكرة VIP</h3>
-                    <div id="vip-inputs-area">
-                        <p style="font-size:0.75rem; color:#ccc; margin-top:0; margin-bottom:12px; text-align:center;">اكتب اسمك لإصدار تذكرتك (اسحب لليمين للمزيد 👉)</p>
-                        <input type="text" id="vip-name" class="vip-input" placeholder="اكتب اسمك هنا (مثال: محمد)">
-                        <select id="vip-team" class="vip-select">
-                            <option value="الفيصلي">أتوقع فوز: الفيصلي 🦅</option>
-                            <option value="الوسام">أتوقع فوز: الوسام ⚔️</option>
-                        </select>
-                        <button onclick="generateAndVote()" class="vip-generate-btn">سجل توقعي وأصدر تذكرتي ✨</button>
-                    </div>
-                    <div id="vip-result"></div>
-                </div>
-
-                <div class="slide-card">
-                    <h3 style="color:var(--gold-main); margin-top:0; font-size:1rem; text-align:center; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">📊 مقارنة القوة</h3>
-                    <div style="font-size:0.8rem; margin-top:10px;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-weight:700;"><span style="color:var(--gold-light);">5</span><span style="color:#ddd;">الأهداف المسجلة</span><span style="color:var(--gold-light);">7</span></div>
-                        <div style="display:flex; gap:8px; margin-bottom:15px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 71%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 100%;"></div></div></div>
+                    <h3 style="color:var(--gold-main); margin-top:0; font-size:0.9rem; text-align:center; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:6px;">📊 مقارنة الأرقام</h3>
+                    <div style="font-size:0.75rem; margin-top:10px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:2px; font-weight:700;"><span style="color:var(--gold-light);">5</span><span style="color:#ddd;">الأهداف المسجلة</span><span style="color:var(--gold-light);">7</span></div>
+                        <div style="display:flex; gap:8px; margin-bottom:10px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 71%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 100%;"></div></div></div>
                         
-                        <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-weight:700;"><span style="color:var(--gold-light);">3</span><span style="color:#ddd;">شباك نظيفة</span><span style="color:var(--gold-light);">2</span></div>
-                        <div style="display:flex; gap:8px; margin-bottom:15px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 100%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 66%;"></div></div></div>
+                        <div style="display:flex; justify-content:space-between; margin-bottom:2px; font-weight:700;"><span style="color:var(--gold-light);">3</span><span style="color:#ddd;">شباك نظيفة</span><span style="color:var(--gold-light);">2</span></div>
+                        <div style="display:flex; gap:8px; margin-bottom:10px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 100%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 66%;"></div></div></div>
 
-                        <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-weight:700;"><span style="color:#ef4444;">2</span><span style="color:#ddd;">أهداف مستقبلة</span><span style="color:#ef4444;">2</span></div>
-                        <div style="display:flex; gap:8px; margin-bottom:5px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill red" style="width: 50%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill red" style="width: 50%;"></div></div></div>
+                        <div style="display:flex; justify-content:space-between; margin-bottom:2px; font-weight:700;"><span style="color:#ef4444;">2</span><span style="color:#ddd;">أهداف مستقبلة</span><span style="color:#ef4444;">2</span></div>
+                        <div style="display:flex; gap:8px; margin-bottom:10px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill red" style="width: 50%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill red" style="width: 50%;"></div></div></div>
+
+                        <div style="display:flex; justify-content:space-between; margin-bottom:2px; font-weight:700; color:#aaa;"><span>2 - 0</span><span>أكبر انتصار</span><span>4 - 1</span></div>
+                        <div style="display:flex; justify-content:space-between; margin-top:5px; font-weight:700; color:#aaa;"><span>1</span><span>حسم بالترجيح</span><span>1</span></div>
                     </div>
                 </div>
 
                 <div class="slide-card">
-                    <h3 style="color:var(--gold-main); margin-top:0; font-size:1rem; text-align:center; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">🛤️ طريق الذهب</h3>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; text-align:right; margin-top:10px;">
-                        <div style="background:rgba(255,255,255,0.03); padding:10px; border-radius:10px; border:1px solid rgba(212,175,55,0.2);">
-                            <div style="font-weight:900; color:var(--gold-light); font-size:0.85rem; margin-bottom:8px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:5px;">🦅 الفيصلي</div>
-                            <ul style="padding-right:15px; margin:0; color:#ccc; font-size:0.7rem; line-height:1.8;">
+                    <h3 style="color:var(--gold-main); margin-top:0; font-size:0.9rem; text-align:center; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:6px;">🛤️ طريق الذهب</h3>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; text-align:right; margin-top:8px;">
+                        <div style="background:rgba(255,255,255,0.03); padding:8px; border-radius:10px; border:1px solid rgba(212,175,55,0.2);">
+                            <div style="font-weight:900; color:var(--gold-light); font-size:0.8rem; margin-bottom:6px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:4px;">🦅 الفيصلي</div>
+                            <ul style="padding-right:12px; margin:0; color:#ccc; font-size:0.65rem; line-height:1.6;">
                                 <li>فوز ع. خليج الصوالحة</li>
                                 <li>خسارة م. الوسام</li>
                                 <li>فوز ع. دبسا</li>
@@ -393,9 +346,9 @@ function updateDisplay() {
                                 <li>فوز ترجيح ع. الصقر</li>
                             </ul>
                         </div>
-                        <div style="background:rgba(255,255,255,0.03); padding:10px; border-radius:10px; border:1px solid rgba(212,175,55,0.2);">
-                            <div style="font-weight:900; color:var(--green-neon); font-size:0.85rem; margin-bottom:8px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:5px;">⚔️ الوسام</div>
-                            <ul style="padding-right:15px; margin:0; color:#ccc; font-size:0.7rem; line-height:1.8;">
+                        <div style="background:rgba(255,255,255,0.03); padding:8px; border-radius:10px; border:1px solid rgba(212,175,55,0.2);">
+                            <div style="font-weight:900; color:var(--green-neon); font-size:0.8rem; margin-bottom:6px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:4px;">⚔️ الوسام</div>
+                            <ul style="padding-right:12px; margin:0; color:#ccc; font-size:0.65rem; line-height:1.6;">
                                 <li>فوز ع. خليج الصوالحة</li>
                                 <li>فوز ع. الفيصلي</li>
                                 <li>فوز ترجيح ع. عمق</li>
@@ -411,40 +364,15 @@ function updateDisplay() {
         <div class="slider-dots">
             <div class="dot-s active" id="dot0"></div>
             <div class="dot-s" id="dot1"></div>
-            <div class="dot-s" id="dot2"></div>
         </div>
     `;
 
-    // باقي الأقسام (لا تغيير عليها)
     document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${m.r}</span>${m.p ? `<span class="penalty-small">${m.p}</span>` : ""}</div><span class="team-item">${m.t2}</span></div></div>`).join('')).join('');
     document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, index) => { let medal = ''; let rowStyle = ''; if (index === 0) { medal = '🥇'; rowStyle = 'background: rgba(212, 175, 55, 0.15);'; } else if (index === 1) { medal = '🥈'; rowStyle = 'background: rgba(192, 192, 192, 0.1);'; } else if (index === 2) { medal = '🥉'; rowStyle = 'background: rgba(205, 127, 50, 0.1);'; } return `<tr style="${rowStyle} border-bottom: 1px solid rgba(255,255,255,0.05);"><td class="team-name-cell" style="padding: 10px;">${medal} ${s.n}<br><small style="color:var(--text-muted)">(${s.f})</small></td><td style="padding:15px; text-align:left;"><span style="background:var(--gold-grad); color:#000; padding:4px 8px; border-radius:8px; font-weight:900; box-shadow: 0 2px 5px rgba(212,175,55,0.3);">${s.g}</span></td></tr>`; }).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--gold-main); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     const stats = {}; archiveData.forEach(day => day.matches.forEach(m => { const res = m.r.split(' - ').map(Number); if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 }; stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; }));
     document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--gold-main); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
     document.getElementById('about-text-content').innerText = aboutFullText;
-
-    // استرجاع التذكرة إذا كان مصوّت من قبل
-    let hasVotedCheck = localStorage.getItem('hasVoted') === 'true';
-    if(hasVotedCheck) {
-        let team = localStorage.getItem('votedTeam') || 'الفيصلي';
-        let color = team === 'الفيصلي' ? '#d4af37' : '#10b981';
-        let vipInput = document.getElementById('vip-inputs-area');
-        let vipResult = document.getElementById('vip-result');
-        if(vipInput && vipResult) {
-            vipInput.style.display = 'none';
-            vipResult.innerHTML = `
-                <h4 style="color:var(--gold-main); margin-top:0; font-size:0.85rem;">توقعك مسجل مسبقاً! 🏆</h4>
-                <div style="background: linear-gradient(135deg, #111, #222); border: 2px solid ${color}; padding: 20px 15px; border-radius: 15px; margin-top: 10px; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.8); text-align:center;">
-                    <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--black-card); padding: 2px 10px; color: ${color}; font-weight: 900; border: 1px solid ${color}; border-radius: 20px; font-size: 0.7rem;">تذكرة VIP</div>
-                    <span style="font-size: 2.5rem; display:block; margin-top:5px;">🎫</span>
-                    <p style="color:${color}; font-weight:900; margin:10px 0; font-size:1rem;">أدعم ${team} 🏆</p>
-                    <hr style="border:0; border-top:1px dashed rgba(255,255,255,0.2); margin:15px 0;">
-                    <p style="font-size:0.65rem; color:#888; margin:0; font-weight:600;">النهائي الكبير - بطولة القحمة 28</p>
-                </div>
-                <p style="font-size:0.75rem; color:var(--text-main); margin-top:15px; font-weight:bold; background:rgba(212,175,55,0.1); padding:8px; border-radius:8px; border:1px dashed var(--gold-main);">📸 صوّر الشاشة وانشرها لدعم فريقك!</p>
-            `;
-        }
-    }
 }
 
 let deferredPrompt; const banner = document.getElementById('a2hs-banner');
