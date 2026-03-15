@@ -71,11 +71,8 @@
         .tab-content.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .match-card { border-radius: 18px; margin-bottom: 15px; padding: 15px; position: relative; transition: transform 0.2s ease-out; overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.3); }
-        
-        /* تأثير الـ 3D التفاعلي للبطاقة */
-        .card-3d-effect { transform-style: preserve-3d; transform: perspective(1000px); }
-        .card-inner-3d { transform: translateZ(30px); }
+        /* أزلنا تأثير الـ 3D وصارت البطاقة ثابتة */
+        .match-card { border-radius: 18px; margin-bottom: 15px; padding: 15px; position: relative; overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.3); }
 
         .teams-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 5px; position: relative; }
         .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.95rem; color: var(--gold-light); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
@@ -97,20 +94,21 @@
         .power-bar-fill { background: var(--gold-grad); height: 100%; border-radius: 10px; }
         .power-bar-fill.red { background: linear-gradient(90deg, #ef4444, #b91c1c); }
 
-        /* ========= ستايلات التصويت (Tug of war) ========= */
+        /* ========= ستايلات التصويت ========= */
         .vote-container { margin-top: 20px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); }
         .vote-bar-wrap { display: flex; height: 12px; border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
         .vote-bar-f { background: var(--gold-grad); width: 50%; transition: width 0.5s ease; display:flex; align-items:center; justify-content:flex-start; padding-left:5px; font-size:0.6rem; color:#000; font-weight:900;}
         .vote-bar-w { background: linear-gradient(90deg, #047857, #10b981); width: 50%; transition: width 0.5s ease; display:flex; align-items:center; justify-content:flex-end; padding-right:5px; font-size:0.6rem; color:#fff; font-weight:900;}
         .vote-btns { display: flex; gap: 10px; }
-        .vote-btn { flex: 1; padding: 8px; border-radius: 10px; border: none; font-family: 'Cairo'; font-weight: 700; font-size: 0.8rem; cursor: pointer; color: #fff; }
+        .vote-btn { flex: 1; padding: 8px; border-radius: 10px; border: none; font-family: 'Cairo'; font-weight: 700; font-size: 0.8rem; cursor: pointer; color: #fff; transition: 0.3s; }
         .btn-f { background: rgba(212, 175, 55, 0.2); border: 1px solid var(--gold-main); color: var(--gold-main); }
         .btn-w { background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #10b981; }
 
         /* ========= ستايلات صانع VIP ========= */
         .vip-generator { background: rgba(0,0,0,0.4); border: 1px solid var(--gold-main); border-radius: 15px; padding: 15px; margin-top: 20px; text-align: center; }
-        .vip-input { width: 90%; padding: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.5); background: #111; color: #fff; font-family: 'Cairo'; margin-bottom: 10px; text-align: center; }
-        .vip-select { width: 90%; padding: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.5); background: #111; color: #fff; font-family: 'Cairo'; margin-bottom: 10px; text-align: center; }
+        .vip-input { width: 90%; padding: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.5); background: #111; color: #fff; font-family: 'Cairo'; margin-bottom: 10px; text-align: center; outline: none; transition: 0.3s;}
+        .vip-input:focus { border-color: var(--gold-main); box-shadow: 0 0 8px rgba(212,175,55,0.5); }
+        .vip-select { width: 90%; padding: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.5); background: #111; color: #fff; font-family: 'Cairo'; margin-bottom: 10px; text-align: center; outline: none;}
         .vip-generate-btn { background: var(--gold-grad); color: #000; border: none; padding: 10px 20px; border-radius: 10px; font-family: 'Cairo'; font-weight: 900; cursor: pointer; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
 
         .group-card { border-radius: 15px; overflow: hidden; margin-bottom: 20px; }
@@ -199,8 +197,8 @@
         <button class="social-btn" style="background:var(--gold-grad); color:#000; border:none;" id="a2hs-install">تثبيت</button>
         <button style="background:none; border:none; color:var(--gold-main); font-size:1.5rem;" onclick="closeA2HS()">×</button>
     </div>
+
 <script>
-// 🔄 التحديث التلقائي كل 3 دقائق
 setTimeout(function(){ location.reload(); }, 180000);
 
 const archiveData = [
@@ -238,106 +236,27 @@ const groupData = [
     {n:"6", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي
+const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة\n\n* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة\n* تقام مباريات البطولة بنظام المجموعات من دور واحد\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:\n- مجموع النقاط\n- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)\n- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر\n- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب\n- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة\n\n* آلية مباريات الملحق\nبعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:\n * المباراة  رقم (19) \n(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) \n * المباراة رقم ( 20) \n(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) \n\n* مباريات دور الثمانية\nرقم المباراة ( 21) \nاول مج (1) مع اول مج(3)\n\nالمبارة رقم (22) \nاول مج (2)   مع أول مج ( 4) \n المباراة رقم ( 23)\nاول مج ( 5) مع اول مج ( 7 ) \nالمباراة رقم (24) \nاول مج (6) مع اول مج ( 8) \n\n(( ملاحظة مهمة)) \nفي حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: \nالمباراة رقم ( 23)\n اول مج ( 5 ) مع أول مج ( 8 ) \nالمباراة رقم (24) \nاول مج( 6) مع أول مج(7) \nوذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية \n\nمباريات نصف النهاىي\n المباراة رقم (25) \nفائز (21) مع فائز( 23) \nالمباراة رقم (26)\n فائز (22) مع فائز 24\n\nالنهائي \nالمباراة رقم (27)\nفائز (25) مع فائز (26)\n\nبعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي \nتم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة \nوبالتالي اصبح ترتيب الاوائل على النحو التالي :\nالمجموعة الاولى فريق السوق \nالمجموعة الثانية فريق ساحل مغزل\nالمجموعة الثالثة فريق الصقر \nالمجموعة الرابعة فريق الساحل الرياضي \nالمجموعه الخامسة فريق صقليه\nالمجموعة السادسة فريق الوسام \nالمجموعة السابعة فريق عمق \nالمجموعة الثامنه فريق الفيصلي\n\nوتلعب مباريات دور الثمانية(ربع النهائي )\nحسب نظام البطولة \nاول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)\nاول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)\n—————————————————- \nوحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا\nاول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)\nاول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)\n——————————————————\nمباريات دور الاربعة ( نصف النهائي )\nرقم المباراة (25)\nفائز المباراة رقم  (21) مع فائز المباراة رقم  (23)\nرقم المباراة (26)\nفائز المباراة رقم (22) مع فائز المباراة رقم (24)\n——————————————————-\nالمباراة النهائية \nرقم المباراة (27)\nفائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
 
-دور المجموعات وعدد مبارياته (18) مباراة
-* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة
-* تقام مباريات البطولة بنظام المجموعات من دور واحد
-* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق
-* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية
-* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:
-- مجموع النقاط
-- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)
-- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر
-- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب
-- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة
-
-* آلية مباريات الملحق
-بعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:
- * المباراة  رقم (19) 
-(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) 
- * المباراة رقم ( 20) 
-(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) 
-
-* مباريات دور الثمانية
-رقم المباراة ( 21) 
-اول مج (1) مع اول مج(3)
-
-المبارة رقم (22) 
-اول مج (2)   مع أول مج ( 4) 
- المباراة رقم ( 23)
-اول مج ( 5) مع اول مج ( 7 ) 
-المباراة رقم (24) 
-اول مج (6) مع اول مج ( 8) 
-
-(( ملاحظة مهمة)) 
-في حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: 
-المباراة رقم ( 23)
- اول مج ( 5 ) مع أول مج ( 8 ) 
-المباراة رقم (24) 
-اول مج( 6) مع أول مج(7) 
-وذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية 
-
-مباريات نصف النهاىي
- المباراة رقم (25) 
-فائز (21) مع فائز( 23) 
-المباراة رقم (26)
- فائز (22) مع فائز 24
-
-النهائي 
-المباراة رقم (27)
-فائز (25) مع فائز (26)
-
-بعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي 
-تم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة 
-وبالتالي اصبح ترتيب الاوائل على النحو التالي :
-المجموعة الاولى فريق السوق 
-المجموعة الثانية فريق ساحل مغزل
-المجموعة الثالثة فريق الصقر 
-المجموعة الرابعة فريق الساحل الرياضي 
-المجموعه الخامسة فريق صقليه
-المجموعة السادسة فريق الوسام 
-المجموعة السابعة فريق عمق 
-المجموعة الثامنه فريق الفيصلي
-
-وتلعب مباريات دور الثمانية(ربع النهائي )
-حسب نظام البطولة 
-اول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)
-اول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)
-—————————————————-
-وحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا
-اول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)
-اول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)
-——————————————————
-مباريات دور الاربعة ( نصف النهائي )
-رقم المباراة (25)
-فائز المباراة رقم  (21) مع فائز المباراة رقم  (23)
-رقم المباراة (26)
-فائز المباراة رقم (22) مع فائز المباراة رقم (24)
-——————————————————-
-المباراة النهائية 
-رقم المباراة (27)
-فائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
-
-// 🎶 دالة تشغيل نبض الملعب (Heartbeat) عند فتح تبويب النهائي
-let hasPlayedHeartbeat = false;
-function playHeartbeatSound() {
-    if (hasPlayedHeartbeat) return;
+// 🎶 دالة تشغيل صدى الكأس الملكي (بدون ملفات خارجية)
+let hasPlayedChime = false;
+function playChimeSound() {
+    if (hasPlayedChime) return;
     try {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         if(!AudioContext) return;
         const ctx = new AudioContext();
-        function thump(time) {
-            const osc = ctx.createOscillator(); const gain = ctx.createGain();
-            osc.connect(gain); gain.connect(ctx.destination);
-            osc.frequency.setValueAtTime(120, time); osc.frequency.exponentialRampToValueAtTime(0.01, time + 0.5);
-            gain.gain.setValueAtTime(1, time); gain.gain.exponentialRampToValueAtTime(0.01, time + 0.5);
-            osc.start(time); osc.stop(time + 0.5);
-        }
-        thump(ctx.currentTime); thump(ctx.currentTime + 0.3);
-        setTimeout(()=> { thump(ctx.currentTime); thump(ctx.currentTime + 0.3); }, 1000);
-        hasPlayedHeartbeat = true;
-    } catch(e) { console.log("Audio not supported or blocked"); }
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine'; // صوت نقي ومعدني
+        osc.frequency.setValueAtTime(1500, ctx.currentTime); // تردد عالي (صوت رنة)
+        osc.frequency.exponentialRampToValueAtTime(500, ctx.currentTime + 2); // ينخفض التردد تدريجياً
+        gain.gain.setValueAtTime(0.8, ctx.currentTime); // مستوى الصوت
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 3); // يتلاشى ببطء كأنه صدى
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(); osc.stop(ctx.currentTime + 3);
+        hasPlayedChime = true;
+    } catch(e) { console.log("Audio API issue"); }
 }
 
 function openTab(evt, tabName) {
@@ -350,8 +269,8 @@ function openTab(evt, tabName) {
     else { let activeBtn = document.querySelector(".tab-btn[onclick*='" + tabName + "']"); if(activeBtn) activeBtn.classList.add("active"); }
     localStorage.setItem('savedTab', tabName);
 
-    // تفعيل نبض الملعب إذا تم اختيار النهائي
-    if(tabName === 'upcoming') { playHeartbeatSound(); }
+    // تفعيل صوت صدى الكأس عند الضغط على النهائي
+    if(tabName === 'upcoming' && evt) { playChimeSound(); }
 }
 
 function openSubTab(evt, subName) {
@@ -375,19 +294,30 @@ function searchList(type) {
     }
 }
 
-// 🎚️ متغيرات حبل التوقعات (أرقام مبدئية تفاعلية)
+// 🎚️ 2. دوال حبل التوقعات (محدثة لتعرض رسالة أنيقة بدون إزعاج)
 let votesFaisaly = localStorage.getItem('votesF') ? parseInt(localStorage.getItem('votesF')) : 450;
 let votesWissam = localStorage.getItem('votesW') ? parseInt(localStorage.getItem('votesW')) : 420;
 let hasVoted = localStorage.getItem('hasVoted') === 'true';
 
 function submitVote(team) {
-    if(hasVoted) { alert("لقد قمت بالتصويت مسبقاً! شارك الموقع مع أصدقائك لزيادة أصوات فريقك."); return; }
+    let msgElement = document.getElementById('vote-msg');
+    
+    if(hasVoted) { 
+        if(msgElement) { msgElement.innerText = "لقد قمت بالتصويت مسبقاً يا بطل! 🌟"; msgElement.style.display = 'block'; }
+        return; 
+    }
+    
     if(team === 'F') votesFaisaly++; else votesWissam++;
     hasVoted = true;
     localStorage.setItem('hasVoted', 'true');
     localStorage.setItem('votesF', votesFaisaly);
     localStorage.setItem('votesW', votesWissam);
     updateVoteUI();
+    
+    // إظهار رسالة النجاح الأنيقة وتظليل الأزرار
+    if(msgElement) { msgElement.innerText = "تم تسجيل توقعك بنجاح للنهائي الكبير! 🏆"; msgElement.style.display = 'block'; }
+    document.querySelectorAll('.vote-btn').forEach(btn => btn.style.opacity = '0.4');
+    document.querySelector(team === 'F' ? '.btn-f' : '.btn-w').style.opacity = '1';
 }
 
 function updateVoteUI() {
@@ -403,27 +333,57 @@ function updateVoteUI() {
     }
 }
 
-// 🪪 صانع بطاقات VIP
+// 🪪 3. صانع بطاقات VIP (مع زر المشاركة الفعلي)
 function generateVIPCard() {
     let name = document.getElementById('vip-name').value;
-    if(!name) return alert("اكتب اسمك أولاً يا بطل!");
+    if(!name) {
+        document.getElementById('vip-name').style.borderColor = '#ef4444';
+        setTimeout(() => document.getElementById('vip-name').style.borderColor = 'rgba(212,175,55,0.5)', 2000);
+        return;
+    }
     let team = document.getElementById('vip-team').value;
     let color = team === 'الفيصلي' ? '#d4af37' : '#10b981';
     let resultDiv = document.getElementById('vip-result');
+    
+    // إخفاء منطقة الإدخال لعرض التذكرة بشكل فخم ونظيف
+    document.getElementById('vip-inputs-area').style.display = 'none';
+
     resultDiv.innerHTML = `
-        <div style="background: linear-gradient(135deg, #111, #222); border: 2px solid ${color}; padding: 20px; border-radius: 15px; margin-top: 15px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
-            <span style="position: absolute; top: 10px; right: 10px; font-size: 2rem; opacity: 0.2;">✨</span>
-            <h4 style="color:var(--gold-light); margin:0 0 5px 0;">بطاقة VIP 🎫</h4>
-            <h2 style="color:#fff; margin:10px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">${name}</h2>
-            <p style="color:${color}; font-weight:900; margin:0;">داعم ومساند لـ ${team}</p>
-            <hr style="border:0; border-top:1px dashed rgba(255,255,255,0.2); margin:10px 0;">
-            <p style="font-size:0.65rem; color:#888; margin:0;">النهائي الكبير - بطولة القحمة الرمضانية 28</p>
+        <div id="vip-ticket" style="background: linear-gradient(135deg, #111, #222); border: 2px solid ${color}; padding: 25px 20px; border-radius: 15px; margin-top: 15px; position: relative; box-shadow: 0 5px 25px rgba(0,0,0,0.8); text-align:center;">
+            <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--black-card); padding: 2px 15px; color: ${color}; font-weight: 900; border: 1px solid ${color}; border-radius: 20px; font-size: 0.75rem;">تذكرة كبار الشخصيات</div>
+            <span style="font-size: 3rem; display:block; margin-top:10px;">🎫</span>
+            <h2 style="color:#fff; margin:15px 0 5px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.8); font-size:1.6rem;">${name}</h2>
+            <p style="color:${color}; font-weight:900; margin:0; font-size:1.1rem;">يدعم ${team} 🏆</p>
+            <hr style="border:0; border-top:1px dashed rgba(255,255,255,0.2); margin:20px 0;">
+            <p style="font-size:0.75rem; color:#888; margin:0; font-weight:600;">النهائي الكبير - بطولة القحمة الرمضانية 28</p>
         </div>
-        <p style="font-size:0.7rem; color:var(--text-muted); margin-top:10px;">📸 صوّر الشاشة وشاركها في السناب شات لدعم فريقك!</p>
+        
+        <button onclick="shareVIP('${name}', '${team}')" style="margin-top:20px; background:var(--gold-grad); color:#000; border:none; padding:12px 20px; border-radius:12px; font-family:'Cairo'; font-weight:900; font-size:0.9rem; cursor:pointer; width:100%; box-shadow: 0 4px 10px rgba(212,175,55,0.3);">مشاركة التذكرة 📤</button>
+        <button onclick="resetVIP()" style="margin-top:10px; background:transparent; border:1px solid rgba(255,255,255,0.2); color:#aaa; padding:8px 15px; border-radius:10px; font-family:'Cairo'; font-size:0.75rem; cursor:pointer; width:100%;">إصدار بطاقة جديدة</button>
     `;
 }
 
-// 🔔 زر إضافة التقويم
+function shareVIP(name, team) {
+    let shareText = `🎫 أنا المشجع ( ${name} ) أعلن دعمي لفريق ${team} في النهائي الكبير لبطولة القحمة الرمضانية 28! 🏆\nشاركونا توقعاتكم وحماسكم عبر التطبيق الرسمي:\n`;
+    let shareUrl = window.location.href;
+    
+    if (navigator.share) {
+        navigator.share({ title: 'نهائي بطولة القحمة 28', text: shareText, url: shareUrl })
+        .catch(err => console.log('Share error:', err));
+    } else {
+        // إذا كان المتصفح لا يدعم المشاركة، ننسخ النص
+        navigator.clipboard.writeText(shareText + shareUrl);
+        alert("تم نسخ النص والرابط! يمكنك لصقه في السناب شات أو الواتساب.");
+    }
+}
+
+function resetVIP() {
+    document.getElementById('vip-inputs-area').style.display = 'block';
+    document.getElementById('vip-result').innerHTML = '';
+    document.getElementById('vip-name').value = '';
+}
+
+// 🔔 4. زر المنبه (إضافة للتقويم)
 function downloadICS() {
     const icsData = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:النهائي الكبير - بطولة القحمة 28\nDTSTART:20260324T190000Z\nDTEND:20260324T210000Z\nDESCRIPTION:المباراة النهائية لبطولة القحمة الرمضانية 28 بين الفيصلي والوسام. كن على الموعد!\nLOCATION:ملعب الوسم بالقحمة\nEND:VEVENT\nEND:VCALENDAR";
     const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
@@ -438,89 +398,81 @@ function downloadICS() {
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     
-    // 🛑 بطاقة الترقب + صانع بطاقات الـ VIP في صفحة اليوم 🛑
     todayArea.innerHTML = `
     <div style="text-align:center; padding: 25px 15px; background: rgba(20, 20, 20, 0.8); border-radius: 18px; border: 1px solid rgba(212, 175, 55, 0.3); margin-top: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.8); position:relative; overflow:hidden;">
         <span style="font-size: 2.2rem; display: block; margin-bottom: 5px; text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);">🏆</span>
         <h3 style="color: var(--gold-light); margin: 0 0 8px 0; font-weight: 900; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">المربع الذهبي اكتمل</h3>
-        <p style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.6; margin-bottom: 15px;">
-            الأنظار تتجه نحو <strong style="color:var(--gold-main);">النهائي الكبير</strong>.<br>قمة مرتقبة تجمع بين <span style="color:#fff;">الفيصلي</span> و <span style="color:#fff;">الوسام</span>
-        </p>
+        <p style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.6; margin-bottom: 15px;">الأنظار تتجه نحو <strong style="color:var(--gold-main);">النهائي الكبير</strong>.<br>قمة مرتقبة تجمع بين <span style="color:#fff;">الفيصلي</span> و <span style="color:#fff;">الوسام</span></p>
         <button onclick="openTab(event, 'upcoming')" style="background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); color: #000; padding: 8px 15px; border-radius: 10px; font-family: 'Cairo'; font-weight: 900; font-size: 0.8rem; cursor: pointer;">تفاصيل المواجهة</button>
     </div>
     
     <div class="vip-generator">
-        <h3 style="color:var(--gold-main); margin-top:0; font-size:1rem;">🪪 إصدار بطاقة دعوة VIP</h3>
-        <p style="font-size:0.75rem; color:#ccc; margin-bottom:15px;">أصدر بطاقتك باسمك لدعم فريقك في النهائي</p>
-        <input type="text" id="vip-name" class="vip-input" placeholder="اكتب اسمك هنا (مثال: محمد عسيري)">
-        <select id="vip-team" class="vip-select">
-            <option value="الفيصلي">داعم لفريق: الفيصلي 🦅</option>
-            <option value="الوسام">داعم لفريق: الوسام ⚔️</option>
-        </select>
-        <button onclick="generateVIPCard()" class="vip-generate-btn">إصدار البطاقة الان ✨</button>
+        <div id="vip-inputs-area">
+            <h3 style="color:var(--gold-main); margin-top:0; font-size:1rem;">🪪 إصدار بطاقة دعوة VIP</h3>
+            <p style="font-size:0.75rem; color:#ccc; margin-bottom:15px;">أصدر بطاقتك باسمك لدعم فريقك في النهائي</p>
+            <input type="text" id="vip-name" class="vip-input" placeholder="اكتب اسمك هنا">
+            <select id="vip-team" class="vip-select">
+                <option value="الفيصلي">داعم لفريق: الفيصلي 🦅</option>
+                <option value="الوسام">داعم لفريق: الوسام ⚔️</option>
+            </select>
+            <button onclick="generateVIPCard()" class="vip-generate-btn">إصدار البطاقة الان ✨</button>
+        </div>
         <div id="vip-result"></div>
     </div>
     
     <div style="margin-top: 20px; text-align:right; padding: 20px; background: rgba(0,0,0,0.4); border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.2);">
         <h4 style="color: var(--gold-main); margin-top: 0; margin-bottom: 15px; border-bottom: 1px dashed rgba(212, 175, 55, 0.3); padding-bottom: 10px; font-size: 1rem; text-align: center;">🏆 تقديم القمة المرتقبة 🏆</h4>
-        <p style="color: #ddd; font-size: 0.85rem; line-height: 1.8; margin-bottom: 15px;">
-            بعد منافسات شرسة استمرت طوال شهر رمضان المبارك، نصل أخيراً إلى المشهد الختامي والنهائي الحلم لبطولة القحمة 28.
-        </p>
-        <p style="color: #ddd; font-size: 0.85rem; line-height: 1.8; margin-bottom: 15px;">
-            يسدل الستار على هذه النسخة بمواجهة من العيار الثقيل تجمع بين:
-            <br><strong style="color: var(--gold-light);">🦅 الفيصلي:</strong> الذي شق طريقه بثبات وحسم مبارياته المصيرية.
-            <br><strong style="color: var(--gold-light);">⚔️ الوسام:</strong> صاحب الهجوم الكاسح الذي لا يعرف المستحيل.
-        </p>
+        <p style="color: #ddd; font-size: 0.85rem; line-height: 1.8; margin-bottom: 15px;">بعد منافسات شرسة استمرت طوال شهر رمضان المبارك، نصل أخيراً إلى المشهد الختامي والنهائي الحلم لبطولة القحمة 28.</p>
+        <p style="color: #ddd; font-size: 0.85rem; line-height: 1.8; margin-bottom: 15px;">يسدل الستار على هذه النسخة بمواجهة من العيار الثقيل تجمع بين:<br><strong style="color: var(--gold-light);">🦅 الفيصلي:</strong> الذي شق طريقه بثبات وحسم مبارياته المصيرية.<br><strong style="color: var(--gold-light);">⚔️ الوسام:</strong> صاحب الهجوم الكاسح الذي لا يعرف المستحيل.</p>
     </div>`;
 
-    // 🛑 صفحة النهائي (فيها الـ 3D، زر التقويم، وحبل التوقعات) 🛑
     document.getElementById('finals-area').innerHTML = `
-        <div id="final-card-3d" class="match-card card-3d-effect" style="text-align:center; padding-top:20px; margin-top:15px; border:1px solid var(--gold-main); box-shadow: 0 10px 30px rgba(212,175,55,0.2);">
-            <div class="card-inner-3d">
-                <div class="glowing-trophy">🏆</div>
-                <h2 style="color: var(--gold-light); margin: 5px 0; font-size:1.4rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">النهائي الحلم</h2>
-                <p style="color: var(--gold-main); font-size: 0.8rem; font-weight:700;">بعد عيد الفطر المبارك 🌙</p>
-                
-                <button onclick="downloadICS()" style="background:rgba(212,175,55,0.2); border:1px solid var(--gold-main); color:var(--gold-light); padding:5px 12px; border-radius:20px; font-size:0.7rem; font-weight:bold; cursor:pointer; margin-bottom:10px;">📅 ذكرني بيوم النهائي</button>
+        <div class="match-card" style="text-align:center; padding-top:20px; margin-top:15px; border:1px solid var(--gold-main); box-shadow: 0 10px 30px rgba(212,175,55,0.2);">
+            
+            <div class="glowing-trophy">🏆</div>
+            <h2 style="color: var(--gold-light); margin: 5px 0; font-size:1.4rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">النهائي الحلم</h2>
+            <p style="color: var(--gold-main); font-size: 0.8rem; font-weight:700;">بعد عيد الفطر المبارك 🌙</p>
+            
+            <button onclick="downloadICS()" style="background:rgba(212,175,55,0.2); border:1px solid var(--gold-main); color:var(--gold-light); padding:5px 12px; border-radius:20px; font-size:0.7rem; font-weight:bold; cursor:pointer; margin-bottom:10px;">📅 ذكرني بيوم النهائي</button>
 
-                <div class="teams-row" style="margin-top: 5px; background: rgba(0,0,0,0.3); padding:10px; border-radius:15px;">
-                    <span class="team-item" style="font-size: 1.1rem;">الفيصلي</span>
-                    <div class="vs-label" style="font-size:1.1rem; padding:6px 12px;">VS</div>
-                    <span class="team-item" style="font-size: 1.1rem;">الوسام</span>
-                </div>
-                <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-top:8px;">🏟️ ملعب الوسم بالقحمة</span>
+            <div class="teams-row" style="margin-top: 5px; background: rgba(0,0,0,0.3); padding:10px; border-radius:15px;">
+                <span class="team-item" style="font-size: 1.1rem;">الفيصلي</span>
+                <div class="vs-label" style="font-size:1.1rem; padding:6px 12px;">VS</div>
+                <span class="team-item" style="font-size: 1.1rem;">الوسام</span>
+            </div>
+            <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-top:8px;">🏟️ ملعب الوسم بالقحمة</span>
 
-                <div class="vote-container">
-                    <h4 style="color:var(--gold-main); margin-top:0; margin-bottom:10px; font-size:0.8rem;">🔥 توقعات الجماهير (من سيفوز؟)</h4>
-                    <div class="vote-bar-wrap">
-                        <div id="vote-bar-f" class="vote-bar-f" style="width:50%;">50%</div>
-                        <div id="vote-bar-w" class="vote-bar-w" style="width:50%;">50%</div>
-                    </div>
-                    <div class="vote-btns">
-                        <button class="vote-btn btn-f" onclick="submitVote('F')">الفيصلي</button>
-                        <button class="vote-btn btn-w" onclick="submitVote('W')">الوسام</button>
-                    </div>
+            <div class="vote-container">
+                <h4 style="color:var(--gold-main); margin-top:0; margin-bottom:10px; font-size:0.8rem;">🔥 توقعات الجماهير (من سيفوز؟)</h4>
+                <div class="vote-bar-wrap">
+                    <div id="vote-bar-f" class="vote-bar-f" style="width:50%;">50%</div>
+                    <div id="vote-bar-w" class="vote-bar-w" style="width:50%;">50%</div>
                 </div>
+                <div class="vote-btns">
+                    <button class="vote-btn btn-f" onclick="submitVote('F')">الفيصلي</button>
+                    <button class="vote-btn btn-w" onclick="submitVote('W')">الوسام</button>
+                </div>
+                <div id="vote-msg" style="color:var(--gold-main); font-size:0.8rem; margin-top:10px; display:none; font-weight:bold;"></div>
+            </div>
 
-                <div style="margin-top: 25px; background: rgba(0,0,0,0.4); padding: 15px 10px; border-radius: 15px; border: 1px solid rgba(212,175,55,0.2);">
-                    <h4 style="color: var(--gold-main); font-size: 0.9rem; margin-top: 0; margin-bottom: 15px; border-bottom:1px solid rgba(212,175,55,0.2); padding-bottom:8px;">📊 أرقام الفريقين في البطولة</h4>
-                    <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; font-weight:700;"><span style="color:var(--gold-light);">5</span><span style="color:#ddd;">الأهداف المسجلة</span><span style="color:var(--gold-light);">7</span></div>
-                    <div style="display:flex; gap:8px; margin-bottom:15px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 71%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 100%;"></div></div></div>
-                    <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; font-weight:700;"><span style="color:var(--gold-light);">3</span><span style="color:#ddd;">شباك نظيفة</span><span style="color:var(--gold-light);">2</span></div>
-                    <div style="display:flex; gap:8px; margin-bottom:15px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 100%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 66%;"></div></div></div>
-                </div>
+            <div style="margin-top: 25px; background: rgba(0,0,0,0.4); padding: 15px 10px; border-radius: 15px; border: 1px solid rgba(212,175,55,0.2);">
+                <h4 style="color: var(--gold-main); font-size: 0.9rem; margin-top: 0; margin-bottom: 15px; border-bottom:1px solid rgba(212,175,55,0.2); padding-bottom:8px;">📊 أرقام الفريقين في البطولة</h4>
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; font-weight:700;"><span style="color:var(--gold-light);">5</span><span style="color:#ddd;">الأهداف المسجلة</span><span style="color:var(--gold-light);">7</span></div>
+                <div style="display:flex; gap:8px; margin-bottom:15px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 71%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 100%;"></div></div></div>
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:4px; font-weight:700;"><span style="color:var(--gold-light);">3</span><span style="color:#ddd;">شباك نظيفة</span><span style="color:var(--gold-light);">2</span></div>
+                <div style="display:flex; gap:8px; margin-bottom:15px;"><div class="power-bar-bg" style="flex:1; direction:ltr;"><div class="power-bar-fill" style="width: 100%; float:right;"></div></div><div class="power-bar-bg" style="flex:1; direction:rtl;"><div class="power-bar-fill" style="width: 66%;"></div></div></div>
+            </div>
 
-                <button class="h2h-btn" onclick="let b = document.getElementById('road-box'); b.style.display = b.style.display === 'none' ? 'block' : 'none'" style="margin-top:15px; font-size:0.85rem; padding:10px; background:var(--gold-grad); color:#000; border:none;">🛤️ مشوار البطلين للنهائي</button>
-                <div id="road-box" class="h2h-box" style="display:none; text-align:right; margin-top:10px; background:rgba(0,0,0,0.6); padding:15px;">
-                    <h4 style="color:var(--gold-main); margin-top:0; font-size: 0.85rem; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">🦅 مشوار الفيصلي:</h4>
-                    <ul style="padding-right:20px; margin-bottom:15px; color:#ccc; font-size:0.8rem; line-height:1.6;">
-                        <li>فوز على خليج الصوالحة (2 - 0)</li><li>خسارة من الوسام (0 - 1)</li><li>فوز على دبسا (1 - 0)</li><li>فوز على صقلية (1 - 0)</li><li>تعادل مع الصقر (1 - 1) وفوز ترجيح</li>
-                    </ul>
-                    <h4 style="color:var(--gold-main); margin-top:0; font-size: 0.85rem; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">⚔️ مشوار الوسام:</h4>
-                    <ul style="padding-right:20px; margin-bottom:0; color:#ccc; font-size:0.8rem; line-height:1.6;">
-                        <li>فوز على خليج الصوالحة (4 - 1)</li><li>فوز على الفيصلي (1 - 0)</li><li>تعادل مع عمق (1 - 1) وفوز ترجيح</li><li>فوز على ساحل مغزل (1 - 0)</li>
-                    </ul>
-                </div>
+            <button class="h2h-btn" onclick="let b = document.getElementById('road-box'); b.style.display = b.style.display === 'none' ? 'block' : 'none'" style="margin-top:15px; font-size:0.85rem; padding:10px; background:var(--gold-grad); color:#000; border:none;">🛤️ مشوار البطلين للنهائي</button>
+            <div id="road-box" class="h2h-box" style="display:none; text-align:right; margin-top:10px; background:rgba(0,0,0,0.6); padding:15px;">
+                <h4 style="color:var(--gold-main); margin-top:0; font-size: 0.85rem; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">🦅 مشوار الفيصلي:</h4>
+                <ul style="padding-right:20px; margin-bottom:15px; color:#ccc; font-size:0.8rem; line-height:1.6;">
+                    <li>فوز على خليج الصوالحة (2 - 0)</li><li>خسارة من الوسام (0 - 1)</li><li>فوز على دبسا (1 - 0)</li><li>فوز على صقلية (1 - 0)</li><li>تعادل مع الصقر (1 - 1) وفوز ترجيح</li>
+                </ul>
+                <h4 style="color:var(--gold-main); margin-top:0; font-size: 0.85rem; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:8px;">⚔️ مشوار الوسام:</h4>
+                <ul style="padding-right:20px; margin-bottom:0; color:#ccc; font-size:0.8rem; line-height:1.6;">
+                    <li>فوز على خليج الصوالحة (4 - 1)</li><li>فوز على الفيصلي (1 - 0)</li><li>تعادل مع عمق (1 - 1) وفوز ترجيح</li><li>فوز على ساحل مغزل (1 - 0)</li>
+                </ul>
             </div>
         </div>`;
 
@@ -531,18 +483,7 @@ function updateDisplay() {
     document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--gold-main); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
     document.getElementById('about-text-content').innerText = aboutFullText;
 
-    // تفعيل التأثير الـ 3D على البطاقة بعد رسمها
-    let card3d = document.getElementById('final-card-3d');
-    if(card3d) {
-        card3d.addEventListener('mousemove', (e) => {
-            let rect = card3d.getBoundingClientRect();
-            let x = e.clientX - rect.left; let y = e.clientY - rect.top;
-            let calcX = (y - rect.height / 2) / -15; let calcY = (x - rect.width / 2) / 15;
-            card3d.style.transform = `perspective(1000px) rotateX(${calcX}deg) rotateY(${calcY}deg) scale3d(1.02, 1.02, 1.02)`;
-        });
-        card3d.addEventListener('mouseleave', () => { card3d.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`; });
-    }
-    updateVoteUI(); // تحديث أشرطة التصويت المبدئية
+    updateVoteUI(); 
 }
 
 let deferredPrompt; const banner = document.getElementById('a2hs-banner');
