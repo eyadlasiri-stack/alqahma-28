@@ -229,7 +229,6 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).classList.add("active");
     if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } 
     else { let activeBtn = document.querySelector(".tab-btn[onclick*='" + tabName + "']"); if(activeBtn) activeBtn.classList.add("active"); }
-    localStorage.setItem('savedTab', tabName);
 }
 
 function openSubTab(evt, subName) {
@@ -239,7 +238,6 @@ function openSubTab(evt, subName) {
     document.getElementById(subName).style.display = "block";
     if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } 
     else { let activeBtn = document.querySelector(".sub-tab-btn[onclick*='" + subName + "']"); if(activeBtn) activeBtn.classList.add("active"); }
-    localStorage.setItem('savedSubTab', subName);
 }
 
 function searchList(type) {
@@ -372,8 +370,8 @@ async function fetchWeather() { try { const response = await fetch('https://api.
 window.onload = function() { 
     fetchWeather(); 
     updateDisplay(); 
-    let savedTab = localStorage.getItem('savedTab'); if(savedTab) { openTab(null, savedTab); }
-    let savedSubTab = localStorage.getItem('savedSubTab'); if(savedSubTab) { openSubTab(null, savedSubTab); }
+    openTab(null, 'today'); // إجبار الموقع على فتح صفحة اليوم دائماً عند التحديث
+    openSubTab(null, 'players-list'); // إجبار الموقع على فتح قائمة الهدافين افتراضياً
 };
 </script>
 </body>
