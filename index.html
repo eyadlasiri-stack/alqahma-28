@@ -157,7 +157,26 @@
             <button class="tab-btn" onclick="openTab(event, 'about')">حول البطولة</button>
         </div>
 
-        <div id="today" class="tab-content active"><div id="today-match-area"></div></div>
+        <div id="today" class="tab-content active">
+            <div id="today-match-area"></div>
+            
+            <div id="competition-card" class="match-card" style="text-align: center; margin-top: 25px; border: 1px solid var(--gold-main); box-shadow: 0 0 20px rgba(212,175,55,0.25);">
+                <div style="font-size: 2rem; margin-bottom: 5px; animation: heartbeat 1.5s infinite;">🎁</div>
+                <h3 style="color: var(--gold-main); margin: 0 0 8px 0; font-weight: 900;">سؤال البطولة والجوائز</h3>
+                <p style="font-size: 0.85rem; color: #eee; margin-bottom: 15px; font-weight: 700;">من هو بطل النسخة السابقة من بطولة القحمة الرمضانية؟</p>
+                
+                <div style="background: rgba(0,0,0,0.5); padding: 8px; border-radius: 8px; margin-bottom: 15px;">
+                    <span style="font-size: 0.7rem; color: var(--text-muted); display: block; margin-bottom: 3px;">ينتهي الاستقبال بعد:</span>
+                    <div id="comp-timer" style="color: var(--gold-light); font-weight: 900; font-size: 1.1rem; direction: ltr; font-family: monospace;">--:--:--</div>
+                </div>
+
+                <input type="text" id="comp-name" class="search-input" placeholder="اكتب اسمك الثلاثي هنا..." style="margin-bottom: 10px; text-align: center; font-weight: bold;">
+                <input type="text" id="comp-answer" class="search-input" placeholder="اكتب إجابتك هنا..." style="margin-bottom: 15px; text-align: center; font-weight: bold;">
+                
+                <button onclick="sendCompetition()" style="background: var(--gold-grad); color: #000; border: none; padding: 12px 20px; border-radius: 10px; font-weight: 900; font-family: 'Cairo'; font-size: 0.9rem; cursor: pointer; width: 100%; box-shadow: 0 4px 10px rgba(212,175,55,0.3);">إرسال المشاركة 📲</button>
+            </div>
+            </div>
+
         <div id="upcoming" class="tab-content"><div id="finals-area"></div></div>
 
         <div id="scorers-main" class="tab-content">
@@ -243,7 +262,6 @@ function openTab(evt, tabName) {
     let content = document.getElementsByClassName("tab-content"), btns = document.getElementsByClassName("tab-btn");
     for (let i = 0; i < content.length; i++) content[i].classList.remove("active");
     for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active");
-    // خدعة بسيطة لإعادة تفعيل الأنيميشن بسلاسة
     void document.getElementById(tabName).offsetWidth;
     document.getElementById(tabName).classList.add("active");
     if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } 
@@ -286,7 +304,7 @@ function updateDots() {
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     
-    // صفحة اليوم (بطاقة ذكية ومدمجة وصغيرة)
+    // صفحة اليوم
     todayArea.innerHTML = `
     <div style="background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 15px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
         <div style="display:flex; align-items:center; gap:10px; border-bottom: 1px dashed rgba(212,175,55,0.3); padding-bottom: 10px; margin-bottom: 10px;">
@@ -302,7 +320,6 @@ function updateDisplay() {
         </p>
     </div>`;
 
-    // 🌟 صفحة النهائي (بطاقات أنحف وصغيرة، بدون زر التذكير) 🌟
     document.getElementById('finals-area').innerHTML = `
         <div class="match-card" style="text-align:center; padding: 15px 10px; margin-top:12px; border:1px solid var(--gold-main); box-shadow: 0 4px 15px rgba(212,175,55,0.15);">
             <div style="font-size: 1.5rem; margin-bottom: 5px; text-shadow: 0 0 8px rgba(212,175,55,0.5);">🏆</div>
@@ -320,7 +337,6 @@ function updateDisplay() {
 
         <div class="slider-wrapper">
             <div class="slider-container" id="finalSlider" onscroll="updateDots()">
-                
                 <div class="slide-card">
                     <h3 style="color:var(--gold-main); margin-top:0; font-size:0.9rem; text-align:center; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:6px;">📊 مقارنة الأرقام</h3>
                     <div style="font-size:0.75rem; margin-top:10px;">
@@ -362,7 +378,6 @@ function updateDisplay() {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -380,6 +395,57 @@ function updateDisplay() {
     document.getElementById('about-text-content').innerText = aboutFullText;
 }
 
+// ⏳ نظام مؤقت المسابقة الذكي ⏳
+function startCompetitionTimer() {
+    const compCard = document.getElementById('competition-card');
+    if (!compCard) return;
+
+    let now = new Date();
+    let endTime = new Date();
+    
+    // إعداد التوقيت إلى الساعة 3:00 فجراً
+    if (now.getHours() >= 3) {
+        endTime.setDate(endTime.getDate() + 1); // إذا تعدينا 3 الفجر، يحطها اليوم اللي بعده
+    }
+    endTime.setHours(3, 0, 0, 0);
+
+    const timerInterval = setInterval(function() {
+        let currentTime = new Date().getTime();
+        let distance = endTime.getTime() - currentTime;
+
+        if (distance <= 0) {
+            clearInterval(timerInterval);
+            compCard.style.display = 'none'; // الكود يخفي المسابقة فوراً
+        } else {
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // إضافة صفر للأرقام الأقل من 10 ليكون الشكل احترافي
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            document.getElementById("comp-timer").innerHTML = hours + ":" + minutes + ":" + seconds;
+        }
+    }, 1000);
+}
+
+// 📲 إرسال المشاركة للواتساب
+function sendCompetition() {
+    let name = document.getElementById('comp-name').value;
+    let answer = document.getElementById('comp-answer').value;
+    
+    if(name.trim() === "" || answer.trim() === "") {
+        alert("⚠️ الرجاء كتابة اسمك وإجابتك قبل الإرسال!");
+        return;
+    }
+    
+    let msg = "🏆 *مشاركة في مسابقة بطولة القحمة 28* 🏆\n\n👤 *الاسم:* " + name + "\n🎯 *الإجابة:* " + answer + "\n\n📱 *تم الإرسال عبر التطبيق الرسمي*";
+    let url = "https://wa.me/966534987428?text=" + encodeURIComponent(msg);
+    window.open(url, '_blank');
+}
+
 let deferredPrompt; const banner = document.getElementById('a2hs-banner');
 window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; if (!sessionStorage.getItem('a2hs_dismissed')) setTimeout(() => banner.classList.add('show'), 3000); });
 document.getElementById('a2hs-install').addEventListener('click', async () => { if (!deferredPrompt) return; banner.classList.remove('show'); deferredPrompt.prompt(); deferredPrompt = null; });
@@ -390,13 +456,16 @@ async function fetchWeather() { try { const response = await fetch('https://api.
 window.onload = function() { 
     // إخفاء شاشة التحميل بعد 1.5 ثانية بسلاسة
     setTimeout(() => {
-        document.getElementById('preloader').classList.add('hidden');
+        const preloader = document.getElementById('preloader');
+        if(preloader) preloader.classList.add('hidden');
     }, 1500);
 
     fetchWeather(); 
     updateDisplay(); 
     openTab(null, 'today'); 
     openSubTab(null, 'players-list'); 
+    
+    startCompetitionTimer(); // تشغيل مؤقت المسابقة فور فتح الموقع
 };
 </script>
 </body>
