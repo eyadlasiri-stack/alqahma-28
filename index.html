@@ -7,17 +7,13 @@
     <title>بطولة القحمة الرمضانية 28 - النهائي الكبير</title>
     
     <meta name="google-site-verification" content="OW252jrJC6EhalNrLRFKoEr2VA7hblIx5NfCzw5CP34" />
-
     <meta name="description" content="الموقع والتطبيق الرسمي لبطولة القحمة الرمضانية 28 - نتائج المباريات، ترتيب المجموعات، وقائمة الهدافين أولاً بأول.">
-    <meta name="keywords" content="بطولة القحمة, القحمة 28, إياد عسيري, نتائج مباريات القحمة, بطولة القحمة الرمضانية, النهائي الكبير, رياضة القحمة">
     <meta name="author" content="إياد عسيري">
 
-    <meta property="og:title" content="تطبيق بطولة القحمة الرمضانية 28">
-    <meta property="og:description" content="تابع نتائج ومباريات بطولة القحمة لحظة بلحظة عبر التطبيق الرسمي.">
-    <meta property="og:image" content="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png">
-    <meta property="og:url" content="https://eyadiasiri-stack.github.io/alqahma-28/">
-
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
+
     <style>
         /* ========= ستايل الذهب الملكي (VIP Minimal Theme) ========= */
         :root { 
@@ -56,7 +52,7 @@
         #backToTopBtn.show { opacity: 1; visibility: visible; }
 
         /* ========= ستايل الاستفتاء المصغر (Quick Poll) ========= */
-        .poll-container { background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); border-radius: 12px; padding: 10px; margin-top: 15px; text-align: center; }
+        .poll-container { background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); border-radius: 12px; padding: 10px; margin-bottom: 15px; text-align: center; }
         .poll-title { font-size: 0.75rem; color: var(--gold-light); font-weight: 900; margin: 0 0 10px 0; display: flex; align-items: center; justify-content: center; gap: 5px; }
         .poll-btns { display: flex; gap: 8px; justify-content: center; }
         .poll-btn { background: var(--black-card); border: 1px solid rgba(212,175,55,0.3); color: var(--text-muted); font-size: 0.75rem; padding: 6px 0; flex: 1; border-radius: 8px; font-family: 'Cairo'; font-weight: 700; cursor: pointer; transition: 0.3s; }
@@ -99,6 +95,7 @@
         /* ========= انتقالات أنعم (Smooth Transitions) ========= */
         .tab-content { display: none; text-align: center; flex-grow: 1; opacity: 0; }
         .tab-content.active { display: block; animation: smoothFade 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        /* تم إزالة display:none المباشرة من الـ style واستبدالها بالكلاس */
         .sub-content { display: none; opacity: 0; }
         .sub-content.active { display: block; animation: smoothFade 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
         @keyframes smoothFade { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
@@ -182,21 +179,11 @@
 
         <div id="today" class="tab-content active">
             <div id="today-match-area"></div>
-            
-            <div class="poll-container" id="poll-widget">
-                <div class="poll-title">📊 من تتوقع أن يحسم النهائي؟</div>
-                <div class="poll-btns" id="poll-buttons">
-                    <button class="poll-btn" onclick="submitPoll('faisaly')">الفيصلي 🦅</button>
-                    <button class="poll-btn" onclick="submitPoll('wesam')">الوسام ⚔️</button>
-                </div>
-                <div class="poll-results" id="poll-results">
-                    <span style="color:var(--green-neon); font-weight:bold; font-size:0.85rem;">✔️ شكراً لتصويتك!</span>
-                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:5px;">تم إخفاء النتائج لزيادة الحماس 🔥</div>
-                </div>
-            </div>
-            </div>
+        </div>
 
-        <div id="upcoming" class="tab-content"><div id="finals-area"></div></div>
+        <div id="upcoming" class="tab-content">
+            <div id="finals-area"></div>
+        </div>
 
         <div id="scorers-main" class="tab-content">
             <div class="sub-tabs">
@@ -204,8 +191,10 @@
                 <button class="sub-tab-btn" onclick="openSubTab(event, 'teams-list')">الإحصائيات</button>
             </div>
             <div class="search-container"><input type="text" class="search-input" id="scorer-search" placeholder="ابحث عن هداف أو فريق..." onkeyup="searchList('scorers')"></div>
+            
             <div id="players-list" class="sub-content active"><div class="group-card"><table id="players-table" style="width:100%; border-collapse:collapse;"></table></div></div>
-            <div id="teams-list" class="sub-content" style="display:none;"><div class="group-card"><div class="group-header">📊 سجل الأندية</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>له</th><th>عل</th><th>+/-</th></tr></thead><tbody id="teams-tbody"></tbody></table></div></div>
+            
+            <div id="teams-list" class="sub-content"><div class="group-card"><div class="group-header">📊 سجل الأندية</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>له</th><th>عل</th><th>+/-</th></tr></thead><tbody id="teams-tbody"></tbody></table></div></div>
         </div>
         
         <div id="archive" class="tab-content">
@@ -307,7 +296,6 @@ function searchList(type) {
     }
 }
 
-// 🎚️ تحديث نقاط السلايدر
 function updateDots() {
     const slider = document.getElementById('finalSlider');
     if(!slider) return;
@@ -320,16 +308,6 @@ function updateDots() {
     });
 }
 
-// 📤 وظيفة مشاركة النتيجة السريعة
-function shareMatchFast() {
-    let textToShare = "🏆 النهائي الكبير لبطولة القحمة 28 🏆\n⚽ الفيصلي VS الوسام ⚽\n\nتابع التغطية المباشرة والنتائج عبر تطبيق البطولة الرسمي! 🚀";
-    if (navigator.share) {
-        navigator.share({ title: 'بطولة القحمة 28', text: textToShare, url: window.location.href });
-    } else {
-        window.open('https://wa.me/?text=' + encodeURIComponent(textToShare + " " + window.location.href));
-    }
-}
-
 // 📊 وظيفة التصويت في الاستفتاء (بدون إظهار نسب)
 function submitPoll(team) {
     if(localStorage.getItem('pollVoted')) return; 
@@ -338,39 +316,90 @@ function submitPoll(team) {
     localStorage.setItem('pollVoted', 'true');
 }
 
+// 📸 وظيفة مشاركة البطاقة كصورة قوية جداً!
+async function shareMatchAsImage() {
+    const btn = document.getElementById('share-btn');
+    const originalText = btn.innerText;
+    btn.innerText = '⏳ جاري التجهيز...';
+    
+    try {
+        // نحدد البطاقة المراد تصويرها
+        const element = document.getElementById('shareable-card');
+        
+        // استخدام مكتبة html2canvas لالتقاط الصورة
+        const canvas = await html2canvas(element, { 
+            backgroundColor: '#141414',
+            scale: 3, // دقة عالية جداً للصورة
+            useCORS: true, // ضروري جداً لكي تظهر الشعارات الخارجية
+            allowTaint: true
+        });
+        
+        canvas.toBlob(async (blob) => {
+            const file = new File([blob], "alqahma_final.png", { type: "image/png" });
+            
+            // فتح نافذة المشاركة الخاصة بالجوال (تشارك الصورة مباشرة)
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    title: 'نهائي بطولة القحمة 28',
+                    text: 'ترقبوا النهائي الكبير! 🏆🔥 رابط البطولة: ' + window.location.href,
+                    files: [file]
+                });
+            } else {
+                // إذا كان الجوال ما يدعم، ينزلها له كصورة في جهازه
+                const link = document.createElement('a');
+                link.download = 'alqahma_final.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                alert('تم حفظ صورة المباراة في جهازك للمشاركة! 📸');
+            }
+            btn.innerText = originalText;
+        }, 'image/png');
+        
+    } catch (err) {
+        console.error(err);
+        alert('حدث خطأ أثناء التجهيز، يرجى المحاولة مرة أخرى.');
+        btn.innerText = originalText;
+    }
+}
+
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     
-    // صفحة اليوم (مع زر المشاركة وشعارات الفرق)
+    // صفحة اليوم (تحتوي على البطاقة القابلة للتصوير والمشاركة)
     todayArea.innerHTML = `
-    <div style="background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 15px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); position:relative;">
-        <div style="display:flex; align-items:center; gap:10px; border-bottom: 1px dashed rgba(212,175,55,0.3); padding-bottom: 10px; margin-bottom: 12px;">
-            <div style="font-size:1.8rem; text-shadow:0 0 10px rgba(212,175,55,0.5);">🏆</div>
-            <div style="text-align:right; flex:1;">
-                <h3 style="color:var(--gold-light); margin:0 0 2px 0; font-size:1rem; font-weight:900;">النهائي الكبير</h3>
-                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">موعد الحسم المنتظر</span>
+    <div id="shareable-card" style="background: linear-gradient(135deg, #1a1a1a, #0a0a0a); border: 1px solid var(--gold-main); border-radius: 15px; padding: 20px; margin-top: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
+        <div style="position:relative; z-index:1;">
+            <div style="text-align:center; margin-bottom: 15px; border-bottom: 1px dashed rgba(212,175,55,0.3); padding-bottom: 10px;">
+                <div style="font-size:2rem; text-shadow:0 0 10px rgba(212,175,55,0.5); margin-bottom:5px;">🏆</div>
+                <h3 style="color:var(--gold-light); margin:0 0 2px 0; font-size:1.1rem; font-weight:900;">النهائي الكبير</h3>
+                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">بطولة القحمة الرمضانية 28</span>
             </div>
-            <button onclick="shareMatchFast()" style="background:none; border:1px solid rgba(212,175,55,0.4); color:var(--gold-light); border-radius:6px; padding:4px 8px; font-size:0.65rem; cursor:pointer; font-family:'Cairo'; transition:0.3s;">مشاركة 📤</button>
-        </div>
-        
-        <div class="teams-row" style="margin-bottom: 15px;">
-            <div class="team-item">
-                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="team-logo-vip">
-                <span>الفيصلي</span>
+            
+            <div class="teams-row" style="margin-bottom: 20px;">
+                <div class="team-item">
+                    <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="team-logo-vip" style="width:55px; height:55px;" crossorigin="anonymous">
+                    <span style="font-size:1.1rem;">الفيصلي</span>
+                </div>
+                <div class="vs-label" style="padding: 8px 15px; font-size:1.2rem;">VS</div>
+                <div class="team-item">
+                    <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="team-logo-vip" style="width:55px; height:55px;" crossorigin="anonymous">
+                    <span style="font-size:1.1rem;">الوسام</span>
+                </div>
             </div>
-            <div class="vs-label">VS</div>
-            <div class="team-item">
-                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="team-logo-vip">
-                <span>الوسام</span>
-            </div>
-        </div>
 
-        <p style="font-size:0.75rem; color:#ccc; line-height:1.6; margin:0; text-align:center;">
-            بعد منافسات شرسة، يسدل الستار على هذه النسخة بمواجهة من العيار الثقيل. الميدان يا حميدان! 🔥
-        </p>
-    </div>`;
+            <div style="text-align:center; background: rgba(0,0,0,0.5); padding:8px; border-radius:8px; font-size:0.75rem; color:#ccc;">
+                الميدان يا حميدان! 🔥
+            </div>
+        </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 15px; padding: 0 5px;">
+        <button onclick="openTab(event, 'upcoming')" style="background:var(--gold-grad); color:#000; border:none; padding:8px 15px; border-radius:8px; font-weight:900; font-family:'Cairo'; font-size:0.8rem; cursor:pointer;">كل التفاصيل ←</button>
+        <button id="share-btn" onclick="shareMatchAsImage()" style="background:none; border:1px solid rgba(212,175,55,0.4); color:var(--gold-light); border-radius:8px; padding:8px 15px; font-size:0.8rem; cursor:pointer; font-family:'Cairo'; transition:0.3s; font-weight:bold;">مشاركة</button>
+    </div>
+    `;
 
-    // صفحة النهائي (مع شعارات الفرق)
+    // صفحة النهائي (نقلنا الاستفتاء هنا تحت البطاقة)
     document.getElementById('finals-area').innerHTML = `
         <div class="match-card" style="text-align:center; padding: 15px 10px; margin-top:12px; border:1px solid var(--gold-main); box-shadow: 0 4px 15px rgba(212,175,55,0.15);">
             <div style="font-size: 1.5rem; margin-bottom: 5px; text-shadow: 0 0 8px rgba(212,175,55,0.5);">🏆</div>
@@ -381,17 +410,28 @@ function updateDisplay() {
             </div>
             <div class="teams-row" style="background: rgba(0,0,0,0.3); padding:10px 5px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
                 <div class="team-item">
-                    <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="team-logo-vip">
+                    <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="team-logo-vip" crossorigin="anonymous">
                     <span style="font-size: 1rem;">الفيصلي</span>
                 </div>
                 <div class="vs-label" style="font-size:0.9rem; padding:4px 8px; min-width:35px;">VS</div>
                 <div class="team-item">
-                    <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="team-logo-vip">
+                    <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="team-logo-vip" crossorigin="anonymous">
                     <span style="font-size: 1rem;">الوسام</span>
                 </div>
             </div>
         </div>
 
+        <div class="poll-container" id="poll-widget" style="margin-top: 0; margin-bottom: 15px;">
+            <div class="poll-title">📊 من تتوقع أن يحسم النهائي؟</div>
+            <div class="poll-btns" id="poll-buttons">
+                <button class="poll-btn" onclick="submitPoll('faisaly')">الفيصلي 🦅</button>
+                <button class="poll-btn" onclick="submitPoll('wesam')">الوسام ⚔️</button>
+            </div>
+            <div class="poll-results" id="poll-results">
+                <span style="color:var(--green-neon); font-weight:bold; font-size:0.85rem;">✔️ شكراً لتصويتك!</span>
+                <div style="font-size:0.7rem; color:var(--text-muted); margin-top:5px;">تم إخفاء النتائج لزيادة الحماس 🔥</div>
+            </div>
+        </div>
         <div class="slider-wrapper">
             <div class="slider-container" id="finalSlider" onscroll="updateDots()">
                 <div class="slide-card">
@@ -481,10 +521,14 @@ window.onload = function() {
     openTab(null, 'today'); 
     openSubTab(null, 'players-list'); 
     
-    // التحقق إذا كان الزائر قد صوّت مسبقاً لإظهار النتائج (بدون نسب)
+    // التحقق إذا كان الزائر قد صوّت مسبقاً لإظهار رسالة الشكر فوراً
     if(localStorage.getItem('pollVoted')) {
-        document.getElementById('poll-buttons').style.display = 'none';
-        document.getElementById('poll-results').style.display = 'block';
+        let pollBtns = document.getElementById('poll-buttons');
+        let pollRes = document.getElementById('poll-results');
+        if(pollBtns && pollRes) {
+            pollBtns.style.display = 'none';
+            pollRes.style.display = 'block';
+        }
     }
 };
 </script>
