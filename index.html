@@ -27,7 +27,7 @@
             --text-main: #f8fafc; --text-muted: #a0a0a0; --green-neon: #10b981; --red-live: #ef4444;
         }
         
-        html { background-color: var(--black-bg); touch-action: manipulation; }
+        html { background-color: var(--black-bg); touch-action: manipulation; scroll-behavior: smooth; }
         body { 
             margin: 0; padding: 0; min-height: 100vh;
             background: linear-gradient(45deg, #0a0a0a, #1a1a1a, #0f0f0f, #0a0a0a);
@@ -44,6 +44,26 @@
         @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } }
         .preloader-spinner { width: 40px; height: 40px; border: 3px solid rgba(212,175,55,0.2); border-top-color: var(--gold-main); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ========= زر العودة للأعلى (Back to Top) ========= */
+        #backToTopBtn {
+            position: fixed; bottom: 80px; right: 20px; width: 45px; height: 45px;
+            background: var(--gold-grad); color: #000; border: none; border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); font-size: 1.2rem; cursor: pointer;
+            z-index: 9998; opacity: 0; visibility: hidden; transition: 0.4s ease;
+            display: flex; justify-content: center; align-items: center; text-decoration: none;
+        }
+        #backToTopBtn.show { opacity: 1; visibility: visible; }
+
+        /* ========= ستايل الاستفتاء المصغر (Quick Poll) ========= */
+        .poll-container { background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); border-radius: 12px; padding: 10px; margin-top: 15px; text-align: center; }
+        .poll-title { font-size: 0.75rem; color: var(--gold-light); font-weight: 900; margin: 0 0 10px 0; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .poll-btns { display: flex; gap: 8px; justify-content: center; }
+        .poll-btn { background: var(--black-card); border: 1px solid rgba(212,175,55,0.3); color: var(--text-muted); font-size: 0.75rem; padding: 6px 0; flex: 1; border-radius: 8px; font-family: 'Cairo'; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .poll-btn:hover, .poll-btn:active { background: var(--gold-grad); color: #000; border-color: var(--gold-main); }
+        .poll-results { display: none; text-align: right; font-size: 0.7rem; font-weight: bold; }
+        .poll-bar-bg { background: #222; border-radius: 5px; height: 6px; margin: 4px 0 10px; overflow: hidden; }
+        .poll-bar-fill { background: var(--gold-grad); height: 100%; width: 0%; transition: width 1s ease-out; border-radius: 5px; }
 
         .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
         
@@ -136,6 +156,8 @@
         <div class="preloader-spinner"></div>
     </div>
 
+    <a href="#" id="backToTopBtn" title="العودة للأعلى">⬆️</a>
+
     <div class="container">
         <header>
             <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img">
@@ -160,17 +182,30 @@
         <div id="today" class="tab-content active">
             <div id="today-match-area"></div>
             
-            <div id="competition-card" class="match-card" style="text-align: center; margin-top: 25px; border: 1px solid var(--gold-main); background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(212,175,55,0.05)); box-shadow: 0 0 20px rgba(212,175,55,0.25);">
-                <div style="font-size: 2.5rem; margin-bottom: 5px; animation: heartbeat 1.5s infinite;">🎉</div>
-                <h3 style="color: var(--gold-main); margin: 0 0 8px 0; font-weight: 900;">انتهت المسابقة</h3>
-                <p style="font-size: 0.85rem; color: #eee; margin-bottom: 10px; font-weight: 700;">سؤال البطولة: من هو بطل النسخة السابقة؟</p>
-                
-                <div style="background: rgba(0,0,0,0.6); padding: 12px; border-radius: 10px; border: 1px dashed var(--gold-main);">
-                    <span style="font-size: 0.85rem; color: var(--green-neon); display: block; margin-bottom: 5px; font-weight: 900;">✔️ تمت الإجابة بشكل صحيح!</span>
-                    <span style="font-size: 0.75rem; color: var(--gold-light);">نبارك للفائز بالمسابقة 👏<br>وحظاً أوفر للجميع في المرات القادمة.</span>
+            <div class="poll-container" id="poll-widget">
+                <div class="poll-title">📊 من تتوقع أن يحسم النهائي؟</div>
+                <div class="poll-btns" id="poll-buttons">
+                    <button class="poll-btn" onclick="submitPoll('faisaly')">الفيصلي 🦅</button>
+                    <button class="poll-btn" onclick="submitPoll('wesam')">الوسام ⚔️</button>
+                </div>
+                <div class="poll-results" id="poll-results">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:2px;"><span>الوسام</span><span style="color:var(--gold-main)">55%</span></div>
+                    <div class="poll-bar-bg"><div class="poll-bar-fill" id="bar-wesam"></div></div>
+                    
+                    <div style="display:flex; justify-content:space-between; margin-bottom:2px; margin-top:8px;"><span>الفيصلي</span><span style="color:var(--gold-main)">45%</span></div>
+                    <div class="poll-bar-bg"><div class="poll-bar-fill" id="bar-faisaly"></div></div>
+                    <div style="text-align:center; font-size:0.6rem; color:#888; margin-top:8px;">شكراً لتصويتك! ✔️</div>
                 </div>
             </div>
+            <div id="competition-card" class="match-card" style="text-align: center; margin-top: 15px; border: 1px solid var(--gold-main); background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(212,175,55,0.05)); box-shadow: 0 0 15px rgba(212,175,55,0.15); padding: 12px;">
+                <div style="font-size: 1.8rem; margin-bottom: 2px; animation: heartbeat 1.5s infinite;">🎉</div>
+                <h3 style="color: var(--gold-main); margin: 0 0 5px 0; font-weight: 900; font-size: 0.9rem;">انتهت المسابقة</h3>
+                <div style="background: rgba(0,0,0,0.6); padding: 8px; border-radius: 8px; border: 1px dashed var(--gold-main);">
+                    <span style="font-size: 0.75rem; color: var(--green-neon); display: block; margin-bottom: 2px; font-weight: bold;">✔️ تمت الإجابة بشكل صحيح!</span>
+                    <span style="font-size: 0.65rem; color: var(--text-muted);">نبارك للفائز 👏 وحظاً أوفر للجميع لاحقاً.</span>
+                </div>
             </div>
+        </div>
 
         <div id="upcoming" class="tab-content"><div id="finals-area"></div></div>
 
@@ -296,13 +331,37 @@ function updateDots() {
     });
 }
 
+// 📤 وظيفة مشاركة النتيجة السريعة
+function shareMatchFast() {
+    let textToShare = "🏆 النهائي الكبير لبطولة القحمة 28 🏆\n⚽ الفيصلي VS الوسام ⚽\n\nتابع التغطية المباشرة والنتائج عبر تطبيق البطولة الرسمي! 🚀";
+    if (navigator.share) {
+        navigator.share({ title: 'بطولة القحمة 28', text: textToShare, url: window.location.href });
+    } else {
+        window.open('https://wa.me/?text=' + encodeURIComponent(textToShare + " " + window.location.href));
+    }
+}
+
+// 📊 وظيفة التصويت في الاستفتاء
+function submitPoll(team) {
+    if(localStorage.getItem('pollVoted')) return; // منع التصويت المزدوج
+    document.getElementById('poll-buttons').style.display = 'none';
+    document.getElementById('poll-results').style.display = 'block';
+    
+    // أنيميشن تعبئة الأشرطة
+    setTimeout(() => {
+        document.getElementById('bar-wesam').style.width = '55%';
+        document.getElementById('bar-faisaly').style.width = '45%';
+    }, 100);
+    localStorage.setItem('pollVoted', 'true');
+}
+
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     
-    // صفحة اليوم
+    // صفحة اليوم (تم إضافة زر المشاركة الصغير هنا)
     todayArea.innerHTML = `
-    <div style="background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 15px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
-        <div style="display:flex; align-items:center; gap:10px; border-bottom: 1px dashed rgba(212,175,55,0.3); padding-bottom: 10px; margin-bottom: 10px;">
+    <div style="background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 15px 15px 10px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); position:relative;">
+        <div style="display:flex; align-items:center; gap:10px; border-bottom: 1px dashed rgba(212,175,55,0.3); padding-bottom: 10px; margin-bottom: 8px;">
             <div style="font-size:1.8rem; text-shadow:0 0 10px rgba(212,175,55,0.5);">🏆</div>
             <div style="text-align:right; flex:1;">
                 <h3 style="color:var(--gold-light); margin:0 0 2px 0; font-size:1rem; font-weight:900;">النهائي الكبير</h3>
@@ -310,9 +369,10 @@ function updateDisplay() {
             </div>
             <button onclick="openTab(event, 'upcoming')" style="background:var(--gold-grad); color:#000; border:none; padding:6px 12px; border-radius:8px; font-weight:900; font-family:'Cairo'; font-size:0.75rem; cursor:pointer;">التفاصيل ←</button>
         </div>
-        <p style="font-size:0.75rem; color:#ccc; line-height:1.6; margin:0; text-align:right;">
-            بعد منافسات شرسة، يسدل الستار على هذه النسخة بمواجهة من العيار الثقيل. الفيصلي الصلب دفاعياً في مواجهة الوسام الكاسح هجومياً. الميدان يا حميدان! 🔥
-        </p>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <p style="font-size:0.65rem; color:#aaa; margin:0; text-align:right; max-width:70%;">الفيصلي الصلب دفاعياً في مواجهة الوسام الكاسح هجومياً. الميدان يا حميدان! 🔥</p>
+            <button onclick="shareMatchFast()" style="background:none; border:1px solid rgba(212,175,55,0.4); color:var(--gold-light); border-radius:6px; padding:4px 8px; font-size:0.65rem; cursor:pointer; font-family:'Cairo'; transition:0.3s;">مشاركة 📤</button>
+        </div>
     </div>`;
 
     document.getElementById('finals-area').innerHTML = `
@@ -390,6 +450,16 @@ function updateDisplay() {
     document.getElementById('about-text-content').innerText = aboutFullText;
 }
 
+// إظهار وإخفاء زر العودة للأعلى عند التمرير
+window.addEventListener('scroll', function() {
+    let topBtn = document.getElementById('backToTopBtn');
+    if (window.scrollY > 400) {
+        topBtn.classList.add('show');
+    } else {
+        topBtn.classList.remove('show');
+    }
+});
+
 let deferredPrompt; const banner = document.getElementById('a2hs-banner');
 window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; if (!sessionStorage.getItem('a2hs_dismissed')) setTimeout(() => banner.classList.add('show'), 3000); });
 document.getElementById('a2hs-install').addEventListener('click', async () => { if (!deferredPrompt) return; banner.classList.remove('show'); deferredPrompt.prompt(); deferredPrompt = null; });
@@ -408,6 +478,14 @@ window.onload = function() {
     updateDisplay(); 
     openTab(null, 'today'); 
     openSubTab(null, 'players-list'); 
+    
+    // التحقق إذا كان الزائر قد صوّت مسبقاً لإظهار النتائج مباشرة
+    if(localStorage.getItem('pollVoted')) {
+        document.getElementById('poll-buttons').style.display = 'none';
+        document.getElementById('poll-results').style.display = 'block';
+        document.getElementById('bar-wesam').style.width = '55%';
+        document.getElementById('bar-faisaly').style.width = '45%';
+    }
 };
 </script>
 </body>
