@@ -47,7 +47,7 @@
 
         /* ========= زر العودة للأعلى (Back to Top) ========= */
         #backToTopBtn {
-            position: fixed; bottom: 80px; right: 20px; width: 45px; height: 45px;
+            position: fixed; bottom: 80px; left: 20px; width: 45px; height: 45px;
             background: var(--gold-grad); color: #000; border: none; border-radius: 50%;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); font-size: 1.2rem; cursor: pointer;
             z-index: 9998; opacity: 0; visibility: hidden; transition: 0.4s ease;
@@ -61,9 +61,10 @@
         .poll-btns { display: flex; gap: 8px; justify-content: center; }
         .poll-btn { background: var(--black-card); border: 1px solid rgba(212,175,55,0.3); color: var(--text-muted); font-size: 0.75rem; padding: 6px 0; flex: 1; border-radius: 8px; font-family: 'Cairo'; font-weight: 700; cursor: pointer; transition: 0.3s; }
         .poll-btn:hover, .poll-btn:active { background: var(--gold-grad); color: #000; border-color: var(--gold-main); }
-        .poll-results { display: none; text-align: right; font-size: 0.7rem; font-weight: bold; }
-        .poll-bar-bg { background: #222; border-radius: 5px; height: 6px; margin: 4px 0 10px; overflow: hidden; }
-        .poll-bar-fill { background: var(--gold-grad); height: 100%; width: 0%; transition: width 1s ease-out; border-radius: 5px; }
+        .poll-results { display: none; text-align: center; padding: 5px 0; }
+
+        /* ========= ستايل شعارات الأندية (VIP Logos) ========= */
+        .team-logo-vip { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(212,175,55,0.5)); margin-bottom: 6px; }
 
         .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
         
@@ -189,23 +190,11 @@
                     <button class="poll-btn" onclick="submitPoll('wesam')">الوسام ⚔️</button>
                 </div>
                 <div class="poll-results" id="poll-results">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:2px;"><span>الوسام</span><span style="color:var(--gold-main)">55%</span></div>
-                    <div class="poll-bar-bg"><div class="poll-bar-fill" id="bar-wesam"></div></div>
-                    
-                    <div style="display:flex; justify-content:space-between; margin-bottom:2px; margin-top:8px;"><span>الفيصلي</span><span style="color:var(--gold-main)">45%</span></div>
-                    <div class="poll-bar-bg"><div class="poll-bar-fill" id="bar-faisaly"></div></div>
-                    <div style="text-align:center; font-size:0.6rem; color:#888; margin-top:8px;">شكراً لتصويتك! ✔️</div>
+                    <span style="color:var(--green-neon); font-weight:bold; font-size:0.85rem;">✔️ شكراً لتصويتك!</span>
+                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:5px;">تم إخفاء النتائج لزيادة الحماس 🔥</div>
                 </div>
             </div>
-            <div id="competition-card" class="match-card" style="text-align: center; margin-top: 15px; border: 1px solid var(--gold-main); background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(212,175,55,0.05)); box-shadow: 0 0 15px rgba(212,175,55,0.15); padding: 12px;">
-                <div style="font-size: 1.8rem; margin-bottom: 2px; animation: heartbeat 1.5s infinite;">🎉</div>
-                <h3 style="color: var(--gold-main); margin: 0 0 5px 0; font-weight: 900; font-size: 0.9rem;">انتهت المسابقة</h3>
-                <div style="background: rgba(0,0,0,0.6); padding: 8px; border-radius: 8px; border: 1px dashed var(--gold-main);">
-                    <span style="font-size: 0.75rem; color: var(--green-neon); display: block; margin-bottom: 2px; font-weight: bold;">✔️ تمت الإجابة بشكل صحيح!</span>
-                    <span style="font-size: 0.65rem; color: var(--text-muted);">نبارك للفائز 👏 وحظاً أوفر للجميع لاحقاً.</span>
-                </div>
             </div>
-        </div>
 
         <div id="upcoming" class="tab-content"><div id="finals-area"></div></div>
 
@@ -341,40 +330,47 @@ function shareMatchFast() {
     }
 }
 
-// 📊 وظيفة التصويت في الاستفتاء
+// 📊 وظيفة التصويت في الاستفتاء (بدون إظهار نسب)
 function submitPoll(team) {
-    if(localStorage.getItem('pollVoted')) return; // منع التصويت المزدوج
+    if(localStorage.getItem('pollVoted')) return; 
     document.getElementById('poll-buttons').style.display = 'none';
     document.getElementById('poll-results').style.display = 'block';
-    
-    // أنيميشن تعبئة الأشرطة
-    setTimeout(() => {
-        document.getElementById('bar-wesam').style.width = '55%';
-        document.getElementById('bar-faisaly').style.width = '45%';
-    }, 100);
     localStorage.setItem('pollVoted', 'true');
 }
 
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     
-    // صفحة اليوم (تم إضافة زر المشاركة الصغير هنا)
+    // صفحة اليوم (مع زر المشاركة وشعارات الفرق)
     todayArea.innerHTML = `
-    <div style="background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 15px 15px 10px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); position:relative;">
-        <div style="display:flex; align-items:center; gap:10px; border-bottom: 1px dashed rgba(212,175,55,0.3); padding-bottom: 10px; margin-bottom: 8px;">
+    <div style="background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 15px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); position:relative;">
+        <div style="display:flex; align-items:center; gap:10px; border-bottom: 1px dashed rgba(212,175,55,0.3); padding-bottom: 10px; margin-bottom: 12px;">
             <div style="font-size:1.8rem; text-shadow:0 0 10px rgba(212,175,55,0.5);">🏆</div>
             <div style="text-align:right; flex:1;">
                 <h3 style="color:var(--gold-light); margin:0 0 2px 0; font-size:1rem; font-weight:900;">النهائي الكبير</h3>
-                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">الفيصلي <span style="color:var(--gold-main); margin:0 3px;">VS</span> الوسام</span>
+                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">موعد الحسم المنتظر</span>
             </div>
-            <button onclick="openTab(event, 'upcoming')" style="background:var(--gold-grad); color:#000; border:none; padding:6px 12px; border-radius:8px; font-weight:900; font-family:'Cairo'; font-size:0.75rem; cursor:pointer;">التفاصيل ←</button>
-        </div>
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-            <p style="font-size:0.65rem; color:#aaa; margin:0; text-align:right; max-width:70%;">الفيصلي الصلب دفاعياً في مواجهة الوسام الكاسح هجومياً. الميدان يا حميدان! 🔥</p>
             <button onclick="shareMatchFast()" style="background:none; border:1px solid rgba(212,175,55,0.4); color:var(--gold-light); border-radius:6px; padding:4px 8px; font-size:0.65rem; cursor:pointer; font-family:'Cairo'; transition:0.3s;">مشاركة 📤</button>
         </div>
+        
+        <div class="teams-row" style="margin-bottom: 15px;">
+            <div class="team-item">
+                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="team-logo-vip">
+                <span>الفيصلي</span>
+            </div>
+            <div class="vs-label">VS</div>
+            <div class="team-item">
+                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="team-logo-vip">
+                <span>الوسام</span>
+            </div>
+        </div>
+
+        <p style="font-size:0.75rem; color:#ccc; line-height:1.6; margin:0; text-align:center;">
+            بعد منافسات شرسة، يسدل الستار على هذه النسخة بمواجهة من العيار الثقيل. الميدان يا حميدان! 🔥
+        </p>
     </div>`;
 
+    // صفحة النهائي (مع شعارات الفرق)
     document.getElementById('finals-area').innerHTML = `
         <div class="match-card" style="text-align:center; padding: 15px 10px; margin-top:12px; border:1px solid var(--gold-main); box-shadow: 0 4px 15px rgba(212,175,55,0.15);">
             <div style="font-size: 1.5rem; margin-bottom: 5px; text-shadow: 0 0 8px rgba(212,175,55,0.5);">🏆</div>
@@ -383,10 +379,16 @@ function updateDisplay() {
                 <span style="background:rgba(212,175,55,0.1); padding:4px 8px; border-radius:6px; color:var(--gold-main); font-weight:bold;">🌙 بعد عيد الفطر</span>
                 <span style="background:rgba(255,255,255,0.05); padding:4px 8px; border-radius:6px;">🏟️ ملعب الوسم</span>
             </div>
-            <div class="teams-row" style="background: rgba(0,0,0,0.3); padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
-                <span class="team-item" style="font-size: 1rem;">الفيصلي</span>
+            <div class="teams-row" style="background: rgba(0,0,0,0.3); padding:10px 5px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
+                <div class="team-item">
+                    <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="team-logo-vip">
+                    <span style="font-size: 1rem;">الفيصلي</span>
+                </div>
                 <div class="vs-label" style="font-size:0.9rem; padding:4px 8px; min-width:35px;">VS</div>
-                <span class="team-item" style="font-size: 1rem;">الوسام</span>
+                <div class="team-item">
+                    <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="team-logo-vip">
+                    <span style="font-size: 1rem;">الوسام</span>
+                </div>
             </div>
         </div>
 
@@ -479,12 +481,10 @@ window.onload = function() {
     openTab(null, 'today'); 
     openSubTab(null, 'players-list'); 
     
-    // التحقق إذا كان الزائر قد صوّت مسبقاً لإظهار النتائج مباشرة
+    // التحقق إذا كان الزائر قد صوّت مسبقاً لإظهار النتائج (بدون نسب)
     if(localStorage.getItem('pollVoted')) {
         document.getElementById('poll-buttons').style.display = 'none';
         document.getElementById('poll-results').style.display = 'block';
-        document.getElementById('bar-wesam').style.width = '55%';
-        document.getElementById('bar-faisaly').style.width = '45%';
     }
 };
 </script>
