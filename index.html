@@ -19,6 +19,7 @@
         :root { 
             --gold-main: #d4af37; --gold-light: #f3e5ab; --gold-dark: #aa8c2c; 
             --gold-grad: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%);
+            --bronze-gold: #c5a059; /* لون برونزي ذهبي خافت ومخفف لأسماء الفرق */
             --black-bg: #0a0a0a; --black-card: #141414; --glass-border: rgba(212, 175, 55, 0.15); 
             --text-main: #f8fafc; --text-muted: #a0a0a0; --green-neon: #10b981; --red-live: #ef4444;
         }
@@ -112,8 +113,9 @@
             border-radius: 50%; margin-top: -15px; margin-bottom: 12px;
         }
         .champions-team-name {
-            font-size: 1.15rem; font-weight: 900; color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(212,175,55,0.5);
+            font-size: 1rem; font-weight: 700; color: var(--bronze-gold); /* لون برونزي ذهبي خافت ومخفف */
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8), 0 0 5px rgba(212,175,55,0.3); /* ظل مخفف */
+            transition: color 0.3s; /* تأثير تدرج عند التغيير */
         }
 
         .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
@@ -149,6 +151,7 @@
         /* ========= انتقالات أنعم (Smooth Transitions) ========= */
         .tab-content { display: none; text-align: center; flex-grow: 1; opacity: 0; }
         .tab-content.active { display: block; animation: smoothFade 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        /* تم إزالة display:none المباشرة من الـ style واستبدالها بالكلاس */
         .sub-content { display: none; opacity: 0; }
         .sub-content.active { display: block; animation: smoothFade 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
         @keyframes smoothFade { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
@@ -369,58 +372,74 @@ function submitPoll(team) {
     localStorage.setItem('pollVoted', 'true');
 }
 
-// 📸 وظيفة مشاركة البطاقة كصورة بوستر أسطوري!
+// 📸 وظيفة مشاركة البطاقة كصورة بوستر أسطوري مع تحسين رسالة الانتظار!
 async function shareMatchAsImage() {
     const btn = document.getElementById('share-btn');
     const originalText = btn.innerText;
-    btn.innerText = '⏳ جاري التجهيز...';
     
+    // إظهار رسالة الانتظار بوضوح أكبر
+    btn.innerText = '⏳ جاري التحضير...';
+    btn.style.opacity = '0.7'; 
+    btn.disabled = true;
+
     try {
         const element = document.getElementById('shareable-card');
         
         const canvas = await html2canvas(element, { 
             backgroundColor: '#141414',
-            scale: 3,
+            scale: 3, // دقة عالية
             useCORS: true,
-            allowTaint: true
+            allowTaint: true,
+            logging: false, // تعطيل سجلات المكتبة لزيادة الأداء
         });
         
         canvas.toBlob(async (blob) => {
-            const file = new File([blob], "alqahma_final.png", { type: "image/png" });
+            if (!blob) {
+                alert('حدث خطأ أثناء إنشاء الصورة، يرجى المحاولة مرة أخرى.');
+                resetButton(btn, originalText);
+                return;
+            }
+
+            const file = new File([blob], "alqahma_final_poster.png", { type: "image/png" });
             
             if (navigator.canShare && navigator.canShare({ files: [file] })) {
                 await navigator.share({
-                    title: 'نهائي بطولة القحمة 28',
-                    text: 'ترقبوا النهائي الكبير! 🏆🔥 رابط البطولة: ' + window.location.href,
+                    title: 'بوستر نهائي بطولة القحمة 28',
+                    text: 'شارك معنا بوستر النهائي الكبير! 🏆🔥',
                     files: [file]
                 });
             } else {
                 const link = document.createElement('a');
-                link.download = 'alqahma_final.png';
+                link.download = 'alqahma_final_poster.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
-                alert('تم حفظ صورة المباراة في جهازك للمشاركة! 📸');
+                alert('تم حفظ بوستر المباراة في جهازك للمشاركة! 📸');
             }
-            btn.innerText = originalText;
+            resetButton(btn, originalText);
         }, 'image/png');
         
     } catch (err) {
-        console.error(err);
-        alert('حدث خطأ أثناء التجهيز، يرجى المحاولة مرة أخرى.');
-        btn.innerText = originalText;
+        console.error('خطأ في html2canvas:', err);
+        alert('حدث خطأ أثناء تجهيز البوستر، يرجى التأكد من الروابط والمحاولة مرة أخرى.');
+        resetButton(btn, originalText);
     }
+}
+
+// دالة مساعدة لإعادة تعيين الزر
+function resetButton(btn, originalText) {
+    btn.innerText = originalText;
+    btn.style.opacity = '1';
+    btn.disabled = false;
 }
 
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     
-    // صفحة اليوم (تحتوي على بوستر النهائي الفخم "ليالي الأبطال")
+    // صفحة اليوم مع البوستر الفخم "ليالي الأبطال" المحدث
     todayArea.innerHTML = `
     <div id="shareable-card" class="champions-card">
         <div class="champions-glow"></div>
-        <div class="champions-ribbon">نهائي 28</div>
-        
-        <div style="position:relative; z-index:2; margin-bottom: 20px;">
+        <div class="champions-ribbon">يُحدد لاحقاً</div> <div style="position:relative; z-index:2; margin-bottom: 20px;">
             <div style="font-size:2.2rem; text-shadow:0 0 15px rgba(212,175,55,0.6); margin-bottom:0;">🏆</div>
             <h3 style="color:var(--gold-light); margin:5px 0 0 0; font-size:1.3rem; font-weight:900; letter-spacing: 1px;">النهائي الكبير</h3>
             <span style="font-size:0.75rem; color:var(--gold-dark); font-weight:900;">بطولة القحمة الرمضانية</span>
@@ -431,8 +450,7 @@ function updateDisplay() {
             <div class="champions-logo-wrapper">
                 <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="champions-logo" crossorigin="anonymous">
                 <div class="champions-floor-shadow"></div>
-                <span class="champions-team-name">الفيصلي</span>
-            </div>
+                <span class="champions-team-name">الفيصلي</span> </div>
             
             <div class="champions-vs-badge">
                 <div class="champions-vs-text">VS</div>
@@ -441,8 +459,7 @@ function updateDisplay() {
             <div class="champions-logo-wrapper">
                 <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="champions-logo" crossorigin="anonymous">
                 <div class="champions-floor-shadow"></div>
-                <span class="champions-team-name">الوسام</span>
-            </div>
+                <span class="champions-team-name">الوسام</span> </div>
         </div>
 
         <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:10px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); border-bottom: 1px solid rgba(212,175,55,0.3);">
@@ -458,7 +475,7 @@ function updateDisplay() {
     </div>
     `;
 
-    // صفحة النهائي (فيها الاستفتاء)
+    // صفحة النهائي
     document.getElementById('finals-area').innerHTML = `
         <div class="match-card" style="text-align:center; padding: 15px 10px; margin-top:12px; border:1px solid var(--gold-main); box-shadow: 0 4px 15px rgba(212,175,55,0.15);">
             <div style="font-size: 1.5rem; margin-bottom: 5px; text-shadow: 0 0 8px rgba(212,175,55,0.5);">🏆</div>
@@ -580,7 +597,6 @@ window.onload = function() {
     openTab(null, 'today'); 
     openSubTab(null, 'players-list'); 
     
-    // التحقق إذا كان الزائر قد صوّت مسبقاً
     if(localStorage.getItem('pollVoted')) {
         let pollBtns = document.getElementById('poll-buttons');
         let pollRes = document.getElementById('poll-results');
