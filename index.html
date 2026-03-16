@@ -160,20 +160,15 @@
         <div id="today" class="tab-content active">
             <div id="today-match-area"></div>
             
-            <div id="competition-card" class="match-card" style="text-align: center; margin-top: 25px; border: 1px solid var(--gold-main); box-shadow: 0 0 20px rgba(212,175,55,0.25);">
-                <div style="font-size: 2rem; margin-bottom: 5px; animation: heartbeat 1.5s infinite;">🎁</div>
-                <h3 style="color: var(--gold-main); margin: 0 0 8px 0; font-weight: 900;">سؤال البطولة والجوائز</h3>
-                <p style="font-size: 0.85rem; color: #eee; margin-bottom: 15px; font-weight: 700;">من هو بطل النسخة السابقة من بطولة القحمة الرمضانية؟</p>
+            <div id="competition-card" class="match-card" style="text-align: center; margin-top: 25px; border: 1px solid var(--gold-main); background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(212,175,55,0.05)); box-shadow: 0 0 20px rgba(212,175,55,0.25);">
+                <div style="font-size: 2.5rem; margin-bottom: 5px; animation: heartbeat 1.5s infinite;">🎉</div>
+                <h3 style="color: var(--gold-main); margin: 0 0 8px 0; font-weight: 900;">انتهت المسابقة</h3>
+                <p style="font-size: 0.85rem; color: #eee; margin-bottom: 10px; font-weight: 700;">سؤال البطولة: من هو بطل النسخة السابقة؟</p>
                 
-                <div style="background: rgba(0,0,0,0.5); padding: 8px; border-radius: 8px; margin-bottom: 15px;">
-                    <span style="font-size: 0.7rem; color: var(--text-muted); display: block; margin-bottom: 3px;">ينتهي الاستقبال بعد:</span>
-                    <div id="comp-timer" style="color: var(--gold-light); font-weight: 900; font-size: 1.1rem; direction: ltr; font-family: monospace;">--:--:--</div>
+                <div style="background: rgba(0,0,0,0.6); padding: 12px; border-radius: 10px; border: 1px dashed var(--gold-main);">
+                    <span style="font-size: 0.85rem; color: var(--green-neon); display: block; margin-bottom: 5px; font-weight: 900;">✔️ تمت الإجابة بشكل صحيح!</span>
+                    <span style="font-size: 0.75rem; color: var(--gold-light);">نبارك للفائز بالمسابقة 👏<br>وحظاً أوفر للجميع في المرات القادمة.</span>
                 </div>
-
-                <input type="text" id="comp-name" class="search-input" placeholder="اكتب اسمك الثلاثي هنا..." style="margin-bottom: 10px; text-align: center; font-weight: bold;">
-                <input type="text" id="comp-answer" class="search-input" placeholder="اكتب إجابتك هنا..." style="margin-bottom: 15px; text-align: center; font-weight: bold;">
-                
-                <button onclick="sendCompetition()" style="background: var(--gold-grad); color: #000; border: none; padding: 12px 20px; border-radius: 10px; font-weight: 900; font-family: 'Cairo'; font-size: 0.9rem; cursor: pointer; width: 100%; box-shadow: 0 4px 10px rgba(212,175,55,0.3);">إرسال المشاركة 📲</button>
             </div>
             </div>
 
@@ -288,7 +283,7 @@ function searchList(type) {
     }
 }
 
-// 🎚️ تحديث نقاط السلايدر (للبطاقتين فقط)
+// 🎚️ تحديث نقاط السلايدر
 function updateDots() {
     const slider = document.getElementById('finalSlider');
     if(!slider) return;
@@ -395,57 +390,6 @@ function updateDisplay() {
     document.getElementById('about-text-content').innerText = aboutFullText;
 }
 
-// ⏳ نظام مؤقت المسابقة الذكي ⏳
-function startCompetitionTimer() {
-    const compCard = document.getElementById('competition-card');
-    if (!compCard) return;
-
-    let now = new Date();
-    let endTime = new Date();
-    
-    // إعداد التوقيت إلى الساعة 3:00 فجراً
-    if (now.getHours() >= 3) {
-        endTime.setDate(endTime.getDate() + 1); // إذا تعدينا 3 الفجر، يحطها اليوم اللي بعده
-    }
-    endTime.setHours(3, 0, 0, 0);
-
-    const timerInterval = setInterval(function() {
-        let currentTime = new Date().getTime();
-        let distance = endTime.getTime() - currentTime;
-
-        if (distance <= 0) {
-            clearInterval(timerInterval);
-            compCard.style.display = 'none'; // الكود يخفي المسابقة فوراً
-        } else {
-            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            // إضافة صفر للأرقام الأقل من 10 ليكون الشكل احترافي
-            hours = hours < 10 ? "0" + hours : hours;
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            document.getElementById("comp-timer").innerHTML = hours + ":" + minutes + ":" + seconds;
-        }
-    }, 1000);
-}
-
-// 📲 إرسال المشاركة للواتساب
-function sendCompetition() {
-    let name = document.getElementById('comp-name').value;
-    let answer = document.getElementById('comp-answer').value;
-    
-    if(name.trim() === "" || answer.trim() === "") {
-        alert("⚠️ الرجاء كتابة اسمك وإجابتك قبل الإرسال!");
-        return;
-    }
-    
-    let msg = "🏆 *مشاركة في مسابقة بطولة القحمة 28* 🏆\n\n👤 *الاسم:* " + name + "\n🎯 *الإجابة:* " + answer + "\n\n📱 *تم الإرسال عبر التطبيق الرسمي*";
-    let url = "https://wa.me/966534987428?text=" + encodeURIComponent(msg);
-    window.open(url, '_blank');
-}
-
 let deferredPrompt; const banner = document.getElementById('a2hs-banner');
 window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; if (!sessionStorage.getItem('a2hs_dismissed')) setTimeout(() => banner.classList.add('show'), 3000); });
 document.getElementById('a2hs-install').addEventListener('click', async () => { if (!deferredPrompt) return; banner.classList.remove('show'); deferredPrompt.prompt(); deferredPrompt = null; });
@@ -464,8 +408,6 @@ window.onload = function() {
     updateDisplay(); 
     openTab(null, 'today'); 
     openSubTab(null, 'players-list'); 
-    
-    startCompetitionTimer(); // تشغيل مؤقت المسابقة فور فتح الموقع
 };
 </script>
 </body>
