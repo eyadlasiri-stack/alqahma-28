@@ -62,6 +62,60 @@
         /* ========= ستايل شعارات الأندية (VIP Logos) ========= */
         .team-logo-vip { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(212,175,55,0.5)); margin-bottom: 6px; }
 
+        /* ========= ستايل بطاقة ليالي الأبطال (Cinematic Card) ========= */
+        .champions-card {
+            background: radial-gradient(circle at 50% 50%, #1f1a0a 0%, #050505 80%);
+            border: 1px solid var(--gold-dark);
+            border-radius: 20px;
+            padding: 25px 15px;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(212,175,55,0.1);
+            text-align: center;
+        }
+        .champions-glow {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(212,175,55,0.35) 0%, transparent 70%);
+            z-index: 0; pointer-events: none;
+        }
+        .champions-ribbon {
+            position: absolute; top: 15px; right: -35px;
+            background: var(--gold-grad); color: #000;
+            padding: 5px 40px; font-weight: 900; font-size: 0.75rem;
+            transform: rotate(45deg); box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+            z-index: 10;
+        }
+        .champions-vs-badge {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, #f3e5ab, #aa8c2c);
+            border: 2px solid #141414;
+            box-shadow: 0 0 15px rgba(212,175,55,0.8), inset 0 0 5px rgba(255,255,255,0.6);
+            transform: rotate(45deg);
+            display: flex; justify-content: center; align-items: center;
+            margin: 0 15px; position: relative; z-index: 2;
+        }
+        .champions-vs-text {
+            transform: rotate(-45deg); color: #000; font-weight: 900; font-size: 1.1rem; font-family: sans-serif;
+        }
+        .champions-logo-wrapper {
+            display: flex; flex-direction: column; align-items: center; z-index: 2; position: relative;
+        }
+        .champions-logo {
+            width: 75px; height: 75px; object-fit: contain;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.8)); margin-bottom: 8px;
+        }
+        .champions-floor-shadow {
+            width: 50px; height: 8px;
+            background: radial-gradient(ellipse at center, rgba(212,175,55,0.6) 0%, transparent 75%);
+            border-radius: 50%; margin-top: -15px; margin-bottom: 12px;
+        }
+        .champions-team-name {
+            font-size: 1.15rem; font-weight: 900; color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(212,175,55,0.5);
+        }
+
         .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
         
         header { 
@@ -95,7 +149,6 @@
         /* ========= انتقالات أنعم (Smooth Transitions) ========= */
         .tab-content { display: none; text-align: center; flex-grow: 1; opacity: 0; }
         .tab-content.active { display: block; animation: smoothFade 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
-        /* تم إزالة display:none المباشرة من الـ style واستبدالها بالكلاس */
         .sub-content { display: none; opacity: 0; }
         .sub-content.active { display: block; animation: smoothFade 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
         @keyframes smoothFade { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
@@ -316,28 +369,25 @@ function submitPoll(team) {
     localStorage.setItem('pollVoted', 'true');
 }
 
-// 📸 وظيفة مشاركة البطاقة كصورة قوية جداً!
+// 📸 وظيفة مشاركة البطاقة كصورة بوستر أسطوري!
 async function shareMatchAsImage() {
     const btn = document.getElementById('share-btn');
     const originalText = btn.innerText;
     btn.innerText = '⏳ جاري التجهيز...';
     
     try {
-        // نحدد البطاقة المراد تصويرها
         const element = document.getElementById('shareable-card');
         
-        // استخدام مكتبة html2canvas لالتقاط الصورة
         const canvas = await html2canvas(element, { 
             backgroundColor: '#141414',
-            scale: 3, // دقة عالية جداً للصورة
-            useCORS: true, // ضروري جداً لكي تظهر الشعارات الخارجية
+            scale: 3,
+            useCORS: true,
             allowTaint: true
         });
         
         canvas.toBlob(async (blob) => {
             const file = new File([blob], "alqahma_final.png", { type: "image/png" });
             
-            // فتح نافذة المشاركة الخاصة بالجوال (تشارك الصورة مباشرة)
             if (navigator.canShare && navigator.canShare({ files: [file] })) {
                 await navigator.share({
                     title: 'نهائي بطولة القحمة 28',
@@ -345,7 +395,6 @@ async function shareMatchAsImage() {
                     files: [file]
                 });
             } else {
-                // إذا كان الجوال ما يدعم، ينزلها له كصورة في جهازه
                 const link = document.createElement('a');
                 link.download = 'alqahma_final.png';
                 link.href = canvas.toDataURL('image/png');
@@ -365,41 +414,51 @@ async function shareMatchAsImage() {
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     
-    // صفحة اليوم (تحتوي على البطاقة القابلة للتصوير والمشاركة)
+    // صفحة اليوم (تحتوي على بوستر النهائي الفخم "ليالي الأبطال")
     todayArea.innerHTML = `
-    <div id="shareable-card" style="background: linear-gradient(135deg, #1a1a1a, #0a0a0a); border: 1px solid var(--gold-main); border-radius: 15px; padding: 20px; margin-top: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
-        <div style="position:relative; z-index:1;">
-            <div style="text-align:center; margin-bottom: 15px; border-bottom: 1px dashed rgba(212,175,55,0.3); padding-bottom: 10px;">
-                <div style="font-size:2rem; text-shadow:0 0 10px rgba(212,175,55,0.5); margin-bottom:5px;">🏆</div>
-                <h3 style="color:var(--gold-light); margin:0 0 2px 0; font-size:1.1rem; font-weight:900;">النهائي الكبير</h3>
-                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">بطولة القحمة الرمضانية 28</span>
+    <div id="shareable-card" class="champions-card">
+        <div class="champions-glow"></div>
+        <div class="champions-ribbon">نهائي 28</div>
+        
+        <div style="position:relative; z-index:2; margin-bottom: 20px;">
+            <div style="font-size:2.2rem; text-shadow:0 0 15px rgba(212,175,55,0.6); margin-bottom:0;">🏆</div>
+            <h3 style="color:var(--gold-light); margin:5px 0 0 0; font-size:1.3rem; font-weight:900; letter-spacing: 1px;">النهائي الكبير</h3>
+            <span style="font-size:0.75rem; color:var(--gold-dark); font-weight:900;">بطولة القحمة الرمضانية</span>
+        </div>
+        
+        <div style="display:flex; justify-content:center; align-items:center; margin-bottom: 25px; position: relative;">
+            
+            <div class="champions-logo-wrapper">
+                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="champions-logo" crossorigin="anonymous">
+                <div class="champions-floor-shadow"></div>
+                <span class="champions-team-name">الفيصلي</span>
             </div>
             
-            <div class="teams-row" style="margin-bottom: 20px;">
-                <div class="team-item">
-                    <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="team-logo-vip" style="width:55px; height:55px;" crossorigin="anonymous">
-                    <span style="font-size:1.1rem;">الفيصلي</span>
-                </div>
-                <div class="vs-label" style="padding: 8px 15px; font-size:1.2rem;">VS</div>
-                <div class="team-item">
-                    <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="team-logo-vip" style="width:55px; height:55px;" crossorigin="anonymous">
-                    <span style="font-size:1.1rem;">الوسام</span>
-                </div>
+            <div class="champions-vs-badge">
+                <div class="champions-vs-text">VS</div>
             </div>
+            
+            <div class="champions-logo-wrapper">
+                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="champions-logo" crossorigin="anonymous">
+                <div class="champions-floor-shadow"></div>
+                <span class="champions-team-name">الوسام</span>
+            </div>
+        </div>
 
-            <div style="text-align:center; background: rgba(0,0,0,0.5); padding:8px; border-radius:8px; font-size:0.75rem; color:#ccc;">
+        <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:10px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); border-bottom: 1px solid rgba(212,175,55,0.3);">
+            <span style="font-size:0.8rem; color:var(--gold-light); font-weight:900; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
                 نكون أو لا نكون.. ليلة كتابة التاريخ في القحمة! ✍️
-            </div>
+            </span>
         </div>
     </div>
     
     <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 15px; padding: 0 5px;">
         <button onclick="openTab(event, 'upcoming')" style="background:var(--gold-grad); color:#000; border:none; padding:8px 15px; border-radius:8px; font-weight:900; font-family:'Cairo'; font-size:0.8rem; cursor:pointer;">كل التفاصيل ←</button>
-        <button id="share-btn" onclick="shareMatchAsImage()" style="background:none; border:1px solid rgba(212,175,55,0.4); color:var(--gold-light); border-radius:8px; padding:8px 15px; font-size:0.8rem; cursor:pointer; font-family:'Cairo'; transition:0.3s; font-weight:bold;">مشاركة</button>
+        <button id="share-btn" onclick="shareMatchAsImage()" style="background:none; border:1px solid rgba(212,175,55,0.4); color:var(--gold-light); border-radius:8px; padding:8px 15px; font-size:0.8rem; cursor:pointer; font-family:'Cairo'; transition:0.3s; font-weight:bold; box-shadow: 0 0 10px rgba(212,175,55,0.2);">مشاركة البوستر 📸</button>
     </div>
     `;
 
-    // صفحة النهائي (الاستفتاء تحت البطاقة)
+    // صفحة النهائي (فيها الاستفتاء)
     document.getElementById('finals-area').innerHTML = `
         <div class="match-card" style="text-align:center; padding: 15px 10px; margin-top:12px; border:1px solid var(--gold-main); box-shadow: 0 4px 15px rgba(212,175,55,0.15);">
             <div style="font-size: 1.5rem; margin-bottom: 5px; text-shadow: 0 0 8px rgba(212,175,55,0.5);">🏆</div>
@@ -521,7 +580,7 @@ window.onload = function() {
     openTab(null, 'today'); 
     openSubTab(null, 'players-list'); 
     
-    // التحقق إذا كان الزائر قد صوّت مسبقاً لإظهار رسالة الشكر فوراً
+    // التحقق إذا كان الزائر قد صوّت مسبقاً
     if(localStorage.getItem('pollVoted')) {
         let pollBtns = document.getElementById('poll-buttons');
         let pollRes = document.getElementById('poll-results');
