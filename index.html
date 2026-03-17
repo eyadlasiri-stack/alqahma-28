@@ -19,7 +19,7 @@
         :root { 
             --gold-main: #d4af37; --gold-light: #f3e5ab; --gold-dark: #aa8c2c; 
             --gold-grad: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%);
-            --bronze-gold: #c5a059; /* لون برونزي ذهبي خافت وراقي */
+            --bronze-gold: #c5a059; 
             --black-bg: #0a0a0a; --black-card: #141414; --glass-border: rgba(212, 175, 55, 0.15); 
             --text-main: #f8fafc; --text-muted: #a0a0a0; --green-neon: #10b981; --red-live: #ef4444;
         }
@@ -34,7 +34,7 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* ========= شاشة التحميل (Pre-loader) ========= */
+        /* ========= شاشة التحميل ========= */
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--black-bg); z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.6s ease, visibility 0.6s ease; }
         #preloader.hidden { opacity: 0; visibility: hidden; }
         .preloader-logo { width: 130px; animation: heartbeat 1.5s infinite; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4)); margin-bottom: 20px; }
@@ -42,17 +42,26 @@
         .preloader-spinner { width: 40px; height: 40px; border: 3px solid rgba(212,175,55,0.2); border-top-color: var(--gold-main); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ========= زر العودة للأعلى (Back to Top) ========= */
-        #backToTopBtn {
-            position: fixed; bottom: 80px; left: 20px; width: 45px; height: 45px;
-            background: var(--gold-grad); color: #000; border: none; border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); font-size: 1.2rem; cursor: pointer;
-            z-index: 9998; opacity: 0; visibility: hidden; transition: 0.4s ease;
-            display: flex; justify-content: center; align-items: center; text-decoration: none;
+        /* ========= نافذة الصورة المنبثقة (Image Modal) ========= */
+        #image-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 999999; justify-content: center; align-items: center; flex-direction: column;
+            animation: fadeIn 0.3s ease-out;
         }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-img-container {
+            max-height: 70vh; max-width: 85vw; border-radius: 15px; border: 2px solid var(--gold-main);
+            box-shadow: 0 0 30px rgba(212,175,55,0.4); overflow: hidden;
+        }
+        .modal-img-container img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .close-modal-btn {
+            margin-top: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);
+            color: #fff; padding: 10px 30px; border-radius: 30px; font-family: 'Cairo'; font-weight: bold; cursor: pointer;
+        }
+
+        #backToTopBtn { position: fixed; bottom: 80px; left: 20px; width: 45px; height: 45px; background: var(--gold-grad); color: #000; border: none; border-radius: 50%; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); font-size: 1.2rem; cursor: pointer; z-index: 9998; opacity: 0; visibility: hidden; transition: 0.4s ease; display: flex; justify-content: center; align-items: center; text-decoration: none; }
         #backToTopBtn.show { opacity: 1; visibility: visible; }
 
-        /* ========= ستايل الاستفتاء المصغر (Quick Poll) ========= */
         .poll-container { background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); border-radius: 12px; padding: 10px; margin-bottom: 15px; text-align: center; }
         .poll-title { font-size: 0.75rem; color: var(--gold-light); font-weight: 900; margin: 0 0 10px 0; display: flex; align-items: center; justify-content: center; gap: 5px; }
         .poll-btns { display: flex; gap: 8px; justify-content: center; }
@@ -60,74 +69,22 @@
         .poll-btn:hover, .poll-btn:active { background: var(--gold-grad); color: #000; border-color: var(--gold-main); }
         .poll-results { display: none; text-align: center; padding: 5px 0; }
 
-        /* ========= ستايل شعارات الأندية (VIP Logos) ========= */
         .team-logo-vip { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(212,175,55,0.5)); margin-bottom: 6px; }
 
-        /* ========= ستايل بطاقة العرض (On-Screen Card) ========= */
-        .champions-card {
-            background: radial-gradient(circle at 50% 50%, #1f1a0a 0%, #050505 80%);
-            border: 1px solid var(--gold-dark);
-            border-radius: 20px;
-            padding: 25px 15px;
-            margin-top: 15px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(212,175,55,0.1);
-            text-align: center;
-        }
-        .champions-glow {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 180px; height: 180px;
-            background: radial-gradient(circle, rgba(212,175,55,0.35) 0%, transparent 70%);
-            z-index: 0; pointer-events: none;
-        }
-        .champions-ribbon {
-            position: absolute; top: 15px; right: -35px;
-            background: var(--gold-grad); color: #000;
-            padding: 5px 40px; font-weight: 900; font-size: 0.75rem;
-            transform: rotate(45deg); box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-            z-index: 10;
-        }
-        .champions-vs-badge {
-            width: 40px; height: 40px;
-            background: linear-gradient(135deg, #f3e5ab, #aa8c2c);
-            border: 2px solid #141414;
-            box-shadow: 0 0 15px rgba(212,175,55,0.8), inset 0 0 5px rgba(255,255,255,0.6);
-            transform: rotate(45deg);
-            display: flex; justify-content: center; align-items: center;
-            margin: 0 15px; position: relative; z-index: 2;
-        }
-        .champions-vs-text {
-            transform: rotate(-45deg); color: #000; font-weight: 900; font-size: 1.1rem; font-family: sans-serif;
-        }
-        .champions-logo-wrapper {
-            display: flex; flex-direction: column; align-items: center; z-index: 2; position: relative;
-        }
-        .champions-logo {
-            width: 75px; height: 75px; object-fit: contain;
-            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.8)); margin-bottom: 8px;
-        }
-        .champions-floor-shadow {
-            width: 50px; height: 8px;
-            background: radial-gradient(ellipse at center, rgba(212,175,55,0.6) 0%, transparent 75%);
-            border-radius: 50%; margin-top: -15px; margin-bottom: 12px;
-        }
-        .champions-team-name {
-            font-size: 0.9rem; font-weight: 700; color: var(--bronze-gold); 
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8), 0 0 5px rgba(212,175,55,0.3);
-        }
+        .champions-card { background: radial-gradient(circle at 50% 50%, #1f1a0a 0%, #050505 80%); border: 1px solid var(--gold-dark); border-radius: 20px; padding: 25px 15px; margin-top: 15px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(212,175,55,0.1); text-align: center; }
+        .champions-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 180px; height: 180px; background: radial-gradient(circle, rgba(212,175,55,0.35) 0%, transparent 70%); z-index: 0; pointer-events: none; }
+        .champions-ribbon { position: absolute; top: 15px; right: -35px; background: var(--gold-grad); color: #000; padding: 5px 40px; font-weight: 900; font-size: 0.75rem; transform: rotate(45deg); box-shadow: 0 2px 10px rgba(0,0,0,0.6); z-index: 10; }
+        .champions-vs-badge { width: 40px; height: 40px; background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 15px rgba(212,175,55,0.8), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 15px; position: relative; z-index: 2; }
+        .champions-vs-text { transform: rotate(-45deg); color: #000; font-weight: 900; font-size: 1.1rem; font-family: sans-serif; }
+        .champions-logo-wrapper { display: flex; flex-direction: column; align-items: center; z-index: 2; position: relative; }
+        .champions-logo { width: 75px; height: 75px; object-fit: contain; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.8)); margin-bottom: 8px; }
+        .champions-floor-shadow { width: 50px; height: 8px; background: radial-gradient(ellipse at center, rgba(212,175,55,0.6) 0%, transparent 75%); border-radius: 50%; margin-top: -15px; margin-bottom: 12px; }
+        .champions-team-name { font-size: 0.9rem; font-weight: 700; color: var(--bronze-gold); text-shadow: 0 1px 2px rgba(0,0,0,0.8), 0 0 5px rgba(212,175,55,0.3); }
 
         .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
         
-        header { 
-            text-align: center; padding: 20px 0; 
-            background: linear-gradient(to bottom, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.9));
-            border: 1px solid var(--glass-border); border-top: none; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6); margin-bottom: 20px; margin-top: -12px; position: relative; overflow: hidden;
-        }
+        header { text-align: center; padding: 20px 0; background: linear-gradient(to bottom, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.9)); border: 1px solid var(--glass-border); border-top: none; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.6); margin-bottom: 20px; margin-top: -12px; position: relative; overflow: hidden; }
         header::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.05), transparent); animation: shine 6s infinite; }
-        @keyframes shine { 100% { left: 200%; } }
-
         .logo-img { width: 90px; height: auto; display: block; margin: 0 auto 8px; filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.2)); }
         header h1 { font-weight: 900; margin: 0; font-size: 1.3rem; color: var(--gold-light); text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
         .stadium-tag { color: var(--gold-main); font-size: 0.75rem; font-weight: 700; margin-top: 5px; display: block; letter-spacing: 1px; }
@@ -136,7 +93,6 @@
         .stat-badge, .tabs-nav, .sub-tab-btn, .match-card, .group-card, .about-text-area, .search-input { background: var(--black-card); border: 1px solid var(--glass-border); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .stat-badge { padding: 5px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; color: var(--gold-light); display: inline-flex; align-items: center; gap: 5px; }
         .dot { height: 6px; width: 6px; background-color: var(--gold-main); border-radius: 50%; display: inline-block; animation: goldPulse 2s infinite; box-shadow: 0 0 8px var(--gold-main); }
-        @keyframes goldPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.5; } }
 
         .tabs-nav { display: flex; padding: 5px; border-radius: 12px; margin-bottom: 20px; overflow-x: auto; scrollbar-width: none; }
         .tabs-nav::-webkit-scrollbar { display: none; }
@@ -195,15 +151,10 @@
         .search-input::placeholder { color: var(--text-muted); }
         .search-input:focus { outline: none; border-color: var(--gold-main); box-shadow: 0 0 8px rgba(212, 175, 55, 0.2); }
 
-        .a2hs-banner { position: fixed; bottom: -120px; left: 0; right: 0; background: var(--black-card); color: white; padding: 12px; text-align: center; z-index: 9999; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); transition: 0.4s; display: flex; align-items: center; justify-content: center; gap: 10px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-top: 1px solid var(--gold-main); }
-        .a2hs-banner.show { bottom: 0; }
-
-        /* ========= البوستر المخفي للسناب (9:16) ========= */
-        .offscreen-poster-wrapper {
-            position: fixed; top: 0; left: 0; z-index: -9999; opacity: 0; pointer-events: none;
-        }
+        /* ========= البوستر المخفي للسناب (بدقة 9:16) ========= */
+        .offscreen-poster-wrapper { position: absolute; top: -15000px; left: -15000px; opacity: 1; z-index: -1; }
         #snapchat-poster {
-            width: 540px; height: 960px; /* مقاس 9:16 احترافي */
+            width: 540px; height: 960px; /* مقاس 9:16 */
             background: linear-gradient(135deg, #050505 0%, #1a1a1a 50%, #000000 100%);
             display: flex; flex-direction: column; align-items: center; justify-content: space-between;
             padding: 50px 30px; box-sizing: border-box; position: relative; overflow: hidden;
@@ -223,10 +174,18 @@
         <div class="preloader-spinner"></div>
     </div>
 
+    <div id="image-modal">
+        <p style="color: #fff; font-family: 'Cairo'; margin-bottom: 15px; font-weight: 900; font-size: 1rem; text-shadow: 0 2px 5px #000;">✨ اضغط مطولاً على الصورة لحفظها ومشاركتها ✨</p>
+        <div class="modal-img-container">
+            <img id="generated-image" src="" alt="بوستر المباراة">
+        </div>
+        <button class="close-modal-btn" onclick="document.getElementById('image-modal').style.display='none'">إغلاق ✖</button>
+    </div>
+
     <div class="offscreen-poster-wrapper">
         <div id="snapchat-poster">
-            <div style="text-align: center; z-index: 2; width: 100%;">
-                <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 130px; filter: drop-shadow(0 0 15px rgba(212,175,55,0.4)); margin-bottom: 20px;" crossorigin="anonymous">
+            <div style="text-align: center; z-index: 2; width: 100%; margin-top: 20px;">
+                <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 140px; filter: drop-shadow(0 0 15px rgba(212,175,55,0.4)); margin-bottom: 20px;" crossorigin="anonymous">
                 <h1 style="color: #f3e5ab; font-size: 3rem; margin: 0; font-weight: 900; text-shadow: 0 4px 20px rgba(212,175,55,0.6);">النهائي الكبير</h1>
                 <span style="color: #d4af37; font-size: 1.5rem; font-weight: 700; background: rgba(212,175,55,0.15); padding: 8px 25px; border-radius: 30px; display: inline-block; margin-top: 15px; border: 1px solid rgba(212,175,55,0.3);">يُحدد لاحقاً</span>
             </div>
@@ -245,9 +204,9 @@
                 </div>
             </div>
 
-            <div style="text-align: center; z-index: 2; width: 100%; border-top: 2px dashed rgba(212,175,55,0.4); padding-top: 30px;">
+            <div style="text-align: center; z-index: 2; width: 100%; border-top: 2px dashed rgba(212,175,55,0.4); padding-top: 30px; padding-bottom: 20px;">
                 <p style="color: #f8fafc; font-size: 1.5rem; font-weight: 900; margin: 0 0 10px 0; text-shadow: 0 2px 5px #000;">نكون أو لا نكون.. ليلة كتابة التاريخ! ✍️</p>
-                <p style="color: #d4af37; font-size: 1.1rem; margin: 0; font-weight: 700;">شاركنا التغطية عبر التطبيق الرسمي 📲</p>
+                <p style="color: #d4af37; font-size: 1.1rem; margin: 0; font-weight: 700;">تابعنا عبر التطبيق الرسمي 📲</p>
             </div>
         </div>
     </div>
@@ -405,7 +364,6 @@ function updateDots() {
     });
 }
 
-// 📊 وظيفة التصويت في الاستفتاء
 function submitPoll(team) {
     if(localStorage.getItem('pollVoted')) return; 
     document.getElementById('poll-buttons').style.display = 'none';
@@ -413,67 +371,42 @@ function submitPoll(team) {
     localStorage.setItem('pollVoted', 'true');
 }
 
-// دالة مساعدة لزر المشاركة
 function resetButton(btn, originalText) {
     btn.innerText = originalText;
     btn.style.opacity = '1';
     btn.disabled = false;
 }
 
-// 📸 وظيفة مشاركة البوستر المخفي (9:16) بدون أي تعليق
+// 📸 دالة التصوير الخرافية وحل التعليق
 async function shareMatchAsImage() {
     const btn = document.getElementById('share-btn');
     const originalText = btn.innerText;
     
-    // إظهار حالة التحميل للزائر
-    btn.innerText = '⏳ جاري التحضير...';
+    btn.innerText = '⏳ ثواني...';
     btn.style.opacity = '0.7'; 
     btn.disabled = true;
 
     try {
-        // نلتقط البوستر المخفي المخصص للسناب
         const element = document.getElementById('snapchat-poster');
         
         const canvas = await html2canvas(element, { 
             backgroundColor: '#050505',
-            scale: 2, // دقة 1080x1920
+            scale: 2, 
             useCORS: true,
             allowTaint: true,
             logging: false
         });
         
-        canvas.toBlob(async (blob) => {
-            try {
-                if (!blob) throw new Error("فشل في استخراج الصورة");
-                const file = new File([blob], "alqahma_final_story.png", { type: "image/png" });
-                
-                // فتح نافذة المشاركة الافتراضية للجوال
-                if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                    await navigator.share({
-                        title: 'نهائي بطولة القحمة 28',
-                        text: 'ترقبوا النهائي الكبير! 🏆🔥',
-                        files: [file]
-                    });
-                } else {
-                    // إذا لم يدعم الجوال، ينزلها مباشرة للجهاز
-                    const link = document.createElement('a');
-                    link.download = 'alqahma_final_story.png';
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-                    alert('تم حفظ البوستر في جهازك للمشاركة في السناب! 📸');
-                }
-            } catch (shareErr) {
-                // المستخدم ألغى المشاركة أو رفضها
-                console.log("تم الإلغاء:", shareErr);
-            } finally {
-                // الكود الاحتياطي لفك التعليق دائماً
-                resetButton(btn, originalText);
-            }
-        }, 'image/png');
+        const imgData = canvas.toDataURL('image/png');
+        
+        // إظهار نافذة منبثقة VIP تعرض الصورة الجاهزة لتجاوز حظر المتصفحات
+        document.getElementById('generated-image').src = imgData;
+        document.getElementById('image-modal').style.display = 'flex';
         
     } catch (err) {
         console.error('خطأ في المعالجة:', err);
-        alert('حدث خطأ أثناء تجهيز البوستر، يرجى المحاولة مرة أخرى.');
+        alert('حدث خطأ أثناء التجهيز، يرجى المحاولة مرة أخرى.');
+    } finally {
         resetButton(btn, originalText);
     }
 }
@@ -618,14 +551,9 @@ function updateDisplay() {
     document.getElementById('about-text-content').innerText = aboutFullText;
 }
 
-// إظهار وإخفاء زر العودة للأعلى عند التمرير
 window.addEventListener('scroll', function() {
     let topBtn = document.getElementById('backToTopBtn');
-    if (window.scrollY > 400) {
-        topBtn.classList.add('show');
-    } else {
-        topBtn.classList.remove('show');
-    }
+    if (window.scrollY > 400) { topBtn.classList.add('show'); } else { topBtn.classList.remove('show'); }
 });
 
 let deferredPrompt; const banner = document.getElementById('a2hs-banner');
