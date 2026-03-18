@@ -34,15 +34,44 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* ========= شاشة التحميل ========= */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--black-bg); z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.6s ease, visibility 0.6s ease; }
-        #preloader.hidden { opacity: 0; visibility: hidden; }
-        .preloader-logo { width: 130px; animation: heartbeat 1.5s infinite; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4)); margin-bottom: 20px; }
-        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } }
-        .preloader-spinner { width: 40px; height: 40px; border: 3px solid rgba(212,175,55,0.2); border-top-color: var(--gold-main); border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        /* ========= شاشة التحميل طراز X (X-Style Preloader) ========= */
+        #preloader { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #000; /* أسود ملكي سادة */
+            z-index: 99999; display: flex; justify-content: center; align-items: center; 
+            overflow: hidden; pointer-events: auto;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            transition-delay: 0.2s; /* تأخير بسيط للخلفية حتى ينتهي انفجار اللوقو */
+        }
+        
+        /* تأثير التلاشي للخلفية */
+        #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
-        /* ========= نافذة الصورة المنبثقة (Image Modal) ========= */
+        .preloader-logo { 
+            width: 130px; 
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); 
+            /* الحركة العادية أثناء الانتظار (نبض خفيف) */
+            animation: gentlePulse 2s ease-in-out infinite;
+            will-change: transform, opacity;
+            transform: scale(1); opacity: 1;
+        }
+
+        /* أنيميشن النبض الهادئ أثناء الانتظار */
+        @keyframes gentlePulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } }
+
+        /* 🔥🔥🔥 تأثير الانفجار السريع طراز X (الخروج) 🔥🔥🔥 */
+        @keyframes xStyleExit {
+            0% { transform: scale(1); opacity: 1; }
+            20% { transform: scale(0.9); opacity: 1; } /* انكماش بسيط قبل الانفجار لإعطاء قوة */
+            100% { transform: scale(50); opacity: 0; } /* تكبير جنوني وتلاشي */
+        }
+
+        /* يُطبق هذا الكلاس بواسطة الجافا سكريبت لتفعيل الانفجار */
+        #preloader.run-exit .preloader-logo {
+            animation: xStyleExit 0.4s cubic-bezier(0.7, 0, 0.84, 0) forwards !important; /* حركة سريعة جداً وطردية */
+        }
+
+        /* ========= بقية الستايلات الملكية (VIP Minimal Theme) ========= */
         #image-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); z-index: 999999; justify-content: center; align-items: center; flex-direction: column;
@@ -59,7 +88,7 @@
             color: #fff; padding: 10px 30px; border-radius: 30px; font-family: 'Cairo'; font-weight: bold; cursor: pointer;
         }
 
-        #backToTopBtn { position: fixed; bottom: 80px; left: 20px; width: 45px; height: 45px; background: var(--gold-grad); color: #000; border: none; border-radius: 50%; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); font-size: 1.2rem; cursor: pointer; z-index: 9998; opacity: 0; visibility: hidden; transition: 0.4s ease; display: flex; justify-content: center; align-items: center; text-decoration: none; }
+        #backToTopBtn { position: fixed; bottom: 30px; left: 20px; width: 45px; height: 45px; background: var(--gold-grad); color: #000; border: none; border-radius: 50%; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); font-size: 1.2rem; cursor: pointer; z-index: 9998; opacity: 0; visibility: hidden; transition: 0.4s ease; display: flex; justify-content: center; align-items: center; text-decoration: none; }
         #backToTopBtn.show { opacity: 1; visibility: visible; }
 
         .poll-container { background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); border-radius: 12px; padding: 10px; margin-bottom: 15px; text-align: center; }
@@ -150,28 +179,12 @@
         .search-input { width: 100%; padding: 10px 12px; border-radius: 10px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212, 175, 55, 0.2); font-family: 'Cairo'; font-size: 0.8rem; box-sizing: border-box; }
         .search-input::placeholder { color: var(--text-muted); }
         .search-input:focus { outline: none; border-color: var(--gold-main); box-shadow: 0 0 8px rgba(212, 175, 55, 0.2); }
-
-        /* ========= البوستر المخفي للسناب (بدقة 9:16) ========= */
-        .offscreen-poster-wrapper { position: absolute; top: -15000px; left: -15000px; opacity: 1; z-index: -1; }
-        #snapchat-poster {
-            width: 540px; height: 960px; /* مقاس 9:16 */
-            background: linear-gradient(135deg, #050505 0%, #1a1a1a 50%, #000000 100%);
-            display: flex; flex-direction: column; align-items: center; justify-content: space-between;
-            padding: 50px 30px; box-sizing: border-box; position: relative; overflow: hidden;
-            font-family: 'Cairo', sans-serif;
-        }
-        #snapchat-poster::before {
-            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
-            border-radius: 50%; z-index: 0;
-        }
     </style>
 </head>
 <body>
 
     <div id="preloader">
-        <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo">
-        <div class="preloader-spinner"></div>
+        <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
     </div>
 
     <div id="image-modal">
@@ -182,8 +195,9 @@
         <button class="close-modal-btn" onclick="document.getElementById('image-modal').style.display='none'">إغلاق ✖</button>
     </div>
 
-    <div class="offscreen-poster-wrapper">
-        <div id="snapchat-poster">
+    <div class="offscreen-poster-wrapper" style="position: absolute; top: -15000px; left: -15000px; opacity: 1; z-index: -1;">
+        <div id="snapchat-poster" style="width: 540px; height: 960px; background: linear-gradient(135deg, #050505 0%, #1a1a1a 50%, #000000 100%); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 50px 30px; box-sizing: border-box; position: relative; overflow: hidden; font-family: 'Cairo', sans-serif;">
+            <div style="content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%); border-radius: 50%; z-index: 0;"></div>
             <div style="text-align: center; z-index: 2; width: 100%; margin-top: 20px;">
                 <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 140px; filter: drop-shadow(0 0 15px rgba(212,175,55,0.4)); margin-bottom: 20px;" crossorigin="anonymous">
                 <h1 style="color: #f3e5ab; font-size: 3rem; margin: 0; font-weight: 900; text-shadow: 0 4px 20px rgba(212,175,55,0.6);">النهائي الكبير</h1>
@@ -215,7 +229,7 @@
 
     <div class="container">
         <header>
-            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img">
+            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img" crossorigin="anonymous">
             <h1>بطولة القحمة الرمضانية 28</h1>
             <span class="stadium-tag">🏆 النهائي الكبير 🏆</span>
         </header>
@@ -273,13 +287,6 @@
             </div>
             <div class="disclaimer">هذا الموقع مخصص لعرض أخبار وجدول ونتائج بطولة القحمة الرمضانية 28. الموقع جهد شخصي، ولا نتحمل مسؤولية أي أخطاء غير مقصودة.</div>
         </div>
-    </div>
-
-    <div class="a2hs-banner" id="a2hs-banner">
-        <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width:30px; height:30px; border-radius:8px; border:1px solid var(--gold-main);">
-        <div style="flex:1; text-align:right;"><span style="font-weight:900; font-size:0.75rem; display:block; color:var(--gold-light);">تطبيق بطولة القحمة 28</span><span style="font-size:0.65rem; opacity:0.8; color:#ccc;">تثبيت للوصول السريع</span></div>
-        <button class="social-btn" style="background:var(--gold-grad); color:#000; border:none;" id="a2hs-install">تثبيت</button>
-        <button style="background:none; border:none; color:var(--gold-main); font-size:1.2rem;" onclick="closeA2HS()">×</button>
     </div>
 
 <script>
@@ -557,24 +564,30 @@ window.addEventListener('scroll', function() {
     if (window.scrollY > 400) { topBtn.classList.add('show'); } else { topBtn.classList.remove('show'); }
 });
 
-let deferredPrompt; const banner = document.getElementById('a2hs-banner');
-window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; if (!sessionStorage.getItem('a2hs_dismissed')) setTimeout(() => banner.classList.add('show'), 3000); });
-document.getElementById('a2hs-install').addEventListener('click', async () => { if (!deferredPrompt) return; banner.classList.remove('show'); deferredPrompt.prompt(); deferredPrompt = null; });
-function closeA2HS() { banner.classList.remove('show'); sessionStorage.setItem('a2hs_dismissed', 'true'); }
-
 async function fetchWeather() { try { const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.02&longitude=41.74&current_weather=true'); const data = await response.json(); document.getElementById('weather-box').innerHTML = `القحمة: ${Math.round(data.current_weather.temperature)}°C`; } catch (e) { document.getElementById('weather-box').innerHTML = "القحمة: 26°C"; } }
 
+// جافا سكريبت معدلة لتفعيل حركة X
 window.onload = function() { 
-    setTimeout(() => {
-        const preloader = document.getElementById('preloader');
-        if(preloader) preloader.classList.add('hidden');
-    }, 1500);
-
+    // تنفيذ الجلب والعرض الأساسي
     fetchWeather(); 
     updateDisplay(); 
     openTab(null, 'today'); 
     openSubTab(null, 'players-list'); 
-    
+
+    // الانتظار قليلاً لضمان تحميل العناصر ثم بدء حركة الخروج
+    setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if(preloader) {
+            // 1. تفعيل حركة الانفجار على اللوقو
+            preloader.classList.add('run-exit');
+            
+            // 2. إخفاء الخلفية تماماً بعد انتهاء حركة اللوقو مباشرة
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 300); // وقت أقل من وقت أنيميشن CSS لضمان السلاسة
+        }
+    }, 600); // وقت انتظار قصير جداً قبل بدء الخروج (لإعطاء إحساس بالسرعة)
+
     if(localStorage.getItem('pollVoted')) {
         let pollBtns = document.getElementById('poll-buttons');
         let pollRes = document.getElementById('poll-results');
