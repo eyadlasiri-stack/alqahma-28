@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SG0HC6MBN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5SG0HC6MBN');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
@@ -40,7 +49,6 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: #000; z-index: 99999; display: flex; justify-content: center; align-items: center; 
             overflow: hidden; pointer-events: auto;
-            /* تسريع اختفاء الخلفية السوداء عشان ما تحس بتأخير */
             transition: opacity 0.25s ease-out, visibility 0.25s ease-out; 
             transition-delay: 0.15s; 
         }
@@ -48,9 +56,7 @@
         
         .preloader-logo { 
             width: 130px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); 
-            /* تجهيز كرت الشاشة للحركة لضمان السلاسة */
             will-change: transform, opacity; 
-            /* نقل الحركة للـ GPU */
             transform: translateZ(0);
             animation: gentlePulse 2s ease-in-out infinite; 
         }
@@ -60,15 +66,13 @@
             50% { transform: scale(1.05) translateZ(0); opacity: 1; filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } 
         }
         
-        /* حركة الانفجار الجديدة: انكماش بسيط ثم انفجار سريع مع تلاشي (بدون تكبير مبالغ فيه يسبب لاق) */
         @keyframes smoothPopOut { 
             0% { transform: scale(1) translateZ(0); opacity: 1; } 
-            20% { transform: scale(0.8) translateZ(0); opacity: 1; } /* انكماش ناعم */
-            100% { transform: scale(8) translateZ(0); opacity: 0; } /* انفجار لدرجة 8 فقط مع اختفاء شفاف */
+            20% { transform: scale(0.8) translateZ(0); opacity: 1; } 
+            100% { transform: scale(8) translateZ(0); opacity: 0; } 
         }
         
         #preloader.run-exit .preloader-logo { 
-            /* حركة سريعة وناعمة (0.35 ثانية) */
             animation: smoothPopOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important; 
         }
 
@@ -136,7 +140,6 @@
             margin-bottom: 20px; margin-top: -12px; position: relative; overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.6);
         }
-        /* كلاس إضافي للإضاءة ينحذف برمجياً بكرة */
         .eid-active-header { animation: eidGlow 2.5s infinite alternate; }
         @keyframes eidGlow { 
             from { box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 5px rgba(212,175,55,0.1); } 
@@ -493,7 +496,7 @@ function closeEidModal() {
     }
 }
 
-// ⏳ مؤقت انتهاء الفعاليات (بكرة الساعة 10 صباحاً)
+// ⏳ مؤقت انتهاء الفعاليات (يوم 20 مارس الساعة 10 صباحاً يختفي كل شيء)
 const EID_EXPIRY_DATE = new Date('2026-03-20T10:00:00+03:00');
 const isEidActive = new Date() < EID_EXPIRY_DATE;
 
