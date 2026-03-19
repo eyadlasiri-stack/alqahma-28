@@ -35,21 +35,42 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* ========= شاشة التحميل طراز X ========= */
+        /* ========= شاشة التحميل طراز X (النسخة السلسة جداً 60fps) ========= */
         #preloader { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: #000; z-index: 99999; display: flex; justify-content: center; align-items: center; 
             overflow: hidden; pointer-events: auto;
-            transition: opacity 0.3s ease, visibility 0.3s ease; transition-delay: 0.2s; 
+            /* تسريع اختفاء الخلفية السوداء عشان ما تحس بتأخير */
+            transition: opacity 0.25s ease-out, visibility 0.25s ease-out; 
+            transition-delay: 0.15s; 
         }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        
         .preloader-logo { 
             width: 130px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); 
-            animation: gentlePulse 2s ease-in-out infinite; will-change: transform, opacity; transform: scale(1); opacity: 1;
+            /* تجهيز كرت الشاشة للحركة لضمان السلاسة */
+            will-change: transform, opacity; 
+            /* نقل الحركة للـ GPU */
+            transform: translateZ(0);
+            animation: gentlePulse 2s ease-in-out infinite; 
         }
-        @keyframes gentlePulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } }
-        @keyframes xStyleExit { 0% { transform: scale(1); opacity: 1; } 20% { transform: scale(0.9); opacity: 1; } 100% { transform: scale(50); opacity: 0; } }
-        #preloader.run-exit .preloader-logo { animation: xStyleExit 0.4s cubic-bezier(0.7, 0, 0.84, 0) forwards !important; }
+        
+        @keyframes gentlePulse { 
+            0%, 100% { transform: scale(1) translateZ(0); opacity: 0.8; } 
+            50% { transform: scale(1.05) translateZ(0); opacity: 1; filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } 
+        }
+        
+        /* حركة الانفجار الجديدة: انكماش بسيط ثم انفجار سريع مع تلاشي (بدون تكبير مبالغ فيه يسبب لاق) */
+        @keyframes smoothPopOut { 
+            0% { transform: scale(1) translateZ(0); opacity: 1; } 
+            20% { transform: scale(0.8) translateZ(0); opacity: 1; } /* انكماش ناعم */
+            100% { transform: scale(8) translateZ(0); opacity: 0; } /* انفجار لدرجة 8 فقط مع اختفاء شفاف */
+        }
+        
+        #preloader.run-exit .preloader-logo { 
+            /* حركة سريعة وناعمة (0.35 ثانية) */
+            animation: smoothPopOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important; 
+        }
 
         /* ========= نافذة التهنئة بالعيد ========= */
         .eid-modal {
@@ -276,6 +297,8 @@
         <div id="about" class="tab-content"><div class="about-text-area" id="about-text-content"></div></div>
 
         <div class="footer">
+            <button id="eid-replay-btn" onclick="fireConfetti()" style="background: rgba(212,175,55,0.1); border: 1px dashed var(--gold-main); color: var(--gold-light); padding: 8px 20px; border-radius: 20px; font-family: 'Cairo'; font-weight: 900; font-size: 0.8rem; cursor: pointer; margin-bottom: 15px; box-shadow: 0 0 10px rgba(212,175,55,0.2); transition: 0.3s; display: none;">أجوائنا غير 🎉</button>
+
             <p style="font-weight:900; margin-bottom:2px; font-size:0.75rem; color:var(--gold-main);">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
             <div class="social-mini"><a href="https://wa.me/966534987428" class="social-btn">واتساب</a><a href="https://snapchat.com/t/TXTbTApk" class="social-btn">سناب</a></div>
             <p style="font-size:0.7rem; color:var(--gold-light); font-weight:900; margin-top:15px;">📸 الشبكة الإعلامية للبطولة</p>
@@ -426,14 +449,12 @@ function updateDisplay() {
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--gold-main); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     const stats = {}; archiveData.forEach(day => day.matches.forEach(m => { const res = m.r.split(' - ').map(Number); if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 }; stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; }));
     document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--gold-main); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
-    
-    // استعادة نص البطولة بالكامل
     document.getElementById('about-text-content').innerText = aboutFullText; 
 }
 
 window.addEventListener('scroll', function() { let topBtn = document.getElementById('backToTopBtn'); if (window.scrollY > 400) { topBtn.classList.add('show'); } else { topBtn.classList.remove('show'); } });
 
-// 🔥 ويدجيت الطقس المطور VIP 🔥
+// 🔥 الطقس الاحترافي
 async function fetchWeather() { 
     try { 
         const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.02&longitude=41.74&current_weather=true'); 
@@ -441,12 +462,12 @@ async function fetchWeather() {
         const temp = Math.round(data.current_weather.temperature);
         const code = data.current_weather.weathercode;
         
-        let icon = '⛅'; // افتراضي غائم جزئياً
-        if(code === 0) icon = '☀️'; // صافي
+        let icon = '⛅'; 
+        if(code === 0) icon = '☀️'; 
         else if(code > 0 && code <= 3) icon = '⛅'; 
-        else if(code >= 45 && code <= 48) icon = '🌫️'; // ضباب
-        else if(code >= 51 && code <= 67 || (code >= 80 && code <= 82)) icon = '🌧️'; // ممطر
-        else if(code >= 95) icon = '⛈️'; // رعد
+        else if(code >= 45 && code <= 48) icon = '🌫️'; 
+        else if(code >= 51 && code <= 67 || (code >= 80 && code <= 82)) icon = '🌧️'; 
+        else if(code >= 95) icon = '⛈️'; 
         
         document.getElementById('weather-box').innerHTML = `<span style="font-size:1.1rem; filter:drop-shadow(0 0 5px rgba(255,255,255,0.3));">${icon}</span> <span style="color:#ddd; font-weight:700;">القحمة:</span> <span style="color:var(--gold-main); font-weight:900; font-size:0.8rem; text-shadow:0 0 8px rgba(212,175,55,0.4);">${temp}°C</span>`; 
     } catch (e) { 
@@ -454,7 +475,7 @@ async function fetchWeather() {
     } 
 }
 
-// إطلاق الانفجار الذهبي
+// الانفجار الذهبي
 function fireConfetti() {
     var duration = 4 * 1000; var end = Date.now() + duration;
     (function frame() {
@@ -472,7 +493,7 @@ function closeEidModal() {
     }
 }
 
-// ⏳ مؤقت انتهاء فعاليات العيد (ينتهي يوم 20 مارس 2026 الساعة 10 صباحاً بتوقيت السعودية)
+// ⏳ مؤقت انتهاء الفعاليات (بكرة الساعة 10 صباحاً)
 const EID_EXPIRY_DATE = new Date('2026-03-20T10:00:00+03:00');
 const isEidActive = new Date() < EID_EXPIRY_DATE;
 
@@ -483,24 +504,18 @@ function hidePreloaderSafely() {
         setTimeout(() => { 
             preloader.classList.add('hidden'); 
             
-            // التحقق إذا فعاليات العيد لسه شغالة (قبل بكرة 10 الصبح)
             if (isEidActive) {
-                // تظهر مرة واحدة فقط لكل جهاز (باستخدام localStorage بدل sessionStorage)
+                // إظهار زر "أجوائنا غير"
+                document.getElementById('eid-replay-btn').style.display = 'inline-block';
+                
                 if(!localStorage.getItem('eidShownDevice')) {
                     const modal = document.getElementById('eid-modal');
                     modal.classList.add('show');
                     fireConfetti();
                     localStorage.setItem('eidShownDevice', 'true'); 
-                    
-                    // إخفاء تلقائي للنافذة بعد 4 ثواني إذا ما ضغط الزر
-                    setTimeout(() => {
-                        if(modal.classList.contains('show')) {
-                            closeEidModal();
-                        }
-                    }, 4000);
+                    setTimeout(() => { if(modal.classList.contains('show')) { closeEidModal(); } }, 4000);
                 }
             } else {
-                // إذا جاء بكرة الساعة 10 الصباح، نلغي إضاءة الهيدر عشان يرجع الموقع عادي
                 document.getElementById('main-header').classList.remove('eid-active-header');
             }
         }, 400);
@@ -508,19 +523,14 @@ function hidePreloaderSafely() {
 }
 
 window.onload = function() { 
-    fetchWeather(); 
-    updateDisplay(); 
-    openTab(null, 'today'); 
-    openSubTab(null, 'players-list'); 
-
+    fetchWeather(); updateDisplay(); openTab(null, 'today'); openSubTab(null, 'players-list'); 
     if(localStorage.getItem('pollVoted')) {
-        let pollBtns = document.getElementById('poll-buttons');
-        let pollRes = document.getElementById('poll-results');
+        let pollBtns = document.getElementById('poll-buttons'); let pollRes = document.getElementById('poll-results');
         if(pollBtns && pollRes) { pollBtns.style.display = 'none'; pollRes.style.display = 'block'; }
     }
 };
 
-// إخفاء التحميل إجبارياً بعد ثانية ونصف
+// إخفاء التحميل إجبارياً بعد ثانية ونصف لضمان عدم التعليق أبداً
 setTimeout(hidePreloaderSafely, 1500);
 
 </script>
