@@ -35,25 +35,23 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* ========= شاشة التحميل طراز X (X-Style Preloader) ========= */
+        /* ========= شاشة التحميل طراز X ========= */
         #preloader { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: #000; z-index: 99999; display: flex; justify-content: center; align-items: center; 
             overflow: hidden; pointer-events: auto;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            transition-delay: 0.2s; 
+            transition: opacity 0.3s ease, visibility 0.3s ease; transition-delay: 0.2s; 
         }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         .preloader-logo { 
             width: 130px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); 
-            animation: gentlePulse 2s ease-in-out infinite;
-            will-change: transform, opacity; transform: scale(1); opacity: 1;
+            animation: gentlePulse 2s ease-in-out infinite; will-change: transform, opacity; transform: scale(1); opacity: 1;
         }
         @keyframes gentlePulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } }
         @keyframes xStyleExit { 0% { transform: scale(1); opacity: 1; } 20% { transform: scale(0.9); opacity: 1; } 100% { transform: scale(50); opacity: 0; } }
         #preloader.run-exit .preloader-logo { animation: xStyleExit 0.4s cubic-bezier(0.7, 0, 0.84, 0) forwards !important; }
 
-        /* ========= نافذة التهنئة بالعيد (Eid Modal) ========= */
+        /* ========= نافذة التهنئة بالعيد ========= */
         .eid-modal {
             display: flex; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); align-items: center; justify-content: center;
@@ -80,7 +78,7 @@
             box-shadow: 0 4px 15px rgba(212,175,55,0.3); transition: 0.3s; position: relative; z-index: 1; font-size: 1rem;
         }
 
-        /* ========= بقية الستايلات ========= */
+        /* ========= ستايلات عامة ========= */
         #image-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999999; justify-content: center; align-items: center; flex-direction: column; animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .modal-img-container { max-height: 70vh; max-width: 85vw; border-radius: 15px; border: 2px solid var(--gold-main); box-shadow: 0 0 30px rgba(212,175,55,0.4); overflow: hidden; }
@@ -111,13 +109,14 @@
 
         .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
         
-        /* 🔥 الهيدر المضيء بمناسبة العيد 🔥 */
         header { 
             text-align: center; padding: 20px 0; background: linear-gradient(to bottom, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.9)); 
             border: 1px solid var(--glass-border); border-top: none; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; 
             margin-bottom: 20px; margin-top: -12px; position: relative; overflow: hidden;
-            animation: eidGlow 2.5s infinite alternate; /* حركة الإضاءة */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
         }
+        /* كلاس إضافي للإضاءة ينحذف برمجياً بكرة */
+        .eid-active-header { animation: eidGlow 2.5s infinite alternate; }
         @keyframes eidGlow { 
             from { box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 5px rgba(212,175,55,0.1); } 
             to { box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.4); border-color: var(--gold-light); } 
@@ -220,21 +219,11 @@
                 <h1 style="color: #f3e5ab; font-size: 3rem; margin: 0; font-weight: 900; text-shadow: 0 4px 20px rgba(212,175,55,0.6);">النهائي الكبير</h1>
                 <span style="color: #d4af37; font-size: 1.5rem; font-weight: 700; background: rgba(212,175,55,0.15); padding: 8px 25px; border-radius: 30px; display: inline-block; margin-top: 15px; border: 1px solid rgba(212,175,55,0.3);">يُحدد لاحقاً</span>
             </div>
-
             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; z-index: 2; background: rgba(20,20,20,0.8); border: 1px solid #aa8c2c; border-radius: 25px; padding: 40px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.9);">
-                <div style="text-align: center; width: 40%;">
-                    <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous">
-                    <h2 style="color: #c5a059; margin: 0; font-size: 1.8rem; font-weight: 900; text-shadow: 0 2px 5px #000;">الفيصلي</h2>
-                </div>
-                
+                <div style="text-align: center; width: 40%;"><img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous"><h2 style="color: #c5a059; margin: 0; font-size: 1.8rem; font-weight: 900; text-shadow: 0 2px 5px #000;">الفيصلي</h2></div>
                 <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; color: #000; box-shadow: 0 0 25px rgba(212,175,55,0.7); flex-shrink: 0; border: 3px solid #141414;">VS</div>
-                
-                <div style="text-align: center; width: 40%;">
-                    <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous">
-                    <h2 style="color: #c5a059; margin: 0; font-size: 1.8rem; font-weight: 900; text-shadow: 0 2px 5px #000;">الوسام</h2>
-                </div>
+                <div style="text-align: center; width: 40%;"><img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous"><h2 style="color: #c5a059; margin: 0; font-size: 1.8rem; font-weight: 900; text-shadow: 0 2px 5px #000;">الوسام</h2></div>
             </div>
-
             <div style="text-align: center; z-index: 2; width: 100%; border-top: 2px dashed rgba(212,175,55,0.4); padding-top: 30px; padding-bottom: 20px;">
                 <p style="color: #f8fafc; font-size: 1.5rem; font-weight: 900; margin: 0 0 10px 0; text-shadow: 0 2px 5px #000;">نكون أو لا نكون.. ليلة كتابة التاريخ! ✍️</p>
                 <p style="color: #d4af37; font-size: 1.1rem; margin: 0; font-weight: 700;">تابعنا عبر تطبيق البطولة 📲</p>
@@ -245,15 +234,15 @@
     <a href="#" id="backToTopBtn" title="العودة للأعلى">⬆️</a>
 
     <div class="container">
-        <header>
+        <header id="main-header" class="eid-active-header">
             <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img" crossorigin="anonymous">
             <h1>بطولة القحمة الرمضانية 28</h1>
             <span class="stadium-tag">✨ عيدكم مبارك - النهائي الكبير ✨</span>
         </header>
         
         <div class="info-bar">
-            <div class="stat-badge"><span class="dot"></span> النشاط: 19,110</div>
-            <div class="stat-badge" id="weather-box">القحمة: --°C</div>
+            <div class="stat-badge"><span class="dot"></span> النشاط: 19,477</div>
+            <div class="stat-badge" id="weather-box" style="display:flex; align-items:center; gap:5px;">⏳ تحديث الجو...</div>
         </div>
 
         <div class="tabs-nav">
@@ -265,13 +254,8 @@
             <button class="tab-btn" onclick="openTab(event, 'about')">حول البطولة</button>
         </div>
 
-        <div id="today" class="tab-content active">
-            <div id="today-match-area"></div>
-        </div>
-
-        <div id="upcoming" class="tab-content">
-            <div id="finals-area"></div>
-        </div>
+        <div id="today" class="tab-content active"><div id="today-match-area"></div></div>
+        <div id="upcoming" class="tab-content"><div id="finals-area"></div></div>
 
         <div id="scorers-main" class="tab-content">
             <div class="sub-tabs">
@@ -279,7 +263,6 @@
                 <button class="sub-tab-btn" onclick="openSubTab(event, 'teams-list')">الإحصائيات</button>
             </div>
             <div class="search-container"><input type="text" class="search-input" id="scorer-search" placeholder="ابحث عن هداف أو فريق..." onkeyup="searchList('scorers')"></div>
-            
             <div id="players-list" class="sub-content active"><div class="group-card"><table id="players-table" style="width:100%; border-collapse:collapse;"></table></div></div>
             <div id="teams-list" class="sub-content"><div class="group-card"><div class="group-header">📊 سجل الأندية</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>له</th><th>عل</th><th>+/-</th></tr></thead><tbody id="teams-tbody"></tbody></table></div></div>
         </div>
@@ -344,82 +327,16 @@ const groupData = [
     {n:"6", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م ...`;
+const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة\n\n* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة\n* تقام مباريات البطولة بنظام المجموعات من دور واحد\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:\n- مجموع النقاط\n- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)\n- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر\n- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب\n- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة\n\n* آلية مباريات الملحق\nبعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:\n * المباراة  رقم (19) \n(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) \n * المباراة رقم ( 20) \n(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) \n\n* مباريات دور الثمانية\nرقم المباراة ( 21) \nاول مج (1) مع اول مج(3)\n\nالمبارة رقم (22) \nاول مج (2)   مع أول مج ( 4) \n المباراة رقم ( 23)\nاول مج ( 5) مع اول مج ( 7 ) \nالمباراة رقم (24) \nاول مج (6) مع اول مج ( 8) \n\n(( ملاحظة مهمة)) \nفي حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: \nالمباراة رقم ( 23)\n اول مج ( 5 ) مع أول مج ( 8 ) \nالمباراة رقم (24) \nاول مج( 6) مع أول مج(7) \nوذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية \n\nمباريات نصف النهاىي\n المباراة رقم (25) \nفائز (21) مع فائز( 23) \nالمباراة رقم (26)\n فائز (22) مع فائز 24\n\nالنهائي \nالمباراة رقم (27)\nفائز (25) مع فائز (26)\n\nبعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي \nتم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة \nوبالتالي اصبح ترتيب الاوائل على النحو التالي :\nالمجموعة الاولى فريق السوق \nالمجموعة الثانية فريق ساحل مغزل\nالمجموعة الثالثة فريق الصقر \nالمجموعة الرابعة فريق الساحل الرياضي \nالمجموعه الخامسة فريق صقليه\nالمجموعة السادسة فريق الوسام \nالمجموعة السابعة فريق عمق \nالمجموعة الثامنه فريق الفيصلي\n\nوتلعب مباريات دور الثمانية(ربع النهائي )\nحسب نظام البطولة \nاول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)\nاول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)\n—————————————————- \nوحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا\nاول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)\nاول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)\n——————————————————\nمباريات دور الاربعة ( نصف النهائي )\nرقم المباراة (25)\nفائز المباراة رقم  (21) مع فائز المباراة رقم  (23)\nرقم المباراة (26)\nفائز المباراة رقم (22) مع فائز المباراة رقم (24)\n——————————————————-\nالمباراة النهائية \nرقم المباراة (27)\nفائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
 
-function openTab(evt, tabName) {
-    let content = document.getElementsByClassName("tab-content"), btns = document.getElementsByClassName("tab-btn");
-    for (let i = 0; i < content.length; i++) content[i].classList.remove("active");
-    for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active");
-    void document.getElementById(tabName).offsetWidth;
-    document.getElementById(tabName).classList.add("active");
-    if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } 
-    else { let activeBtn = document.querySelector(".tab-btn[onclick*='" + tabName + "']"); if(activeBtn) activeBtn.classList.add("active"); }
-}
+function openTab(evt, tabName) { let content = document.getElementsByClassName("tab-content"), btns = document.getElementsByClassName("tab-btn"); for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); void document.getElementById(tabName).offsetWidth; document.getElementById(tabName).classList.add("active"); if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } else { let activeBtn = document.querySelector(".tab-btn[onclick*='" + tabName + "']"); if(activeBtn) activeBtn.classList.add("active"); } }
+function openSubTab(evt, subName) { let content = document.getElementsByClassName("sub-content"), btns = document.getElementsByClassName("sub-tab-btn"); for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); void document.getElementById(subName).offsetWidth; document.getElementById(subName).classList.add("active"); if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } else { let activeBtn = document.querySelector(".sub-tab-btn[onclick*='" + subName + "']"); if(activeBtn) activeBtn.classList.add("active"); } }
+function searchList(type) { let input = document.getElementById(type === 'scorers' ? 'scorer-search' : 'archive-search'); let filter = input.value.toUpperCase(); let cards = type === 'scorers' ? document.getElementById('players-table').getElementsByTagName('tr') : document.getElementById('archive-area').getElementsByClassName('match-card'); for (let i = 0; i < cards.length; i++) { let txt = cards[i].textContent || cards[i].innerText; cards[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "" : "none"; } }
+function updateDots() { const slider = document.getElementById('finalSlider'); if(!slider) return; const scrollPos = Math.abs(slider.scrollLeft); const slideWidth = slider.querySelector('.slide-card').offsetWidth + 12; let index = Math.round(scrollPos / slideWidth); if(index > 1) index = 1; document.querySelectorAll('.dot-s').forEach((d, i) => { d.classList.toggle('active', i === index); }); }
+function submitPoll(team) { if(localStorage.getItem('pollVoted')) return; document.getElementById('poll-buttons').style.display = 'none'; document.getElementById('poll-results').style.display = 'block'; localStorage.setItem('pollVoted', 'true'); }
+function resetButton(btn, originalText) { btn.innerText = originalText; btn.style.opacity = '1'; btn.disabled = false; }
 
-function openSubTab(evt, subName) {
-    let content = document.getElementsByClassName("sub-content"), btns = document.getElementsByClassName("sub-tab-btn");
-    for (let i = 0; i < content.length; i++) content[i].classList.remove("active");
-    for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active");
-    void document.getElementById(subName).offsetWidth;
-    document.getElementById(subName).classList.add("active");
-    if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } 
-    else { let activeBtn = document.querySelector(".sub-tab-btn[onclick*='" + subName + "']"); if(activeBtn) activeBtn.classList.add("active"); }
-}
-
-function searchList(type) {
-    let input = document.getElementById(type === 'scorers' ? 'scorer-search' : 'archive-search');
-    let filter = input.value.toUpperCase();
-    let cards = type === 'scorers' ? document.getElementById('players-table').getElementsByTagName('tr') : document.getElementById('archive-area').getElementsByClassName('match-card');
-    for (let i = 0; i < cards.length; i++) {
-        let txt = cards[i].textContent || cards[i].innerText;
-        cards[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "" : "none";
-    }
-}
-
-function updateDots() {
-    const slider = document.getElementById('finalSlider');
-    if(!slider) return;
-    const scrollPos = Math.abs(slider.scrollLeft); 
-    const slideWidth = slider.querySelector('.slide-card').offsetWidth + 12; 
-    let index = Math.round(scrollPos / slideWidth);
-    if(index > 1) index = 1; 
-    document.querySelectorAll('.dot-s').forEach((d, i) => {
-        d.classList.toggle('active', i === index);
-    });
-}
-
-function submitPoll(team) {
-    if(localStorage.getItem('pollVoted')) return; 
-    document.getElementById('poll-buttons').style.display = 'none';
-    document.getElementById('poll-results').style.display = 'block';
-    localStorage.setItem('pollVoted', 'true');
-}
-
-function resetButton(btn, originalText) {
-    btn.innerText = originalText;
-    btn.style.opacity = '1';
-    btn.disabled = false;
-}
-
-// 📸 دالة التصوير الخرافية
-async function shareMatchAsImage() {
-    const btn = document.getElementById('share-btn');
-    const originalText = btn.innerText;
-    btn.innerText = '⏳ ثواني...'; btn.style.opacity = '0.7'; btn.disabled = true;
-
-    try {
-        const element = document.getElementById('snapchat-poster');
-        const canvas = await html2canvas(element, { backgroundColor: '#050505', scale: 2, useCORS: true, allowTaint: true, logging: false });
-        const imgData = canvas.toDataURL('image/png');
-        document.getElementById('generated-image').src = imgData;
-        document.getElementById('image-modal').style.display = 'flex';
-    } catch (err) {
-        console.error('خطأ في المعالجة:', err);
-        alert('حدث خطأ أثناء التجهيز، يرجى المحاولة مرة أخرى.');
-    } finally {
-        resetButton(btn, originalText);
-    }
-}
+async function shareMatchAsImage() { const btn = document.getElementById('share-btn'); const originalText = btn.innerText; btn.innerText = '⏳ ثواني...'; btn.style.opacity = '0.7'; btn.disabled = true; try { const element = document.getElementById('snapchat-poster'); const canvas = await html2canvas(element, { backgroundColor: '#050505', scale: 2, useCORS: true, allowTaint: true, logging: false }); const imgData = canvas.toDataURL('image/png'); document.getElementById('generated-image').src = imgData; document.getElementById('image-modal').style.display = 'flex'; } catch (err) { alert('حدث خطأ أثناء التجهيز، يرجى المحاولة مرة أخرى.'); } finally { resetButton(btn, originalText); } }
 
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
@@ -435,23 +352,13 @@ function updateDisplay() {
         </div>
         
         <div style="display:flex; justify-content:center; align-items:center; margin-bottom: 25px; position: relative;">
-            <div class="champions-logo-wrapper">
-                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="champions-logo" crossorigin="anonymous">
-                <div class="champions-floor-shadow"></div>
-                <span class="champions-team-name">الفيصلي</span>
-            </div>
+            <div class="champions-logo-wrapper"><img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="champions-logo" crossorigin="anonymous"><div class="champions-floor-shadow"></div><span class="champions-team-name">الفيصلي</span></div>
             <div class="champions-vs-badge"><div class="champions-vs-text">VS</div></div>
-            <div class="champions-logo-wrapper">
-                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="champions-logo" crossorigin="anonymous">
-                <div class="champions-floor-shadow"></div>
-                <span class="champions-team-name">الوسام</span>
-            </div>
+            <div class="champions-logo-wrapper"><img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="champions-logo" crossorigin="anonymous"><div class="champions-floor-shadow"></div><span class="champions-team-name">الوسام</span></div>
         </div>
 
         <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:10px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); border-bottom: 1px solid rgba(212,175,55,0.3);">
-            <span style="font-size:0.8rem; color:var(--gold-light); font-weight:900; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
-                نكون أو لا نكون.. ليلة كتابة التاريخ في القحمة! ✍️
-            </span>
+            <span style="font-size:0.8rem; color:var(--gold-light); font-weight:900; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">نكون أو لا نكون.. ليلة كتابة التاريخ في القحمة! ✍️</span>
         </div>
     </div>
     
@@ -478,10 +385,7 @@ function updateDisplay() {
 
         <div class="poll-container" id="poll-widget" style="margin-top: 0; margin-bottom: 15px;">
             <div class="poll-title">📊 من تتوقع أن يحسم النهائي؟</div>
-            <div class="poll-btns" id="poll-buttons">
-                <button class="poll-btn" onclick="submitPoll('faisaly')">الفيصلي 🦅</button>
-                <button class="poll-btn" onclick="submitPoll('wesam')">الوسام ⚔️</button>
-            </div>
+            <div class="poll-btns" id="poll-buttons"><button class="poll-btn" onclick="submitPoll('faisaly')">الفيصلي 🦅</button><button class="poll-btn" onclick="submitPoll('wesam')">الوسام ⚔️</button></div>
             <div class="poll-results" id="poll-results"><span style="color:var(--green-neon); font-weight:bold; font-size:0.85rem;">✔️ شكراً لتصويتك!</span><div style="font-size:0.7rem; color:var(--text-muted); margin-top:5px;">تم إخفاء النتائج لزيادة الحماس 🔥</div></div>
         </div>
         <div class="slider-wrapper">
@@ -503,15 +407,11 @@ function updateDisplay() {
                     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; text-align:right; margin-top:8px;">
                         <div style="background:rgba(255,255,255,0.03); padding:8px; border-radius:10px; border:1px solid rgba(212,175,55,0.2);">
                             <div style="font-weight:900; color:var(--gold-light); font-size:0.8rem; margin-bottom:6px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:4px;">🦅 الفيصلي</div>
-                            <ul style="padding-right:12px; margin:0; color:#ccc; font-size:0.65rem; line-height:1.6;">
-                                <li>فوز ع. خليج الصوالحة</li><li>خسارة م. الوسام</li><li>فوز ع. دبسا</li><li>فوز ع. صقلية</li><li>فوز ترجيح ع. الصقر</li>
-                            </ul>
+                            <ul style="padding-right:12px; margin:0; color:#ccc; font-size:0.65rem; line-height:1.6;"><li>فوز ع. خليج الصوالحة</li><li>خسارة م. الوسام</li><li>فوز ع. دبسا</li><li>فوز ع. صقلية</li><li>فوز ترجيح ع. الصقر</li></ul>
                         </div>
                         <div style="background:rgba(255,255,255,0.03); padding:8px; border-radius:10px; border:1px solid rgba(212,175,55,0.2);">
                             <div style="font-weight:900; color:var(--green-neon); font-size:0.8rem; margin-bottom:6px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:4px;">⚔️ الوسام</div>
-                            <ul style="padding-right:12px; margin:0; color:#ccc; font-size:0.65rem; line-height:1.6;">
-                                <li>فوز ع. خليج الصوالحة</li><li>فوز ع. الفيصلي</li><li>فوز ترجيح ع. عمق</li><li>فوز ع. ساحل مغزل</li>
-                            </ul>
+                            <ul style="padding-right:12px; margin:0; color:#ccc; font-size:0.65rem; line-height:1.6;"><li>فوز ع. خليج الصوالحة</li><li>فوز ع. الفيصلي</li><li>فوز ترجيح ع. عمق</li><li>فوز ع. ساحل مغزل</li></ul>
                         </div>
                     </div>
                 </div>
@@ -526,17 +426,37 @@ function updateDisplay() {
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--gold-main); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     const stats = {}; archiveData.forEach(day => day.matches.forEach(m => { const res = m.r.split(' - ').map(Number); if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 }; stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; }));
     document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--gold-main); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
-    // document.getElementById('about-text-content').innerText = aboutFullText; /* ملغي للاختصار */
+    
+    // استعادة نص البطولة بالكامل
+    document.getElementById('about-text-content').innerText = aboutFullText; 
 }
 
 window.addEventListener('scroll', function() { let topBtn = document.getElementById('backToTopBtn'); if (window.scrollY > 400) { topBtn.classList.add('show'); } else { topBtn.classList.remove('show'); } });
 
-async function fetchWeather() { try { const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.02&longitude=41.74&current_weather=true'); const data = await response.json(); document.getElementById('weather-box').innerHTML = `القحمة: ${Math.round(data.current_weather.temperature)}°C`; } catch (e) { document.getElementById('weather-box').innerHTML = "القحمة: 26°C"; } }
+// 🔥 ويدجيت الطقس المطور VIP 🔥
+async function fetchWeather() { 
+    try { 
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.02&longitude=41.74&current_weather=true'); 
+        const data = await response.json(); 
+        const temp = Math.round(data.current_weather.temperature);
+        const code = data.current_weather.weathercode;
+        
+        let icon = '⛅'; // افتراضي غائم جزئياً
+        if(code === 0) icon = '☀️'; // صافي
+        else if(code > 0 && code <= 3) icon = '⛅'; 
+        else if(code >= 45 && code <= 48) icon = '🌫️'; // ضباب
+        else if(code >= 51 && code <= 67 || (code >= 80 && code <= 82)) icon = '🌧️'; // ممطر
+        else if(code >= 95) icon = '⛈️'; // رعد
+        
+        document.getElementById('weather-box').innerHTML = `<span style="font-size:1.1rem; filter:drop-shadow(0 0 5px rgba(255,255,255,0.3));">${icon}</span> <span style="color:#ddd; font-weight:700;">القحمة:</span> <span style="color:var(--gold-main); font-weight:900; font-size:0.8rem; text-shadow:0 0 8px rgba(212,175,55,0.4);">${temp}°C</span>`; 
+    } catch (e) { 
+        document.getElementById('weather-box').innerHTML = `<span style="font-size:1.1rem;">⛅</span> <span style="color:#ddd; font-weight:700;">القحمة:</span> <span style="color:var(--gold-main); font-weight:900; font-size:0.8rem;">26°C</span>`; 
+    } 
+}
 
-// 🔥 دالة إطلاق الانفجار الذهبي
+// إطلاق الانفجار الذهبي
 function fireConfetti() {
-    var duration = 4 * 1000;
-    var end = Date.now() + duration;
+    var duration = 4 * 1000; var end = Date.now() + duration;
     (function frame() {
         confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#d4af37', '#f3e5ab', '#aa8c2c'] });
         confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#d4af37', '#f3e5ab', '#aa8c2c'] });
@@ -544,31 +464,49 @@ function fireConfetti() {
     }());
 }
 
-// 🚫 إغلاق نافذة العيد
 function closeEidModal() {
-    document.getElementById('eid-modal').classList.remove('show');
-    // إطلاق الألعاب النارية الذهبية مرة ثانية لما يضغط وأنت بخير!
-    fireConfetti();
+    const modal = document.getElementById('eid-modal');
+    if (modal.classList.contains('show')) {
+        modal.classList.remove('show');
+        fireConfetti();
+    }
 }
 
-// 🛡️ حل قاطع لمشكلة تعليق شاشة التحميل (مستحيل تعلق بعد اليوم)
+// ⏳ مؤقت انتهاء فعاليات العيد (ينتهي يوم 20 مارس 2026 الساعة 10 صباحاً بتوقيت السعودية)
+const EID_EXPIRY_DATE = new Date('2026-03-20T10:00:00+03:00');
+const isEidActive = new Date() < EID_EXPIRY_DATE;
+
 function hidePreloaderSafely() {
     const preloader = document.getElementById('preloader');
     if(preloader && !preloader.classList.contains('hidden')) {
         preloader.classList.add('run-exit');
         setTimeout(() => { 
             preloader.classList.add('hidden'); 
-            // إظهار نافذة العيد والانفجار الذهبي بعد اختفاء الشعار مباشرة
-            if(!sessionStorage.getItem('eidShown')) {
-                document.getElementById('eid-modal').classList.add('show');
-                fireConfetti();
-                sessionStorage.setItem('eidShown', 'true'); // عشان ما تزعجه كل مرة يفتح الموقع
+            
+            // التحقق إذا فعاليات العيد لسه شغالة (قبل بكرة 10 الصبح)
+            if (isEidActive) {
+                // تظهر مرة واحدة فقط لكل جهاز (باستخدام localStorage بدل sessionStorage)
+                if(!localStorage.getItem('eidShownDevice')) {
+                    const modal = document.getElementById('eid-modal');
+                    modal.classList.add('show');
+                    fireConfetti();
+                    localStorage.setItem('eidShownDevice', 'true'); 
+                    
+                    // إخفاء تلقائي للنافذة بعد 4 ثواني إذا ما ضغط الزر
+                    setTimeout(() => {
+                        if(modal.classList.contains('show')) {
+                            closeEidModal();
+                        }
+                    }, 4000);
+                }
+            } else {
+                // إذا جاء بكرة الساعة 10 الصباح، نلغي إضاءة الهيدر عشان يرجع الموقع عادي
+                document.getElementById('main-header').classList.remove('eid-active-header');
             }
         }, 400);
     }
 }
 
-// تشغيل الموقع
 window.onload = function() { 
     fetchWeather(); 
     updateDisplay(); 
@@ -582,7 +520,7 @@ window.onload = function() {
     }
 };
 
-// إخفاء شاشة التحميل "إجبارياً" بعد ثانية ونصف، سواءً حمل الموقع أو لا!
+// إخفاء التحميل إجبارياً بعد ثانية ونصف
 setTimeout(hidePreloaderSafely, 1500);
 
 </script>
