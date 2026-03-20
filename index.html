@@ -356,31 +356,45 @@ async function shareMatchAsImage() { const btn = document.getElementById('share-
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     todayArea.innerHTML = `
-    <div class="champions-card">
-        <div class="champions-glow"></div>
-        <div class="champions-ribbon">6 شـوال</div>
+    <div class="champions-card" style="padding: 15px 10px; margin-top: 5px;">
+        <div class="champions-glow" style="width: 140px; height: 140px;"></div>
         
-        <div style="position:relative; z-index:2; margin-bottom: 20px;">
-            <div style="font-size:2.2rem; text-shadow:0 0 15px rgba(212,175,55,0.6); margin-bottom:0;">🏆</div>
-            <h3 style="color:var(--gold-light); margin:5px 0 0 0; font-size:1.3rem; font-weight:900; letter-spacing: 1px;">النهائي الكبير</h3>
-            <span style="font-size:0.75rem; color:var(--gold-dark); font-weight:900;">بطولة القحمة الرمضانية</span>
+        <div style="position:relative; z-index:2; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <div style="font-size:1.6rem; text-shadow:0 0 15px rgba(212,175,55,0.6); margin-bottom:0;">🏆</div>
+            <div style="text-align: right;">
+                <h3 style="color:var(--gold-light); margin:0; font-size:1.1rem; font-weight:900; letter-spacing: 0.5px;">النهائي الكبير</h3>
+                <span style="font-size:0.65rem; color:var(--gold-dark); font-weight:900;">بطولة القحمة الرمضانية</span>
+            </div>
         </div>
         
-        <div class="countdown-container" id="countdown-timer">
-            <div class="count-box"><span class="count-num" id="cd-sec">00</span><span class="count-label">ثانية</span></div>
-            <div class="count-box"><span class="count-num" id="cd-min">00</span><span class="count-label">دقيقة</span></div>
-            <div class="count-box"><span class="count-num" id="cd-hour">00</span><span class="count-label">ساعة</span></div>
-            <div class="count-box"><span class="count-num" id="cd-day">00</span><span class="count-label">يوم</span></div>
-        </div>
-        
-        <div style="display:flex; justify-content:center; align-items:center; margin-bottom: 25px; position: relative;">
-            <div class="champions-logo-wrapper"><img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="champions-logo" crossorigin="anonymous"><div class="champions-floor-shadow"></div><span class="champions-team-name">الفيصلي</span></div>
-            <div class="champions-vs-badge"><div class="champions-vs-text">VS</div></div>
-            <div class="champions-logo-wrapper"><img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="champions-logo" crossorigin="anonymous"><div class="champions-floor-shadow"></div><span class="champions-team-name">الوسام</span></div>
+        <div style="display:flex; justify-content:center; align-items:center; margin-bottom: 12px; position: relative;">
+            <div class="champions-logo-wrapper">
+                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="champions-logo" style="width: 55px; height: 55px; margin-bottom: 5px;" crossorigin="anonymous">
+                <div class="champions-floor-shadow" style="width: 35px; margin-top: -10px; margin-bottom: 8px;"></div>
+                <span class="champions-team-name" style="font-size: 0.8rem;">الفيصلي</span>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 15px; z-index: 2;">
+                <div class="champions-vs-badge" style="width: 32px; height: 32px; margin: 0 0 8px 0;"><div class="champions-vs-text" style="font-size: 0.85rem;">VS</div></div>
+                <span style="background: rgba(212,175,55,0.15); color: var(--gold-light); font-size: 0.7rem; font-weight: 900; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(212,175,55,0.4); box-shadow: 0 2px 5px rgba(0,0,0,0.5); white-space: nowrap;">6 شـوال</span>
+            </div>
+
+            <div class="champions-logo-wrapper">
+                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="champions-logo" style="width: 55px; height: 55px; margin-bottom: 5px;" crossorigin="anonymous">
+                <div class="champions-floor-shadow" style="width: 35px; margin-top: -10px; margin-bottom: 8px;"></div>
+                <span class="champions-team-name" style="font-size: 0.8rem;">الوسام</span>
+            </div>
         </div>
 
-        <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:10px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); border-bottom: 1px solid rgba(212,175,55,0.3);">
-            <span style="font-size:0.8rem; color:var(--gold-light); font-weight:900; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">نكون أو لا نكون.. ليلة كتابة التاريخ في القحمة! ✍️</span>
+        <div class="countdown-container" id="countdown-timer" style="margin: 10px 0 15px; gap: 8px;">
+            <div class="count-box" style="padding: 8px 2px; min-width: 55px;"><span class="count-num" id="cd-sec" style="font-size: 1.3rem;">00</span><span class="count-label" style="font-size: 0.6rem;">ثانية</span></div>
+            <div class="count-box" style="padding: 8px 2px; min-width: 55px;"><span class="count-num" id="cd-min" style="font-size: 1.3rem;">00</span><span class="count-label" style="font-size: 0.6rem;">دقيقة</span></div>
+            <div class="count-box" style="padding: 8px 2px; min-width: 55px;"><span class="count-num" id="cd-hour" style="font-size: 1.3rem;">00</span><span class="count-label" style="font-size: 0.6rem;">ساعة</span></div>
+            <div class="count-box" style="padding: 8px 2px; min-width: 55px;"><span class="count-num" id="cd-day" style="font-size: 1.3rem;">00</span><span class="count-label" style="font-size: 0.6rem;">يوم</span></div>
+        </div>
+
+        <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:8px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); border-bottom: 1px solid rgba(212,175,55,0.3);">
+            <span style="font-size:0.75rem; color:var(--gold-light); font-weight:900; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">نكون أو لا نكون.. ليلة كتابة التاريخ في القحمة! ✍️</span>
         </div>
     </div>
     
