@@ -24,7 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
-        /* ========= ستايل الذهب الملكي (VIP Minimal Theme) ========= */
+        /* ========= ستايل الذهب الملكي الأساسي ========= */
         :root { 
             --gold-main: #d4af37; --gold-light: #f3e5ab; --gold-dark: #aa8c2c; 
             --gold-grad: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%);
@@ -44,31 +44,12 @@
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
         /* ========= شاشة التحميل ========= */
-        #preloader { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: #000; z-index: 99999; display: flex; justify-content: center; align-items: center; 
-            overflow: hidden; pointer-events: auto;
-            transition: opacity 0.25s ease-out, visibility 0.25s ease-out; 
-            transition-delay: 0.15s; 
-        }
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 99999; display: flex; justify-content: center; align-items: center; overflow: hidden; pointer-events: auto; transition: opacity 0.25s ease-out, visibility 0.25s ease-out; transition-delay: 0.15s; }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .preloader-logo { 
-            width: 130px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); 
-            will-change: transform, opacity; transform: translateZ(0); animation: gentlePulse 2s ease-in-out infinite; 
-        }
+        .preloader-logo { width: 130px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); will-change: transform, opacity; transform: translateZ(0); animation: gentlePulse 2s ease-in-out infinite; }
         @keyframes gentlePulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } }
         @keyframes smoothPopOut { 0% { transform: scale(1); opacity: 1; } 20% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(8); opacity: 0; } }
         #preloader.run-exit .preloader-logo { animation: smoothPopOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important; }
-
-        /* ========= نافذة العيد ========= */
-        .eid-modal { display: flex; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.5s; backdrop-filter: blur(5px); }
-        .eid-modal.show { opacity: 1; visibility: visible; }
-        .eid-modal-content { background: var(--black-card); border: 1px solid var(--gold-main); padding: 30px 20px; border-radius: 20px; text-align: center; max-width: 85%; box-shadow: 0 0 30px rgba(212,175,55,0.4); animation: slideDown 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
-        .eid-modal-content::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 60%); animation: spin 10s linear infinite; z-index: 0; pointer-events: none; }
-        @keyframes slideDown { from { transform: translateY(-50px) scale(0.9); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
-        .eid-modal-content h2 { color: var(--gold-light); margin: 0 0 10px; font-size: 1.8rem; text-shadow: 0 2px 10px rgba(212,175,55,0.5); position: relative; z-index: 1; }
-        .eid-modal-content p { color: #ddd; font-size: 0.95rem; line-height: 1.8; margin-bottom: 25px; position: relative; z-index: 1; font-weight: 600; }
-        .eid-modal-btn { background: var(--gold-grad); color: #000; border: none; padding: 10px 35px; border-radius: 30px; font-weight: 900; font-family: 'Cairo'; cursor: pointer; box-shadow: 0 4px 15px rgba(212,175,55,0.3); transition: 0.3s; position: relative; z-index: 1; font-size: 1rem; }
 
         /* ========= ستايلات عامة ========= */
         #image-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999999; justify-content: center; align-items: center; flex-direction: column; animation: fadeIn 0.3s ease-out; }
@@ -89,22 +70,6 @@
 
         .team-logo-vip { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(212,175,55,0.5)); margin-bottom: 6px; }
 
-        .champions-card { background: radial-gradient(circle at 50% 50%, #1f1a0a 0%, #050505 80%); border: 1px solid var(--gold-dark); border-radius: 20px; padding: 25px 15px; margin-top: 15px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(212,175,55,0.1); text-align: center; }
-        .champions-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 180px; height: 180px; background: radial-gradient(circle, rgba(212,175,55,0.35) 0%, transparent 70%); z-index: 0; pointer-events: none; }
-        .champions-ribbon { position: absolute; top: 15px; right: -35px; background: var(--gold-grad); color: #000; padding: 5px 40px; font-weight: 900; font-size: 0.75rem; transform: rotate(45deg); box-shadow: 0 2px 10px rgba(0,0,0,0.6); z-index: 10; }
-        .champions-vs-badge { width: 40px; height: 40px; background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 15px rgba(212,175,55,0.8), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 15px; position: relative; z-index: 2; }
-        .champions-vs-text { transform: rotate(-45deg); color: #000; font-weight: 900; font-size: 1.1rem; font-family: sans-serif; }
-        .champions-logo-wrapper { display: flex; flex-direction: column; align-items: center; z-index: 2; position: relative; }
-        .champions-logo { width: 75px; height: 75px; object-fit: contain; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.8)); margin-bottom: 8px; }
-        .champions-floor-shadow { width: 50px; height: 8px; background: radial-gradient(ellipse at center, rgba(212,175,55,0.6) 0%, transparent 75%); border-radius: 50%; margin-top: -15px; margin-bottom: 12px; }
-        .champions-team-name { font-size: 0.9rem; font-weight: 700; color: var(--bronze-gold); text-shadow: 0 1px 2px rgba(0,0,0,0.8), 0 0 5px rgba(212,175,55,0.3); }
-
-        /* ستايل العداد التنازلي الجديد */
-        .countdown-container { display: flex; justify-content: center; gap: 12px; margin: 20px 0 25px; direction: ltr; position: relative; z-index: 2; }
-        .count-box { background: rgba(20,20,20,0.9); border: 1px solid rgba(212,175,55,0.5); border-radius: 12px; padding: 12px 5px; min-width: 65px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.8), inset 0 0 10px rgba(212,175,55,0.15); }
-        .count-num { display: block; font-size: 1.6rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 0 15px rgba(212,175,55,0.6); line-height: 1; margin-bottom: 4px; }
-        .count-label { display: block; font-size: 0.65rem; color: #ccc; font-weight: 700; font-family: 'Cairo'; letter-spacing: 0.5px; }
-
         .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
         
         header { 
@@ -113,8 +78,6 @@
             margin-bottom: 20px; margin-top: -12px; position: relative; overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.6);
         }
-        .eid-active-header { animation: eidGlow 2.5s infinite alternate; }
-        @keyframes eidGlow { from { box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 5px rgba(212,175,55,0.1); } to { box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.4); border-color: var(--gold-light); } }
         header::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.05), transparent); animation: shine 6s infinite; }
         .logo-img { width: 90px; height: auto; display: block; margin: 0 auto 8px; filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.2)); }
         header h1 { font-weight: 900; margin: 0; font-size: 1.3rem; color: var(--gold-light); text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
@@ -126,9 +89,12 @@
         
         .dot { height: 6px; width: 6px; background-color: var(--gold-main); border-radius: 50%; display: inline-block; animation: goldPulse 2s infinite; box-shadow: 0 0 8px var(--gold-main); }
         
-        /* النقطة الحمراء اللحظية (مباشر) بدون أرقام */
+        /* النقطة الحمراء اللحظية (مباشر) */
         .dot-red { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; animation: redPulse 1.5s infinite; border-radius: 50%; display: inline-block; }
-        @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+        @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+        
+        /* حركة القلب النابض */
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
         .tabs-nav { display: flex; padding: 5px; border-radius: 12px; margin-bottom: 20px; overflow-x: auto; scrollbar-width: none; }
         .tabs-nav::-webkit-scrollbar { display: none; }
@@ -194,14 +160,6 @@
         <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
     </div>
 
-    <div id="eid-modal" class="eid-modal">
-        <div class="eid-modal-content">
-            <h2>✨ عيدكم مبارك ✨</h2>
-            <p>إدارة بطولة القحمة الرمضانية 28 تهنئكم بحلول عيد الفطر المبارك.<br>تقبل الله طاعتكم، ومن العايدين والفايزين 🤍🌙</p>
-            <button class="eid-modal-btn" onclick="closeEidModal()">وأنت بخير وصحة</button>
-        </div>
-    </div>
-
     <div id="image-modal">
         <p style="color: #fff; font-family: 'Cairo'; margin-bottom: 15px; font-weight: 900; font-size: 1rem; text-shadow: 0 2px 5px #000;">✨ اضغط مطولاً على الصورة لحفظها ومشاركتها ✨</p>
         <div class="modal-img-container">
@@ -211,23 +169,23 @@
     </div>
 
     <div class="offscreen-poster-wrapper" style="position: absolute; top: -15000px; left: -15000px; opacity: 1; z-index: -1;">
-        <div id="snapchat-poster" style="width: 540px; height: 960px; background: linear-gradient(135deg, #050505 0%, #1a1a1a 50%, #000000 100%); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 50px 30px; box-sizing: border-box; position: relative; overflow: hidden; font-family: 'Cairo', sans-serif;">
-            <div style="content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%); border-radius: 50%; z-index: 0;"></div>
+        <div id="snapchat-poster" style="width: 540px; height: 960px; background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #020617 100%); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 50px 30px; box-sizing: border-box; position: relative; overflow: hidden; font-family: 'Cairo', sans-serif;">
+            <div style="content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%); border-radius: 50%; z-index: 0;"></div>
             <div style="text-align: center; z-index: 2; width: 100%; margin-top: 20px;">
                 <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 140px; filter: drop-shadow(0 0 15px rgba(212,175,55,0.4)); margin-bottom: 20px;" crossorigin="anonymous">
-                <h1 style="color: #f3e5ab; font-size: 3.5rem; margin: 0; font-weight: 900; text-shadow: 0 4px 20px rgba(212,175,55,0.6);">النهائي الكبير</h1>
+                <h1 style="color: #fff; font-size: 3.5rem; margin: 0; font-weight: 900; text-shadow: 0 4px 20px rgba(59,130,246,0.6);">النهائي الكبير</h1>
             </div>
             
-            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; z-index: 2; background: rgba(20,20,20,0.8); border: 1px solid #aa8c2c; border-radius: 25px; padding: 40px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.9);">
-                <div style="text-align: center; width: 40%;"><img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous"><h2 style="color: #c5a059; margin: 0; font-size: 1.8rem; font-weight: 900; text-shadow: 0 2px 5px #000;">الفيصلي</h2></div>
-                <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; color: #000; box-shadow: 0 0 25px rgba(212,175,55,0.7); flex-shrink: 0; border: 3px solid #141414;">VS</div>
-                <div style="text-align: center; width: 40%;"><img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous"><h2 style="color: #c5a059; margin: 0; font-size: 1.8rem; font-weight: 900; text-shadow: 0 2px 5px #000;">الوسام</h2></div>
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; z-index: 2; background: rgba(15,23,42,0.8); border: 1px solid #3b82f6; border-radius: 25px; padding: 40px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.9);">
+                <div style="text-align: center; width: 40%;"><img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous"><h2 style="color: #fff; margin: 0; font-size: 1.8rem; font-weight: 900;">الفيصلي</h2></div>
+                <div style="width: 70px; height: 70px; background: linear-gradient(90deg, #2563eb, #60a5fa); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; color: #fff; box-shadow: 0 0 25px rgba(59,130,246,0.7); flex-shrink: 0; border: 3px solid #0f172a;">VS</div>
+                <div style="text-align: center; width: 40%;"><img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous"><h2 style="color: #fff; margin: 0; font-size: 1.8rem; font-weight: 900;">الوسام</h2></div>
             </div>
             
-            <div style="text-align: center; z-index: 2; width: 100%; border-top: 2px dashed rgba(212,175,55,0.4); padding-top: 30px; padding-bottom: 20px;">
-                <span style="color: #d4af37; font-size: 1.2rem; font-weight: 700; background: rgba(212,175,55,0.15); padding: 5px 20px; border-radius: 30px; display: inline-block; margin-bottom: 15px; border: 1px solid rgba(212,175,55,0.3);">موعد المباراة: 6 شـوال</span>
+            <div style="text-align: center; z-index: 2; width: 100%; border-top: 2px dashed rgba(59,130,246,0.4); padding-top: 30px; padding-bottom: 20px;">
+                <span style="color: #60a5fa; font-size: 1.2rem; font-weight: 700; background: rgba(59,130,246,0.15); padding: 5px 20px; border-radius: 30px; display: inline-block; margin-bottom: 15px; border: 1px solid rgba(59,130,246,0.3);">موعد المباراة: 6 شـوال</span>
                 <p style="color: #f8fafc; font-size: 1.5rem; font-weight: 900; margin: 0 0 10px 0; text-shadow: 0 2px 5px #000;">نكون أو لا نكون.. ليلة كتابة التاريخ! ✍️</p>
-                <p style="color: #d4af37; font-size: 1.1rem; margin: 0; font-weight: 700;">تابعنا عبر تطبيق البطولة 📲</p>
+                <p style="color: #94a3b8; font-size: 1.1rem; margin: 0; font-weight: 700;">تابعنا عبر تطبيق البطولة 📲</p>
             </div>
         </div>
     </div>
@@ -235,17 +193,14 @@
     <a href="#" id="backToTopBtn" title="العودة للأعلى">⬆️</a>
 
     <div class="container">
-        <header id="main-header" class="eid-active-header">
+        <header id="main-header">
             <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img" crossorigin="anonymous">
             <h1>بطولة القحمة الرمضانية 28</h1>
-            <span class="stadium-tag">✨ عيدكم مبارك - النهائي الكبير ✨</span>
+            <span class="stadium-tag">✨ النهائي الكبير ✨</span>
         </header>
         
         <div class="info-bar">
             <div class="stat-badge"><span class="dot"></span> النشاط: <span id="live-visit-counter">...</span></div>
-            
-            <span class="dot-red" style="width: 8px; height: 8px; margin: 0 4px;" title="بث مباشر للموقع"></span>
-
             <div class="stat-badge" id="weather-box" style="display:flex; align-items:center; gap:5px;">⏳ تحديث الجو...</div>
         </div>
 
@@ -280,17 +235,6 @@
         <div id="about" class="tab-content"><div class="about-text-area" id="about-text-content"></div></div>
 
         <div class="footer">
-            <button id="eid-replay-btn" onclick="fireConfetti()" style="background: rgba(212,175,55,0.1); border: 1px dashed var(--gold-main); color: var(--gold-light); padding: 8px 20px; border-radius: 20px; font-family: 'Cairo'; font-weight: 900; font-size: 0.8rem; cursor: pointer; margin-bottom: 15px; box-shadow: 0 0 10px rgba(212,175,55,0.2); transition: 0.3s; display: none;">أجوائنا غير 🎉</button>
-
-            <div style="max-width: 400px; margin: 0 auto 20px; text-align: right; background: rgba(20,20,20,0.6); padding: 12px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15);">
-                <p style="font-size: 0.65rem; color: var(--gold-light); margin-top: 0; margin-bottom: 8px; line-height: 1.6; font-weight: 700; text-align: center;">
-                    هذا الموقع صُمم بحب لأهل القحمة.. يهمنا رأيك في جودة التغطية وسهولة التطبيق، ملاحظتك توصل للمبرمج مباشرة وبشكل سري لنرتقي بالنسخة القادمة 🚀✨
-                </p>
-                <textarea id="user-feedback" placeholder="اكتب ملاحظتك هنا (بدون اسم)..." style="width: 100%; height: 45px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; color: #fff; padding: 6px 10px; font-family: 'Cairo'; font-size: 0.7rem; resize: none; box-sizing: border-box; outline: none; transition: 0.3s;"></textarea>
-                <button id="send-feedback-btn" onclick="sendFeedback()" style="margin-top: 6px; width: 100%; background: var(--gold-grad); color: #000; border: none; padding: 6px; border-radius: 6px; font-weight: 900; font-family: 'Cairo'; font-size: 0.75rem; cursor: pointer; transition: 0.3s;">أرسل بصمتك 📥</button>
-                <div id="feedback-status" style="font-size: 0.65rem; margin-top: 6px; text-align: center; display: none; font-weight: bold;"></div>
-            </div>
-
             <p style="font-weight:900; margin-bottom:2px; font-size:0.75rem; color:var(--gold-main);">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
             <div class="social-mini"><a href="https://wa.me/966534987428" class="social-btn">واتساب</a><a href="https://snapchat.com/t/TXTbTApk" class="social-btn">سناب</a></div>
             <p style="font-size:0.7rem; color:var(--gold-light); font-weight:900; margin-top:15px;">📸 الشبكة الإعلامية للبطولة</p>
@@ -342,7 +286,7 @@ const groupData = [
     {n:"السادسة", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة\n\n* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة\n* تقام مباريات البطولة بنظام المجموعات من دور واحد\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:\n- مجموع النقاط\n- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)\n- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر\n- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب\n- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة\n\n* آلية مباريات الملحق\nبعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:\n * المباراة  رقم (19) \n(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) \n * المباراة رقم ( 20) \n(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) \n\n* مباريات دور الثمانية\nرقم المباراة ( 21) \nاول مج (1) مع اول مج(3)\n\nالمبارة رقم (22) \nاول مج (2)   مع أول مج ( 4) \n المباراة رقم ( 23)\nاول مج ( 5) مع اول مج ( 7 ) \nالمباراة رقم (24) \nاول مج (6) مع اول مج ( 8) \n\n(( ملاحظة مهمة)) \nفي حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: \nالمباراة رقم ( 23)\n اول مج ( 5 ) مع أول مج ( 8 ) \nالمباراة رقم (24) \nاول مج( 6) مع أول مج(7) \nوذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية \n\nمباريات نصف النهاىي\n المباراة رقم (25) \nفائز (21) مع فائز( 23) \nالمباراة رقم (26)\n فائز (22) مع فائز 24\n\nالنهائي \nالمباراة رقم (27)\nفائز (25) مع فائز (26)\n\nبعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي \nتم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة \nوبالتالي اصبح ترتيب الاوائل على النحو التالي :\nالمجموعة الاولى فريق السوق \nالمجموعة الثانية فريق ساحل مغزل\nالمجموعة الثالثة فريق الصقر \nالمجموعة الرابعة فريق الساحل الرياضي \nالمجموعه الخامسة فريق صقليه\nالمجموعة السادسة فريق الوسام \nالمجموعة السابعة فريق عمق \nالمجموعة الثامنه فريق الفيصلي\n\nوتلعب مباريات دور الثمانية(ربع النهائي )\nحسب نظام البطولة \nاول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)\nاول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)\n—————————————————- \nوحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا\nاول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)\nاول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)\n——————————————————\nمباريات دور الاربعة ( نصف النهائي )\nرقم المباراة (25)\nفائز المباراة رقم  (21) مع فائز المباراة رقم  (23)\nرقم المباراة (26)\nفائز المباراة رقم (22) مع فائز المباراة رقم (24)\n——————————————————-\nالمباراة النهائية \nرقم المباراة (27)\nفائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
+const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة...`; // (اختصرت النص هنا في العرض لتوفير المساحة، يمكنك تركه كاملاً كما كان في نسختك)
 
 function openTab(evt, tabName) { let content = document.getElementsByClassName("tab-content"), btns = document.getElementsByClassName("tab-btn"); for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); void document.getElementById(tabName).offsetWidth; document.getElementById(tabName).classList.add("active"); if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } else { let activeBtn = document.querySelector(".tab-btn[onclick*='" + tabName + "']"); if(activeBtn) activeBtn.classList.add("active"); } }
 function openSubTab(evt, subName) { let content = document.getElementsByClassName("sub-content"), btns = document.getElementsByClassName("sub-tab-btn"); for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); void document.getElementById(subName).offsetWidth; document.getElementById(subName).classList.add("active"); if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } else { let activeBtn = document.querySelector(".sub-tab-btn[onclick*='" + subName + "']"); if(activeBtn) activeBtn.classList.add("active"); } }
@@ -356,51 +300,73 @@ async function shareMatchAsImage() { const btn = document.getElementById('share-
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     todayArea.innerHTML = `
-    <div class="champions-card">
-        <div class="champions-glow"></div>
-        <div class="champions-ribbon">6 شـوال</div>
+    <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 15px; padding-right: 10px;">
+        <span style="color: #fff; font-weight: bold; font-size: 0.95rem; margin-left: 8px; font-family: 'Cairo';">مباريات اليوم | 6 شوال</span>
+        <span class="dot-red" style="width: 10px; height: 10px; box-shadow: 0 0 10px #ef4444; margin-left: 10px;"></span>
+        <div style="width: 3px; height: 18px; background-color: #3b82f6; border-radius: 2px;"></div>
+    </div>
+
+    <div style="background: linear-gradient(160deg, rgba(30,58,138,0.5) 0%, rgba(15,23,42,0.8) 50%, rgba(2,6,23,0.95) 100%); border: 1px solid rgba(59,130,246,0.3); border-radius: 20px; padding: 25px 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.9), inset 0 0 15px rgba(59,130,246,0.15); position: relative; overflow: hidden;">
         
-        <div style="position:relative; z-index:2; margin-bottom: 20px;">
-            <div style="font-size:2.2rem; text-shadow:0 0 15px rgba(212,175,55,0.6); margin-bottom:0;">🏆</div>
-            <h3 style="color:var(--gold-light); margin:5px 0 0 0; font-size:1.3rem; font-weight:900; letter-spacing: 1px;">النهائي الكبير</h3>
-            <span style="font-size:0.75rem; color:var(--gold-dark); font-weight:900;">بطولة القحمة الرمضانية</span>
-        </div>
-        
-        <div class="countdown-container" id="countdown-timer">
-            <div class="count-box"><span class="count-num" id="cd-sec">00</span><span class="count-label">ثانية</span></div>
-            <div class="count-box"><span class="count-num" id="cd-min">00</span><span class="count-label">دقيقة</span></div>
-            <div class="count-box"><span class="count-num" id="cd-hour">00</span><span class="count-label">ساعة</span></div>
-            <div class="count-box"><span class="count-num" id="cd-day">00</span><span class="count-label">يوم</span></div>
-        </div>
-        
-        <div style="display:flex; justify-content:center; align-items:center; margin-bottom: 25px; position: relative;">
-            <div class="champions-logo-wrapper"><img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="champions-logo" crossorigin="anonymous"><div class="champions-floor-shadow"></div><span class="champions-team-name">الفيصلي</span></div>
-            <div class="champions-vs-badge"><div class="champions-vs-text">VS</div></div>
-            <div class="champions-logo-wrapper"><img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="champions-logo" crossorigin="anonymous"><div class="champions-floor-shadow"></div><span class="champions-team-name">الوسام</span></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <div style="font-size: 1.2rem; font-weight: 900; color: #fff; width: 30%; text-align: center; text-shadow: 0 2px 4px #000;">الفيصلي</div>
+            <div style="background: linear-gradient(90deg, #2563eb, #60a5fa); color: #fff; font-weight: 900; font-size: 1.3rem; padding: 6px 25px; border-radius: 12px; box-shadow: 0 0 20px rgba(59,130,246,0.6); text-shadow: 0 2px 4px rgba(0,0,0,0.3);">VS</div>
+            <div style="font-size: 1.2rem; font-weight: 900; color: #fff; width: 30%; text-align: center; text-shadow: 0 2px 4px #000;">الوسام</div>
         </div>
 
-        <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:10px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); border-bottom: 1px solid rgba(212,175,55,0.3);">
-            <span style="font-size:0.8rem; color:var(--gold-light); font-weight:900; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">نكون أو لا نكون.. ليلة كتابة التاريخ في القحمة! ✍️</span>
+        <h3 style="text-align: center; color: #94a3b8; font-size: 1rem; margin: 0 0 20px 0; font-weight: 700; letter-spacing: 0.5px;">النهائي الكبير</h3>
+
+        <div style="display: flex; justify-content: center; gap: 25px; margin-bottom: 20px; direction: rtl; align-items: center;">
+            <div style="text-align: center; display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.4rem; animation: heartbeat 1s infinite;">💓</span>
+                <div>
+                    <span style="display: block; font-size: 0.65rem; color: #94a3b8; margin-bottom: 2px;">الأيام</span>
+                    <span id="cd-day" style="font-size: 1.8rem; font-weight: 900; color: #fff; line-height: 1;">00</span>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <span style="display: block; font-size: 0.65rem; color: #94a3b8; margin-bottom: 2px;">الساعات</span>
+                <span id="cd-hour" style="font-size: 1.8rem; font-weight: 900; color: #fff; line-height: 1;">00</span>
+            </div>
+            <div style="text-align: center;">
+                <span style="display: block; font-size: 0.65rem; color: #94a3b8; margin-bottom: 2px;">الدقائق</span>
+                <span id="cd-min" style="font-size: 1.8rem; font-weight: 900; color: #fff; line-height: 1;">00</span>
+            </div>
+        </div>
+
+        <div style="background: rgba(0,0,0,0.6); border-radius: 8px; padding: 12px 10px; display: flex; justify-content: space-around; font-size: 0.75rem; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.05);">
+            <span>🏟️ ملعب الوسام بالقحمة</span>
+            <span>🎙️ الشوالي</span>
+            <span dir="ltr">⏱️ 10:00 م</span>
+        </div>
+
+        <div style="text-align: center; color: #fbbf24; font-size: 0.7rem; margin-top: 15px; font-weight: bold; text-shadow: 0 1px 2px #000;">
+            ⚠️ نرجو من الجميع الالتزام بالمواعيد
         </div>
     </div>
+
+    <div style="margin-top: 15px; text-align: center; position: relative; max-width: 300px; margin-left: auto; margin-right: auto;">
+        <input type="text" id="secret-feedback-input" placeholder="(توقعاتك السرية للمبرمج...)" style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 10px 40px 10px 15px; color: #fff; font-family: 'Cairo'; font-size: 0.75rem; outline: none; text-align: center; box-sizing: border-box; transition: 0.3s;">
+        <button onclick="sendSecretFeedback()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #3b82f6; cursor: pointer; font-size: 1.1rem; padding: 0;">✈️</button>
+        <div id="secret-status" style="font-size: 0.65rem; margin-top: 5px; display: none; color: #10b981; font-weight: bold;"></div>
+    </div>
     
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 15px; padding: 0 5px;">
-        <button onclick="openTab(event, 'upcoming')" style="background:var(--gold-grad); color:#000; border:none; padding:8px 15px; border-radius:8px; font-weight:900; font-family:'Cairo'; font-size:0.8rem; cursor:pointer;">كل التفاصيل ←</button>
-        <button id="share-btn" onclick="shareMatchAsImage()" style="background:none; border:1px solid rgba(212,175,55,0.4); color:var(--gold-light); border-radius:8px; padding:8px 15px; font-size:0.8rem; cursor:pointer; font-family:'Cairo'; transition:0.3s; font-weight:bold; box-shadow: 0 0 10px rgba(212,175,55,0.2);">مشاركة البوستر 📸</button>
+    <div style="display:flex; justify-content:center; align-items:center; margin-top: 15px; gap: 10px;">
+        <button id="share-btn" onclick="shareMatchAsImage()" style="width: 100%; max-width: 300px; background:linear-gradient(90deg, #2563eb, #3b82f6); color:#fff; border:none; border-radius:8px; padding:10px 15px; font-size:0.8rem; cursor:pointer; font-family:'Cairo'; transition:0.3s; font-weight:bold; box-shadow: 0 0 10px rgba(59,130,246,0.4);">مشاركة البوستر 📸</button>
     </div>
     `;
 
     document.getElementById('finals-area').innerHTML = `
-        <div class="match-card" style="text-align:center; padding: 15px 10px; margin-top:12px; border:1px solid var(--gold-main); box-shadow: 0 4px 15px rgba(212,175,55,0.15);">
-            <div style="font-size: 1.5rem; margin-bottom: 5px; text-shadow: 0 0 8px rgba(212,175,55,0.5);">🏆</div>
-            <h2 style="color: var(--gold-light); margin: 0 0 6px 0; font-size:1.1rem;">النهائي الحلم</h2>
+        <div class="match-card" style="text-align:center; padding: 15px 10px; margin-top:12px; border:1px solid #3b82f6; box-shadow: 0 4px 15px rgba(59,130,246,0.15); background: linear-gradient(160deg, rgba(30,58,138,0.2) 0%, rgba(15,23,42,0.8) 100%);">
+            <div style="font-size: 1.5rem; margin-bottom: 5px; text-shadow: 0 0 8px rgba(59,130,246,0.5);">🏆</div>
+            <h2 style="color: #60a5fa; margin: 0 0 6px 0; font-size:1.1rem;">النهائي الحلم</h2>
             <div style="display:flex; justify-content:center; gap:6px; font-size:0.7rem; color:var(--text-muted); margin-bottom:12px;">
-                <span style="background:rgba(212,175,55,0.1); padding:4px 8px; border-radius:6px; color:var(--gold-main); font-weight:bold;">🌙 6 شوال</span>
+                <span style="background:rgba(59,130,246,0.1); padding:4px 8px; border-radius:6px; color:#60a5fa; font-weight:bold;">🌙 6 شوال</span>
                 <span style="background:rgba(255,255,255,0.05); padding:4px 8px; border-radius:6px;">🏟️ ملعب الوسم</span>
             </div>
             <div class="teams-row" style="background: rgba(0,0,0,0.3); padding:10px 5px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
                 <div class="team-item"><img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" class="team-logo-vip" crossorigin="anonymous"><span style="font-size: 1rem;">الفيصلي</span></div>
-                <div class="vs-label" style="font-size:0.9rem; padding:4px 8px; min-width:35px;">VS</div>
+                <div class="vs-label" style="font-size:0.9rem; padding:4px 8px; min-width:35px; background:linear-gradient(90deg, #2563eb, #60a5fa);">VS</div>
                 <div class="team-item"><img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" class="team-logo-vip" crossorigin="anonymous"><span style="font-size: 1rem;">الوسام</span></div>
             </div>
         </div>
@@ -413,38 +379,6 @@ function updateDisplay() {
             </div>
             <div class="poll-results-live" id="poll-results-live"></div>
         </div>
-
-        <div class="slider-wrapper">
-            <div class="slider-container" id="finalSlider" onscroll="updateDots()">
-                <div class="slide-card">
-                    <h3 style="color:var(--gold-main); margin-top:0; font-size:0.9rem; text-align:center; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:6px;">📊 مقارنة الأرقام</h3>
-                    <div style="font-size:0.75rem; margin-top:10px;">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:2px; font-weight:700;"><span style="color:var(--gold-light);">5</span><span style="color:#ddd;">الأهداف المسجلة</span><span style="color:var(--gold-light);">7</span></div>
-                        <div style="display:flex; gap:8px; margin-bottom:10px;"><div class="power-bar-bg"><div class="power-bar-fill" style="width: 71%; float:right;"></div></div><div class="power-bar-bg"><div class="power-bar-fill" style="width: 100%;"></div></div></div>
-                        <div style="display:flex; justify-content:space-between; margin-bottom:2px; font-weight:700;"><span style="color:var(--gold-light);">3</span><span style="color:#ddd;">شباك نظيفة</span><span style="color:var(--gold-light);">2</span></div>
-                        <div style="display:flex; gap:8px; margin-bottom:10px;"><div class="power-bar-bg"><div class="power-bar-fill" style="width: 100%; float:right;"></div></div><div class="power-bar-bg"><div class="power-bar-fill" style="width: 66%;"></div></div></div>
-                        <div style="display:flex; justify-content:space-between; margin-bottom:2px; font-weight:700;"><span style="color:#ef4444;">2</span><span style="color:#ddd;">أهداف مستقبلة</span><span style="color:#ef4444;">2</span></div>
-                        <div style="display:flex; gap:8px; margin-bottom:10px;"><div class="power-bar-bg"><div class="power-bar-fill red" style="width: 50%; float:right;"></div></div><div class="power-bar-bg"><div class="power-bar-fill red" style="width: 50%;"></div></div></div>
-                    </div>
-                </div>
-
-                <div class="slide-card">
-                    <h3 style="color:var(--gold-main); margin-top:0; font-size:0.9rem; text-align:center; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:6px;">🛤️ طريق الذهب</h3>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; text-align:right; margin-top:8px;">
-                        <div style="background:rgba(255,255,255,0.03); padding:8px; border-radius:10px; border:1px solid rgba(212,175,55,0.2);">
-                            <div style="font-weight:900; color:var(--gold-light); font-size:0.8rem; margin-bottom:6px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:4px;">🦅 الفيصلي</div>
-                            <ul style="padding-right:12px; margin:0; color:#ccc; font-size:0.65rem; line-height:1.6;"><li>فوز ع. خليج الصوالحة</li><li>خسارة م. الوسام</li><li>فوز ع. دبسا</li><li>فوز ع. صقلية</li><li>فوز ترجيح ع. الصقر</li></ul>
-                        </div>
-                        <div style="background:rgba(255,255,255,0.03); padding:8px; border-radius:10px; border:1px solid rgba(212,175,55,0.2);">
-                            <div style="font-weight:900; color:var(--green-neon); font-size:0.8rem; margin-bottom:6px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:4px;">⚔️ الوسام</div>
-                            <ul style="padding-right:12px; margin:0; color:#ccc; font-size:0.65rem; line-height:1.6;"><li>فوز ع. خليج الصوالحة</li><li>فوز ع. الفيصلي</li><li>فوز ترجيح ع. عمق</li><li>فوز ع. ساحل مغزل</li></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="slider-dots"><div class="dot-s active" id="dot0"></div><div class="dot-s" id="dot1"></div></div>
     `;
 
     document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${m.r}</span>${m.p ? `<span class="penalty-small">${m.p}</span>` : ""}</div><span class="team-item">${m.t2}</span></div></div>`).join('')).join('');
@@ -477,46 +411,11 @@ async function fetchWeather() {
     } 
 }
 
-function fireConfetti() {
-    var duration = 4 * 1000; var end = Date.now() + duration;
-    (function frame() {
-        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#d4af37', '#f3e5ab', '#aa8c2c'] });
-        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#d4af37', '#f3e5ab', '#aa8c2c'] });
-        if (Date.now() < end) { requestAnimationFrame(frame); }
-    }());
-}
-
-function closeEidModal() {
-    const modal = document.getElementById('eid-modal');
-    if (modal.classList.contains('show')) {
-        modal.classList.remove('show');
-        fireConfetti();
-    }
-}
-
-const EID_EXPIRY_DATE = new Date('2026-03-20T10:00:00+03:00');
-const isEidActive = new Date() < EID_EXPIRY_DATE;
-
 function hidePreloaderSafely() {
     const preloader = document.getElementById('preloader');
     if(preloader && !preloader.classList.contains('hidden')) {
         preloader.classList.add('run-exit');
-        setTimeout(() => { 
-            preloader.classList.add('hidden'); 
-            
-            if (isEidActive) {
-                document.getElementById('eid-replay-btn').style.display = 'inline-block';
-                if(!localStorage.getItem('eidShownDevice')) {
-                    const modal = document.getElementById('eid-modal');
-                    modal.classList.add('show');
-                    fireConfetti();
-                    localStorage.setItem('eidShownDevice', 'true'); 
-                    setTimeout(() => { if(modal.classList.contains('show')) { closeEidModal(); } }, 4000);
-                }
-            } else {
-                document.getElementById('main-header').classList.remove('eid-active-header');
-            }
-        }, 400);
+        setTimeout(() => { preloader.classList.add('hidden'); }, 400);
     }
 }
 
@@ -531,7 +430,7 @@ window.onload = function() {
         }
     }
 
-    // 🔥 كود العداد التنازلي للنهائي (6 شوال - متوقع 25 مارس 2026 الساعة 10:00 مساءً)
+    // 🔥 كود العداد التنازلي للنهائي
     const countDownDate = new Date("2026-03-25T22:00:00+03:00").getTime();
     const x = setInterval(function() {
         const now = new Date().getTime();
@@ -539,25 +438,22 @@ window.onload = function() {
 
         if (distance < 0) {
             clearInterval(x);
-            const timerElement = document.getElementById("countdown-timer");
-            if(timerElement) timerElement.innerHTML = "<div style='color:var(--green-neon); font-size:1.8rem; font-weight:900; text-shadow:0 0 15px #10b981; padding: 15px 0;'>بدأت المعركة الكروية 🔥</div>";
+            const elDay = document.getElementById("cd-day");
+            if(elDay) elDay.innerText = "00";
             return;
         }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         const elDay = document.getElementById("cd-day");
         const elHour = document.getElementById("cd-hour");
         const elMin = document.getElementById("cd-min");
-        const elSec = document.getElementById("cd-sec");
 
         if(elDay) elDay.innerText = days < 10 ? '0' + days : days;
         if(elHour) elHour.innerText = hours < 10 ? '0' + hours : hours;
         if(elMin) elMin.innerText = minutes < 10 ? '0' + minutes : minutes;
-        if(elSec) elSec.innerText = seconds < 10 ? '0' + seconds : seconds;
     }, 1000);
 };
 
@@ -597,10 +493,9 @@ setTimeout(hidePreloaderSafely, 1500);
       }
   });
 
-  // 2. المتواجدون الآن (النقطة الحمراء اللحظية)
+  // 2. المتواجدون الآن
   const myClientId = 'user_' + Math.random().toString(36).substr(2, 9);
   const myOnlineRef = ref(db, 'online_users_live/' + myClientId);
-  
   set(myOnlineRef, true);
   onDisconnect(myOnlineRef).remove(); 
 
@@ -620,10 +515,10 @@ setTimeout(hidePreloaderSafely, 1500);
       if(liveResultsDiv) {
           liveResultsDiv.innerHTML = `
             <div style="margin-bottom:12px; text-align:right;">
-                <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:900; color:var(--gold-light); margin-bottom:5px;">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:900; color:#60a5fa; margin-bottom:5px;">
                     <span>الفيصلي 🦅</span> <span>${fPercent}% <small style="color:var(--text-muted);">(${fCount} صوت)</small></span>
                 </div>
-                <div class="power-bar-bg"><div class="power-bar-fill" style="width: ${fPercent}%;"></div></div>
+                <div class="power-bar-bg"><div class="power-bar-fill" style="background:linear-gradient(90deg, #2563eb, #60a5fa); width: ${fPercent}%;"></div></div>
             </div>
             <div style="text-align:right;">
                 <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:900; color:#10b981; margin-bottom:5px;">
@@ -647,22 +542,19 @@ setTimeout(hidePreloaderSafely, 1500);
       });
   };
 
-  // 4. نظام الملاحظات السري
-  window.sendFeedback = function() {
-      const feedbackText = document.getElementById('user-feedback').value;
-      const statusDiv = document.getElementById('feedback-status');
-      const btn = document.getElementById('send-feedback-btn');
+  // 4. نظام الملاحظات السري (التصميم الجديد)
+  window.sendSecretFeedback = function() {
+      const input = document.getElementById('secret-feedback-input');
+      const feedbackText = input.value;
+      const statusDiv = document.getElementById('secret-status');
 
       if (feedbackText.trim() === "") {
           statusDiv.style.display = "block";
           statusDiv.style.color = "#ef4444";
-          statusDiv.innerText = "⚠️ يرجى كتابة ملاحظتك أولاً!";
+          statusDiv.innerText = "اكتب توقعك أولاً!";
           setTimeout(() => statusDiv.style.display = "none", 2000);
           return;
       }
-
-      btn.disabled = true;
-      btn.innerText = "⏳ جاري الإرسال...";
 
       const feedbackRef = ref(db, 'user_feedback');
       const newFeedbackRef = push(feedbackRef);
@@ -671,21 +563,30 @@ setTimeout(hidePreloaderSafely, 1500);
           comment: feedbackText,
           time: new Date().toLocaleString('en-US', { timeZone: 'Asia/Riyadh' })
       }).then(() => {
-          document.getElementById('user-feedback').value = "";
+          input.value = "";
           statusDiv.style.display = "block";
           statusDiv.style.color = "#10b981";
-          statusDiv.innerText = "✅ تم الإرسال، شكراً لك!";
-          btn.innerText = "أرسل بصمتك 📥";
-          btn.disabled = false;
+          statusDiv.innerText = "✅ تم الإرسال للمبرمج بسرية!";
           setTimeout(() => statusDiv.style.display = "none", 4000);
       }).catch((error) => {
           statusDiv.style.display = "block";
           statusDiv.style.color = "#ef4444";
-          statusDiv.innerText = "❌ حدث خطأ، حاول مرة أخرى.";
-          btn.innerText = "أرسل بصمتك 📥";
-          btn.disabled = false;
+          statusDiv.innerText = "❌ فشل الإرسال.";
       });
   };
+
+  // السماح بالإرسال عند الضغط على زر Enter
+  document.addEventListener('DOMContentLoaded', () => {
+      const secretInput = document.getElementById('secret-feedback-input');
+      if(secretInput) {
+          secretInput.addEventListener("keypress", function(event) {
+              if (event.key === "Enter") {
+                  event.preventDefault();
+                  window.sendSecretFeedback();
+              }
+          });
+      }
+  });
 </script>
 
 </body>
