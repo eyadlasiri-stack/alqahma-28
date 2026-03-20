@@ -156,9 +156,9 @@
         
         .dot { height: 6px; width: 6px; background-color: var(--gold-main); border-radius: 50%; display: inline-block; animation: goldPulse 2s infinite; box-shadow: 0 0 8px var(--gold-main); }
         
-        /* الوميض الأحمر للزوار المتواجدين الآن */
-        .dot-red { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; animation: redPulse 1.5s infinite; }
-        @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+        /* الوميض الأحمر لايف (بدون نص) */
+        .dot-red { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; animation: redPulse 1.5s infinite; border-radius: 50%; display: inline-block; }
+        @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
 
         .tabs-nav { display: flex; padding: 5px; border-radius: 12px; margin-bottom: 20px; overflow-x: auto; scrollbar-width: none; }
         .tabs-nav::-webkit-scrollbar { display: none; }
@@ -273,7 +273,9 @@
         
         <div class="info-bar">
             <div class="stat-badge"><span class="dot"></span> النشاط: <span id="live-visit-counter">...</span></div>
-            <div class="stat-badge" style="border-color: rgba(239, 68, 68, 0.4);"><span class="dot dot-red"></span> متصل: <span id="live-online-counter">1</span></div>
+            
+            <span class="dot-red" style="width: 10px; height: 10px; margin: 0 5px;" title="مباشر"></span>
+
             <div class="stat-badge" id="weather-box" style="display:flex; align-items:center; gap:5px;">⏳ تحديث الجو...</div>
         </div>
 
@@ -463,7 +465,7 @@ function updateDisplay() {
     document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${m.r}</span>${m.p ? `<span class="penalty-small">${m.p}</span>` : ""}</div><span class="team-item">${m.t2}</span></div></div>`).join('')).join('');
     document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, index) => { let medal = ''; let rowStyle = ''; if (index === 0) { medal = '🥇'; rowStyle = 'background: rgba(212, 175, 55, 0.15);'; } else if (index === 1) { medal = '🥈'; rowStyle = 'background: rgba(192, 192, 192, 0.1);'; } else if (index === 2) { medal = '🥉'; rowStyle = 'background: rgba(205, 127, 50, 0.1);'; } return `<tr style="${rowStyle} border-bottom: 1px solid rgba(255,255,255,0.05);"><td class="team-name-cell" style="padding: 10px;">${medal} ${s.n}<br><small style="color:var(--text-muted)">(${s.f})</small></td><td style="padding:15px; text-align:left;"><span style="background:var(--gold-grad); color:#000; padding:4px 8px; border-radius:8px; font-weight:900; box-shadow: 0 2px 5px rgba(212,175,55,0.3);">${s.g}</span></td></tr>`; }).join('');
     
-    // حل مشكلة طباعة الأوبجكت بإضافة .t
+    // تم إضافة حرف .t ليطبع الاسم بشكل سليم بالعربي في المجموعات
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--gold-main); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     
     const stats = {}; archiveData.forEach(day => day.matches.forEach(m => { const res = m.r.split(' - ').map(Number); if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 }; stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; }));
@@ -555,7 +557,7 @@ setTimeout(hidePreloaderSafely, 1500);
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-  import { getDatabase, ref, runTransaction, onValue, onDisconnect, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+  import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
   const p1 = "AIzaSyDMSL";
   const p2 = "sTOf_zy8Ec";
@@ -586,20 +588,9 @@ setTimeout(hidePreloaderSafely, 1500);
       }
   });
 
-  // 2. المتواجدون الآن (تحديث سريع ودقيق لكل متصفح/جهاز)
-  const myClientId = 'user_' + Math.random().toString(36).substr(2, 9);
-  const myOnlineRef = ref(db, 'online_users_live/' + myClientId);
-  
-  set(myOnlineRef, true);
-  onDisconnect(myOnlineRef).remove(); 
+  // (تمت إزالة كود احتساب الزوار اللحظيين بناءً على طلبك لتخفيف الكود وتوفير الباقة، واكتفينا باللمسة الجمالية للنقطة الحمراء)
 
-  const onlineRef = ref(db, 'online_users_live');
-  onValue(onlineRef, (snapshot) => {
-      const count = snapshot.numChildren();
-      document.getElementById('live-online-counter').innerText = count;
-  });
-
-  // 3. نظام التوقعات الحي (Live Poll)
+  // 2. نظام التوقعات الحي (Live Poll)
   const pollRef = ref(db, 'poll_live_results');
   onValue(pollRef, (snapshot) => {
       let data = snapshot.val() || { faisaly: 0, wesam: 0 };
