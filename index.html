@@ -43,6 +43,29 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
+        /* ========= التأثيرات السينمائية الجديدة (دخان وإضاءة) ========= */
+        @keyframes smokeEffect {
+            0% { transform: translateY(0) scale(1); opacity: 0.2; }
+            50% { transform: translateY(-15px) scale(1.1); opacity: 0.6; }
+            100% { transform: translateY(0) scale(1); opacity: 0.2; }
+        }
+        .smoke-bg {
+            position: absolute; bottom: -30px; left: 0; width: 100%; height: 160px;
+            background: radial-gradient(ellipse at bottom, rgba(212,175,55,0.35) 0%, transparent 65%);
+            filter: blur(20px); animation: smokeEffect 5s infinite alternate; z-index: 0; pointer-events: none;
+        }
+        .team-glow-red {
+            position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+            width: 120px; height: 120px; background: radial-gradient(circle, rgba(185, 28, 28, 0.5) 0%, transparent 70%);
+            filter: blur(15px); z-index: 0; pointer-events: none; animation: pulseGlow 3s infinite alternate;
+        }
+        .team-glow-blue {
+            position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+            width: 120px; height: 120px; background: radial-gradient(circle, rgba(29, 78, 216, 0.5) 0%, transparent 70%);
+            filter: blur(15px); z-index: 0; pointer-events: none; animation: pulseGlow 3s infinite alternate-reverse;
+        }
+        @keyframes pulseGlow { 0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); } }
+
         /* ========= شاشة التحميل ========= */
         #preloader { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
@@ -89,19 +112,13 @@
 
         .team-logo-vip { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(212,175,55,0.5)); margin-bottom: 6px; }
 
-        /* تعديل البطاقة لإزالة الإطار وجعلها متصلة بالخلفية */
-        .champions-card { background: radial-gradient(circle at 50% 50%, #1a1608 0%, #050505 100%); border: none; border-radius: 20px; padding: 25px 15px; margin-top: 15px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.9); text-align: center; }
+        .champions-card { border-radius: 20px; position: relative; overflow: hidden; text-align: center; }
         .champions-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 180px; height: 180px; background: radial-gradient(circle, rgba(212,175,55,0.25) 0%, transparent 70%); z-index: 0; pointer-events: none; }
         
-        .champions-vs-badge { width: 40px; height: 40px; background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 15px rgba(212,175,55,0.8), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 15px; position: relative; z-index: 2; }
-        .champions-vs-text { transform: rotate(-45deg); color: #000; font-weight: 900; font-size: 1.1rem; font-family: sans-serif; }
-        .champions-logo-wrapper { display: flex; flex-direction: column; align-items: center; z-index: 2; position: relative; }
+        .champions-vs-badge { background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 15px rgba(212,175,55,0.8), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 15px; position: relative; z-index: 2; border-radius: 8px; }
+        .champions-vs-text { transform: rotate(-45deg); color: #000; font-weight: 900; font-family: sans-serif; }
         
-        /* ستايل العداد التنازلي */
-        .countdown-container { display: flex; justify-content: center; gap: 12px; margin: 20px 0 25px; direction: ltr; position: relative; z-index: 2; }
-        .count-box { background: rgba(20,20,20,0.9); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 12px 5px; min-width: 65px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.8); }
-        .count-num { display: block; font-size: 1.6rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 0 15px rgba(212,175,55,0.6); line-height: 1; margin-bottom: 4px; }
-        .count-label { display: block; font-size: 0.65rem; color: #ccc; font-weight: 700; font-family: 'Cairo'; letter-spacing: 0.5px; }
+        .countdown-container { display: flex; justify-content: center; direction: ltr; position: relative; z-index: 2; }
 
         .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
         
@@ -124,7 +141,6 @@
         
         .dot { height: 6px; width: 6px; background-color: var(--gold-main); border-radius: 50%; display: inline-block; animation: goldPulse 2s infinite; box-shadow: 0 0 8px var(--gold-main); }
         
-        /* النقطة الحمراء اللحظية (مباشر) بدون أرقام */
         .dot-red { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; animation: redPulse 1.5s infinite; border-radius: 50%; display: inline-block; }
         @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
 
@@ -337,45 +353,60 @@ async function shareMatchAsImage() { const btn = document.getElementById('share-
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     todayArea.innerHTML = `
-    <div class="champions-card" style="padding: 20px 10px 15px; margin-top: 5px; border: none; background: radial-gradient(circle at 50% 50%, #161308 0%, #000000 100%);">
-        <div class="champions-glow" style="width: 140px; height: 140px;"></div>
+    <div class="champions-card" style="padding: 25px 15px 20px; margin-top: 5px; border: 1px solid rgba(212,175,55,0.3); background: linear-gradient(180deg, #111 0%, #050505 100%); box-shadow: 0 10px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(212,175,55,0.05);">
         
-        <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: rgba(212,175,55,0.08); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.3); border-radius: 50%; width: 34px; height: 34px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.6); z-index: 10; transition: 0.3s;" title="مشاركة البوستر">📸</button>
+        <div class="smoke-bg"></div>
+        <div class="champions-glow" style="width: 200px; height: 200px;"></div>
+        
+        <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.4); border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.8); z-index: 10; transition: 0.3s; backdrop-filter: blur(5px);" title="مشاركة البوستر">📸</button>
 
-        <div style="position:relative; z-index:2; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 10px;">
-            <div style="font-size:1.6rem; text-shadow:0 0 15px rgba(212,175,55,0.6); margin-bottom:0;">🏆</div>
-            <div style="text-align: right;">
-                <h3 style="color:var(--gold-light); margin:0; font-size:1.1rem; font-weight:900; letter-spacing: 0.5px;">النهائي الكبير</h3>
-                <span style="font-size:0.65rem; color:var(--gold-dark); font-weight:900;">بطولة القحمة الرمضانية</span>
-            </div>
+        <div style="position:relative; z-index:2; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <h2 style="color:var(--gold-light); margin:0; font-size:2rem; font-weight:900; letter-spacing: 1px; text-shadow: 0 0 20px rgba(212,175,55,0.6);">النهائي الكبير</h2>
+            <span style="font-size:0.8rem; color:var(--gold-dark); font-weight:900; background:rgba(212,175,55,0.1); padding:4px 15px; border-radius:20px; margin-top:5px; border:1px solid rgba(212,175,55,0.2);">بطولة القحمة الرمضانية 28</span>
         </div>
         
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 5px; position: relative;">
-            <div style="flex: 1; display:flex; flex-direction:column; align-items:center;">
-                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 65px; height: 65px; object-fit:contain; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.9)); margin-bottom: 8px;" crossorigin="anonymous">
-                <span style="font-size: 0.85rem; font-weight: 700; color: var(--bronze-gold); text-shadow: 0 1px 2px rgba(0,0,0,0.8);">الفيصلي</span>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 25px; padding: 0; position: relative; z-index:2;">
+            
+            <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
+                <div class="team-glow-red"></div>
+                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 80px; height: 80px; object-fit:contain; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 12px; position:relative; z-index:1;" crossorigin="anonymous">
+                <span style="font-size: 1.1rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الفيصلي</span>
             </div>
             
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1.2; z-index: 2; margin-top: -15px;">
-                <div class="champions-vs-badge" style="width: 36px; height: 36px; margin: 0 0 8px 0;"><div class="champions-vs-text" style="font-size: 0.9rem;">VS</div></div>
-                <span style="background: rgba(212,175,55,0.1); color: var(--gold-light); font-size: 0.7rem; font-weight: 900; padding: 3px 12px; border-radius: 20px; border: 1px solid rgba(212,175,55,0.2); box-shadow: 0 2px 5px rgba(0,0,0,0.5); white-space: nowrap;">الأربعاء 6 شوال</span>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1.2; position: relative;">
+                <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 100px; opacity:0.2; position:absolute; top:-30px; filter:drop-shadow(0 0 20px rgba(212,175,55,0.8)); z-index:0;" crossorigin="anonymous">
+                <div class="champions-vs-badge" style="width: 45px; height: 45px; margin: 0 0 10px 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 20px rgba(212,175,55,0.6);"><div class="champions-vs-text" style="font-size: 1.1rem;">VS</div></div>
+                <span style="background: var(--gold-grad); color: #000; font-size: 0.8rem; font-weight: 900; padding: 4px 15px; border-radius: 20px; box-shadow: 0 4px 15px rgba(212,175,55,0.4); white-space: nowrap; z-index: 2;">الأربعاء 6 شوال</span>
             </div>
 
-            <div style="flex: 1; display:flex; flex-direction:column; align-items:center;">
-                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 65px; height: 65px; object-fit:contain; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.9)); margin-bottom: 8px;" crossorigin="anonymous">
-                <span style="font-size: 0.85rem; font-weight: 700; color: var(--bronze-gold); text-shadow: 0 1px 2px rgba(0,0,0,0.8);">الوسام</span>
+            <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
+                <div class="team-glow-blue"></div>
+                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 80px; height: 80px; object-fit:contain; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 12px; position:relative; z-index:1;" crossorigin="anonymous">
+                <span style="font-size: 1.1rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الوسام</span>
             </div>
         </div>
 
-        <div class="countdown-container" id="countdown-timer" style="margin: 10px 0 15px; gap: 8px;">
-            <div class="count-box" style="padding: 8px 2px; min-width: 55px; background: rgba(0,0,0,0.5); border-color: rgba(212,175,55,0.3);"><span class="count-num" id="cd-sec" style="font-size: 1.3rem;">00</span><span class="count-label" style="font-size: 0.6rem;">ثانية</span></div>
-            <div class="count-box" style="padding: 8px 2px; min-width: 55px; background: rgba(0,0,0,0.5); border-color: rgba(212,175,55,0.3);"><span class="count-num" id="cd-min" style="font-size: 1.3rem;">00</span><span class="count-label" style="font-size: 0.6rem;">دقيقة</span></div>
-            <div class="count-box" style="padding: 8px 2px; min-width: 55px; background: rgba(0,0,0,0.5); border-color: rgba(212,175,55,0.3);"><span class="count-num" id="cd-hour" style="font-size: 1.3rem;">00</span><span class="count-label" style="font-size: 0.6rem;">ساعة</span></div>
-            <div class="count-box" style="padding: 8px 2px; min-width: 55px; background: rgba(0,0,0,0.5); border-color: rgba(212,175,55,0.3);"><span class="count-num" id="cd-day" style="font-size: 1.3rem;">00</span><span class="count-label" style="font-size: 0.6rem;">يوم</span></div>
+        <div class="countdown-container" id="countdown-timer" style="margin: 10px 0 20px; gap: 12px; z-index: 2; position: relative;">
+            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 15px; padding: 12px 5px; min-width: 65px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
+                <span id="cd-sec" style="display: block; font-size: 1.6rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 0 15px rgba(212,175,55,0.8); line-height: 1; margin-bottom: 5px;">00</span>
+                <span style="display: block; font-size: 0.65rem; color: #ddd; font-weight: 700; letter-spacing: 0.5px;">ثانية</span>
+            </div>
+            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 15px; padding: 12px 5px; min-width: 65px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
+                <span id="cd-min" style="display: block; font-size: 1.6rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 0 15px rgba(212,175,55,0.8); line-height: 1; margin-bottom: 5px;">00</span>
+                <span style="display: block; font-size: 0.65rem; color: #ddd; font-weight: 700; letter-spacing: 0.5px;">دقيقة</span>
+            </div>
+            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 15px; padding: 12px 5px; min-width: 65px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
+                <span id="cd-hour" style="display: block; font-size: 1.6rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 0 15px rgba(212,175,55,0.8); line-height: 1; margin-bottom: 5px;">00</span>
+                <span style="display: block; font-size: 0.65rem; color: #ddd; font-weight: 700; letter-spacing: 0.5px;">ساعة</span>
+            </div>
+            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 15px; padding: 12px 5px; min-width: 65px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
+                <span id="cd-day" style="display: block; font-size: 1.6rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 0 15px rgba(212,175,55,0.8); line-height: 1; margin-bottom: 5px;">00</span>
+                <span style="display: block; font-size: 0.65rem; color: #ddd; font-weight: 700; letter-spacing: 0.5px;">يوم</span>
+            </div>
         </div>
 
-        <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent); padding:8px; border-radius:8px; border-top: 1px dashed rgba(212,175,55,0.2);">
-            <span style="font-size:0.75rem; color:var(--gold-light); font-weight:900; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">نكون أو لا نكون.. ليلة كتابة التاريخ في القحمة! ✍️</span>
+        <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:10px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); margin-top: 10px;">
+            <span style="font-size:0.85rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">نكون أو لا نكون.. ليلة كتابة التاريخ في القحمة! ✍️</span>
         </div>
     </div>
 
