@@ -43,6 +43,22 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
+        /* ========= نظام الفيديو الافتتاحي (Intro) ========= */
+        #video-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 1000000; display: none; align-items: center; justify-content: center;
+        }
+        #video-overlay video { width: 100%; height: 100%; object-fit: cover; }
+        .skip-btn {
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(212, 175, 55, 0.5); 
+            color: var(--gold-light); padding: 8px 30px; border-radius: 30px; 
+            font-weight: 900; cursor: pointer; backdrop-filter: blur(10px); 
+            z-index: 1000001; font-family: 'Cairo'; font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: 0.3s;
+        }
+        .skip-btn:active { transform: translateX(-50%) scale(0.95); background: rgba(212, 175, 55, 0.3); }
+
         /* ========= التأثيرات السينمائية الجديدة (دخان وإضاءة) ========= */
         @keyframes smokeEffect {
             0% { transform: translateY(0) scale(1); opacity: 0.2; }
@@ -190,6 +206,13 @@
     </style>
 </head>
 <body>
+
+    <div id="video-overlay">
+        <video id="intro-video" playsinline muted autoplay>
+            <source src="https://j.top4top.io/m_3733p5v2y0.mp4" type="video/mp4">
+        </video>
+        <button class="skip-btn" onclick="finishIntro()">تخطى العرض ➜</button>
+    </div>
 
     <div id="preloader">
         <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
@@ -505,6 +528,22 @@ function hidePreloaderSafely() {
     }
 }
 
+// 🎬 دالة إخفاء الفيديو بعد الانتهاء أو التخطي
+function finishIntro() {
+    const videoOverlay = document.getElementById('video-overlay');
+    const introVideo = document.getElementById('intro-video');
+    videoOverlay.style.transition = "opacity 0.8s ease";
+    videoOverlay.style.opacity = "0";
+    setTimeout(() => {
+        videoOverlay.style.display = 'none';
+        if(introVideo) introVideo.pause();
+        // تسجيل في الذاكرة أن المستخدم شاهد الفيديو
+        localStorage.setItem('introPlayed_v28', 'true');
+        // إخفاء التحميل وإظهار الموقع بسلام
+        hidePreloaderSafely();
+    }, 800);
+}
+
 window.onload = function() { 
     fetchWeather(); updateDisplay(); openTab(null, 'today'); openSubTab(null, 'players-list'); 
     if(localStorage.getItem('pollVotedLive')) {
@@ -542,9 +581,31 @@ window.onload = function() {
         if(elMin) elMin.innerText = minutes < 10 ? '0' + minutes : minutes;
         if(elSec) elSec.innerText = seconds < 10 ? '0' + seconds : seconds;
     }, 1000);
+
+    // 🔥 كود نظام الفيديو الذكي
+    const videoOverlay = document.getElementById('video-overlay');
+    const introVideo = document.getElementById('intro-video');
+    const hasPlayed = localStorage.getItem('introPlayed_v28');
+
+    if (!hasPlayed) {
+        // إذا لم يشاهد الفيديو من قبل: إظهار الفيديو وإخفاء التحميل الأصلي مؤقتاً
+        videoOverlay.style.display = 'flex';
+        document.getElementById('preloader').style.display = 'none'; 
+        
+        introVideo.play().catch(e => {
+            console.log("المنع التلقائي للفيديو مفعل، سيتم الاعتماد على زر التخطي");
+        });
+
+        // عند انتهاء الفيديو تلقائياً
+        introVideo.onended = function() {
+            finishIntro();
+        };
+    } else {
+        // إذا شاهده مسبقاً: استخدم نظام شاشة التحميل الطبيعي (1.5 ثانية)
+        setTimeout(hidePreloaderSafely, 1500);
+    }
 };
 
-setTimeout(hidePreloaderSafely, 1500);
 </script>
 
 <script type="module">
