@@ -43,21 +43,18 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* ========= نظام الفيديو الافتتاحي (Intro) ========= */
-        #video-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 1000000; display: none; align-items: center; justify-content: center;
-        }
-        #video-overlay video { width: 100%; height: 100%; object-fit: cover; }
-        .skip-btn {
-            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-            background: rgba(255,255,255,0.15); border: 1px solid rgba(212, 175, 55, 0.5); 
-            color: var(--gold-light); padding: 8px 30px; border-radius: 30px; 
-            font-weight: 900; cursor: pointer; backdrop-filter: blur(10px); 
-            z-index: 1000001; font-family: 'Cairo'; font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: 0.3s;
-        }
-        .skip-btn:active { transform: translateX(-50%) scale(0.95); background: rgba(212, 175, 55, 0.3); }
+        /* ========= بطاقة الدعوة الملكية ========= */
+        .invitation-modal { display: flex; position: fixed; z-index: 1000000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.5s ease; backdrop-filter: blur(10px); }
+        .invitation-modal.show { opacity: 1; visibility: visible; }
+        .invitation-content { background: linear-gradient(180deg, #141414 0%, #0a0a0a 100%); border: 1px solid var(--gold-main); padding: 40px 20px; border-radius: 20px; text-align: center; max-width: 88%; box-shadow: 0 0 50px rgba(212,175,55,0.25), inset 0 0 20px rgba(212,175,55,0.05); position: relative; overflow: hidden; animation: zoomInCard 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes zoomInCard { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .invitation-glow { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 250px; height: 250px; background: radial-gradient(circle, rgba(212,175,55,0.3) 0%, transparent 70%); z-index: 0; pointer-events: none; }
+        .invitation-logo { width: 90px; margin-bottom: 10px; position: relative; z-index: 1; filter: drop-shadow(0 0 15px rgba(212,175,55,0.5)); }
+        .invitation-subtitle { color: var(--gold-light); font-size: 0.8rem; font-weight: 700; margin: 0 0 15px; position: relative; z-index: 1; line-height: 1.6; opacity: 0.9; }
+        .invitation-title { color: var(--gold-main); font-size: 3.5rem; font-weight: 900; margin: 0 0 20px; position: relative; z-index: 1; text-shadow: 0 0 25px rgba(212,175,55,0.6), 0 2px 5px #000; letter-spacing: 5px; }
+        .invitation-text { color: #fff; font-size: 0.95rem; line-height: 1.9; margin-bottom: 30px; position: relative; z-index: 1; font-weight: 700; padding: 0 10px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .invitation-btn { background: var(--gold-grad); color: #000; border: none; padding: 12px 35px; border-radius: 30px; font-weight: 900; font-family: 'Cairo'; cursor: pointer; box-shadow: 0 4px 15px rgba(212,175,55,0.4); transition: 0.3s; position: relative; z-index: 1; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); }
+        .invitation-btn:active { transform: scale(0.95); }
 
         /* ========= التأثيرات السينمائية الجديدة (دخان وإضاءة) ========= */
         @keyframes smokeEffect {
@@ -95,16 +92,6 @@
         @keyframes gentlePulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } }
         @keyframes smoothPopOut { 0% { transform: scale(1); opacity: 1; } 20% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(8); opacity: 0; } }
         #preloader.run-exit .preloader-logo { animation: smoothPopOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important; }
-
-        /* ========= نافذة العيد ========= */
-        .eid-modal { display: flex; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.5s; backdrop-filter: blur(5px); }
-        .eid-modal.show { opacity: 1; visibility: visible; }
-        .eid-modal-content { background: var(--black-card); border: 1px solid var(--gold-main); padding: 30px 20px; border-radius: 20px; text-align: center; max-width: 85%; box-shadow: 0 0 30px rgba(212,175,55,0.4); animation: slideDown 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
-        .eid-modal-content::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 60%); animation: spin 10s linear infinite; z-index: 0; pointer-events: none; }
-        @keyframes slideDown { from { transform: translateY(-50px) scale(0.9); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
-        .eid-modal-content h2 { color: var(--gold-light); margin: 0 0 10px; font-size: 1.8rem; text-shadow: 0 2px 10px rgba(212,175,55,0.5); position: relative; z-index: 1; }
-        .eid-modal-content p { color: #ddd; font-size: 0.95rem; line-height: 1.8; margin-bottom: 25px; position: relative; z-index: 1; font-weight: 600; }
-        .eid-modal-btn { background: var(--gold-grad); color: #000; border: none; padding: 10px 35px; border-radius: 30px; font-weight: 900; font-family: 'Cairo'; cursor: pointer; box-shadow: 0 4px 15px rgba(212,175,55,0.3); transition: 0.3s; position: relative; z-index: 1; font-size: 1rem; }
 
         /* ========= ستايلات عامة ========= */
         #image-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999999; justify-content: center; align-items: center; flex-direction: column; animation: fadeIn 0.3s ease-out; }
@@ -207,23 +194,23 @@
 </head>
 <body>
 
-    <div id="video-overlay">
-        <video id="intro-video" playsinline muted autoplay>
-            <source src="https://j.top4top.io/m_3733p5v2y0.mp4" type="video/mp4">
-        </video>
-        <button class="skip-btn" onclick="finishIntro()">تخطى العرض ➜</button>
+    <div id="invitation-modal" class="invitation-modal">
+        <div class="invitation-content">
+            <div class="invitation-glow"></div>
+            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="invitation-logo" alt="الشعار" crossorigin="anonymous">
+            
+            <h4 class="invitation-subtitle">بطولة القحمة الرمضانية 28 لكرة القدم 2026<br>على كأس جمعية التنمية الأهلية بالقحمة</h4>
+            
+            <h1 class="invitation-title">دعـــــوة</h1>
+            
+            <p class="invitation-text">تتشرف اللجنة المنظمة للبطولة بدعوتكم لحضور المباراة النهائية، وذلك يوم الأربعاء ٦ شوال ١٤٤٧ هـ، الساعة التاسعة مساءً، على ملعب الوسام بالقحمة.</p>
+            
+            <button class="invitation-btn" onclick="closeInvitation()">قبول الدعوة والدخول ➜</button>
+        </div>
     </div>
 
     <div id="preloader">
         <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
-    </div>
-
-    <div id="eid-modal" class="eid-modal">
-        <div class="eid-modal-content">
-            <h2>✨ عيدكم مبارك ✨</h2>
-            <p>إدارة بطولة القحمة الرمضانية 28 تهنئكم بحلول عيد الفطر المبارك.<br>تقبل الله طاعتكم، ومن العايدين والفايزين 🤍🌙</p>
-            <button class="eid-modal-btn" onclick="closeEidModal()">وأنت بخير وصحة</button>
-        </div>
     </div>
 
     <div id="image-modal">
@@ -528,20 +515,13 @@ function hidePreloaderSafely() {
     }
 }
 
-// 🎬 دالة إخفاء الفيديو بعد الانتهاء أو التخطي
-function finishIntro() {
-    const videoOverlay = document.getElementById('video-overlay');
-    const introVideo = document.getElementById('intro-video');
-    videoOverlay.style.transition = "opacity 0.8s ease";
-    videoOverlay.style.opacity = "0";
-    setTimeout(() => {
-        videoOverlay.style.display = 'none';
-        if(introVideo) introVideo.pause();
-        // تسجيل في الذاكرة أن المستخدم شاهد الفيديو
-        localStorage.setItem('introPlayed_v28', 'true');
-        // إخفاء التحميل وإظهار الموقع بسلام
-        hidePreloaderSafely();
-    }, 800);
+// 📜 دالة إغلاق الدعوة
+function closeInvitation() {
+    const invitationModal = document.getElementById('invitation-modal');
+    invitationModal.classList.remove('show');
+    // حفظ في الذاكرة المؤقتة (تظهر مرة واحدة في كل جلسة تصفح)
+    sessionStorage.setItem('invitation_seen', 'true');
+    hidePreloaderSafely();
 }
 
 window.onload = function() { 
@@ -582,26 +562,16 @@ window.onload = function() {
         if(elSec) elSec.innerText = seconds < 10 ? '0' + seconds : seconds;
     }, 1000);
 
-    // 🔥 كود نظام الفيديو الذكي
-    const videoOverlay = document.getElementById('video-overlay');
-    const introVideo = document.getElementById('intro-video');
-    const hasPlayed = localStorage.getItem('introPlayed_v28');
+    // 📜 إظهار الدعوة الملكية
+    const invitationModal = document.getElementById('invitation-modal');
+    const hasSeenInv = sessionStorage.getItem('invitation_seen');
 
-    if (!hasPlayed) {
-        // إذا لم يشاهد الفيديو من قبل: إظهار الفيديو وإخفاء التحميل الأصلي مؤقتاً
-        videoOverlay.style.display = 'flex';
+    if (!hasSeenInv) {
+        // إخفاء التحميل وإظهار الدعوة
         document.getElementById('preloader').style.display = 'none'; 
-        
-        introVideo.play().catch(e => {
-            console.log("المنع التلقائي للفيديو مفعل، سيتم الاعتماد على زر التخطي");
-        });
-
-        // عند انتهاء الفيديو تلقائياً
-        introVideo.onended = function() {
-            finishIntro();
-        };
+        invitationModal.classList.add('show');
     } else {
-        // إذا شاهده مسبقاً: استخدم نظام شاشة التحميل الطبيعي (1.5 ثانية)
+        // إذا شاهدها، إخفاء التحميل بشكل طبيعي
         setTimeout(hidePreloaderSafely, 1500);
     }
 };
