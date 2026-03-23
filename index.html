@@ -43,20 +43,27 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* ========= بطاقة الدعوة الملكية ========= */
-        .invitation-modal { display: flex; position: fixed; z-index: 1000000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.5s ease; backdrop-filter: blur(10px); }
+        /* ========= بطاقة الدعوة الملكية مع التلاشي الفخم ========= */
+        .invitation-modal { display: flex; position: fixed; z-index: 1000000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         .invitation-modal.show { opacity: 1; visibility: visible; }
-        .invitation-content { background: linear-gradient(180deg, #141414 0%, #0a0a0a 100%); border: 1px solid var(--gold-main); padding: 40px 20px; border-radius: 20px; text-align: center; max-width: 88%; box-shadow: 0 0 50px rgba(212,175,55,0.25), inset 0 0 20px rgba(212,175,55,0.05); position: relative; overflow: hidden; animation: zoomInCard 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes zoomInCard { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .invitation-content { background: linear-gradient(180deg, #141414 0%, #0a0a0a 100%); border: 1px solid var(--gold-main); padding: 40px 20px; border-radius: 20px; text-align: center; max-width: 88%; box-shadow: 0 0 50px rgba(212,175,55,0.25), inset 0 0 20px rgba(212,175,55,0.05); position: relative; overflow: hidden; animation: zoomInCard 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        
+        /* حركة الدخول */
+        @keyframes zoomInCard { from { transform: scale(0.85) translateY(20px); opacity: 0; filter: blur(5px); } to { transform: scale(1) translateY(0); opacity: 1; filter: blur(0); } }
+        
+        /* حركة التلاشي الفخمة عند القبول */
+        .invitation-modal.fade-out-luxury { opacity: 0 !important; visibility: hidden !important; backdrop-filter: blur(0px) !important; -webkit-backdrop-filter: blur(0px) !important; }
+        .invitation-modal.fade-out-luxury .invitation-content { transform: scale(1.1) translateY(-20px); opacity: 0; filter: blur(10px); }
+
         .invitation-glow { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 250px; height: 250px; background: radial-gradient(circle, rgba(212,175,55,0.3) 0%, transparent 70%); z-index: 0; pointer-events: none; }
         .invitation-logo { width: 90px; margin-bottom: 10px; position: relative; z-index: 1; filter: drop-shadow(0 0 15px rgba(212,175,55,0.5)); }
         .invitation-subtitle { color: var(--gold-light); font-size: 0.8rem; font-weight: 700; margin: 0 0 15px; position: relative; z-index: 1; line-height: 1.6; opacity: 0.9; }
-        .invitation-title { color: var(--gold-main); font-size: 3.5rem; font-weight: 900; margin: 0 0 20px; position: relative; z-index: 1; text-shadow: 0 0 25px rgba(212,175,55,0.6), 0 2px 5px #000; letter-spacing: 5px; }
+        .invitation-title { color: var(--gold-main); font-size: 3.8rem; font-weight: 900; margin: 0 0 20px; position: relative; z-index: 1; text-shadow: 0 0 25px rgba(212,175,55,0.6), 0 2px 5px #000; letter-spacing: 5px; }
         .invitation-text { color: #fff; font-size: 0.95rem; line-height: 1.9; margin-bottom: 30px; position: relative; z-index: 1; font-weight: 700; padding: 0 10px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
-        .invitation-btn { background: var(--gold-grad); color: #000; border: none; padding: 12px 35px; border-radius: 30px; font-weight: 900; font-family: 'Cairo'; cursor: pointer; box-shadow: 0 4px 15px rgba(212,175,55,0.4); transition: 0.3s; position: relative; z-index: 1; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); }
+        .invitation-btn { background: var(--gold-grad); color: #000; border: none; padding: 12px 35px; border-radius: 30px; font-weight: 900; font-family: 'Cairo'; cursor: pointer; box-shadow: 0 4px 15px rgba(212,175,55,0.4); transition: 0.3s; position: relative; z-index: 1; font-size: 1.05rem; border: 1px solid rgba(255,255,255,0.3); }
         .invitation-btn:active { transform: scale(0.95); }
 
-        /* ========= التأثيرات السينمائية الجديدة (دخان وإضاءة) ========= */
+        /* ========= التأثيرات السينمائية  ========= */
         @keyframes smokeEffect {
             0% { transform: translateY(0) scale(1); opacity: 0.2; }
             50% { transform: translateY(-15px) scale(1.1); opacity: 0.6; }
@@ -67,8 +74,6 @@
             background: radial-gradient(ellipse at bottom, rgba(212,175,55,0.35) 0%, transparent 65%);
             filter: blur(20px); animation: smokeEffect 5s infinite alternate; z-index: 0; pointer-events: none;
         }
-        
-        /* تأثير الدخان المذهب */
         .golden-smoke-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.3) 0%, transparent 80%);
@@ -92,6 +97,16 @@
         @keyframes gentlePulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } }
         @keyframes smoothPopOut { 0% { transform: scale(1); opacity: 1; } 20% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(8); opacity: 0; } }
         #preloader.run-exit .preloader-logo { animation: smoothPopOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important; }
+
+        /* ========= نافذة العيد ========= */
+        .eid-modal { display: flex; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.5s; backdrop-filter: blur(5px); }
+        .eid-modal.show { opacity: 1; visibility: visible; }
+        .eid-modal-content { background: var(--black-card); border: 1px solid var(--gold-main); padding: 30px 20px; border-radius: 20px; text-align: center; max-width: 85%; box-shadow: 0 0 30px rgba(212,175,55,0.4); animation: slideDown 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
+        .eid-modal-content::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 60%); animation: spin 10s linear infinite; z-index: 0; pointer-events: none; }
+        @keyframes slideDown { from { transform: translateY(-50px) scale(0.9); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+        .eid-modal-content h2 { color: var(--gold-light); margin: 0 0 10px; font-size: 1.8rem; text-shadow: 0 2px 10px rgba(212,175,55,0.5); position: relative; z-index: 1; }
+        .eid-modal-content p { color: #ddd; font-size: 0.95rem; line-height: 1.8; margin-bottom: 25px; position: relative; z-index: 1; font-weight: 600; }
+        .eid-modal-btn { background: var(--gold-grad); color: #000; border: none; padding: 10px 35px; border-radius: 30px; font-weight: 900; font-family: 'Cairo'; cursor: pointer; box-shadow: 0 4px 15px rgba(212,175,55,0.3); transition: 0.3s; position: relative; z-index: 1; font-size: 1rem; }
 
         /* ========= ستايلات عامة ========= */
         #image-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999999; justify-content: center; align-items: center; flex-direction: column; animation: fadeIn 0.3s ease-out; }
@@ -203,7 +218,7 @@
             
             <h1 class="invitation-title">دعـــــوة</h1>
             
-            <p class="invitation-text">تتشرف اللجنة المنظمة للبطولة بدعوتكم لحضور المباراة النهائية، وذلك يوم الأربعاء ٦ شوال ١٤٤٧ هـ، الساعة التاسعة مساءً، على ملعب الوسام بالقحمة.</p>
+            <p class="invitation-text">تتشرف اللجنة المنظمة للبطولة بدعوتكم لحضور المباراة النهائية، وذلك يوم الأربعاء ٦ شوال ١٤٤٧ هـ، الساعة التاسعة مساءً، على ملعب الوسم بالقحمة.</p>
             
             <button class="invitation-btn" onclick="closeInvitation()">قبول الدعوة والدخول ➜</button>
         </div>
@@ -515,13 +530,21 @@ function hidePreloaderSafely() {
     }
 }
 
-// 📜 دالة إغلاق الدعوة
+// 📜 دالة إغلاق الدعوة مع التلاشي
 function closeInvitation() {
     const invitationModal = document.getElementById('invitation-modal');
-    invitationModal.classList.remove('show');
-    // حفظ في الذاكرة المؤقتة (تظهر مرة واحدة في كل جلسة تصفح)
-    sessionStorage.setItem('invitation_seen', 'true');
-    hidePreloaderSafely();
+    
+    // إضافة كلاس حركة التلاشي الفخمة
+    invitationModal.classList.add('fade-out-luxury');
+    
+    // حفظ في ذاكرة الجهاز عشان تظهر مرة وحدة بس للأبد
+    localStorage.setItem('invitation_seen_v28_final', 'true');
+    
+    // انتظار انتهاء الحركة (0.8 ثانية) بعدين نخفي كل شي وندخله الموقع
+    setTimeout(() => {
+        invitationModal.classList.remove('show');
+        hidePreloaderSafely();
+    }, 800);
 }
 
 window.onload = function() { 
@@ -564,14 +587,18 @@ window.onload = function() {
 
     // 📜 إظهار الدعوة الملكية
     const invitationModal = document.getElementById('invitation-modal');
-    const hasSeenInv = sessionStorage.getItem('invitation_seen');
+    // استخدمنا الـ LocalStorage عشان تطلع مرة وحدة لكل جهاز
+    const hasSeenInv = localStorage.getItem('invitation_seen_v28_final');
 
     if (!hasSeenInv) {
         // إخفاء التحميل وإظهار الدعوة
         document.getElementById('preloader').style.display = 'none'; 
-        invitationModal.classList.add('show');
+        // تأخير بسيط عشان حركة الدخول تطلع سلسة
+        setTimeout(() => {
+            invitationModal.classList.add('show');
+        }, 100);
     } else {
-        // إذا شاهدها، إخفاء التحميل بشكل طبيعي
+        // إذا شاهدها مسبقاً، إخفاء التحميل بشكل طبيعي
         setTimeout(hidePreloaderSafely, 1500);
     }
 };
