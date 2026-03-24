@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>بطولة القحمة الرمضانية 28 - النهائي الكبير</title>
+    <title>بطولة القحمة الرمضانية 28 - إعلان هام</title>
     
     <meta name="google-site-verification" content="OW252jrJC6EhalNrLRFKoEr2VA7hblIx5NfCzw5CP34" />
     <meta name="description" content="الموقع والتطبيق الشامل لبطولة القحمة الرمضانية 28 - نتائج المباريات، ترتيب المجموعات، وقائمة الهدافين أولاً بأول.">
@@ -43,24 +43,24 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* ========= بطاقة الدعوة الملكية مع التلاشي الفخم ========= */
-        .invitation-modal { display: flex; position: fixed; z-index: 1000000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        /* ========= بطاقة التعزية والتأجيل ========= */
+        .invitation-modal { display: flex; position: fixed; z-index: 1000000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         .invitation-modal.show { opacity: 1; visibility: visible; }
-        .invitation-content { background: linear-gradient(180deg, #141414 0%, #0a0a0a 100%); border: 1px solid var(--gold-main); padding: 40px 20px; border-radius: 20px; text-align: center; max-width: 88%; box-shadow: 0 0 50px rgba(212,175,55,0.25), inset 0 0 20px rgba(212,175,55,0.05); position: relative; overflow: hidden; animation: zoomInCard 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .invitation-content { background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%); border: 1px solid #444; padding: 40px 20px; border-radius: 20px; text-align: center; max-width: 88%; box-shadow: 0 0 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.02); position: relative; overflow: hidden; animation: zoomInCard 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
         
         /* حركة الدخول */
         @keyframes zoomInCard { from { transform: scale(0.85) translateY(20px); opacity: 0; filter: blur(5px); } to { transform: scale(1) translateY(0); opacity: 1; filter: blur(0); } }
         
-        /* حركة التلاشي الفخمة عند القبول */
+        /* حركة التلاشي */
         .invitation-modal.fade-out-luxury { opacity: 0 !important; visibility: hidden !important; backdrop-filter: blur(0px) !important; -webkit-backdrop-filter: blur(0px) !important; }
         .invitation-modal.fade-out-luxury .invitation-content { transform: scale(1.1) translateY(-20px); opacity: 0; filter: blur(10px); }
 
-        .invitation-glow { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 250px; height: 250px; background: radial-gradient(circle, rgba(212,175,55,0.3) 0%, transparent 70%); z-index: 0; pointer-events: none; }
-        .invitation-logo { width: 90px; margin-bottom: 10px; position: relative; z-index: 1; filter: drop-shadow(0 0 15px rgba(212,175,55,0.5)); }
-        .invitation-subtitle { color: var(--gold-light); font-size: 0.8rem; font-weight: 700; margin: 0 0 15px; position: relative; z-index: 1; line-height: 1.6; opacity: 0.9; }
-        .invitation-title { color: var(--gold-main); font-size: 3.8rem; font-weight: 900; margin: 0 0 20px; position: relative; z-index: 1; text-shadow: 0 0 25px rgba(212,175,55,0.6), 0 2px 5px #000; letter-spacing: 5px; }
-        .invitation-text { color: #fff; font-size: 0.95rem; line-height: 1.9; margin-bottom: 30px; position: relative; z-index: 1; font-weight: 700; padding: 0 10px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
-        .invitation-btn { background: var(--gold-grad); color: #000; border: none; padding: 12px 35px; border-radius: 30px; font-weight: 900; font-family: 'Cairo'; cursor: pointer; box-shadow: 0 4px 15px rgba(212,175,55,0.4); transition: 0.3s; position: relative; z-index: 1; font-size: 1.05rem; border: 1px solid rgba(255,255,255,0.3); }
+        .invitation-glow { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 250px; height: 250px; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%); z-index: 0; pointer-events: none; }
+        .invitation-logo { width: 90px; margin-bottom: 10px; position: relative; z-index: 1; filter: grayscale(100%) opacity(0.7); }
+        .invitation-subtitle { color: #aaa; font-size: 1rem; font-weight: 700; margin: 0 0 15px; position: relative; z-index: 1; line-height: 1.6; opacity: 0.9; }
+        .invitation-title { color: #fff; font-size: 2.8rem; font-weight: 900; margin: 0 0 20px; position: relative; z-index: 1; text-shadow: 0 2px 10px rgba(0,0,0,0.8); letter-spacing: 2px; }
+        .invitation-text { color: #ccc; font-size: 0.95rem; line-height: 1.9; margin-bottom: 30px; position: relative; z-index: 1; font-weight: 700; padding: 0 10px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .invitation-btn { background: #333; color: #fff; border: 1px solid #555; padding: 12px 35px; border-radius: 30px; font-weight: 900; font-family: 'Cairo'; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: 0.3s; position: relative; z-index: 1; font-size: 1rem; }
         .invitation-btn:active { transform: scale(0.95); }
 
         /* ========= التأثيرات السينمائية  ========= */
@@ -71,15 +71,9 @@
         }
         .smoke-bg {
             position: absolute; bottom: -30px; left: 0; width: 100%; height: 160px;
-            background: radial-gradient(ellipse at bottom, rgba(212,175,55,0.35) 0%, transparent 65%);
+            background: radial-gradient(ellipse at bottom, rgba(212,175,55,0.15) 0%, transparent 65%);
             filter: blur(20px); animation: smokeEffect 5s infinite alternate; z-index: 0; pointer-events: none;
         }
-        .golden-smoke-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.3) 0%, transparent 80%);
-            filter: blur(25px); z-index: 1; pointer-events: none; animation: goldenSmokeDrift 6s infinite alternate;
-        }
-        @keyframes goldenSmokeDrift { 0% { transform: scale(1) translateY(0); opacity: 0.5; } 100% { transform: scale(1.05) translateY(-5px); opacity: 0.8; } }
 
         /* ========= شاشة التحميل ========= */
         #preloader { 
@@ -91,12 +85,15 @@
         }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         .preloader-logo { 
-            width: 130px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); 
+            width: 130px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.2)); 
             will-change: transform, opacity; transform: translateZ(0); animation: gentlePulse 2s ease-in-out infinite; 
         }
-        @keyframes gentlePulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } }
+        @keyframes gentlePulse { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.05); opacity: 0.8; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4)); } }
         @keyframes smoothPopOut { 0% { transform: scale(1); opacity: 1; } 20% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(8); opacity: 0; } }
         #preloader.run-exit .preloader-logo { animation: smoothPopOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important; }
+
+        /* ========= نافذة العيد ========= */
+        .eid-modal { display: none; }
 
         /* ========= ستايلات عامة ========= */
         #image-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999999; justify-content: center; align-items: center; flex-direction: column; animation: fadeIn 0.3s ease-out; }
@@ -105,16 +102,16 @@
         .modal-img-container img { width: 100%; height: 100%; object-fit: contain; display: block; }
         .close-modal-btn { margin-top: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 10px 30px; border-radius: 30px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; }
 
-        #backToTopBtn { position: fixed; bottom: 30px; left: 20px; width: 45px; height: 45px; background: var(--gold-grad); color: #000; border: none; border-radius: 50%; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); font-size: 1.2rem; cursor: pointer; z-index: 9998; opacity: 0; visibility: hidden; transition: 0.4s ease; display: flex; justify-content: center; align-items: center; text-decoration: none; }
+        #backToTopBtn { position: fixed; bottom: 30px; left: 20px; width: 45px; height: 45px; background: #333; color: #fff; border: 1px solid #555; border-radius: 50%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); font-size: 1.2rem; cursor: pointer; z-index: 9998; opacity: 0; visibility: hidden; transition: 0.4s ease; display: flex; justify-content: center; align-items: center; text-decoration: none; }
         #backToTopBtn.show { opacity: 1; visibility: visible; }
 
         .team-logo-vip { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(212,175,55,0.5)); margin-bottom: 6px; }
 
         .champions-card { border-radius: 20px; position: relative; overflow: hidden; text-align: center; }
-        .champions-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 180px; height: 180px; background: radial-gradient(circle, rgba(212,175,55,0.25) 0%, transparent 70%); z-index: 0; pointer-events: none; }
+        .champions-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 180px; height: 180px; background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%); z-index: 0; pointer-events: none; }
         
-        .champions-vs-badge { background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 15px rgba(212,175,55,0.8), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 auto; position: relative; z-index: 2; border-radius: 8px; transition: 0.3s ease; }
-        .champions-vs-text { transform: rotate(-45deg); color: #000; font-weight: 900; font-family: sans-serif; transition: 0.3s ease; }
+        .champions-vs-badge { background: linear-gradient(135deg, #333, #111); border: 2px solid #555; box-shadow: 0 0 15px rgba(0,0,0,0.8); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 auto; position: relative; z-index: 2; border-radius: 8px; transition: 0.3s ease; }
+        .champions-vs-text { transform: rotate(-45deg); color: #ccc; font-weight: 900; font-family: sans-serif; transition: 0.3s ease; }
         
         .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
         
@@ -124,30 +121,25 @@
             margin-bottom: 20px; margin-top: -12px; position: relative; overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.6);
         }
-        .eid-active-header { animation: eidGlow 2.5s infinite alternate; }
-        @keyframes eidGlow { from { box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 5px rgba(212,175,55,0.1); } to { box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.4); border-color: var(--gold-light); } }
-        header::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.05), transparent); animation: shine 6s infinite; }
+        header::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.02), transparent); animation: shine 6s infinite; }
         .logo-img { width: 90px; height: auto; display: block; margin: 0 auto 8px; filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.2)); }
         header h1 { font-weight: 900; margin: 0; font-size: 1.3rem; color: var(--gold-light); text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
-        .stadium-tag { color: var(--gold-main); font-size: 0.8rem; font-weight: 900; margin-top: 5px; display: block; letter-spacing: 1px; text-shadow: 0 0 8px rgba(212,175,55,0.5); }
+        .stadium-tag { color: #aaa; font-size: 0.8rem; font-weight: 900; margin-top: 5px; display: block; letter-spacing: 1px; }
         
         .info-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
         .stat-badge, .tabs-nav, .sub-tab-btn, .match-card, .group-card, .about-text-area, .search-input { background: var(--black-card); border: 1px solid var(--glass-border); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .stat-badge { padding: 5px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; color: var(--gold-light); display: inline-flex; align-items: center; gap: 5px; }
         
-        .dot { height: 6px; width: 6px; background-color: var(--gold-main); border-radius: 50%; display: inline-block; animation: goldPulse 2s infinite; box-shadow: 0 0 8px var(--gold-main); }
-        
-        .dot-red { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; animation: redPulse 1.5s infinite; border-radius: 50%; display: inline-block; }
-        @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+        .dot { height: 6px; width: 6px; background-color: #555; border-radius: 50%; display: inline-block; }
 
         .tabs-nav { display: flex; padding: 5px; border-radius: 12px; margin-bottom: 20px; overflow-x: auto; scrollbar-width: none; }
         .tabs-nav::-webkit-scrollbar { display: none; }
         .tab-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 700; padding: 8px 12px; border-radius: 10px; flex: 1; font-family: 'Cairo'; white-space: nowrap; font-size: 0.8rem; transition: 0.3s; }
-        .tab-btn.active { background: var(--gold-grad); color: #000; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); border: 1px solid rgba(255,255,255,0.2); }
+        .tab-btn.active { background: #333; color: #fff; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255,255,255,0.1); }
         
         .sub-tabs { display: flex; gap: 8px; margin-bottom: 15px; padding: 0 5px; justify-content: center; }
         .sub-tab-btn { color: var(--text-muted); padding: 6px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; flex: 1; font-family: 'Cairo'; max-width: 150px; transition: 0.3s; }
-        .sub-tab-btn.active { background: var(--gold-dark); color: #fff; border-color: var(--gold-main); box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2); }
+        .sub-tab-btn.active { background: #333; color: #fff; border-color: #555; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
 
         .tab-content { display: none; flex-grow: 1; opacity: 0; }
         .tab-content.active { display: block; animation: smoothFade 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
@@ -164,10 +156,6 @@
 
         .day-header { color: var(--gold-main); font-size: 0.8rem; font-weight: 900; margin: 20px 0 8px; display: block; border-right: 3px solid var(--gold-main); padding-right: 8px; text-align: right; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
         
-        .power-bar-bg { background: #222; border-radius: 10px; overflow: hidden; height: 6px; margin-bottom: 8px; width: 100%; border: 1px solid rgba(255,255,255,0.1); }
-        .power-bar-fill { background: var(--gold-grad); height: 100%; border-radius: 10px; transition: width 0.8s ease-out; }
-        .power-bar-fill.red { background: linear-gradient(90deg, #ef4444, #b91c1c); }
-
         .group-card { border-radius: 12px; overflow: hidden; margin-bottom: 15px; }
         .group-header { background: rgba(212, 175, 55, 0.1); color: var(--gold-main); padding: 10px; font-weight: 900; text-align: right; font-size: 0.8rem; border-bottom: 1px solid var(--glass-border); }
         .group-table { width: 100%; border-collapse: collapse; }
@@ -179,13 +167,13 @@
         
         .footer { text-align: center; padding: 30px 12px 15px; background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent); margin-top: 35vh; border-top: 1px solid var(--glass-border); }
         .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
-        .social-btn { padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 0.65rem; font-weight: 700; color: #000; background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 2px 5px rgba(212,175,55,0.2); }
+        .social-btn { padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 0.65rem; font-weight: 700; color: #aaa; background: #222; border: 1px solid #444; }
         .disclaimer { font-size: 0.6rem; color: var(--text-muted); max-width: 700px; margin: 15px auto 0; line-height: 1.5; opacity: 0.6; }
         
         .search-container { padding: 0; margin-bottom: 12px; }
-        .search-input { width: 100%; padding: 10px 12px; border-radius: 10px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.2); font-family: 'Cairo'; font-size: 0.8rem; box-sizing: border-box; }
+        .search-input { width: 100%; padding: 10px 12px; border-radius: 10px; background: rgba(0,0,0,0.5); color: #fff; border: 1px solid #444; font-family: 'Cairo'; font-size: 0.8rem; box-sizing: border-box; }
         .search-input::placeholder { color: var(--text-muted); }
-        .search-input:focus { outline: none; border-color: var(--gold-main); box-shadow: 0 0 8px rgba(212,175,55,0.2); }
+        .search-input:focus { outline: none; border-color: #888; }
     </style>
 </head>
 <body>
@@ -195,13 +183,13 @@
             <div class="invitation-glow"></div>
             <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="invitation-logo" alt="الشعار" crossorigin="anonymous">
             
-            <h4 class="invitation-subtitle">بطولة القحمة الرمضانية 28 لكرة القدم 2026<br>على كأس جمعية التنمية الأهلية بالقحمة</h4>
+            <h4 class="invitation-subtitle">إنا لله وإنا إليه راجعون</h4>
             
-            <h1 class="invitation-title">دعـــــوة</h1>
+            <h1 class="invitation-title">تأجيل النهائي</h1>
             
-            <p class="invitation-text">تتشرف اللجنة المنظمة للبطولة بدعوتكم لحضور المباراة النهائية، وذلك يوم الأربعاء ٦ شوال ١٤٤٧ هـ، الساعة العاشرة مساءً، على ملعب الوسم بالقحمة.</p>
+            <p class="invitation-text">بناءً على حالة الوفاة التي حدثت، وتقديراً لظروف العزاء، تقرر تأجيل المباراة النهائية لبطولة القحمة الرمضانية 28 إلى وقت يحدد لاحقاً.<br><br>نسأل الله أن يتغمد الفقيد بواسع رحمته ويلهم أهله الصبر والسلوان.</p>
             
-            <button class="invitation-btn" onclick="closeInvitation()">قبول الدعوة والدخول ➜</button>
+            <button class="invitation-btn" onclick="closeInvitation()">الدخول للموقع</button>
         </div>
     </div>
 
@@ -209,48 +197,17 @@
         <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
     </div>
 
-    <div id="image-modal">
-        <p style="color: #fff; font-family: 'Cairo'; margin-bottom: 15px; font-weight: 900; font-size: 1rem; text-shadow: 0 2px 5px #000;">✨ اضغط مطولاً على الصورة لحفظها ومشاركتها ✨</p>
-        <div class="modal-img-container">
-            <img id="generated-image" src="" alt="بوستر المباراة">
-        </div>
-        <button class="close-modal-btn" onclick="document.getElementById('image-modal').style.display='none'">إغلاق ✖</button>
-    </div>
-
-    <div class="offscreen-poster-wrapper" style="position: absolute; top: -15000px; left: -15000px; opacity: 1; z-index: -1;">
-        <div id="snapchat-poster" style="width: 540px; height: 960px; background: linear-gradient(135deg, #050505 0%, #1a1a1a 50%, #000000 100%); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 50px 30px; box-sizing: border-box; position: relative; overflow: hidden; font-family: 'Cairo', sans-serif;">
-            <div style="content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%); border-radius: 50%; z-index: 0;"></div>
-            <div style="text-align: center; z-index: 2; width: 100%; margin-top: 20px;">
-                <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 140px; filter: drop-shadow(0 0 15px rgba(212,175,55,0.4)); margin-bottom: 20px;" crossorigin="anonymous">
-                <h1 style="color: #f3e5ab; font-size: 3.5rem; margin: 0; font-weight: 900; text-shadow: 0 4px 20px rgba(212,175,55,0.6);">النهائي الكبير</h1>
-            </div>
-            
-            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; z-index: 2; background: rgba(20,20,20,0.8); border: 1px solid #aa8c2c; border-radius: 25px; padding: 40px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.9);">
-                <div style="text-align: center; width: 40%;"><img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous"><h2 style="color: #c5a059; margin: 0; font-size: 1.8rem; font-weight: 900; text-shadow: 0 2px 5px #000;">الفيصلي</h2></div>
-                <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; color: #000; box-shadow: 0 0 25px rgba(212,175,55,0.7); flex-shrink: 0; border: 3px solid #141414;">VS</div>
-                <div style="text-align: center; width: 40%;"><img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous"><h2 style="color: #c5a059; margin: 0; font-size: 1.8rem; font-weight: 900; text-shadow: 0 2px 5px #000;">الوسام</h2></div>
-            </div>
-            
-            <div style="text-align: center; z-index: 2; width: 100%; border-top: 2px dashed rgba(212,175,55,0.4); padding-top: 30px; padding-bottom: 20px;">
-                <span style="color: #d4af37; font-size: 1.2rem; font-weight: 700; background: rgba(212,175,55,0.15); padding: 5px 20px; border-radius: 30px; display: inline-block; margin-bottom: 15px; border: 1px solid rgba(212,175,55,0.3);">موعد المباراة: الأربعاء 6 شـوال</span>
-                <p style="color: #f8fafc; font-size: 1.5rem; font-weight: 900; margin: 0 0 10px 0; text-shadow: 0 2px 5px #000;">نكون أو لا نكون.. ليلة كتابة التاريخ! ✍️</p>
-                <p style="color: #d4af37; font-size: 1.1rem; margin: 0; font-weight: 700;">تابعنا عبر تطبيق البطولة 📲</p>
-            </div>
-        </div>
-    </div>
-
     <a href="#" id="backToTopBtn" title="العودة للأعلى">⬆️</a>
 
     <div class="container">
-        <header id="main-header" class="eid-active-header">
-            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img" crossorigin="anonymous">
+        <header id="main-header">
+            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img" crossorigin="anonymous" style="filter: grayscale(80%);">
             <h1>بطولة القحمة الرمضانية 28</h1>
-            <span class="stadium-tag">✨ النهائي الكبير ✨</span>
+            <span class="stadium-tag">النهائي الكبير (مؤجل)</span>
         </header>
         
         <div class="info-bar">
             <div class="stat-badge"><span class="dot"></span> النشاط: <span id="live-visit-counter">...</span></div>
-            <span class="dot-red" style="width: 8px; height: 8px; margin: 0 4px;" title="بث مباشر للموقع"></span>
             <div class="stat-badge" id="weather-box" style="display:flex; align-items:center; gap:5px;">⏳ تحديث الجو...</div>
         </div>
 
@@ -283,18 +240,9 @@
         <div id="about" class="tab-content"><div class="about-text-area" id="about-text-content"></div></div>
 
         <div class="footer">
-            <div style="max-width: 400px; margin: 0 auto 20px; text-align: right; background: rgba(20,20,20,0.6); padding: 12px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15);">
-                <p style="font-size: 0.65rem; color: var(--gold-light); margin-top: 0; margin-bottom: 8px; line-height: 1.6; font-weight: 700; text-align: center;">
-                    هذا الموقع صُمم بحب لأهل القحمة.. يهمنا رأيك في جودة التغطية وسهولة التطبيق، ملاحظتك توصل للمبرمج مباشرة وبشكل سري لنرتقي بالنسخة القادمة 🚀✨
-                </p>
-                <textarea id="user-feedback" placeholder="اكتب ملاحظتك هنا (بدون اسم)..." style="width: 100%; height: 45px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; color: #fff; padding: 6px 10px; font-family: 'Cairo'; font-size: 0.7rem; resize: none; box-sizing: border-box; outline: none; transition: 0.3s;"></textarea>
-                <button id="send-feedback-btn" onclick="sendFeedback()" style="margin-top: 6px; width: 100%; background: var(--gold-grad); color: #000; border: none; padding: 6px; border-radius: 6px; font-weight: 900; font-family: 'Cairo'; font-size: 0.75rem; cursor: pointer; transition: 0.3s;">أرسل بصمتك 📥</button>
-                <div id="feedback-status" style="font-size: 0.65rem; margin-top: 6px; text-align: center; display: none; font-weight: bold;"></div>
-            </div>
-
-            <p style="font-weight:900; margin-bottom:2px; font-size:0.75rem; color:var(--gold-main);">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
+            <p style="font-weight:900; margin-bottom:2px; font-size:0.75rem; color:#aaa;">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
             <div class="social-mini"><a href="https://wa.me/966534987428" class="social-btn">واتساب</a><a href="https://snapchat.com/t/TXTbTApk" class="social-btn">سناب</a></div>
-            <p style="font-size:0.7rem; color:var(--gold-light); font-weight:900; margin-top:15px;">📸 الشبكة الإعلامية للبطولة</p>
+            <p style="font-size:0.7rem; color:#888; font-weight:900; margin-top:15px;">📸 الشبكة الإعلامية للبطولة</p>
             <div class="social-mini">
                 <a href="https://snapchat.com/t/2qKXdcpD" class="social-btn">سناب سوداني</a>
                 <a href="https://snapchat.com/t/rJe5ARXp" class="social-btn">علي</a>
@@ -343,58 +291,48 @@ const groupData = [
     {n:"السادسة", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة\n\n* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة\n* تقام مباريات البطولة بنظام المجموعات من دور واحد\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:\n- مجموع النقاط\n- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)\n- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر\n- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب\n- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة\n\n* آلية مباريات الملحق\nبعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:\n * المباراة  رقم (19) \n(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) \n * المباراة رقم ( 20) \n(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) \n\n* مباريات دور الثمانية\nرقم المباراة ( 21) \nاول مج (1) مع اول مج(3)\n\nالمبارة رقم (22) \nاول مج (2)   مع أول مج ( 4) \n المباراة رقم ( 23)\nاول مج ( 5) مع اول مج ( 7 ) \nالمباراة رقم (24) \nاول مج (6) مع اول مج ( 8) \n\n(( ملاحظة مهمة)) \nفي حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: \nالمباراة رقم ( 23)\n اول مج ( 5 ) مع أول مج ( 8 ) \nالمباراة رقم (24) \nاول مج( 6) مع أول مج(7) \nوذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية \n\nمباريات نصف النهاىي\n المباراة رقم (25) \nفائز (21) مع فائز( 23) \nالمباراة رقم (26)\n فائز (22) مع فائز 24\n\nالنهائي \nالمباراة رقم (27)\nفائز (25) مع فائز (26)\n\nبعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي \nتم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة \nوبالتالي اصبح ترتيب الاوائل على النحو التالي :\nالمجموعة الاولى فريق السوق \nالمجموعة الثانية فريق ساحل مغزل\nالمجموعة الثالثة فريق الصقر \nالمجموعة الرابعة فريق الساحل الرياضي \nالمجموعه الخامسة فريق صقليه\nالمجموعة السادسة فريق الوسام \nالمجموعة السابعة فريق عمق \nالمجموعة الثامنه فريق الفيصلي\n\nوتلعب مباريات دور الثمانية(ربع النهائي )\nحسب نظام البطولة \nاول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)\nاول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)\n—————————————————- \nوحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا\nاول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)\nاول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)\n——————————————————\nمباريات دور الاربعة ( نصف النهائي )\nرقم المباراة (25)\nفائز المباراة رقم  (21) مع فائز المباراة رقم  (23)\nرقم المباراة (26)\nفائز المباراة رقم (22) مع فائز المباراة رقم (24)\n——————————————————-\nالمباراة النهائية \nرقم المباراة (27)\nفائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
+const aboutFullText = `...`;
 
 function openTab(evt, tabName) { let content = document.getElementsByClassName("tab-content"), btns = document.getElementsByClassName("tab-btn"); for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); void document.getElementById(tabName).offsetWidth; document.getElementById(tabName).classList.add("active"); if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } else { let activeBtn = document.querySelector(".tab-btn[onclick*='" + tabName + "']"); if(activeBtn) activeBtn.classList.add("active"); } }
 function openSubTab(evt, subName) { let content = document.getElementsByClassName("sub-content"), btns = document.getElementsByClassName("sub-tab-btn"); for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); void document.getElementById(subName).offsetWidth; document.getElementById(subName).classList.add("active"); if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } else { let activeBtn = document.querySelector(".sub-tab-btn[onclick*='" + subName + "']"); if(activeBtn) activeBtn.classList.add("active"); } }
 function searchList(type) { let input = document.getElementById(type === 'scorers' ? 'scorer-search' : 'archive-search'); let filter = input.value.toUpperCase(); let cards = type === 'scorers' ? document.getElementById('players-table').getElementsByTagName('tr') : document.getElementById('archive-area').getElementsByClassName('match-card'); for (let i = 0; i < cards.length; i++) { let txt = cards[i].textContent || cards[i].innerText; cards[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "" : "none"; } }
 
-function resetButton(btn, originalText) { btn.innerText = originalText; btn.style.opacity = '1'; btn.disabled = false; }
-
-async function shareMatchAsImage() { const btn = document.getElementById('share-btn'); const originalText = btn.innerText; btn.innerText = '⏳'; btn.style.opacity = '0.7'; btn.disabled = true; try { const element = document.getElementById('snapchat-poster'); const canvas = await html2canvas(element, { backgroundColor: '#050505', scale: 2, useCORS: true, allowTaint: true, logging: false }); const imgData = canvas.toDataURL('image/png'); document.getElementById('generated-image').src = imgData; document.getElementById('image-modal').style.display = 'flex'; } catch (err) { alert('حدث خطأ أثناء التجهيز، يرجى المحاولة مرة أخرى.'); } finally { resetButton(btn, originalText); } }
-
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     todayArea.innerHTML = `
-    <div class="champions-card" style="padding: 25px 15px 20px; margin-top: 5px; border: 1px solid rgba(212,175,55,0.3); background: linear-gradient(180deg, #111 0%, #050505 100%); box-shadow: 0 10px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(212,175,55,0.05); max-width: 500px; margin-left: auto; margin-right: auto;">
+    <div class="champions-card" style="padding: 25px 15px 20px; margin-top: 5px; border: 1px solid #444; background: linear-gradient(180deg, #1a1a1a 0%, #050505 100%); box-shadow: 0 10px 40px rgba(0,0,0,0.9); max-width: 500px; margin-left: auto; margin-right: auto;">
         
-        <div class="smoke-bg"></div>
-        <div class="champions-glow" style="width: 200px; height: 200px;"></div>
+        <div class="smoke-bg" style="background: radial-gradient(ellipse at bottom, rgba(255,255,255,0.05) 0%, transparent 65%);"></div>
         
-        <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.4); border-radius: 50%; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.8); z-index: 10; transition: 0.3s; backdrop-filter: blur(5px);" title="مشاركة البوستر">📸</button>
-
-        <div id="match-status-badge" style="position: absolute; top: 15px; right: 15px; background: var(--gold-grad); color: #000; padding: 4px 12px; border-radius: 20px; font-weight: 900; font-size: 0.75rem; z-index: 10; box-shadow: 0 4px 10px rgba(212,175,55,0.4); border: 1px solid rgba(255,255,255,0.3); transition: 0.3s;">
-            الأربعاء 10:00 م
+        <div id="match-status-badge" style="position: absolute; top: 15px; right: 15px; background: #333; color: #fff; padding: 4px 12px; border-radius: 20px; font-weight: 900; font-size: 0.75rem; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.5); border: 1px solid #555;">
+            تم التأجيل
         </div>
 
         <div style="position:relative; z-index:2; margin-bottom: 25px; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h2 style="color:var(--gold-light); margin:0; font-size:1.6rem; font-weight:900; letter-spacing: 0.5px; text-shadow: 0 0 15px rgba(212,175,55,0.6);">النهائي الكبير</h2>
-            <span style="font-size:0.7rem; color:var(--gold-dark); font-weight:900; background:rgba(212,175,55,0.1); padding:3px 12px; border-radius:20px; margin-top:5px; border:1px solid rgba(212,175,55,0.2);">بطولة القحمة الرمضانية 28</span>
+            <h2 style="color:#ddd; margin:0; font-size:1.6rem; font-weight:900; letter-spacing: 0.5px;">النهائي الكبير</h2>
+            <span style="font-size:0.7rem; color:#aaa; font-weight:900; background:rgba(255,255,255,0.05); padding:3px 12px; border-radius:20px; margin-top:5px; border:1px solid #444;">بطولة القحمة الرمضانية 28</span>
         </div>
         
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 10px; position: relative; z-index:2;">
-            
-            <div class="golden-smoke-overlay"></div>
-
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 10px; position: relative; z-index:2; opacity: 0.8;">
             <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
-                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 80px; height: 80px; object-fit:contain; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 10px; position:relative; z-index:1;" crossorigin="anonymous">
-                <span style="font-size: 1.1rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الفيصلي</span>
+                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 80px; height: 80px; object-fit:contain; filter: grayscale(50%) drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 10px; position:relative; z-index:1;" crossorigin="anonymous">
+                <span style="font-size: 1.1rem; font-weight: 900; color: #ccc; text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الفيصلي</span>
             </div>
             
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0.8; position: relative;">
-                <div class="champions-vs-badge" style="width: 45px; height: 45px; margin: 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 20px rgba(212,175,55,0.6);">
+                <div class="champions-vs-badge" style="width: 45px; height: 45px; margin: 0; z-index: 2;">
                     <div class="champions-vs-text" id="live-vs-text" style="font-size: 1.1rem; transition: 0.3s ease;">VS</div>
                 </div>
             </div>
 
             <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
-                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 80px; height: 80px; object-fit:contain; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 10px; position:relative; z-index:1;" crossorigin="anonymous">
-                <span style="font-size: 1.1rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الوسام</span>
+                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 80px; height: 80px; object-fit:contain; filter: grayscale(50%) drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 10px; position:relative; z-index:1;" crossorigin="anonymous">
+                <span style="font-size: 1.1rem; font-weight: 900; color: #ccc; text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الوسام</span>
             </div>
         </div>
 
-        <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:8px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); margin-top: 20px;">
-            <span style="font-size:0.8rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">نكون أو لا نكون.. ليلة كتابة التاريخ في القحمة! ✍️</span>
+        <div style="position:relative; z-index:2; background: rgba(0,0,0,0.5); padding:8px; border-radius:8px; border-top: 1px solid #333; margin-top: 20px;">
+            <span style="font-size:0.8rem; color:#aaa; font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">تم تأجيل المباراة إلى وقت يحدد لاحقاً</span>
         </div>
     </div>
     `;
@@ -404,7 +342,7 @@ function updateDisplay() {
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--gold-main); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     const stats = {}; archiveData.forEach(day => day.matches.forEach(m => { const res = m.r.split(' - ').map(Number); if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 }; stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; }));
     document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--gold-main); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
-    document.getElementById('about-text-content').innerText = aboutFullText; 
+    document.getElementById('about-text-content').innerText = "تم تأجيل المباراة النهائية لوقت يحدد لاحقاً."; 
 }
 
 window.addEventListener('scroll', function() { let topBtn = document.getElementById('backToTopBtn'); if (window.scrollY > 400) { topBtn.classList.add('show'); } else { topBtn.classList.remove('show'); } });
@@ -429,23 +367,6 @@ async function fetchWeather() {
     } 
 }
 
-function fireConfetti() {
-    var duration = 4 * 1000; var end = Date.now() + duration;
-    (function frame() {
-        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#d4af37', '#f3e5ab', '#aa8c2c'] });
-        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#d4af37', '#f3e5ab', '#aa8c2c'] });
-        if (Date.now() < end) { requestAnimationFrame(frame); }
-    }());
-}
-
-function closeEidModal() {
-    const modal = document.getElementById('eid-modal');
-    if (modal.classList.contains('show')) {
-        modal.classList.remove('show');
-        fireConfetti();
-    }
-}
-
 function hidePreloaderSafely() {
     const preloader = document.getElementById('preloader');
     if(preloader && !preloader.classList.contains('hidden')) {
@@ -456,17 +377,11 @@ function hidePreloaderSafely() {
     }
 }
 
-// 📜 دالة إغلاق الدعوة مع التلاشي
+// 📜 دالة إغلاق إعلان التأجيل
 function closeInvitation() {
     const invitationModal = document.getElementById('invitation-modal');
-    
-    // إضافة كلاس حركة التلاشي الفخمة
     invitationModal.classList.add('fade-out-luxury');
-    
-    // حفظ في ذاكرة الجهاز عشان تظهر مرة وحدة بس للأبد
-    localStorage.setItem('invitation_seen_v28_final', 'true');
-    
-    // انتظار انتهاء الحركة (0.8 ثانية) بعدين نخفي كل شي وندخله الموقع
+    localStorage.setItem('postponement_seen_v28', 'true');
     setTimeout(() => {
         invitationModal.classList.remove('show');
         hidePreloaderSafely();
@@ -476,20 +391,16 @@ function closeInvitation() {
 window.onload = function() { 
     fetchWeather(); updateDisplay(); openTab(null, 'today'); openSubTab(null, 'players-list'); 
 
-    // 📜 إظهار الدعوة الملكية
+    // 📜 إظهار إعلان التأجيل
     const invitationModal = document.getElementById('invitation-modal');
-    // استخدمنا الـ LocalStorage عشان تطلع مرة وحدة لكل جهاز
-    const hasSeenInv = localStorage.getItem('invitation_seen_v28_final');
+    const hasSeenPostponement = localStorage.getItem('postponement_seen_v28');
 
-    if (!hasSeenInv) {
-        // إخفاء التحميل وإظهار الدعوة
+    if (!hasSeenPostponement) {
         document.getElementById('preloader').style.display = 'none'; 
-        // تأخير بسيط عشان حركة الدخول تطلع سلسة
         setTimeout(() => {
             invitationModal.classList.add('show');
         }, 100);
     } else {
-        // إذا شاهدها مسبقاً، إخفاء التحميل بشكل طبيعي
         setTimeout(hidePreloaderSafely, 1500);
     }
 };
@@ -498,7 +409,7 @@ window.onload = function() {
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-  import { getDatabase, ref, runTransaction, onValue, onDisconnect, push, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+  import { getDatabase, ref, runTransaction, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
   const p1 = "AIzaSyDMSL";
   const p2 = "sTOf_zy8Ec";
@@ -509,16 +420,12 @@ window.onload = function() {
     apiKey: p1 + p2 + p3 + p4,
     authDomain: "eyad-a12a5.firebaseapp.com",
     databaseURL: "https://eyad-a12a5-default-rtdb.firebaseio.com",
-    projectId: "eyad-a12a5",
-    storageBucket: "eyad-a12a5.firebasestorage.app",
-    messagingSenderId: "870950813206",
-    appId: "1:870950813206:web:255df2c810fdf98051bf37"
+    projectId: "eyad-a12a5"
   };
 
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
   
-  // 1. النشاط الكلي
   const visitsRef = ref(db, 'visits_counter/total');
   runTransaction(visitsRef, (currentVisits) => {
       return (currentVisits || 19477) + 1;
@@ -529,99 +436,8 @@ window.onload = function() {
       }
   });
 
-  // 2. المتواجدون الآن (النقطة الحمراء اللحظية)
   const myClientId = 'user_' + Math.random().toString(36).substr(2, 9);
   const myOnlineRef = ref(db, 'online_users_live/' + myClientId);
-  
-  set(myOnlineRef, true);
-  onDisconnect(myOnlineRef).remove(); 
-
-  // 4. نظام الملاحظات السري
-  window.sendFeedback = function() {
-      const feedbackText = document.getElementById('user-feedback').value;
-      const statusDiv = document.getElementById('feedback-status');
-      const btn = document.getElementById('send-feedback-btn');
-
-      if (feedbackText.trim() === "") {
-          statusDiv.style.display = "block";
-          statusDiv.style.color = "#ef4444";
-          statusDiv.innerText = "⚠️ يرجى كتابة ملاحظتك أولاً!";
-          setTimeout(() => statusDiv.style.display = "none", 2000);
-          return;
-      }
-
-      btn.disabled = true;
-      btn.innerText = "⏳ جاري الإرسال...";
-
-      const feedbackRef = ref(db, 'user_feedback');
-      const newFeedbackRef = push(feedbackRef);
-
-      set(newFeedbackRef, {
-          comment: feedbackText,
-          time: new Date().toLocaleString('en-US', { timeZone: 'Asia/Riyadh' })
-      }).then(() => {
-          document.getElementById('user-feedback').value = "";
-          statusDiv.style.display = "block";
-          statusDiv.style.color = "#10b981";
-          statusDiv.innerText = "✅ تم الإرسال، شكراً لك!";
-          btn.innerText = "أرسل بصمتك 📥";
-          btn.disabled = false;
-          setTimeout(() => statusDiv.style.display = "none", 4000);
-      }).catch((error) => {
-          statusDiv.style.display = "block";
-          statusDiv.style.color = "#ef4444";
-          statusDiv.innerText = "❌ حدث خطأ، حاول مرة أخرى.";
-          btn.innerText = "أرسل بصمتك 📥";
-          btn.disabled = false;
-      });
-  };
-
-  // 5. نظام النتيجة الحية والشارة الديناميكية
-  const liveScoreRef = ref(db, 'live_match_score');
-  onValue(liveScoreRef, (snapshot) => {
-      const data = snapshot.val();
-      const vsText = document.getElementById('live-vs-text');
-      const statusBadge = document.getElementById('match-status-badge');
-      
-      if (data && data.is_live) {
-          // إذا المباراة بدأت (تفعيل من فايربيس)
-          if (vsText) {
-              vsText.innerText = data.faisaly + " - " + data.wesam;
-              vsText.style.fontSize = '1.4rem';
-              vsText.style.transform = 'rotate(-45deg) scale(1.1)';
-              vsText.style.color = '#fff';
-              vsText.style.textShadow = '0 0 8px #000';
-          }
-          // تغيير الشارة إلى "مباشر الآن" وجعلها ترمش
-          if (statusBadge) {
-              statusBadge.innerHTML = '🔴 مباشر الآن';
-              statusBadge.style.background = 'linear-gradient(135deg, #ef4444, #b91c1c)';
-              statusBadge.style.color = '#fff';
-              statusBadge.style.boxShadow = '0 0 15px rgba(239, 68, 68, 0.6)';
-              statusBadge.style.borderColor = '#b91c1c';
-              statusBadge.style.animation = 'gentlePulse 1.5s infinite';
-          }
-      } else {
-          // إذا المباراة لسه ما بدأت (أو تم إيقاف المباشر)
-          if (vsText) {
-              vsText.innerText = 'VS';
-              vsText.style.fontSize = '1.1rem';
-              vsText.style.transform = 'rotate(-45deg)';
-              vsText.style.color = '#000';
-              vsText.style.textShadow = 'none';
-          }
-          // إرجاع شارة الوقت الأصلية
-          if (statusBadge) {
-              statusBadge.innerHTML = 'الأربعاء 10:00 م';
-              statusBadge.style.background = 'var(--gold-grad)';
-              statusBadge.style.color = '#000';
-              statusBadge.style.boxShadow = '0 4px 10px rgba(212,175,55,0.4)';
-              statusBadge.style.borderColor = 'rgba(255,255,255,0.3)';
-              statusBadge.style.animation = 'none';
-          }
-      }
-  });
-
 </script>
 
 </body>
