@@ -118,23 +118,14 @@
         #backToTopBtn { position: fixed; bottom: 30px; left: 20px; width: 45px; height: 45px; background: var(--gold-grad); color: #000; border: none; border-radius: 50%; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); font-size: 1.2rem; cursor: pointer; z-index: 9998; opacity: 0; visibility: hidden; transition: 0.4s ease; display: flex; justify-content: center; align-items: center; text-decoration: none; }
         #backToTopBtn.show { opacity: 1; visibility: visible; }
 
-        .poll-container { background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
-        .poll-title { font-size: 0.85rem; color: var(--gold-light); font-weight: 900; margin: 0 0 15px 0; display: flex; align-items: center; justify-content: center; gap: 5px; }
-        .poll-btns { display: flex; gap: 10px; justify-content: center; }
-        .poll-btn { background: var(--black-card); border: 1px solid rgba(212,175,55,0.3); color: var(--text-muted); font-size: 0.85rem; padding: 8px 0; flex: 1; border-radius: 8px; font-family: 'Cairo'; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .poll-btn:hover, .poll-btn:active { background: var(--gold-grad); color: #000; border-color: var(--gold-main); }
-        .poll-results-live { display: none; margin-top: 10px; }
-
         .team-logo-vip { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(212,175,55,0.5)); margin-bottom: 6px; }
 
         .champions-card { border-radius: 20px; position: relative; overflow: hidden; text-align: center; }
         .champions-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 180px; height: 180px; background: radial-gradient(circle, rgba(212,175,55,0.25) 0%, transparent 70%); z-index: 0; pointer-events: none; }
         
-        .champions-vs-badge { background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 15px rgba(212,175,55,0.8), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 15px; position: relative; z-index: 2; border-radius: 8px; transition: 0.3s ease; }
+        .champions-vs-badge { background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 15px rgba(212,175,55,0.8), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 auto; position: relative; z-index: 2; border-radius: 8px; transition: 0.3s ease; }
         .champions-vs-text { transform: rotate(-45deg); color: #000; font-weight: 900; font-family: sans-serif; transition: 0.3s ease; }
         
-        .countdown-container { display: flex; justify-content: center; direction: ltr; position: relative; z-index: 2; transition: 0.3s ease; }
-
         .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; }
         
         header { 
@@ -218,7 +209,7 @@
             
             <h1 class="invitation-title">دعـــــوة</h1>
             
-            <p class="invitation-text">تتشرف اللجنة المنظمة للبطولة بدعوتكم لحضور المباراة النهائية، وذلك يوم الأربعاء ٦ شوال ١٤٤٧ هـ، الساعة التاسعة مساءً، على ملعب الوسم بالقحمة.</p>
+            <p class="invitation-text">تتشرف اللجنة المنظمة للبطولة بدعوتكم لحضور المباراة النهائية، وذلك يوم الأربعاء ٦ شوال ١٤٤٧ هـ، الساعة العاشرة مساءً، على ملعب الوسم بالقحمة.</p>
             
             <button class="invitation-btn" onclick="closeInvitation()">قبول الدعوة والدخول ➜</button>
         </div>
@@ -375,100 +366,45 @@ async function shareMatchAsImage() { const btn = document.getElementById('share-
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     todayArea.innerHTML = `
-    <div class="champions-card" style="padding: 20px 15px 15px; margin-top: 5px; border: 1px solid rgba(212,175,55,0.3); background: linear-gradient(180deg, #111 0%, #050505 100%); box-shadow: 0 10px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(212,175,55,0.05);">
+    <div class="champions-card" style="padding: 25px 15px 20px; margin-top: 5px; border: 1px solid rgba(212,175,55,0.3); background: linear-gradient(180deg, #111 0%, #050505 100%); box-shadow: 0 10px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(212,175,55,0.05); max-width: 500px; margin-left: auto; margin-right: auto;">
         
         <div class="smoke-bg"></div>
         <div class="champions-glow" style="width: 200px; height: 200px;"></div>
         
         <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.4); border-radius: 50%; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.8); z-index: 10; transition: 0.3s; backdrop-filter: blur(5px);" title="مشاركة البوستر">📸</button>
 
-        <div style="position:relative; z-index:2; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div style="position: absolute; top: 15px; right: 15px; background: var(--gold-grad); color: #000; padding: 4px 12px; border-radius: 20px; font-weight: 900; font-size: 0.75rem; z-index: 10; box-shadow: 0 4px 10px rgba(212,175,55,0.4); border: 1px solid rgba(255,255,255,0.3);">
+            الأربعاء 10:00 م
+        </div>
+
+        <div style="position:relative; z-index:2; margin-bottom: 25px; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <h2 style="color:var(--gold-light); margin:0; font-size:1.6rem; font-weight:900; letter-spacing: 0.5px; text-shadow: 0 0 15px rgba(212,175,55,0.6);">النهائي الكبير</h2>
             <span style="font-size:0.7rem; color:var(--gold-dark); font-weight:900; background:rgba(212,175,55,0.1); padding:3px 12px; border-radius:20px; margin-top:5px; border:1px solid rgba(212,175,55,0.2);">بطولة القحمة الرمضانية 28</span>
         </div>
         
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0; position: relative; z-index:2;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 10px; position: relative; z-index:2;">
             
             <div class="golden-smoke-overlay"></div>
 
             <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
-                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 65px; height: 65px; object-fit:contain; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 8px; position:relative; z-index:1;" crossorigin="anonymous">
-                <span style="font-size: 0.9rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الفيصلي</span>
+                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 80px; height: 80px; object-fit:contain; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 10px; position:relative; z-index:1;" crossorigin="anonymous">
+                <span style="font-size: 1.1rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الفيصلي</span>
             </div>
             
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1.2; position: relative;">
-                <div class="champions-vs-badge" style="width: 38px; height: 38px; margin: 0 0 10px 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 20px rgba(212,175,55,0.6);">
-                    <div class="champions-vs-text" id="live-vs-text" style="font-size: 0.95rem; transition: 0.3s ease;">VS</div>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0.8; position: relative;">
+                <div class="champions-vs-badge" style="width: 45px; height: 45px; margin: 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 20px rgba(212,175,55,0.6);">
+                    <div class="champions-vs-text" id="live-vs-text" style="font-size: 1.1rem; transition: 0.3s ease;">VS</div>
                 </div>
-                <span style="background: var(--gold-grad); color: #000; font-size: 0.7rem; font-weight: 900; padding: 3px 12px; border-radius: 20px; box-shadow: 0 4px 15px rgba(212,175,55,0.4); white-space: nowrap; z-index: 2;">الأربعاء 6 شوال</span>
             </div>
 
             <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
-                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 65px; height: 65px; object-fit:contain; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 8px; position:relative; z-index:1;" crossorigin="anonymous">
-                <span style="font-size: 0.9rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الوسام</span>
+                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 80px; height: 80px; object-fit:contain; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 10px; position:relative; z-index:1;" crossorigin="anonymous">
+                <span style="font-size: 1.1rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الوسام</span>
             </div>
         </div>
 
-        <div class="countdown-container" id="countdown-timer" style="margin: 10px 0 15px; gap: 10px; z-index: 2; position: relative;">
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 10px 5px; min-width: 60px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
-                <span id="cd-sec" style="display: block; font-size: 1.4rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 0 15px rgba(212,175,55,0.8); line-height: 1; margin-bottom: 4px;">00</span>
-                <span style="display: block; font-size: 0.6rem; color: #ddd; font-weight: 700; letter-spacing: 0.5px;">ثانية</span>
-            </div>
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 10px 5px; min-width: 60px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
-                <span id="cd-min" style="display: block; font-size: 1.4rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 0 15px rgba(212,175,55,0.8); line-height: 1; margin-bottom: 4px;">00</span>
-                <span style="display: block; font-size: 0.6rem; color: #ddd; font-weight: 700; letter-spacing: 0.5px;">دقيقة</span>
-            </div>
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 10px 5px; min-width: 60px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
-                <span id="cd-hour" style="display: block; font-size: 1.4rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 0 15px rgba(212,175,55,0.8); line-height: 1; margin-bottom: 4px;">00</span>
-                <span style="display: block; font-size: 0.6rem; color: #ddd; font-weight: 700; letter-spacing: 0.5px;">ساعة</span>
-            </div>
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 10px 5px; min-width: 60px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
-                <span id="cd-day" style="display: block; font-size: 1.4rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 0 15px rgba(212,175,55,0.8); line-height: 1; margin-bottom: 4px;">00</span>
-                <span style="display: block; font-size: 0.6rem; color: #ddd; font-weight: 700; letter-spacing: 0.5px;">يوم</span>
-            </div>
-        </div>
-
-        <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:8px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); margin-top: 10px;">
-            <span style="font-size:0.75rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">نكون أو لا نكون.. ليلة كتابة التاريخ في القحمة! ✍️</span>
-        </div>
-    </div>
-
-    <div class="poll-container" id="poll-widget" style="margin-top: 15px; background: rgba(20,20,20,0.6); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
-        <div class="poll-title">📊 توقعات الجماهير (مباشر)</div>
-        <div class="poll-btns" id="poll-buttons">
-            <button class="poll-btn" onclick="submitPoll('faisaly')">الفيصلي 🦅</button>
-            <button class="poll-btn" onclick="submitPoll('wesam')">الوسام ⚔️</button>
-        </div>
-        <div class="poll-results-live" id="poll-results-live"></div>
-    </div>
-
-    <div style="display:grid; grid-template-columns: 1fr; gap:15px; margin-top:15px;">
-        <div style="background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.3); border-radius: 15px; padding: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; right: 0; width: 100%; height: 3px; background: var(--gold-grad);"></div>
-            <h3 style="color:var(--gold-main); margin-top:0; font-size:0.9rem; text-align:center; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:6px;">📊 مقارنة الأرقام</h3>
-            <div style="font-size:0.75rem; margin-top:10px;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:2px; font-weight:700;"><span style="color:var(--gold-light);">5</span><span style="color:#ddd;">الأهداف المسجلة</span><span style="color:var(--gold-light);">7</span></div>
-                <div style="display:flex; gap:8px; margin-bottom:10px;"><div class="power-bar-bg"><div class="power-bar-fill" style="width: 71%; float:right;"></div></div><div class="power-bar-bg"><div class="power-bar-fill" style="width: 100%;"></div></div></div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:2px; font-weight:700;"><span style="color:var(--gold-light);">3</span><span style="color:#ddd;">شباك نظيفة</span><span style="color:var(--gold-light);">2</span></div>
-                <div style="display:flex; gap:8px; margin-bottom:10px;"><div class="power-bar-bg"><div class="power-bar-fill" style="width: 100%; float:right;"></div></div><div class="power-bar-bg"><div class="power-bar-fill" style="width: 66%;"></div></div></div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:2px; font-weight:700;"><span style="color:#ef4444;">2</span><span style="color:#ddd;">أهداف مستقبلة</span><span style="color:#ef4444;">2</span></div>
-                <div style="display:flex; gap:8px; margin-bottom:10px;"><div class="power-bar-bg"><div class="power-bar-fill red" style="width: 50%; float:right;"></div></div><div class="power-bar-bg"><div class="power-bar-fill red" style="width: 50%;"></div></div></div>
-            </div>
-        </div>
-
-        <div style="background: rgba(20,20,20,0.8); border: 1px solid rgba(212,175,55,0.3); border-radius: 15px; padding: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; right: 0; width: 100%; height: 3px; background: var(--gold-grad);"></div>
-            <h3 style="color:var(--gold-main); margin-top:0; font-size:0.9rem; text-align:center; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:6px;">🛤️ طريق الذهب</h3>
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; text-align:right; margin-top:8px;">
-                <div style="background:rgba(255,255,255,0.03); padding:8px; border-radius:10px; border:1px solid rgba(212,175,55,0.2);">
-                    <div style="font-weight:900; color:var(--gold-light); font-size:0.8rem; margin-bottom:6px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:4px;">🦅 الفيصلي</div>
-                    <ul style="padding-right:12px; margin:0; color:#ccc; font-size:0.65rem; line-height:1.6;"><li>فوز ع. خليج الصوالحة</li><li>خسارة م. الوسام</li><li>فوز ع. دبسا</li><li>فوز ع. صقلية</li><li>فوز ترجيح ع. الصقر</li></ul>
-                </div>
-                <div style="background:rgba(255,255,255,0.03); padding:8px; border-radius:10px; border:1px solid rgba(212,175,55,0.2);">
-                    <div style="font-weight:900; color:var(--green-neon); font-size:0.8rem; margin-bottom:6px; border-bottom:1px dashed rgba(212,175,55,0.3); padding-bottom:4px;">⚔️ الوسام</div>
-                    <ul style="padding-right:12px; margin:0; color:#ccc; font-size:0.65rem; line-height:1.6;"><li>فوز ع. خليج الصوالحة</li><li>فوز ع. الفيصلي</li><li>فوز ترجيح ع. عمق</li><li>فوز ع. ساحل مغزل</li></ul>
-                </div>
-            </div>
+        <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:8px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); margin-top: 20px;">
+            <span style="font-size:0.8rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">نكون أو لا نكون.. ليلة كتابة التاريخ في القحمة! ✍️</span>
         </div>
     </div>
     `;
@@ -549,41 +485,6 @@ function closeInvitation() {
 
 window.onload = function() { 
     fetchWeather(); updateDisplay(); openTab(null, 'today'); openSubTab(null, 'players-list'); 
-    if(localStorage.getItem('pollVotedLive')) {
-        let pollBtns = document.getElementById('poll-buttons'); 
-        let pollRes = document.getElementById('poll-results-live');
-        if(pollBtns && pollRes) { 
-            pollBtns.style.display = 'none'; 
-            pollRes.style.display = 'block'; 
-        }
-    }
-
-    // 🔥 كود العداد التنازلي للنهائي
-    const countDownDate = new Date("2026-03-25T22:00:00+03:00").getTime();
-    const x = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = countDownDate - now;
-
-        if (distance < 0) {
-            clearInterval(x);
-            return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        const elDay = document.getElementById("cd-day");
-        const elHour = document.getElementById("cd-hour");
-        const elMin = document.getElementById("cd-min");
-        const elSec = document.getElementById("cd-sec");
-
-        if(elDay) elDay.innerText = days < 10 ? '0' + days : days;
-        if(elHour) elHour.innerText = hours < 10 ? '0' + hours : hours;
-        if(elMin) elMin.innerText = minutes < 10 ? '0' + minutes : minutes;
-        if(elSec) elSec.innerText = seconds < 10 ? '0' + seconds : seconds;
-    }, 1000);
 
     // 📜 إظهار الدعوة الملكية
     const invitationModal = document.getElementById('invitation-modal');
@@ -645,49 +546,6 @@ window.onload = function() {
   set(myOnlineRef, true);
   onDisconnect(myOnlineRef).remove(); 
 
-  // 3. نظام التوقعات الحي
-  const pollRef = ref(db, 'poll_live_results');
-  onValue(pollRef, (snapshot) => {
-      let data = snapshot.val() || { faisaly: 0, wesam: 0 };
-      let fCount = data.faisaly || 0;
-      let wCount = data.wesam || 0;
-      let total = fCount + wCount;
-      if (total === 0) total = 1; 
-      
-      let fPercent = Math.round((fCount / total) * 100);
-      let wPercent = Math.round((wCount / total) * 100);
-
-      const liveResultsDiv = document.getElementById('poll-results-live');
-      if(liveResultsDiv) {
-          liveResultsDiv.innerHTML = `
-            <div style="margin-bottom:12px; text-align:right;">
-                <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:900; color:var(--gold-light); margin-bottom:5px;">
-                    <span>الفيصلي 🦅</span> <span>${fPercent}% <small style="color:var(--text-muted);">(${fCount} صوت)</small></span>
-                </div>
-                <div class="power-bar-bg"><div class="power-bar-fill" style="width: ${fPercent}%;"></div></div>
-            </div>
-            <div style="text-align:right;">
-                <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:900; color:#10b981; margin-bottom:5px;">
-                    <span>الوسام ⚔️</span> <span>${wPercent}% <small style="color:var(--text-muted);">(${wCount} صوت)</small></span>
-                </div>
-                <div class="power-bar-bg"><div class="power-bar-fill" style="background:#10b981; width: ${wPercent}%;"></div></div>
-            </div>
-          `;
-      }
-  });
-
-  window.submitPoll = function(team) {
-      if(localStorage.getItem('pollVotedLive')) return;
-      document.getElementById('poll-buttons').style.display = 'none';
-      document.getElementById('poll-results-live').style.display = 'block';
-      localStorage.setItem('pollVotedLive', 'true');
-
-      const teamRef = ref(db, `poll_live_results/${team}`);
-      runTransaction(teamRef, (current) => {
-          return (current || 0) + 1;
-      });
-  };
-
   // 4. نظام الملاحظات السري
   window.sendFeedback = function() {
       const feedbackText = document.getElementById('user-feedback').value;
@@ -733,31 +591,24 @@ window.onload = function() {
   onValue(liveScoreRef, (snapshot) => {
       const data = snapshot.val();
       const vsText = document.getElementById('live-vs-text');
-      const countdownTimer = document.getElementById('countdown-timer');
       
       if (data && data.is_live) {
           // إذا المباراة بدأت
           if (vsText) {
               vsText.innerText = data.faisaly + " - " + data.wesam;
-              vsText.style.fontSize = '1.3rem';
+              vsText.style.fontSize = '1.4rem';
               vsText.style.transform = 'rotate(-45deg) scale(1.1)';
               vsText.style.color = '#fff';
               vsText.style.textShadow = '0 0 8px #000';
-          }
-          if (countdownTimer) {
-              countdownTimer.style.display = 'none'; // إخفاء العداد
           }
       } else {
           // إذا المباراة لسه ما بدأت
           if (vsText) {
               vsText.innerText = 'VS';
-              vsText.style.fontSize = '0.95rem';
+              vsText.style.fontSize = '1.1rem';
               vsText.style.transform = 'rotate(-45deg)';
               vsText.style.color = '#000';
               vsText.style.textShadow = 'none';
-          }
-          if (countdownTimer) {
-              countdownTimer.style.display = 'flex'; // إظهار العداد
           }
       }
   });
