@@ -98,16 +98,6 @@
         @keyframes smoothPopOut { 0% { transform: scale(1); opacity: 1; } 20% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(8); opacity: 0; } }
         #preloader.run-exit .preloader-logo { animation: smoothPopOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important; }
 
-        /* ========= نافذة العيد ========= */
-        .eid-modal { display: flex; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.5s; backdrop-filter: blur(5px); }
-        .eid-modal.show { opacity: 1; visibility: visible; }
-        .eid-modal-content { background: var(--black-card); border: 1px solid var(--gold-main); padding: 30px 20px; border-radius: 20px; text-align: center; max-width: 85%; box-shadow: 0 0 30px rgba(212,175,55,0.4); animation: slideDown 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
-        .eid-modal-content::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 60%); animation: spin 10s linear infinite; z-index: 0; pointer-events: none; }
-        @keyframes slideDown { from { transform: translateY(-50px) scale(0.9); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
-        .eid-modal-content h2 { color: var(--gold-light); margin: 0 0 10px; font-size: 1.8rem; text-shadow: 0 2px 10px rgba(212,175,55,0.5); position: relative; z-index: 1; }
-        .eid-modal-content p { color: #ddd; font-size: 0.95rem; line-height: 1.8; margin-bottom: 25px; position: relative; z-index: 1; font-weight: 600; }
-        .eid-modal-btn { background: var(--gold-grad); color: #000; border: none; padding: 10px 35px; border-radius: 30px; font-weight: 900; font-family: 'Cairo'; cursor: pointer; box-shadow: 0 4px 15px rgba(212,175,55,0.3); transition: 0.3s; position: relative; z-index: 1; font-size: 1rem; }
-
         /* ========= ستايلات عامة ========= */
         #image-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999999; justify-content: center; align-items: center; flex-direction: column; animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -373,7 +363,7 @@ function updateDisplay() {
         
         <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.4); border-radius: 50%; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.8); z-index: 10; transition: 0.3s; backdrop-filter: blur(5px);" title="مشاركة البوستر">📸</button>
 
-        <div style="position: absolute; top: 15px; right: 15px; background: var(--gold-grad); color: #000; padding: 4px 12px; border-radius: 20px; font-weight: 900; font-size: 0.75rem; z-index: 10; box-shadow: 0 4px 10px rgba(212,175,55,0.4); border: 1px solid rgba(255,255,255,0.3);">
+        <div id="match-status-badge" style="position: absolute; top: 15px; right: 15px; background: var(--gold-grad); color: #000; padding: 4px 12px; border-radius: 20px; font-weight: 900; font-size: 0.75rem; z-index: 10; box-shadow: 0 4px 10px rgba(212,175,55,0.4); border: 1px solid rgba(255,255,255,0.3); transition: 0.3s;">
             الأربعاء 10:00 م
         </div>
 
@@ -586,14 +576,15 @@ window.onload = function() {
       });
   };
 
-  // 5. نظام النتيجة الحية (الميزة الجديدة)
+  // 5. نظام النتيجة الحية والشارة الديناميكية
   const liveScoreRef = ref(db, 'live_match_score');
   onValue(liveScoreRef, (snapshot) => {
       const data = snapshot.val();
       const vsText = document.getElementById('live-vs-text');
+      const statusBadge = document.getElementById('match-status-badge');
       
       if (data && data.is_live) {
-          // إذا المباراة بدأت
+          // إذا المباراة بدأت (تفعيل من فايربيس)
           if (vsText) {
               vsText.innerText = data.faisaly + " - " + data.wesam;
               vsText.style.fontSize = '1.4rem';
@@ -601,14 +592,32 @@ window.onload = function() {
               vsText.style.color = '#fff';
               vsText.style.textShadow = '0 0 8px #000';
           }
+          // تغيير الشارة إلى "مباشر الآن" وجعلها ترمش
+          if (statusBadge) {
+              statusBadge.innerHTML = '🔴 مباشر الآن';
+              statusBadge.style.background = 'linear-gradient(135deg, #ef4444, #b91c1c)';
+              statusBadge.style.color = '#fff';
+              statusBadge.style.boxShadow = '0 0 15px rgba(239, 68, 68, 0.6)';
+              statusBadge.style.borderColor = '#b91c1c';
+              statusBadge.style.animation = 'gentlePulse 1.5s infinite';
+          }
       } else {
-          // إذا المباراة لسه ما بدأت
+          // إذا المباراة لسه ما بدأت (أو تم إيقاف المباشر)
           if (vsText) {
               vsText.innerText = 'VS';
               vsText.style.fontSize = '1.1rem';
               vsText.style.transform = 'rotate(-45deg)';
               vsText.style.color = '#000';
               vsText.style.textShadow = 'none';
+          }
+          // إرجاع شارة الوقت الأصلية
+          if (statusBadge) {
+              statusBadge.innerHTML = 'الأربعاء 10:00 م';
+              statusBadge.style.background = 'var(--gold-grad)';
+              statusBadge.style.color = '#000';
+              statusBadge.style.boxShadow = '0 4px 10px rgba(212,175,55,0.4)';
+              statusBadge.style.borderColor = 'rgba(255,255,255,0.3)';
+              statusBadge.style.animation = 'none';
           }
       }
   });
