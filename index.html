@@ -21,6 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
         /* ========= ستايل الذهب الملكي (VIP Minimal Theme) ========= */
@@ -49,8 +50,8 @@
             100% { transform: translateY(0) scale(1); opacity: 0.2; }
         }
         .smoke-bg {
-            position: absolute; bottom: -20px; left: 0; width: 100%; height: 120px;
-            background: radial-gradient(ellipse at bottom, rgba(212,175,55,0.3) 0%, transparent 65%);
+            position: absolute; bottom: -30px; left: 0; width: 100%; height: 160px;
+            background: radial-gradient(ellipse at bottom, rgba(212,175,55,0.35) 0%, transparent 65%);
             filter: blur(20px); animation: smokeEffect 5s infinite alternate; z-index: 0; pointer-events: none;
         }
         .golden-smoke-overlay {
@@ -86,7 +87,7 @@
 
         .team-logo-vip { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(212,175,55,0.5)); margin-bottom: 6px; }
 
-        .champions-card { border-radius: 15px; position: relative; overflow: hidden; text-align: center; }
+        .champions-card { border-radius: 20px; position: relative; overflow: hidden; text-align: center; }
         .champions-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px; height: 150px; background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%); z-index: 0; pointer-events: none; }
         
         .champions-vs-badge { background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 10px rgba(212,175,55,0.6), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 auto; position: relative; z-index: 2; border-radius: 6px; transition: 0.3s ease; }
@@ -379,16 +380,12 @@ async function shareMatchAsImage() { const btn = document.getElementById('share-
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     todayArea.innerHTML = `
-    <div class="champions-card" style="padding: 15px 10px; margin-top: 5px; border: 1px solid rgba(212,175,55,0.3); background: linear-gradient(180deg, #111 0%, #050505 100%); box-shadow: 0 5px 20px rgba(0,0,0,0.9), inset 0 0 20px rgba(212,175,55,0.05); max-width: 500px; margin-left: auto; margin-right: auto;">
+    <div class="champions-card" style="padding: 15px 10px 25px; margin-top: 5px; border: 1px solid rgba(212,175,55,0.3); background: linear-gradient(180deg, #111 0%, #050505 100%); box-shadow: 0 5px 20px rgba(0,0,0,0.9), inset 0 0 20px rgba(212,175,55,0.05); max-width: 500px; margin-left: auto; margin-right: auto;">
         
         <div class="smoke-bg"></div>
         <div class="champions-glow" style="width: 150px; height: 150px;"></div>
         
         <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.4); border-radius: 50%; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 0.8rem; box-shadow: 0 4px 15px rgba(0,0,0,0.8); z-index: 10; transition: 0.3s; backdrop-filter: blur(5px);" title="مشاركة البوستر">📸</button>
-
-        <div id="match-status-badge" style="position: absolute; top: 10px; right: 10px; background: var(--gold-grad); color: #000; padding: 3px 10px; border-radius: 15px; font-weight: 900; font-size: 0.65rem; z-index: 10; box-shadow: 0 3px 8px rgba(212,175,55,0.4); border: 1px solid rgba(255,255,255,0.3);">
-            يحدد لاحقاً ⏳
-        </div>
 
         <div style="position:relative; z-index:2; margin-bottom: 15px; margin-top: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <h2 style="color:var(--gold-light); margin:0; font-size:1.3rem; font-weight:900; letter-spacing: 0.5px; text-shadow: 0 0 10px rgba(212,175,55,0.6);">النهائي الكبير</h2>
@@ -400,24 +397,27 @@ function updateDisplay() {
             <div class="golden-smoke-overlay"></div>
 
             <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
-                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 55px; height: 55px; object-fit:contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.9)); margin-bottom: 8px; position:relative; z-index:1;" crossorigin="anonymous">
-                <span style="font-size: 0.9rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الفيصلي</span>
+                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 65px; height: 65px; object-fit:contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.9)); margin-bottom: 8px; position:relative; z-index:1;" crossorigin="anonymous">
+                <span style="font-size: 0.95rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الفيصلي</span>
             </div>
             
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0.8; position: relative;">
-                <div class="champions-vs-badge" style="width: 35px; height: 35px; margin: 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 15px rgba(212,175,55,0.6);">
-                    <div class="champions-vs-text" id="live-vs-text" style="font-size: 0.9rem; transition: 0.3s ease;">VS</div>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0.8; position: relative; gap: 8px;">
+                <div class="champions-vs-badge" style="width: 40px; height: 40px; margin: 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 15px rgba(212,175,55,0.6);">
+                    <div class="champions-vs-text" id="live-vs-text" style="font-size: 1rem; transition: 0.3s ease;">VS</div>
+                </div>
+                <div id="match-status-badge" style="background: var(--gold-grad); color: #000; padding: 3px 12px; border-radius: 15px; font-weight: 900; font-size: 0.65rem; box-shadow: 0 3px 8px rgba(212,175,55,0.4); border: 1px solid rgba(255,255,255,0.3); text-align: center; white-space: nowrap; transition: 0.3s;">
+                    يحدد لاحقاً ⏳
                 </div>
             </div>
 
             <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
-                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 55px; height: 55px; object-fit:contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.9)); margin-bottom: 8px; position:relative; z-index:1;" crossorigin="anonymous">
-                <span style="font-size: 0.9rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الوسام</span>
+                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 65px; height: 65px; object-fit:contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.9)); margin-bottom: 8px; position:relative; z-index:1;" crossorigin="anonymous">
+                <span style="font-size: 0.95rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الوسام</span>
             </div>
         </div>
 
         <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:6px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); margin-top: 10px;">
-            <span style="font-size:0.75rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">انتظرونا في ليلة كتابة التاريخ.. الموعد يحدد لاحقاً ✨🏆</span>
+            <span id="bottom-message" style="font-size:0.75rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">انتظرونا في ليلة كتابة التاريخ.. الموعد يحدد لاحقاً ✨🏆</span>
         </div>
     </div>
     `;
@@ -501,6 +501,80 @@ window.onload = function() {
   
   set(myOnlineRef, true);
   onDisconnect(myOnlineRef).remove(); 
+
+  // الكود الذكي لقراءة النتيجة وتغيير الحالة
+  const scoreRef = ref(db, 'live_match_score');
+  onValue(scoreRef, (snapshot) => {
+      const data = snapshot.val();
+      const vsText = document.getElementById('live-vs-text');
+      const statusBadge = document.getElementById('match-status-badge');
+      const bottomMsg = document.getElementById('bottom-message');
+
+      if (data) {
+          // قراءة البيانات بغض النظر عن الحروف (كبيرة أو صغيرة)
+          const isLive = data.is_live === true || data.is_live === "true" || data.Is_live === true || data.Is_live === "true";
+          const faisaly = data.faisaly !== undefined ? data.faisaly : (data.Faisaly !== undefined ? data.Faisaly : 0);
+          const wesam = data.wesam !== undefined ? data.wesam : (data.Wesam !== undefined ? data.Wesam : 0);
+
+          if (isLive) {
+              if(vsText) {
+                  vsText.innerText = faisaly + " - " + wesam;
+                  vsText.style.fontSize = "1.3rem";
+                  vsText.style.color = "#fff";
+                  vsText.style.transform = "rotate(-45deg) scale(1.1)";
+              }
+              if(statusBadge) {
+                  statusBadge.innerHTML = "🔴 تلعب الآن";
+                  statusBadge.style.background = "linear-gradient(135deg, #ef4444, #b91c1c)";
+                  statusBadge.style.color = "#fff";
+                  statusBadge.style.borderColor = "#b91c1c";
+                  statusBadge.style.boxShadow = "0 0 10px rgba(239, 68, 68, 0.6)";
+                  statusBadge.style.animation = "gentlePulse 1.5s infinite";
+              }
+              if(bottomMsg) {
+                  bottomMsg.innerText = "تغطية مباشرة لأحداث النهائي الكبير 🔥";
+              }
+          } else {
+              if(vsText) {
+                  vsText.innerText = "VS";
+                  vsText.style.fontSize = "1rem";
+                  vsText.style.color = "#000";
+                  vsText.style.transform = "rotate(-45deg)";
+              }
+              if(statusBadge) {
+                  statusBadge.innerHTML = "يحدد لاحقاً ⏳";
+                  statusBadge.style.background = "var(--gold-grad)";
+                  statusBadge.style.color = "#000";
+                  statusBadge.style.borderColor = "rgba(255,255,255,0.3)";
+                  statusBadge.style.boxShadow = "0 3px 8px rgba(212,175,55,0.4)";
+                  statusBadge.style.animation = "none";
+              }
+              if(bottomMsg) {
+                  bottomMsg.innerText = "انتظرونا في ليلة كتابة التاريخ.. الموعد يحدد لاحقاً ✨🏆";
+              }
+          }
+      } else {
+          // إذا ما فيه بيانات في فايربيس (الحالة الافتراضية)
+          if(vsText) {
+              vsText.innerText = "VS";
+              vsText.style.fontSize = "1rem";
+              vsText.style.color = "#000";
+              vsText.style.transform = "rotate(-45deg)";
+          }
+          if(statusBadge) {
+              statusBadge.innerHTML = "يحدد لاحقاً ⏳";
+              statusBadge.style.background = "var(--gold-grad)";
+              statusBadge.style.color = "#000";
+              statusBadge.style.borderColor = "rgba(255,255,255,0.3)";
+              statusBadge.style.boxShadow = "0 3px 8px rgba(212,175,55,0.4)";
+              statusBadge.style.animation = "none";
+          }
+          if(bottomMsg) {
+              bottomMsg.innerText = "انتظرونا في ليلة كتابة التاريخ.. الموعد يحدد لاحقاً ✨🏆";
+          }
+      }
+  });
+
 </script>
 
 </body>
