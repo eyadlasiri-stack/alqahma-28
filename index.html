@@ -96,10 +96,13 @@
         .champions-card { border-radius: 20px; position: relative; overflow: hidden; text-align: center; }
         .champions-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px; height: 150px; background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%); z-index: 0; pointer-events: none; }
         
-        /* نبض زر البث المباشر الفخم */
+        .champions-vs-badge { background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 10px rgba(212,175,55,0.6), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 auto; position: relative; z-index: 2; border-radius: 6px; transition: 0.3s ease; }
+        .champions-vs-text { transform: rotate(-45deg); color: #000; font-weight: 900; font-family: sans-serif; transition: 0.3s ease; }
+        
+        /* نبض مباشر الآن (مصغر وأنيق) */
         @keyframes livePulse {
             0% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); transform: scale(1); }
-            50% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.8); transform: scale(1.05); }
+            50% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.8); transform: scale(1.03); }
             100% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); transform: scale(1); }
         }
 
@@ -372,8 +375,8 @@ function updateDisplay() {
             </div>
             
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0.8; position: relative; gap: 8px;">
-                <div id="live-score-box" style="background: linear-gradient(135deg, #111, #222); border: 2px solid var(--gold-main); box-shadow: 0 0 15px rgba(212,175,55,0.6), inset 0 0 5px rgba(212,175,55,0.3); border-radius: 10px; padding: 5px 15px; display: flex; justify-content: center; align-items: center; transition: 0.3s ease; min-width: 80px;">
-                    <span id="live-vs-text" style="color: var(--gold-light); font-weight: 900; font-size: 1.5rem; font-family: sans-serif; letter-spacing: 2px;">0 - 0</span>
+                <div id="vs-container" class="champions-vs-badge" style="width: 40px; height: 40px; margin: 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 15px rgba(212,175,55,0.6);">
+                    <div class="champions-vs-text" id="live-vs-text" style="font-size: 1rem; transition: 0.3s ease;">VS</div>
                 </div>
             </div>
 
@@ -383,15 +386,17 @@ function updateDisplay() {
             </div>
         </div>
 
-        <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items: center; margin-top: 15px;">
-            <div id="match-status-badge" style="background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; padding: 6px 25px; border-radius: 30px; font-weight: 900; font-size: 0.9rem; box-shadow: 0 0 15px rgba(239, 68, 68, 0.6); border: 1px solid #f87171; animation: livePulse 1.5s infinite; display: flex; align-items: center; gap: 5px;">
-                <span style="display:inline-block; width:8px; height:8px; background:#fff; border-radius:50%; animation: redPulse 1s infinite;"></span>
-                مباشر الآن
+        <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items: center; flex-wrap: wrap; gap:8px; margin-top: 15px;">
+            <div id="match-status-badge" style="background: var(--gold-grad); color: #000; padding: 4px 15px; border-radius: 20px; font-weight: 900; font-size: 0.75rem; box-shadow: 0 3px 8px rgba(212,175,55,0.4); border: 1px solid rgba(255,255,255,0.3); transition: 0.3s;">
+                📅 21 شوال
+            </div>
+            <div id="stadium-badge" style="background: rgba(20,20,20,0.8); color: var(--gold-light); padding: 4px 15px; border-radius: 20px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(212,175,55,0.3);">
+                🏟️ ملعب الوسم بالقحمة
             </div>
         </div>
 
         <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:6px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); margin-top: 15px;">
-            <span id="bottom-message" style="font-size:0.75rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">تغطية مباشرة لأحداث النهائي الكبير 🔥</span>
+            <span id="bottom-message" style="font-size:0.75rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">انتظرونا في ليلة كتابة التاريخ ✨🏆</span>
         </div>
     </div>
     `;
@@ -471,44 +476,72 @@ window.onload = function() {
   };
 
   // ==========================================
-  // أكواد قراءة النتيجة وإنشاءها في الفايربيس تلقائياً
+  // أكواد التبديل التلقائي بين (وضع الانتظار) و (وضع البث المباشر)
   // ==========================================
   const scoreRef = ref(db, 'live_match_score');
   onValue(scoreRef, (snapshot) => {
       const data = snapshot.val();
       
-      // السحر هنا: إذا ما كان فيه مجلد للنتيجة في فايربيس، الكود بيسويه تلقائياً
-      if (!data) {
-          set(scoreRef, { is_live: true, faisaly: 0, wesam: 0 });
-          return; // بيرجع يشتغل الفنكشن مرة ثانية بعد ما تنحفظ النتيجة
-      }
-
+      const vsContainer = document.getElementById('vs-container');
       const vsText = document.getElementById('live-vs-text');
       const statusBadge = document.getElementById('match-status-badge');
+      const stadiumBadge = document.getElementById('stadium-badge');
       const bottomMsg = document.getElementById('bottom-message');
 
-      const isLive = data.is_live === true || data.is_live === "true" || data.Is_live === true || data.Is_live === "true";
-      const faisaly = data.faisaly !== undefined ? data.faisaly : 0;
-      const wesam = data.wesam !== undefined ? data.wesam : 0;
+      const isLive = data && (data.is_live === true || data.is_live === "true" || data.Is_live === true || data.Is_live === "true");
+      const faisaly = data && data.faisaly !== undefined ? data.faisaly : 0;
+      const wesam = data && data.wesam !== undefined ? data.wesam : 0;
 
       if (isLive) {
+          // تحويل التصميم إلى المربع الذهبي (وقت البث)
+          if(vsContainer) {
+              vsContainer.className = "";
+              vsContainer.style.background = "linear-gradient(135deg, #111, #222)";
+              vsContainer.style.border = "2px solid var(--gold-main)";
+              vsContainer.style.boxShadow = "0 0 15px rgba(212,175,55,0.6), inset 0 0 5px rgba(212,175,55,0.3)";
+              vsContainer.style.borderRadius = "10px";
+              vsContainer.style.padding = "5px 15px";
+              vsContainer.style.width = "auto";
+              vsContainer.style.height = "auto";
+              vsContainer.style.transform = "none";
+          }
           if(vsText) {
               vsText.innerText = faisaly + " - " + wesam;
+              vsText.className = "";
+              vsText.style.color = "var(--gold-light)";
+              vsText.style.fontWeight = "900";
+              vsText.style.fontSize = "1.5rem";
+              vsText.style.fontFamily = "sans-serif";
+              vsText.style.letterSpacing = "2px";
+              vsText.style.transform = "none";
           }
           if(statusBadge) {
-              statusBadge.innerHTML = '<span style="display:inline-block; width:8px; height:8px; background:#fff; border-radius:50%; animation: redPulse 1s infinite; margin-left:5px;"></span> مباشر الآن';
+              // زر مباشر الآن مصغر وأنيق
+              statusBadge.innerHTML = '<span style="display:inline-block; width:6px; height:6px; background:#fff; border-radius:50%; animation: redPulse 1s infinite; margin-left:4px;"></span> مباشر الآن';
               statusBadge.style.background = "linear-gradient(135deg, #ef4444, #b91c1c)";
               statusBadge.style.color = "#fff";
               statusBadge.style.borderColor = "#f87171";
-              statusBadge.style.boxShadow = "0 0 15px rgba(239, 68, 68, 0.6)";
+              statusBadge.style.boxShadow = "0 0 10px rgba(239, 68, 68, 0.6)";
               statusBadge.style.animation = "livePulse 1.5s infinite";
+              statusBadge.style.padding = "4px 15px";
+              statusBadge.style.fontSize = "0.75rem";
+          }
+          if(stadiumBadge) {
+              stadiumBadge.style.display = "none";
           }
           if(bottomMsg) {
               bottomMsg.innerText = "تغطية مباشرة لأحداث النهائي الكبير 🔥";
           }
       } else {
+          // إرجاع التصميم العادي للانتظار (VS والتاريخ)
+          if(vsContainer) {
+              vsContainer.className = "champions-vs-badge";
+              vsContainer.style = "width: 40px; height: 40px; margin: 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 15px rgba(212,175,55,0.6); transform: rotate(45deg);";
+          }
           if(vsText) {
               vsText.innerText = "VS";
+              vsText.className = "champions-vs-text";
+              vsText.style = "font-size: 1rem; color: #000; font-weight: 900; font-family: sans-serif; transition: 0.3s ease; transform: rotate(-45deg);";
           }
           if(statusBadge) {
               statusBadge.innerHTML = "📅 21 شوال";
@@ -517,6 +550,11 @@ window.onload = function() {
               statusBadge.style.borderColor = "rgba(255,255,255,0.3)";
               statusBadge.style.boxShadow = "0 3px 8px rgba(212,175,55,0.4)";
               statusBadge.style.animation = "none";
+              statusBadge.style.padding = "4px 15px";
+              statusBadge.style.fontSize = "0.75rem";
+          }
+          if(stadiumBadge) {
+              stadiumBadge.style.display = "block";
           }
           if(bottomMsg) {
               bottomMsg.innerText = "انتظرونا في ليلة كتابة التاريخ ✨🏆";
