@@ -445,25 +445,6 @@ function updateDisplay() {
             <span id="bottom-message" style="font-size:0.75rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">انتظرونا في ليلة كتابة التاريخ ✨🏆</span>
         </div>
     </div>
-
-    <div class="voting-card" style="padding: 15px; margin-top: 15px; border: 1px solid rgba(212,175,55,0.3); background: linear-gradient(180deg, #141414 0%, #0a0a0a 100%); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.6); max-width: 500px; margin-left: auto; margin-right: auto; text-align: center;">
-        <h3 style="color: var(--gold-light); margin: 0 0 12px 0; font-size: 1rem; font-weight: 900; text-shadow: 0 2px 5px #000;">📊 توقع بطل القحمة 28</h3>
-        
-        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; gap: 10px;">
-            <button onclick="if(window.castVote) window.castVote('faisaly')" style="flex:1; background: linear-gradient(135deg, #222, #111); color: var(--gold-light); border: 1px solid var(--gold-dark); padding: 8px; border-radius: 8px; font-family: 'Cairo'; font-weight: 900; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(212,175,55,0.2);">الفيصلي</button>
-            <button onclick="if(window.castVote) window.castVote('wesam')" style="flex:1; background: linear-gradient(135deg, #222, #111); color: var(--gold-light); border: 1px solid var(--gold-dark); padding: 8px; border-radius: 8px; font-family: 'Cairo'; font-weight: 900; cursor: pointer; transition: 0.3s; box-shadow: 0 2px 5px rgba(212,175,55,0.2);">الوسام</button>
-        </div>
-        
-        <div style="width: 100%; background: #1a1a1a; border-radius: 10px; height: 28px; display: flex; overflow: hidden; position: relative; border: 1px solid #333; box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);">
-            <div id="vote-faisaly-bar" style="width: 50%; background: var(--gold-grad); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000; font-size: 0.8rem; transition: width 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);">
-                <span id="vote-faisaly-txt">50%</span>
-            </div>
-            <div id="vote-wesam-bar" style="width: 50%; background: #333; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 0.8rem; transition: width 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);">
-                <span id="vote-wesam-txt">50%</span>
-            </div>
-        </div>
-        <p style="margin: 10px 0 0 0; font-size: 0.7rem; color: var(--text-muted); font-weight: 700;">إجمالي الأصوات: <span id="total-votes-txt" style="color: var(--gold-light);">...</span></p>
-    </div>
     `;
 
     document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${m.r}</span>${m.p ? `<span class="penalty-small">${m.p}</span>` : ""}</div><span class="team-item">${m.t2}</span></div></div>`).join('')).join('');
@@ -546,11 +527,7 @@ window.onload = function() {
   set(myOnlineRef, true);
   onDisconnect(myOnlineRef).remove(); 
 
-  // ===============================
-  // الميزات الجديدة اللي طلبتها
-  // ===============================
-
-  // 1. تتبع زر التصوير للبوستر وحفظه في الفايربيس
+  // تتبع زر التصوير للبوستر وحفظه في الفايربيس (يعمل بالخلفية بدون ما يزعج التصميم)
   window.trackShareClick = () => {
       const shareRef = ref(db, 'shares_counter/total');
       runTransaction(shareRef, (current) => {
@@ -558,52 +535,7 @@ window.onload = function() {
       });
   };
 
-  // 2. نظام التصويت المباشر والتفاعلي
-  window.castVote = (team) => {
-      // حماية عشان ما يصوت أكثر من مرة
-      if(localStorage.getItem('voted_final_match')) {
-          alert('عفواً، لقد قمت بالتصويت مسبقاً! 🛑');
-          return;
-      }
-      const teamRef = ref(db, 'final_voting/' + team);
-      runTransaction(teamRef, (current) => {
-          return (current || 0) + 1;
-      });
-      localStorage.setItem('voted_final_match', 'true');
-      alert('تم تسجيل توقعك بنجاح! ✅');
-  };
-
-  // قراءة وعرض نتائج التصويت
-  const voteStatsRef = ref(db, 'final_voting');
-  onValue(voteStatsRef, (snapshot) => {
-      const data = snapshot.val() || { faisaly: 215, wesam: 189 }; // أرقام بداية واقعية عشان ما يكون فاضي
-      const fVotes = data.faisaly || 0;
-      const wVotes = data.wesam || 0;
-      const total = fVotes + wVotes;
-      
-      if(total > 0) {
-          const fPercent = Math.round((fVotes / total) * 100);
-          const wPercent = 100 - fPercent;
-          
-          const fBar = document.getElementById('vote-faisaly-bar');
-          const wBar = document.getElementById('vote-wesam-bar');
-          const fTxt = document.getElementById('vote-faisaly-txt');
-          const wTxt = document.getElementById('vote-wesam-txt');
-          const tTxt = document.getElementById('total-votes-txt');
-          
-          if(fBar && wBar) {
-              fBar.style.width = fPercent + '%';
-              wBar.style.width = wPercent + '%';
-              fTxt.innerText = fPercent + '%';
-              wTxt.innerText = wPercent + '%';
-              tTxt.innerText = total.toLocaleString('en-US');
-          }
-      }
-  });
-
-  // ===============================
   // قراءة نتيجة المباراة (جاهزة لوقت البث)
-  // ===============================
   const scoreRef = ref(db, 'live_match_score');
   onValue(scoreRef, (snapshot) => {
       const data = snapshot.val();
