@@ -21,7 +21,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
         /* ========= ستايل الذهب الملكي (VIP Minimal Theme) ========= */
@@ -50,8 +49,8 @@
             100% { transform: translateY(0) scale(1); opacity: 0.2; }
         }
         .smoke-bg {
-            position: absolute; bottom: -30px; left: 0; width: 100%; height: 160px;
-            background: radial-gradient(ellipse at bottom, rgba(212,175,55,0.35) 0%, transparent 65%);
+            position: absolute; bottom: -20px; left: 0; width: 100%; height: 120px;
+            background: radial-gradient(ellipse at bottom, rgba(212,175,55,0.3) 0%, transparent 65%);
             filter: blur(20px); animation: smokeEffect 5s infinite alternate; z-index: 0; pointer-events: none;
         }
         .golden-smoke-overlay {
@@ -85,38 +84,37 @@
         .modal-img-container img { width: 100%; height: 100%; object-fit: contain; display: block; }
         .close-modal-btn { margin-top: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 10px 30px; border-radius: 30px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; }
 
-        #backToTopBtn { position: fixed; bottom: 100px; left: 20px; width: 45px; height: 45px; background: var(--gold-grad); color: #000; border: none; border-radius: 50%; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); font-size: 1.2rem; cursor: pointer; z-index: 9998; opacity: 0; visibility: hidden; transition: 0.4s ease; display: flex; justify-content: center; align-items: center; text-decoration: none; }
-        #backToTopBtn.show { opacity: 1; visibility: visible; }
+        .team-logo-vip { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(212,175,55,0.5)); margin-bottom: 6px; }
 
-        .champions-card { border-radius: 20px; position: relative; overflow: hidden; text-align: center; }
-        .champions-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 180px; height: 180px; background: radial-gradient(circle, rgba(212,175,55,0.25) 0%, transparent 70%); z-index: 0; pointer-events: none; }
+        .champions-card { border-radius: 15px; position: relative; overflow: hidden; text-align: center; }
+        .champions-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px; height: 150px; background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%); z-index: 0; pointer-events: none; }
         
-        .champions-vs-badge { background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 15px rgba(212,175,55,0.8), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 auto; position: relative; z-index: 2; border-radius: 8px; transition: 0.3s ease; }
+        .champions-vs-badge { background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 10px rgba(212,175,55,0.6), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 auto; position: relative; z-index: 2; border-radius: 6px; transition: 0.3s ease; }
         .champions-vs-text { transform: rotate(-45deg); color: #000; font-weight: 900; font-family: sans-serif; transition: 0.3s ease; }
         
-        .container { max-width: 900px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; }
+        .container { max-width: 900px; margin: auto; padding: 10px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 85px; }
         
         header { 
-            text-align: center; padding: 20px 0; background: linear-gradient(to bottom, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.9)); 
-            border: 1px solid var(--glass-border); border-top: none; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; 
-            margin-bottom: 20px; margin-top: -12px; position: relative; overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            text-align: center; padding: 12px 0; background: linear-gradient(to bottom, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.9)); 
+            border: 1px solid var(--glass-border); border-top: none; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; 
+            margin-bottom: 12px; margin-top: -10px; position: relative; overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
         }
         .eid-active-header { animation: eidGlow 2.5s infinite alternate; }
-        @keyframes eidGlow { from { box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 5px rgba(212,175,55,0.1); } to { box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.4); border-color: var(--gold-light); } }
+        @keyframes eidGlow { from { box-shadow: 0 5px 15px rgba(0,0,0,0.6), 0 0 5px rgba(212,175,55,0.1); } to { box-shadow: 0 5px 15px rgba(0,0,0,0.6), 0 0 15px rgba(212,175,55,0.3); border-color: var(--gold-light); } }
         header::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.05), transparent); animation: shine 6s infinite; }
-        .logo-img { width: 90px; height: auto; display: block; margin: 0 auto 8px; filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.2)); }
-        header h1 { font-weight: 900; margin: 0; font-size: 1.3rem; color: var(--gold-light); text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
-        .stadium-tag { color: var(--gold-main); font-size: 0.8rem; font-weight: 900; margin-top: 5px; display: block; letter-spacing: 1px; text-shadow: 0 0 8px rgba(212,175,55,0.5); }
+        .logo-img { width: 70px; height: auto; display: block; margin: 0 auto 5px; filter: drop-shadow(0 2px 5px rgba(212, 175, 55, 0.2)); }
+        header h1 { font-weight: 900; margin: 0; font-size: 1.1rem; color: var(--gold-light); text-shadow: 0 2px 8px rgba(212, 175, 55, 0.3); }
+        .stadium-tag { color: var(--gold-main); font-size: 0.75rem; font-weight: 900; margin-top: 2px; display: block; letter-spacing: 1px; text-shadow: 0 0 5px rgba(212,175,55,0.5); }
         
-        .info-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-        .stat-badge, .sub-tab-btn, .match-card, .group-card, .about-text-area, .search-input { background: var(--black-card); border: 1px solid var(--glass-border); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-        .stat-badge { padding: 5px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; color: var(--gold-light); display: inline-flex; align-items: center; gap: 5px; }
+        .info-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
+        .stat-badge, .sub-tab-btn, .match-card, .group-card, .about-text-area, .search-input { background: var(--black-card); border: 1px solid var(--glass-border); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .stat-badge { padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; color: var(--gold-light); display: inline-flex; align-items: center; gap: 4px; }
         
-        .dot { height: 6px; width: 6px; background-color: var(--gold-main); border-radius: 50%; display: inline-block; animation: goldPulse 2s infinite; box-shadow: 0 0 8px var(--gold-main); }
+        .dot { height: 5px; width: 5px; background-color: var(--gold-main); border-radius: 50%; display: inline-block; animation: goldPulse 2s infinite; box-shadow: 0 0 6px var(--gold-main); }
         
-        .dot-red { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; animation: redPulse 1.5s infinite; border-radius: 50%; display: inline-block; }
-        @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+        .dot-red { background-color: #ef4444; box-shadow: 0 0 6px #ef4444; animation: redPulse 1.5s infinite; border-radius: 50%; display: inline-block; }
+        @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 5px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
 
         /* ========= البار السفلي الفخم (التبويبات) ========= */
         .tabs-nav { 
@@ -124,17 +122,17 @@
             bottom: 0; 
             left: 0; 
             width: 100%; 
-            background: rgba(15, 15, 15, 0.92); 
+            background: rgba(15, 15, 15, 0.95); 
             backdrop-filter: blur(15px); 
             -webkit-backdrop-filter: blur(15px);
             border-top: 1px solid rgba(212, 175, 55, 0.2); 
             display: flex; 
             justify-content: space-around; 
             align-items: center;
-            padding: 10px 5px 20px; /* مساحة سفلية إضافية لأجهزة الآيفون الحديثة */
+            padding: 8px 5px 15px;
             z-index: 9000;
-            border-radius: 20px 20px 0 0;
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.7);
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.8);
         }
         
         .tab-btn { 
@@ -144,72 +142,69 @@
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            gap: 4px;
+            gap: 3px;
             font-family: 'Cairo'; 
-            font-size: 0.65rem; 
+            font-size: 0.6rem; 
             font-weight: 700; 
             flex: 1; 
             cursor: pointer; 
             transition: 0.3s; 
-            padding: 5px;
+            padding: 4px;
         }
         
         .tab-btn .icon {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 2px;
             transition: 0.3s;
             filter: grayscale(100%) opacity(0.6);
         }
 
-        .tab-btn.active { 
-            color: var(--gold-light); 
-        }
-        
+        .tab-btn.active { color: var(--gold-light); }
         .tab-btn.active .icon {
             filter: grayscale(0%) opacity(1);
-            transform: translateY(-4px) scale(1.15);
-            text-shadow: 0 0 15px rgba(212,175,55,0.8);
+            transform: translateY(-3px) scale(1.1);
+            text-shadow: 0 0 10px rgba(212,175,55,0.8);
         }
 
         /* ======================================= */
         
-        .sub-tabs { display: flex; gap: 8px; margin-bottom: 15px; padding: 0 5px; justify-content: center; }
-        .sub-tab-btn { color: var(--text-muted); padding: 6px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; flex: 1; font-family: 'Cairo'; max-width: 150px; transition: 0.3s; }
-        .sub-tab-btn.active { background: var(--gold-dark); color: #fff; border-color: var(--gold-main); box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2); }
+        .sub-tabs { display: flex; gap: 8px; margin-bottom: 12px; padding: 0 5px; justify-content: center; }
+        .sub-tab-btn { color: var(--text-muted); padding: 5px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; cursor: pointer; flex: 1; font-family: 'Cairo'; max-width: 140px; transition: 0.3s; }
+        .sub-tab-btn.active { background: var(--gold-dark); color: #fff; border-color: var(--gold-main); box-shadow: 0 3px 8px rgba(212, 175, 55, 0.2); }
 
         .tab-content { display: none; flex-grow: 1; opacity: 0; }
-        .tab-content.active { display: block; animation: smoothFade 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        .tab-content.active { display: block; animation: smoothFade 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
         .sub-content { display: none; opacity: 0; }
-        .sub-content.active { display: block; animation: smoothFade 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
-        @keyframes smoothFade { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .sub-content.active { display: block; animation: smoothFade 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        @keyframes smoothFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .match-card { border-radius: 15px; margin-bottom: 12px; padding: 12px; position: relative; overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.3); }
+        .match-card { border-radius: 12px; margin-bottom: 10px; padding: 10px; position: relative; overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.3); }
 
-        .teams-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 5px; position: relative; }
-        .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.9rem; color: var(--gold-light); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
-        .vs-label { background: var(--gold-grad); color: #000; padding: 6px 12px; border-radius: 8px; font-weight: 900; border: 1px solid rgba(255,255,255,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 50px; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4); font-size: 1rem; position: relative; }
-        .penalty-small { font-size: 0.6rem; opacity: 0.9; display: block; margin-top: 2px; color: #333; }
+        .teams-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 4px; position: relative; }
+        .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.85rem; color: var(--gold-light); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
+        .vs-label { background: var(--gold-grad); color: #000; padding: 4px 10px; border-radius: 6px; font-weight: 900; border: 1px solid rgba(255,255,255,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 40px; box-shadow: 0 3px 8px rgba(212, 175, 55, 0.4); font-size: 0.9rem; position: relative; }
+        .penalty-small { font-size: 0.55rem; opacity: 0.9; display: block; margin-top: 2px; color: #333; }
 
-        .day-header { color: var(--gold-main); font-size: 0.8rem; font-weight: 900; margin: 20px 0 8px; display: block; border-right: 3px solid var(--gold-main); padding-right: 8px; text-align: right; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .day-header { color: var(--gold-main); font-size: 0.75rem; font-weight: 900; margin: 15px 0 6px; display: block; border-right: 3px solid var(--gold-main); padding-right: 8px; text-align: right; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
         
-        .group-card { border-radius: 12px; overflow: hidden; margin-bottom: 15px; }
-        .group-header { background: rgba(212, 175, 55, 0.1); color: var(--gold-main); padding: 10px; font-weight: 900; text-align: right; font-size: 0.8rem; border-bottom: 1px solid var(--glass-border); }
+        .group-card { border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
+        .group-header { background: rgba(212, 175, 55, 0.1); color: var(--gold-main); padding: 8px; font-weight: 900; text-align: right; font-size: 0.75rem; border-bottom: 1px solid var(--glass-border); }
         .group-table { width: 100%; border-collapse: collapse; }
-        .group-table th { padding: 8px 6px; color: var(--text-muted); font-size: 0.65rem; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
-        .group-table td { padding: 10px 4px; text-align: center; font-size: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.02); color: #eee; }
-        .team-name-cell { text-align: right !important; padding-right: 12px !important; font-weight: 700; width: 35%; color: var(--gold-light); }
+        .group-table th { padding: 6px 4px; color: var(--text-muted); font-size: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .group-table td { padding: 8px 4px; text-align: center; font-size: 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.02); color: #eee; }
+        .team-name-cell { text-align: right !important; padding-right: 10px !important; font-weight: 700; width: 35%; color: var(--gold-light); }
 
-        .about-text-area { white-space: pre-wrap; font-size: 0.8rem; padding: 15px; border-radius: 12px; text-align: right; line-height: 1.8; color: #ddd; }
+        .about-text-area { white-space: pre-wrap; font-size: 0.75rem; padding: 12px; border-radius: 10px; text-align: right; line-height: 1.8; color: #ddd; }
         
-        .footer { text-align: center; padding: 30px 12px 15px; background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent); margin-top: 35vh; border-top: 1px solid var(--glass-border); }
-        .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
-        .social-btn { padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 0.65rem; font-weight: 700; color: #000; background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 2px 5px rgba(212,175,55,0.2); }
-        .disclaimer { font-size: 0.6rem; color: var(--text-muted); max-width: 700px; margin: 15px auto 0; line-height: 1.5; opacity: 0.6; }
+        .footer { text-align: center; padding: 20px 10px 10px; background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent); margin-top: 15vh; border-top: 1px solid var(--glass-border); }
+        .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
+        .social-btn { padding: 5px 10px; border-radius: 6px; text-decoration: none; font-size: 0.6rem; font-weight: 700; color: #000; background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 2px 4px rgba(212,175,55,0.2); }
+        .disclaimer { font-size: 0.55rem; color: var(--text-muted); max-width: 700px; margin: 10px auto 0; line-height: 1.4; opacity: 0.6; }
         
-        .search-container { padding: 0; margin-bottom: 12px; }
-        .search-input { width: 100%; padding: 10px 12px; border-radius: 10px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.2); font-family: 'Cairo'; font-size: 0.8rem; box-sizing: border-box; }
+        .search-container { padding: 0; margin-bottom: 10px; }
+        .search-input { width: 100%; padding: 8px 10px; border-radius: 8px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.2); font-family: 'Cairo'; font-size: 0.75rem; box-sizing: border-box; }
         .search-input::placeholder { color: var(--text-muted); }
-        .search-input:focus { outline: none; border-color: var(--gold-main); box-shadow: 0 0 8px rgba(212,175,55,0.2); }
+        .search-input:focus { outline: none; border-color: var(--gold-main); box-shadow: 0 0 6px rgba(212,175,55,0.2); }
     </style>
 </head>
 <body>
@@ -219,7 +214,7 @@
     </div>
 
     <div id="image-modal">
-        <p style="color: #fff; font-family: 'Cairo'; margin-bottom: 15px; font-weight: 900; font-size: 1rem; text-shadow: 0 2px 5px #000;">✨ اضغط مطولاً على الصورة لحفظها ومشاركتها ✨</p>
+        <p style="color: #fff; font-family: 'Cairo'; margin-bottom: 15px; font-weight: 900; font-size: 0.9rem; text-shadow: 0 2px 5px #000;">✨ اضغط مطولاً على الصورة لحفظها ومشاركتها ✨</p>
         <div class="modal-img-container">
             <img id="generated-image" src="" alt="بوستر المباراة">
         </div>
@@ -248,12 +243,10 @@
         </div>
     </div>
 
-    <a href="#" id="backToTopBtn" title="العودة للأعلى">⬆️</a>
-
     <div class="tabs-nav">
         <button class="tab-btn active" onclick="openTab(event, 'today')">
             <span class="icon">🏆</span>
-            <span>ليلة الحسم</span>
+            <span>النهائي</span>
         </button>
         <button class="tab-btn" onclick="openTab(event, 'scorers-main'); openSubTab(null, 'players-list')">
             <span class="icon">⚽</span>
@@ -367,7 +360,6 @@ function openTab(evt, tabName) {
     void document.getElementById(tabName).offsetWidth; 
     document.getElementById(tabName).classList.add("active"); 
     
-    // إيجاد الزر الصحيح في البار السفلي وتفعيله
     let activeBtn;
     if (evt && evt.currentTarget && evt.currentTarget.classList.contains('tab-btn')) { 
         activeBtn = evt.currentTarget; 
@@ -376,7 +368,6 @@ function openTab(evt, tabName) {
     }
     if(activeBtn) activeBtn.classList.add("active");
     
-    // تمرير الشاشة للأعلى قليلاً عند تغيير التبويب
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -388,45 +379,45 @@ async function shareMatchAsImage() { const btn = document.getElementById('share-
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     todayArea.innerHTML = `
-    <div class="champions-card" style="padding: 25px 15px 20px; margin-top: 5px; border: 1px solid rgba(212,175,55,0.3); background: linear-gradient(180deg, #111 0%, #050505 100%); box-shadow: 0 10px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(212,175,55,0.05); max-width: 500px; margin-left: auto; margin-right: auto;">
+    <div class="champions-card" style="padding: 15px 10px; margin-top: 5px; border: 1px solid rgba(212,175,55,0.3); background: linear-gradient(180deg, #111 0%, #050505 100%); box-shadow: 0 5px 20px rgba(0,0,0,0.9), inset 0 0 20px rgba(212,175,55,0.05); max-width: 500px; margin-left: auto; margin-right: auto;">
         
         <div class="smoke-bg"></div>
-        <div class="champions-glow" style="width: 200px; height: 200px;"></div>
+        <div class="champions-glow" style="width: 150px; height: 150px;"></div>
         
-        <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.4); border-radius: 50%; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.8); z-index: 10; transition: 0.3s; backdrop-filter: blur(5px);" title="مشاركة البوستر">📸</button>
+        <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.4); border-radius: 50%; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 0.8rem; box-shadow: 0 4px 15px rgba(0,0,0,0.8); z-index: 10; transition: 0.3s; backdrop-filter: blur(5px);" title="مشاركة البوستر">📸</button>
 
-        <div id="match-status-badge" style="position: absolute; top: 15px; right: 15px; background: var(--gold-grad); color: #000; padding: 4px 12px; border-radius: 20px; font-weight: 900; font-size: 0.75rem; z-index: 10; box-shadow: 0 4px 10px rgba(212,175,55,0.4); border: 1px solid rgba(255,255,255,0.3);">
+        <div id="match-status-badge" style="position: absolute; top: 10px; right: 10px; background: var(--gold-grad); color: #000; padding: 3px 10px; border-radius: 15px; font-weight: 900; font-size: 0.65rem; z-index: 10; box-shadow: 0 3px 8px rgba(212,175,55,0.4); border: 1px solid rgba(255,255,255,0.3);">
             يحدد لاحقاً ⏳
         </div>
 
-        <div style="position:relative; z-index:2; margin-bottom: 25px; margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h2 style="color:var(--gold-light); margin:0; font-size:1.6rem; font-weight:900; letter-spacing: 0.5px; text-shadow: 0 0 15px rgba(212,175,55,0.6);">النهائي الكبير</h2>
-            <span style="font-size:0.7rem; color:var(--gold-dark); font-weight:900; background:rgba(212,175,55,0.1); padding:3px 12px; border-radius:20px; margin-top:5px; border:1px solid rgba(212,175,55,0.2);">بطولة القحمة الرمضانية 28</span>
+        <div style="position:relative; z-index:2; margin-bottom: 15px; margin-top: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <h2 style="color:var(--gold-light); margin:0; font-size:1.3rem; font-weight:900; letter-spacing: 0.5px; text-shadow: 0 0 10px rgba(212,175,55,0.6);">النهائي الكبير</h2>
+            <span style="font-size:0.65rem; color:var(--gold-dark); font-weight:900; background:rgba(212,175,55,0.1); padding:2px 10px; border-radius:15px; margin-top:3px; border:1px solid rgba(212,175,55,0.2);">بطولة القحمة الرمضانية 28</span>
         </div>
         
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 10px; position: relative; z-index:2;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px; padding: 0 5px; position: relative; z-index:2;">
             
             <div class="golden-smoke-overlay"></div>
 
             <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
-                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 80px; height: 80px; object-fit:contain; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 10px; position:relative; z-index:1;" crossorigin="anonymous">
-                <span style="font-size: 1.1rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الفيصلي</span>
+                <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 55px; height: 55px; object-fit:contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.9)); margin-bottom: 8px; position:relative; z-index:1;" crossorigin="anonymous">
+                <span style="font-size: 0.9rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الفيصلي</span>
             </div>
             
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0.8; position: relative;">
-                <div class="champions-vs-badge" style="width: 45px; height: 45px; margin: 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 20px rgba(212,175,55,0.6);">
-                    <div class="champions-vs-text" id="live-vs-text" style="font-size: 1.1rem; transition: 0.3s ease;">VS</div>
+                <div class="champions-vs-badge" style="width: 35px; height: 35px; margin: 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 15px rgba(212,175,55,0.6);">
+                    <div class="champions-vs-text" id="live-vs-text" style="font-size: 0.9rem; transition: 0.3s ease;">VS</div>
                 </div>
             </div>
 
             <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
-                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 80px; height: 80px; object-fit:contain; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.9)); margin-bottom: 10px; position:relative; z-index:1;" crossorigin="anonymous">
-                <span style="font-size: 1.1rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الوسام</span>
+                <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 55px; height: 55px; object-fit:contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.9)); margin-bottom: 8px; position:relative; z-index:1;" crossorigin="anonymous">
+                <span style="font-size: 0.9rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الوسام</span>
             </div>
         </div>
 
-        <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:8px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); margin-top: 20px;">
-            <span style="font-size:0.85rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">انتظرونا في ليلة كتابة التاريخ.. الموعد يحدد لاحقاً ✨🏆</span>
+        <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:6px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); margin-top: 10px;">
+            <span style="font-size:0.75rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">انتظرونا في ليلة كتابة التاريخ.. الموعد يحدد لاحقاً ✨🏆</span>
         </div>
     </div>
     `;
@@ -438,8 +429,6 @@ function updateDisplay() {
     document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--gold-main); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
     document.getElementById('about-text-content').innerText = aboutFullText; 
 }
-
-window.addEventListener('scroll', function() { let topBtn = document.getElementById('backToTopBtn'); if (window.scrollY > 400) { topBtn.classList.add('show'); } else { topBtn.classList.remove('show'); } });
 
 async function fetchWeather() { 
     try { 
