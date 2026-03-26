@@ -32,7 +32,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
 
     <style>
-        /* ========= ستايل الذهب الملكي (VIP Minimal Theme) ========= */
+        /* ========= ستايل الذهب الملكي ========= */
         :root { 
             --gold-main: #d4af37; --gold-light: #f3e5ab; --gold-dark: #aa8c2c; 
             --gold-grad: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%);
@@ -51,7 +51,7 @@
         }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* ========= التأثيرات السينمائية  ========= */
+        /* ========= التأثيرات السينمائية ========= */
         @keyframes smokeEffect {
             0% { transform: translateY(0) scale(1); opacity: 0.2; }
             50% { transform: translateY(-15px) scale(1.1); opacity: 0.6; }
@@ -99,6 +99,13 @@
         .champions-vs-badge { background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 10px rgba(212,175,55,0.6), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 auto; position: relative; z-index: 2; border-radius: 6px; transition: 0.3s ease; }
         .champions-vs-text { transform: rotate(-45deg); color: #000; font-weight: 900; font-family: sans-serif; transition: 0.3s ease; }
         
+        /* نبض زر البث المباشر الفخم */
+        @keyframes livePulse {
+            0% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); transform: scale(1); }
+            50% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.9); transform: scale(1.06); }
+            100% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); transform: scale(1); }
+        }
+
         .container { max-width: 900px; margin: auto; padding: 10px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 85px; }
         
         header { 
@@ -123,58 +130,21 @@
         .dot-red { background-color: #ef4444; box-shadow: 0 0 6px #ef4444; animation: redPulse 1.5s infinite; border-radius: 50%; display: inline-block; }
         @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 5px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
 
-        /* ========= البار السفلي الفخم (التبويبات) ========= */
+        /* ========= البار السفلي ========= */
         .tabs-nav { 
-            position: fixed; 
-            bottom: 0; 
-            left: 0; 
-            width: 100%; 
-            background: rgba(15, 15, 15, 0.95); 
-            backdrop-filter: blur(15px); 
-            -webkit-backdrop-filter: blur(15px);
-            border-top: 1px solid rgba(212, 175, 55, 0.2); 
-            display: flex; 
-            justify-content: space-around; 
-            align-items: center;
-            padding: 8px 5px 15px;
-            z-index: 9000;
-            border-radius: 15px 15px 0 0;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.8);
+            position: fixed; bottom: 0; left: 0; width: 100%; 
+            background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(212, 175, 55, 0.2); display: flex; justify-content: space-around; align-items: center;
+            padding: 8px 5px 15px; z-index: 9000; border-radius: 15px 15px 0 0; box-shadow: 0 -4px 20px rgba(0,0,0,0.8);
         }
-        
         .tab-btn { 
-            background: transparent; 
-            color: var(--text-muted); 
-            border: none; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 3px;
-            font-family: 'Cairo'; 
-            font-size: 0.6rem; 
-            font-weight: 700; 
-            flex: 1; 
-            cursor: pointer; 
-            transition: 0.3s; 
-            padding: 4px;
+            background: transparent; color: var(--text-muted); border: none; display: flex; flex-direction: column; align-items: center; 
+            gap: 3px; font-family: 'Cairo'; font-size: 0.6rem; font-weight: 700; flex: 1; cursor: pointer; transition: 0.3s; padding: 4px;
         }
-        
-        .tab-btn .icon {
-            font-size: 1.2rem;
-            margin-bottom: 2px;
-            transition: 0.3s;
-            filter: grayscale(100%) opacity(0.6);
-        }
-
+        .tab-btn .icon { font-size: 1.2rem; margin-bottom: 2px; transition: 0.3s; filter: grayscale(100%) opacity(0.6); }
         .tab-btn.active { color: var(--gold-light); }
-        .tab-btn.active .icon {
-            filter: grayscale(0%) opacity(1);
-            transform: translateY(-3px) scale(1.1);
-            text-shadow: 0 0 10px rgba(212,175,55,0.8);
-        }
+        .tab-btn.active .icon { filter: grayscale(0%) opacity(1); transform: translateY(-3px) scale(1.1); text-shadow: 0 0 10px rgba(212,175,55,0.8); }
 
-        /* ======================================= */
-        
         .sub-tabs { display: flex; gap: 8px; margin-bottom: 12px; padding: 0 5px; justify-content: center; }
         .sub-tab-btn { color: var(--text-muted); padding: 5px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; cursor: pointer; flex: 1; font-family: 'Cairo'; max-width: 140px; transition: 0.3s; }
         .sub-tab-btn.active { background: var(--gold-dark); color: #fff; border-color: var(--gold-main); box-shadow: 0 3px 8px rgba(212, 175, 55, 0.2); }
@@ -186,12 +156,10 @@
         @keyframes smoothFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .match-card { border-radius: 12px; margin-bottom: 10px; padding: 10px; position: relative; overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.3); }
-
         .teams-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 4px; position: relative; }
         .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.85rem; color: var(--gold-light); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
         .vs-label { background: var(--gold-grad); color: #000; padding: 4px 10px; border-radius: 6px; font-weight: 900; border: 1px solid rgba(255,255,255,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 40px; box-shadow: 0 3px 8px rgba(212, 175, 55, 0.4); font-size: 0.9rem; position: relative; }
         .penalty-small { font-size: 0.55rem; opacity: 0.9; display: block; margin-top: 2px; color: #333; }
-
         .day-header { color: var(--gold-main); font-size: 0.75rem; font-weight: 900; margin: 15px 0 6px; display: block; border-right: 3px solid var(--gold-main); padding-right: 8px; text-align: right; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
         
         .group-card { border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
@@ -213,21 +181,10 @@
         .search-input::placeholder { color: var(--text-muted); }
         .search-input:focus { outline: none; border-color: var(--gold-main); box-shadow: 0 0 6px rgba(212,175,55,0.2); }
 
-        /* رسالة الأيفون للإضافة للشاشة الرئيسية */
-        #ios-install-prompt {
-            display: none; position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 350px; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(10px);
-            border: 1px solid var(--gold-main); border-radius: 15px; padding: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.9), 0 0 15px rgba(212,175,55,0.2);
-            z-index: 99999; text-align: center; animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
+        #ios-install-prompt { display: none; position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 350px; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(10px); border: 1px solid var(--gold-main); border-radius: 15px; padding: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.9), 0 0 15px rgba(212,175,55,0.2); z-index: 99999; text-align: center; animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
         @keyframes popUp { from { bottom: -100px; opacity: 0; } to { bottom: 80px; opacity: 1; } }
-        .ios-prompt-close {
-            position: absolute; top: 5px; left: 10px; color: #a0a0a0; font-size: 1.2rem; cursor: pointer;
-        }
-        .ios-prompt-text {
-            color: #fff; font-size: 0.8rem; font-weight: 700; line-height: 1.6; font-family: 'Cairo';
-        }
+        .ios-prompt-close { position: absolute; top: 5px; left: 10px; color: #a0a0a0; font-size: 1.2rem; cursor: pointer; }
+        .ios-prompt-text { color: #fff; font-size: 0.8rem; font-weight: 700; line-height: 1.6; font-family: 'Cairo'; }
         .ios-prompt-icon { color: var(--gold-light); font-size: 1.2rem; vertical-align: middle; margin: 0 3px; }
     </style>
 </head>
@@ -277,26 +234,11 @@
     </div>
 
     <div class="tabs-nav">
-        <button class="tab-btn active" onclick="openTab(event, 'today')">
-            <span class="icon">🏆</span>
-            <span>النهائي</span>
-        </button>
-        <button class="tab-btn" onclick="openTab(event, 'scorers-main'); openSubTab(null, 'players-list')">
-            <span class="icon">⚽</span>
-            <span>الهدافين</span>
-        </button>
-        <button class="tab-btn" onclick="openTab(event, 'archive')">
-            <span class="icon">📺</span>
-            <span>الأرشيف</span>
-        </button>
-        <button class="tab-btn" onclick="openTab(event, 'groups')">
-            <span class="icon">📊</span>
-            <span>المجموعات</span>
-        </button>
-        <button class="tab-btn" onclick="openTab(event, 'about')">
-            <span class="icon">ℹ️</span>
-            <span>البطولة</span>
-        </button>
+        <button class="tab-btn active" onclick="openTab(event, 'today')"><span class="icon">🏆</span><span>النهائي</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'scorers-main'); openSubTab(null, 'players-list')"><span class="icon">⚽</span><span>الهدافين</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'archive')"><span class="icon">📺</span><span>الأرشيف</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'groups')"><span class="icon">📊</span><span>المجموعات</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'about')"><span class="icon">ℹ️</span><span>البطولة</span></button>
     </div>
 
     <div class="container">
@@ -329,7 +271,6 @@
             <div id="archive-area"></div>
         </div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
-        
         <div id="about" class="tab-content"><div class="about-text-area" id="about-text-content"></div></div>
 
         <div class="footer">
@@ -384,7 +325,7 @@ const groupData = [
     {n:"السادسة", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة\n\n* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة\n* تقام مباريات البطولة بنظام المجموعات من دور واحد\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:\n- مجموع النقاط\n- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)\n- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر\n- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب\n- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة\n\n* آلية مباريات الملحق\nبعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:\n * المباراة  رقم (19) \n(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) \n * المباراة رقم ( 20) \n(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) \n\n* مباريات دور الثمانية\nرقم المباراة ( 21) \nاول مج (1) مع اول مج(3)\n\nالمبارة رقم (22) \nاول مج (2)   مع أول مج ( 4) \n المباراة رقم ( 23)\nاول مج ( 5) مع اول مج ( 7 ) \nالمباراة رقم (24) \nاول مج (6) مع اول مج ( 8) \n\n(( ملاحظة مهمة)) \nفي حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: \nالمباراة رقم ( 23)\n اول مج ( 5 ) مع أول مج ( 8 ) \nالمباراة رقم (24) \nاول مج( 6) مع أول مج(7) \nوذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية \n\nمباريات نصف النهاىي\n المباراة رقم (25) \nفائز (21) مع فائز( 23) \nالمباراة رقم (26)\n فائز (22) مع فائز 24\n\nالنهائي \nالمباراة رقم (27)\nفائز (25) مع فائز (26)\n\nبعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي \nتم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة \nوبالتالي اصبح ترتيب الاوائل على النحو التالي :\nالمجموعة الاولى فريق السوق \nالمجموعة الثانية فريق ساحل مغزل\nالمجموعة الثالثة فريق الصقر \nالمجموعة الرابعة فريق الساحل الرياضي \nالمجموعه الخامسة فريق صقليه\nالمجموعة السادسة فريق الوسام \nالمجموعة السابعة فريق عمق \nالمجموعة الثامنه فريق الفيصلي\n\nوتلعب مباريات دور الثمانية(ربع النهائي )\nحسب نظام البطولة \nاول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)\nاول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)\n—————————————————- \nوحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا\nاول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)\nاول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)\n——————————————————\nمباريات دور الاربعة ( نصف النهائي )\nرقم المباراة (25)\nفائز المباراة رقم  (21) مع فائز المباراة رقم  (23)\nرقم المباراة (26)\nفائز المباراة رقم (22) مع فائز المباراة رقم (24)\n——————————————————-\nالمباراة النهائية \nرقم المباراة (27)\nفائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
+const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م\n\nنظام البطولة: مباريات خروج المغلوب والمجموعات متوفرة على تطبيق وموقع البطولة.`;
 
 function openTab(evt, tabName) { 
     let content = document.getElementsByClassName("tab-content"), btns = document.getElementsByClassName("tab-btn"); 
@@ -392,16 +333,8 @@ function openTab(evt, tabName) {
     for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); 
     void document.getElementById(tabName).offsetWidth; 
     document.getElementById(tabName).classList.add("active"); 
-    
-    let activeBtn;
-    if (evt && evt.currentTarget && evt.currentTarget.classList.contains('tab-btn')) { 
-        activeBtn = evt.currentTarget; 
-    } else { 
-        activeBtn = document.querySelector(".tab-btn[onclick*='" + tabName + "']"); 
-    }
-    if(activeBtn) activeBtn.classList.add("active");
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    let activeBtn; if (evt && evt.currentTarget && evt.currentTarget.classList.contains('tab-btn')) { activeBtn = evt.currentTarget; } else { activeBtn = document.querySelector(".tab-btn[onclick*='" + tabName + "']"); }
+    if(activeBtn) activeBtn.classList.add("active"); window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function openSubTab(evt, subName) { let content = document.getElementsByClassName("sub-content"), btns = document.getElementsByClassName("sub-tab-btn"); for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); void document.getElementById(subName).offsetWidth; document.getElementById(subName).classList.add("active"); if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } else { let activeBtn = document.querySelector(".sub-tab-btn[onclick*='" + subName + "']"); if(activeBtn) activeBtn.classList.add("active"); } }
@@ -410,34 +343,23 @@ function searchList(type) { let input = document.getElementById(type === 'scorer
 async function shareMatchAsImage() { 
     const btn = document.getElementById('share-btn'); 
     const originalText = btn.innerText; 
-    btn.innerText = '⏳'; 
-    btn.style.opacity = '0.7'; 
-    btn.disabled = true; 
+    btn.innerText = '⏳'; btn.style.opacity = '0.7'; btn.disabled = true; 
     try { 
-        if(window.trackShareClick) window.trackShareClick(); // إرسال الإشارة لفايربيس المخفية
-
+        if(window.trackShareClick) window.trackShareClick();
         const element = document.getElementById('snapchat-poster'); 
         const canvas = await html2canvas(element, { backgroundColor: '#050505', scale: 2, useCORS: true, allowTaint: true, logging: false }); 
         const imgData = canvas.toDataURL('image/png'); 
         document.getElementById('generated-image').src = imgData; 
         document.getElementById('image-modal').style.display = 'flex'; 
-    } catch (err) { 
-        alert('حدث خطأ أثناء التجهيز، يرجى المحاولة مرة أخرى.'); 
-    } finally { 
-        btn.innerText = originalText; 
-        btn.style.opacity = '1'; 
-        btn.disabled = false; 
-    } 
+    } catch (err) { alert('حدث خطأ أثناء التجهيز، يرجى المحاولة مرة أخرى.'); } finally { btn.innerText = originalText; btn.style.opacity = '1'; btn.disabled = false; } 
 }
 
 function updateDisplay() {
     let todayArea = document.getElementById('today-match-area');
     todayArea.innerHTML = `
     <div class="champions-card" style="padding: 15px 10px 20px; margin-top: 5px; border: 1px solid rgba(212,175,55,0.3); background: linear-gradient(180deg, #111 0%, #050505 100%); box-shadow: 0 5px 20px rgba(0,0,0,0.9), inset 0 0 20px rgba(212,175,55,0.05); max-width: 500px; margin-left: auto; margin-right: auto;">
-        
         <div class="smoke-bg"></div>
         <div class="champions-glow" style="width: 150px; height: 150px;"></div>
-        
         <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.4); border-radius: 50%; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.8); z-index: 100; transition: 0.3s; backdrop-filter: blur(5px);" title="مشاركة البوستر">📸</button>
 
         <div style="position:relative; z-index:2; margin-bottom: 15px; margin-top: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
@@ -446,9 +368,7 @@ function updateDisplay() {
         </div>
         
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 5px; padding: 0 5px; position: relative; z-index:2;">
-            
             <div class="golden-smoke-overlay"></div>
-
             <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
                 <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 65px; height: 65px; object-fit:contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.9)); margin-bottom: 8px; position:relative; z-index:1;" crossorigin="anonymous">
                 <span style="font-size: 0.95rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الفيصلي</span>
@@ -495,63 +415,31 @@ async function fetchWeather() {
         const data = await response.json(); 
         const temp = Math.round(data.current_weather.temperature);
         const code = data.current_weather.weathercode;
-        
-        let icon = '⛅'; 
-        if(code === 0) icon = '☀️'; 
-        else if(code > 0 && code <= 3) icon = '⛅'; 
-        else if(code >= 45 && code <= 48) icon = '🌫️'; 
-        else if(code >= 51 && code <= 67 || (code >= 80 && code <= 82)) icon = '🌧️'; 
-        else if(code >= 95) icon = '⛈️'; 
-        
+        let icon = '⛅'; if(code === 0) icon = '☀️'; else if(code >= 51 && code <= 67 || (code >= 80 && code <= 82)) icon = '🌧️'; else if(code >= 95) icon = '⛈️'; 
         document.getElementById('weather-box').innerHTML = `<span style="font-size:1.1rem; filter:drop-shadow(0 0 5px rgba(255,255,255,0.3));">${icon}</span> <span style="color:#ddd; font-weight:700;">القحمة:</span> <span style="color:var(--gold-main); font-weight:900; font-size:0.8rem; text-shadow:0 0 8px rgba(212,175,55,0.4);">${temp}°C</span>`; 
-    } catch (e) { 
-        document.getElementById('weather-box').innerHTML = `<span style="font-size:1.1rem;">⛅</span> <span style="color:#ddd; font-weight:700;">القحمة:</span> <span style="color:var(--gold-main); font-weight:900; font-size:0.8rem;">26°C</span>`; 
-    } 
+    } catch (e) { document.getElementById('weather-box').innerHTML = `<span style="font-size:1.1rem;">⛅</span> <span style="color:#ddd; font-weight:700;">القحمة:</span> <span style="color:var(--gold-main); font-weight:900; font-size:0.8rem;">26°C</span>`; } 
 }
 
 function hidePreloaderSafely() {
     const preloader = document.getElementById('preloader');
     if(preloader && !preloader.classList.contains('hidden')) {
         preloader.classList.add('run-exit');
-        setTimeout(() => { 
-            preloader.classList.add('hidden'); 
-        }, 400);
+        setTimeout(() => { preloader.classList.add('hidden'); }, 400);
     }
 }
 
-// دالة إغلاق رسالة الأيفون الذكية
-function closeIosPrompt() {
-    document.getElementById('ios-install-prompt').style.display = 'none';
-    localStorage.setItem('iosPromptShown', 'true'); // يحفظ في الذاكرة عشان ما تطلع ثاني
-}
-
-// دالة إظهار رسالة الأيفون الذكية
+function closeIosPrompt() { document.getElementById('ios-install-prompt').style.display = 'none'; localStorage.setItem('iosPromptShown', 'true'); }
 function showIosPromptIfNeeded() {
-    const isIos = () => {
-        const userAgent = window.navigator.userAgent.toLowerCase();
-        return /iphone|ipad|ipod/.test(userAgent);
-    };
-    // يتأكد إن الجوال أيفون + مو فاتح الموقع من الشاشة الرئيسية + ما قد قفل الرسالة قبل
+    const isIos = () => /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
     const isInStandaloneMode = ('standalone' in window.navigator) && (window.navigator.standalone);
     const hasPromptBeenShown = localStorage.getItem('iosPromptShown');
-    
-    if (isIos() && !isInStandaloneMode && !hasPromptBeenShown) {
-        // تأخير بسيط 3 ثواني عشان تطلع الرسالة بشكل هادي بعد التحميل
-        setTimeout(() => {
-            document.getElementById('ios-install-prompt').style.display = 'block';
-        }, 3000);
-    }
+    if (isIos() && !isInStandaloneMode && !hasPromptBeenShown) { setTimeout(() => { document.getElementById('ios-install-prompt').style.display = 'block'; }, 3000); }
 }
 
 window.onload = function() { 
-    fetchWeather(); 
-    updateDisplay(); 
-    openTab(null, 'today'); 
-    openSubTab(null, 'players-list'); 
-    setTimeout(hidePreloaderSafely, 1500);
-    showIosPromptIfNeeded(); // تشغيل فحص رسالة الأيفون
+    fetchWeather(); updateDisplay(); openTab(null, 'today'); openSubTab(null, 'players-list'); 
+    setTimeout(hidePreloaderSafely, 1500); showIosPromptIfNeeded();
 };
-
 </script>
 
 <script type="module">
@@ -574,31 +462,27 @@ window.onload = function() {
   const db = getDatabase(app);
   
   const visitsRef = ref(db, 'visits_counter/total');
-  runTransaction(visitsRef, (currentVisits) => {
-      return (currentVisits || 19477) + 1;
-  });
-  onValue(visitsRef, (snapshot) => {
-      if (snapshot.val()) {
-          document.getElementById('live-visit-counter').innerText = snapshot.val().toLocaleString('en-US');
-      }
-  });
+  runTransaction(visitsRef, (currentVisits) => { return (currentVisits || 19477) + 1; });
+  onValue(visitsRef, (snapshot) => { if (snapshot.val()) { document.getElementById('live-visit-counter').innerText = snapshot.val().toLocaleString('en-US'); } });
 
   const myClientId = 'user_' + Math.random().toString(36).substr(2, 9);
   const myOnlineRef = ref(db, 'online_users_live/' + myClientId);
-  
   set(myOnlineRef, true);
   onDisconnect(myOnlineRef).remove(); 
 
   window.trackShareClick = () => {
       const shareRef = ref(db, 'shares_counter/total');
-      runTransaction(shareRef, (current) => {
-          return (current || 0) + 1;
-      });
+      runTransaction(shareRef, (current) => { return (current || 0) + 1; });
   };
 
+  // ==========================================
+  // أكواد قراءة النتيجة (مجهزة للبروفة التلقائية)
+  // ==========================================
   const scoreRef = ref(db, 'live_match_score');
   onValue(scoreRef, (snapshot) => {
-      const data = snapshot.val();
+      // هنا حطينا النتيجة الافتراضية "للبروفة" في حال كانت قاعدة البيانات فاضية
+      const data = snapshot.val() || { is_live: true, faisaly: 0, wesam: 0 };
+      
       const vsText = document.getElementById('live-vs-text');
       const statusBadge = document.getElementById('match-status-badge');
       const bottomMsg = document.getElementById('bottom-message');
@@ -620,8 +504,8 @@ window.onload = function() {
                   statusBadge.style.background = "linear-gradient(135deg, #ef4444, #b91c1c)";
                   statusBadge.style.color = "#fff";
                   statusBadge.style.borderColor = "#b91c1c";
-                  statusBadge.style.boxShadow = "0 0 10px rgba(239, 68, 68, 0.6)";
-                  statusBadge.style.animation = "gentlePulse 1.5s infinite";
+                  // تفعيل النبض الفخم
+                  statusBadge.style.animation = "livePulse 1.5s infinite";
               }
               if(bottomMsg) {
                   bottomMsg.innerText = "تغطية مباشرة لأحداث النهائي الكبير 🔥";
@@ -645,28 +529,9 @@ window.onload = function() {
                   bottomMsg.innerText = "انتظرونا في ليلة كتابة التاريخ ✨🏆";
               }
           }
-      } else {
-          if(vsText) {
-              vsText.innerText = "VS";
-              vsText.style.fontSize = "1rem";
-              vsText.style.color = "#000";
-              vsText.style.transform = "rotate(-45deg)";
-          }
-          if(statusBadge) {
-              statusBadge.innerHTML = "📅 21 شوال";
-              statusBadge.style.background = "var(--gold-grad)";
-              statusBadge.style.color = "#000";
-              statusBadge.style.borderColor = "rgba(255,255,255,0.3)";
-              statusBadge.style.boxShadow = "0 3px 8px rgba(212,175,55,0.4)";
-              statusBadge.style.animation = "none";
-          }
-          if(bottomMsg) {
-              bottomMsg.innerText = "انتظرونا في ليلة كتابة التاريخ ✨🏆";
-          }
       }
   });
 
 </script>
-
 </body>
 </html>
