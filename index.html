@@ -179,68 +179,12 @@
         .ios-prompt-close { position: absolute; top: 5px; left: 10px; color: #a0a0a0; font-size: 1.2rem; cursor: pointer; }
         .ios-prompt-text { color: #fff; font-size: 0.8rem; font-weight: 700; line-height: 1.6; font-family: 'Cairo'; }
         .ios-prompt-icon { color: var(--gold-light); font-size: 1.2rem; vertical-align: middle; margin: 0 3px; }
-
-        /* ستايل نافذة الشكر والتدشين النهائي (النسخة المصغرة) */
-        #welcome-popup {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            z-index: 1000000; justify-content: center; align-items: center;
-            transition: opacity 0.5s ease;
-        }
-        .popup-box {
-            width: 88%; max-width: 400px; background: linear-gradient(145deg, #111, #050505);
-            border: 2px solid var(--gold-main); border-radius: 20px; padding: 20px 15px;
-            text-align: center; position: relative; 
-            box-shadow: 0 0 40px rgba(0,0,0,1), inset 0 0 25px rgba(212,175,55,0.15);
-            animation: popupIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .popup-close-x {
-            position: absolute; top: 12px; left: 15px; color: #888; font-size: 1.2rem;
-            cursor: pointer; z-index: 10; transition: 0.3s; font-family: sans-serif;
-        }
-        .popup-close-x:hover { color: var(--gold-main); transform: scale(1.1); }
     </style>
 </head>
 <body>
 
     <div id="preloader">
         <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
-    </div>
-
-    <div id="welcome-popup">
-        <div class="popup-box">
-            <div class="popup-close-x" onclick="closeWelcomePopup()">✖</div>
-
-            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 60px; margin-bottom: 10px; filter: drop-shadow(0 0 10px rgba(212,175,55,0.6));">
-            
-            <h2 style="color:var(--gold-light); font-weight:900; font-size:1.4rem; margin:0 0 10px 0; text-shadow:0 0 15px rgba(212,175,55,0.6); letter-spacing: 1px;">شكر خاص</h2>
-            
-            <div style="font-size: 0.85rem; line-height: 1.6; color: #fff; text-align: center; font-weight: 600; padding: 0 5px;">
-                
-                <div style="margin-bottom: 5px;">نتقدم بخالص الشكر والتقدير</div>
-                
-                <div style="color: #fff; font-size: 0.75rem; font-weight: 700; background: rgba(212,175,55,0.15); padding: 4px 10px; border-radius: 12px; display: inline-block; margin-bottom: 8px; border: 1px solid rgba(212,175,55,0.3);">رئيس جمعية التنمية الاجتماعية الأهلية بالقحمة</div>
-                
-                <div style="color:var(--gold-main); font-weight: 900; font-size: 1.1rem; white-space: nowrap; margin-bottom: 15px; text-shadow: 0 0 10px rgba(212,175,55,0.4);">✨ الأستاذ زايد عبده أبو هداش الشاعري ✨</div>
-                
-                <div style="font-size: 0.75rem; color: #ddd; font-weight: 400; text-align: center; margin-bottom: 8px;">
-                    وذلك تقديرًا لدعمه السخي وتحفيزه المستمر الذي كان له بالغ الأثر في مسيرتنا
-                </div>
-                
-                <div style="font-size: 0.75rem; color: #ddd; font-weight: 400; text-align: center; margin-bottom: 8px;">
-                    ونحن اليوم نعيش لحظات الترقب ونترقب بشغف انطلاق نهائي بطولة القحمة الرمضانية 28 يظل دعمه أحد أهم الركائز التي أوصلتنا إلى هذه المرحلة المميزة وأسهم في تألق منصتها الإلكترونية
-                </div>
-                
-                <div style="font-size: 0.75rem; color: #ddd; font-weight: 400; text-align: center;">
-                    لقد كانت وقفته الصادقة أساسًا في تحقيق هذا المنجز الذي نفخر به جميعًا فله منا جزيل الشكر وعظيم الامتنان على عطائه اللامحدود الذي امتد لكافة المجالات وجعلنا نصل إلى أعتاب نهائي تاريخي
-                </div>
-                
-            </div>
-
-            <div style="margin-top: 15px; font-size: 0.7rem; color: var(--gold-dark); font-weight: 900; text-shadow: 0 1px 2px #000; letter-spacing: 1px;">
-                إياد عسيري
-            </div>
-        </div>
     </div>
 
     <div id="ios-install-prompt">
@@ -366,6 +310,7 @@
             <div id="archive-area"></div>
         </div>
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
+        
         <div id="about" class="tab-content"><div class="about-text-area" id="about-text-content"></div></div>
 
         <div class="footer">
@@ -420,6 +365,7 @@ const groupData = [
     {n:"السادسة", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
+// إرجاع النص كامل كما طلبت بالضبط
 const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة\n\n* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة\n* تقام مباريات البطولة بنظام المجموعات من دور واحد\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:\n- مجموع النقاط\n- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)\n- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر\n- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب\n- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة\n\n* آلية مباريات الملحق\nبعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:\n * المباراة  رقم (19) \n(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) \n * المباراة رقم ( 20) \n(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) \n\n* مباريات دور الثمانية\nرقم المباراة ( 21) \nاول مج (1) مع اول مج(3)\n\nالمبارة رقم (22) \nاول مج (2)   مع أول مج ( 4) \n المباراة رقم ( 23)\nاول مج ( 5) مع اول مج ( 7 ) \nالمباراة رقم (24) \nاول مج (6) مع اول مج ( 8) \n\n(( ملاحظة مهمة)) \nفي حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: \nالمباراة رقم ( 23)\n اول مج ( 5 ) مع أول مج ( 8 ) \nالمباراة رقم (24) \nاول مج( 6) مع أول مج(7) \nوذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية \n\nمباريات نصف النهاىي\n المباراة رقم (25) \nفائز (21) مع فائز( 23) \nالمباراة رقم (26)\n فائز (22) مع فائز 24\n\nالنهائي \nالمباراة رقم (27)\nفائز (25) مع فائز (26)\n\nبعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي \nتم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة \nوبالتالي اصبح ترتيب الاوائل على النحو التالي :\nالمجموعة الاولى فريق السوق \nالمجموعة الثانية فريق ساحل مغزل\nالمجموعة الثالثة فريق الصقر \nالمجموعة الرابعة فريق الساحل الرياضي \nالمجموعه الخامسة فريق صقليه\nالمجموعة السادسة فريق الوسام \nالمجموعة السابعة فريق عمق \nالمجموعة الثامنه فريق الفيصلي\n\nوتلعب مباريات دور الثمانية(ربع النهائي )\nحسب نظام البطولة \nاول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)\nاول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)\n—————————————————- \nوحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا\nاول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)\nاول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)\n——————————————————\nمباريات دور الاربعة ( نصف النهائي )\nرقم المباراة (25)\nفائز المباراة رقم  (21) مع فائز المباراة رقم  (23)\nرقم المباراة (26)\nفائز المباراة رقم (22) مع فائز المباراة رقم (24)\n——————————————————-\nالمباراة النهائية \nرقم المباراة (27)\nفائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
 
 function openTab(evt, tabName) { 
@@ -485,35 +431,9 @@ function showIosPromptIfNeeded() {
     if (isIos() && !isInStandaloneMode && !hasPromptBeenShown) { setTimeout(() => { document.getElementById('ios-install-prompt').style.display = 'block'; }, 3000); }
 }
 
-// دالة النافذة الترحيبية (تختفي تلقائياً بعد 10 ثواني)
-function showWelcomePopup() {
-    // استخدمنا v9 لضمان الظهور بعد هذا التعديل
-    const hasSeen = localStorage.getItem('welcome_final_v9');
-    if (!hasSeen) {
-        const popup = document.getElementById('welcome-popup');
-        popup.style.display = 'flex';
-        // اختفاء تلقائي بعد 10 ثواني
-        setTimeout(() => {
-            closeWelcomePopup();
-        }, 10000);
-    }
-}
-
-function closeWelcomePopup() {
-    const popup = document.getElementById('welcome-popup');
-    if (popup) {
-        popup.style.opacity = '0';
-        setTimeout(() => {
-            popup.style.display = 'none';
-        }, 500); 
-        localStorage.setItem('welcome_final_v9', 'true');
-    }
-}
-
 window.onload = function() { 
     fetchWeather(); updateDisplay(); openTab(null, 'today'); openSubTab(null, 'players-list'); 
     setTimeout(hidePreloaderSafely, 1500); showIosPromptIfNeeded();
-    setTimeout(showWelcomePopup, 1500); 
 };
 </script>
 
@@ -551,7 +471,7 @@ window.onload = function() {
   };
 
   // ==========================================
-  // أكواد التبديل التلقائي + ميزة الهدافين المباشرة 
+  // أكواد التبديل التلقائي + ميزة الهدافين المباشرة
   // ==========================================
   const scoreRef = ref(db, 'live_match_score');
   onValue(scoreRef, (snapshot) => {
@@ -570,10 +490,12 @@ window.onload = function() {
       const faisaly = data && data.faisaly !== undefined ? data.faisaly : 0;
       const wesam = data && data.wesam !== undefined ? data.wesam : 0;
       
+      // جلب أسماء الهدافين من الفايربيس
       const faisalyScorers = data && data.faisaly_scorers !== undefined ? data.faisaly_scorers : "";
       const wesamScorers = data && data.wesam_scorers !== undefined ? data.wesam_scorers : "";
 
       if (isLive) {
+          // وضع المباراة المباشر
           if(vsContainer) {
               vsContainer.className = "";
               vsContainer.style.cssText = "background: linear-gradient(135deg, #111, #222); border: 2px solid var(--gold-main); box-shadow: 0 0 15px rgba(212,175,55,0.6), inset 0 0 5px rgba(212,175,55,0.3); border-radius: 10px; padding: 5px 15px; display: flex; justify-content: center; align-items: center; transition: 0.3s ease; min-width: 80px;";
@@ -584,16 +506,19 @@ window.onload = function() {
               vsText.style.cssText = "color: var(--gold-light); font-weight: 900; font-size: 1.5rem; font-family: sans-serif; letter-spacing: 2px;";
           }
           if(statusBadge) {
+              // تصميم "تلعب الآن" الصغير الأنيق مع الفلاشر الأحمر
               statusBadge.innerHTML = '<span style="display:inline-block; width:6px; height:6px; background:#ef4444; border-radius:50%; box-shadow: 0 0 5px #ef4444; animation: redPulse 1s infinite; margin-left:5px;"></span> تلعب الآن';
               statusBadge.style.cssText = "background: rgba(20,20,20,0.9); border: 1px solid #ef4444; color: #fff; padding: 4px 15px; border-radius: 20px; font-weight: 700; font-size: 0.75rem; box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); display: flex; align-items: center; transition: 0.3s;";
           }
           if(stadiumBadge) stadiumBadge.style.display = "none";
           if(bottomMsg) bottomMsg.innerText = "تغطية مباشرة لأحداث النهائي الكبير 🔥";
           
+          // إظهار أسماء الهدافين تحت الفرق
           if(faisalyScorersDiv) faisalyScorersDiv.innerHTML = faisalyScorers;
           if(wesamScorersDiv) wesamScorersDiv.innerHTML = wesamScorers;
           
       } else {
+          // وضع الانتظار (قبل المباراة)
           if(vsContainer) {
               vsContainer.className = "champions-vs-badge";
               vsContainer.style.cssText = "width: 40px; height: 40px; margin: 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 15px rgba(212,175,55,0.6); transform: rotate(45deg);";
@@ -610,6 +535,7 @@ window.onload = function() {
           if(stadiumBadge) stadiumBadge.style.display = "block";
           if(bottomMsg) bottomMsg.innerText = "انتظرونا في ليلة كتابة التاريخ ✨🏆";
           
+          // إخفاء أسماء الهدافين في وضع الانتظار
           if(faisalyScorersDiv) faisalyScorersDiv.innerHTML = "";
           if(wesamScorersDiv) wesamScorersDiv.innerHTML = "";
       }
