@@ -180,7 +180,7 @@
         .ios-prompt-text { color: #fff; font-size: 0.8rem; font-weight: 700; line-height: 1.6; font-family: 'Cairo'; }
         .ios-prompt-icon { color: var(--gold-light); font-size: 1.2rem; vertical-align: middle; margin: 0 3px; }
 
-        /* ستايل نافذة الشكر والتدشين النهائي */
+        /* ستايل نافذة الشكر والتدشين النهائي (النسخة المصغرة) */
         #welcome-popup {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -188,18 +188,17 @@
             transition: opacity 0.5s ease;
         }
         .popup-box {
-            width: 88%; max-width: 440px; background: linear-gradient(145deg, #111, #050505);
-            border: 2px solid var(--gold-main); border-radius: 20px; padding: 30px 20px;
+            width: 88%; max-width: 400px; background: linear-gradient(145deg, #111, #050505);
+            border: 2px solid var(--gold-main); border-radius: 20px; padding: 20px 15px;
             text-align: center; position: relative; 
             box-shadow: 0 0 40px rgba(0,0,0,1), inset 0 0 25px rgba(212,175,55,0.15);
             animation: popupIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .popup-close-btn {
-            margin-top: 20px; background: rgba(212,175,55,0.1); border: 1px solid var(--gold-main); color: var(--gold-light);
-            padding: 8px 35px; border-radius: 30px; font-weight: 900; cursor: pointer;
-            font-family: 'Cairo'; font-size: 0.8rem; transition: 0.3s;
+        .popup-close-x {
+            position: absolute; top: 12px; left: 15px; color: #888; font-size: 1.2rem;
+            cursor: pointer; z-index: 10; transition: 0.3s; font-family: sans-serif;
         }
-        .popup-close-btn:active { transform: scale(0.95); }
+        .popup-close-x:hover { color: var(--gold-main); transform: scale(1.1); }
     </style>
 </head>
 <body>
@@ -210,30 +209,35 @@
 
     <div id="welcome-popup">
         <div class="popup-box">
-            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 75px; margin-bottom: 10px; filter: drop-shadow(0 0 15px rgba(212,175,55,0.6));">
+            <div class="popup-close-x" onclick="closeWelcomePopup()">✖</div>
+
+            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 60px; margin-bottom: 10px; filter: drop-shadow(0 0 10px rgba(212,175,55,0.6));">
             
-            <h2 style="color:var(--gold-light); font-weight:900; font-size:1.8rem; margin:0 0 15px 0; text-shadow:0 0 20px rgba(212,175,55,0.6); letter-spacing: 1px;">شكر خاص</h2>
+            <h2 style="color:var(--gold-light); font-weight:900; font-size:1.4rem; margin:0 0 10px 0; text-shadow:0 0 15px rgba(212,175,55,0.6); letter-spacing: 1px;">شكر خاص</h2>
             
-            <div style="font-size: 0.95rem; line-height: 1.8; color: #fff; text-align: center; font-weight: 600; padding: 0 10px;">
-                نتقدم بخالص الشكر والتقدير لـ <br>
-                <span style="color: #fff; font-size: 0.85rem; font-weight: 700; background: rgba(212,175,55,0.15); padding: 4px 12px; border-radius: 15px; display: inline-block; margin-top: 10px; border: 1px solid rgba(212,175,55,0.3);">رئيس جمعية التنمية الاجتماعية الأهلية بالقحمة</span>
+            <div style="font-size: 0.85rem; line-height: 1.6; color: #fff; text-align: center; font-weight: 600; padding: 0 5px;">
                 
-                <span style="color:var(--gold-main); font-weight: 900; font-size: 1.4rem; display: block; margin: 15px 0; text-shadow: 0 0 15px rgba(212,175,55,0.4);">✨ الأستاذ زايد عبده أبو هداش الشاعري ✨</span>
+                <div style="margin-bottom: 5px;">نتقدم بخالص الشكر والتقدير</div>
                 
-                <p style="font-size: 0.85rem; color: #ddd; font-weight: 400; text-align: justify; direction: rtl; margin-bottom: 10px;">
-                    وذلك تقديرًا لدعمه السخي وتحفيزه المستمر، الذي كان له بالغ الأثر في مسيرتنا.
-                </p>
-                <p style="font-size: 0.85rem; color: #ddd; font-weight: 400; text-align: justify; direction: rtl; margin-bottom: 10px;">
-                    ونحن اليوم نعيش لحظات الترقب ونترقب بشغف انطلاق نهائي بطولة القحمة الرمضانية (28)، يظل دعمه أحد أهم الركائز التي أوصلتنا إلى هذه المرحلة المميزة، وأسهم في تألق منصتها الإلكترونية.
-                </p>
-                <p style="font-size: 0.85rem; color: #ddd; font-weight: 400; text-align: justify; direction: rtl; margin-bottom: 0;">
-                    لقد كانت وقفته الصادقة أساسًا في تحقيق هذا المنجز الذي نفخر به جميعًا، فله منا جزيل الشكر وعظيم الامتنان على عطائه اللامحدود الذي امتد لكافة المجالات، وجعلنا نصل إلى أعتاب نهائي تاريخي.
-                </p>
+                <div style="color: #fff; font-size: 0.75rem; font-weight: 700; background: rgba(212,175,55,0.15); padding: 4px 10px; border-radius: 12px; display: inline-block; margin-bottom: 8px; border: 1px solid rgba(212,175,55,0.3);">رئيس جمعية التنمية الاجتماعية الأهلية بالقحمة</div>
+                
+                <div style="color:var(--gold-main); font-weight: 900; font-size: 1.1rem; white-space: nowrap; margin-bottom: 15px; text-shadow: 0 0 10px rgba(212,175,55,0.4);">✨ الأستاذ زايد عبده أبو هداش الشاعري ✨</div>
+                
+                <div style="font-size: 0.75rem; color: #ddd; font-weight: 400; text-align: center; margin-bottom: 8px;">
+                    وذلك تقديرًا لدعمه السخي وتحفيزه المستمر الذي كان له بالغ الأثر في مسيرتنا
+                </div>
+                
+                <div style="font-size: 0.75rem; color: #ddd; font-weight: 400; text-align: center; margin-bottom: 8px;">
+                    ونحن اليوم نعيش لحظات الترقب ونترقب بشغف انطلاق نهائي بطولة القحمة الرمضانية 28 يظل دعمه أحد أهم الركائز التي أوصلتنا إلى هذه المرحلة المميزة وأسهم في تألق منصتها الإلكترونية
+                </div>
+                
+                <div style="font-size: 0.75rem; color: #ddd; font-weight: 400; text-align: center;">
+                    لقد كانت وقفته الصادقة أساسًا في تحقيق هذا المنجز الذي نفخر به جميعًا فله منا جزيل الشكر وعظيم الامتنان على عطائه اللامحدود الذي امتد لكافة المجالات وجعلنا نصل إلى أعتاب نهائي تاريخي
+                </div>
+                
             </div>
 
-            <button class="popup-close-btn" onclick="closeWelcomePopup()">دخول للموقع ✖</button>
-            
-            <div style="margin-top: 25px; font-size: 0.8rem; color: var(--gold-dark); font-weight: 900; text-shadow: 0 1px 3px #000; letter-spacing: 1px;">
+            <div style="margin-top: 15px; font-size: 0.7rem; color: var(--gold-dark); font-weight: 900; text-shadow: 0 1px 2px #000; letter-spacing: 1px;">
                 إياد عسيري
             </div>
         </div>
@@ -483,11 +487,12 @@ function showIosPromptIfNeeded() {
 
 // دالة النافذة الترحيبية (تختفي تلقائياً بعد 10 ثواني)
 function showWelcomePopup() {
-    const hasSeen = localStorage.getItem('welcome_final_v1');
+    // استخدمنا v9 لضمان الظهور بعد هذا التعديل
+    const hasSeen = localStorage.getItem('welcome_final_v9');
     if (!hasSeen) {
         const popup = document.getElementById('welcome-popup');
         popup.style.display = 'flex';
-        // اختفاء تلقائي بعد 10 ثواني (10000 ملي ثانية)
+        // اختفاء تلقائي بعد 10 ثواني
         setTimeout(() => {
             closeWelcomePopup();
         }, 10000);
@@ -500,8 +505,8 @@ function closeWelcomePopup() {
         popup.style.opacity = '0';
         setTimeout(() => {
             popup.style.display = 'none';
-        }, 500); // تأخير بسيط لعمل حركة الاختفاء بسلاسة
-        localStorage.setItem('welcome_final_v1', 'true');
+        }, 500); 
+        localStorage.setItem('welcome_final_v9', 'true');
     }
 }
 
