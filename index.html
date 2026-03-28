@@ -248,12 +248,12 @@
             
             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; background: #181b21; border: 1px solid #272c33; border-radius: 20px; padding: 40px 20px;">
                 <div style="text-align: center; width: 40%;">
-                    <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 110px; height: 110px; object-fit: contain; margin-bottom: 15px;" crossorigin="anonymous">
+                    <img src="https://i.ibb.co/RTdYYmbq/Photoroom-20260329-004128.png" style="width: 110px; height: 110px; object-fit: contain; margin-bottom: 15px;" crossorigin="anonymous">
                     <h2 style="color: #f8fafc; margin: 0; font-size: 1.8rem; font-weight: 900;">الفيصلي</h2>
                 </div>
                 <div style="width: 60px; height: 60px; background: #0f1115; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.5rem; color: #94a3b8; border: 1px solid #272c33;">VS</div>
                 <div style="text-align: center; width: 40%;">
-                    <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 110px; height: 110px; object-fit: contain; margin-bottom: 15px;" crossorigin="anonymous">
+                    <img src="https://i.ibb.co/hFBhwmx9/Photoroom-20260329-003438.png" style="width: 110px; height: 110px; object-fit: contain; margin-bottom: 15px;" crossorigin="anonymous">
                     <h2 style="color: #f8fafc; margin: 0; font-size: 1.8rem; font-weight: 900;">الوسام</h2>
                 </div>
             </div>
@@ -296,7 +296,7 @@
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 10px;">
                     
                     <div style="flex: 1; display:flex; flex-direction:column; align-items:center;">
-                        <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 55px; height: 55px; object-fit:contain; margin-bottom: 10px;" crossorigin="anonymous">
+                        <img src="https://i.ibb.co/RTdYYmbq/Photoroom-20260329-004128.png" style="width: 55px; height: 55px; object-fit:contain; margin-bottom: 10px;" crossorigin="anonymous">
                         <span style="font-size: 0.9rem; font-weight: 800; color: var(--text-primary);">الفيصلي</span>
                         <div id="faisaly-scorers" style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 5px; text-align: center; line-height: 1.5;"></div>
                     </div>
@@ -308,7 +308,7 @@
                     </div>
 
                     <div style="flex: 1; display:flex; flex-direction:column; align-items:center;">
-                        <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 55px; height: 55px; object-fit:contain; margin-bottom: 10px;" crossorigin="anonymous">
+                        <img src="https://i.ibb.co/hFBhwmx9/Photoroom-20260329-003438.png" style="width: 55px; height: 55px; object-fit:contain; margin-bottom: 10px;" crossorigin="anonymous">
                         <span style="font-size: 0.9rem; font-weight: 800; color: var(--text-primary);">الوسام</span>
                         <div id="wesam-scorers" style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 5px; text-align: center; line-height: 1.5;"></div>
                     </div>
@@ -606,7 +606,7 @@ window.onload = function() {
   onValue(window.scoreRef, window.onValueCallback);
 
   // ==========================================
-  // نظام التصويت المباشر (جاهز ومفصول)
+  // نظام التصويت المباشر
   // ==========================================
   const pollRef = ref(db, 'match_poll');
   onValue(pollRef, (snapshot) => {
@@ -640,8 +640,7 @@ window.onload = function() {
   });
 
   window.submitVote = (team) => {
-      // تغيير الكود هنا عشان يصفر للجميع ويسمح بالتصويت من جديد
-      if (localStorage.getItem('voted_final28_v6_reset')) {
+      if (localStorage.getItem('voted_final28_v7_reset')) {
           alert('لقد قمت بالتصويت مسبقاً! شكراً لك.');
           return;
       }
@@ -650,10 +649,9 @@ window.onload = function() {
       btn.style.background = 'rgba(226, 183, 20, 0.15)';
       btn.style.borderColor = 'var(--accent-gold)';
       
-      // إظهار رسالة النجاح الخضراء
       document.getElementById('vote-success-msg').style.display = 'block';
       
-      localStorage.setItem('voted_final28_v6_reset', 'true');
+      localStorage.setItem('voted_final28_v7_reset', 'true');
       
       const teamRef = ref(db, `match_poll/${team}`);
       runTransaction(teamRef, (current) => {
