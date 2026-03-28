@@ -325,7 +325,7 @@
                 </div>
 
                 <div onclick="document.getElementById('media-section').scrollIntoView({behavior: 'smooth'})" style="background: var(--bg-dark); padding:10px; border-radius:8px; border: 1px solid var(--border-color); margin-top: 20px; text-align:center; cursor: pointer; transition: 0.2s;">
-                    <span id="bottom-message" style="font-size:0.75rem; color:var(--text-secondary); font-weight:600; cursor: pointer;">التغطية الحصرية لنهائي البطولة 🏆</span>
+                    <span id="bottom-message" style="font-size:0.75rem; color:var(--text-secondary); font-weight:600; cursor: pointer;">التغطية الحصرية لنهائي البطولة</span>
                 </div>
                 
                 <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-color);">
@@ -348,8 +348,8 @@
 
                 <div style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed var(--border-color);">
                     <h3 style="color:var(--text-primary); font-size:0.9rem; margin:0 0 5px 0; text-align:center; font-weight:800;">رأيك يهمنا</h3>
-                    <p style="font-size:0.7rem; color:var(--text-secondary); text-align:center; margin-top:0; margin-bottom:12px;">رسالتك توصل للمنظمين بسرية تامة</p>
-                    <textarea id="secret-message-input" placeholder="اكتب ملاحظتك، أو رأيك في الموقع هنا..." style="width:100%; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); border-radius:12px; padding:12px; font-family:'Cairo'; font-size:0.8rem; min-height:80px; resize:none; box-sizing:border-box; margin-bottom:10px; transition:0.3s;"></textarea>
+                    <p style="font-size:0.7rem; color:var(--text-secondary); text-align:center; margin-top:0; margin-bottom:12px;">رسالتك تصل للمنظمين بسرية تامة</p>
+                    <textarea id="secret-message-input" placeholder="اكتب ملاحظتك أو رأيك في الموقع هنا..." style="width:100%; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); border-radius:12px; padding:12px; font-family:'Cairo'; font-size:0.8rem; min-height:80px; resize:none; box-sizing:border-box; margin-bottom:10px; transition:0.3s;"></textarea>
                     <button id="send-secret-btn" onclick="window.sendSecretMessage()" style="width:100%; background:rgba(226, 183, 20, 0.1); color:var(--accent-gold); border:1px solid rgba(226, 183, 20, 0.3); padding:12px; border-radius:12px; font-family:'Cairo'; font-weight:800; font-size:0.85rem; cursor:pointer; transition:0.3s;">إرسال الرسالة</button>
                 </div>
             </div>
@@ -610,11 +610,10 @@ window.onload = function() {
   onValue(window.scoreRef, window.onValueCallback);
 
   // ==========================================
-  // 1. نظام التصويت المباشر (تم حل المشكلة وتثبيت الأرقام)
+  // 1. نظام التصويت المباشر
   // ==========================================
   const pollRef = ref(db, 'match_poll');
   onValue(pollRef, (snapshot) => {
-      // إذا القاعدة فاضية في الفايربيس، راح يعرض الوسام 103 والفيصلي 87 كبداية
       const data = snapshot.val() || { faisaly: 87, wesam: 103 };
       
       const fVotes = data.faisaly !== undefined ? data.faisaly : 87;
@@ -630,7 +629,6 @@ window.onload = function() {
           document.getElementById('faisaly-bar').style.width = `${fPercent}%`;
           document.getElementById('wesam-bar').style.width = `${wPercent}%`;
           
-          // تلوين الزر الفائز بالذهبي
           if (fVotes > wVotes) {
               document.getElementById('faisaly-votes-count').style.color = "var(--accent-gold)";
               document.getElementById('wesam-votes-count').style.color = "var(--text-secondary)";
@@ -646,21 +644,18 @@ window.onload = function() {
   });
 
   window.submitVote = (team) => {
-      if (localStorage.getItem('voted_final28_v4')) {
+      if (localStorage.getItem('voted_final28_v5')) {
           alert('تم تسجيل تصويتك بنجاح مسبقاً!');
           return;
       }
       
-      // تغيير شكل الزر فورا لإعطاء استجابة سريعة
       const btn = document.getElementById('vote-' + team);
       btn.style.background = 'rgba(226, 183, 20, 0.15)';
       btn.style.borderColor = 'var(--accent-gold)';
-      localStorage.setItem('voted_final28_v4', 'true');
+      localStorage.setItem('voted_final28_v5', 'true');
       
-      // إرسال للفايربيس
       const teamRef = ref(db, `match_poll/${team}`);
       runTransaction(teamRef, (current) => {
-          // إذا مافيه قيمة سابقة في الفايربيس، ابدأ من الرقم اللي طلبته
           if (current === null) {
               return team === 'wesam' ? 104 : 88;
           }
@@ -669,7 +664,7 @@ window.onload = function() {
   };
 
   // ==========================================
-  // 2. نظام الرسائل السرية (شغال 100% بدون فيسات)
+  // 2. نظام الرسائل السرية (شغال + كاشف الأخطاء)
   // ==========================================
   window.sendSecretMessage = () => {
       const input = document.getElementById('secret-message-input');
@@ -704,11 +699,12 @@ window.onload = function() {
               btn.disabled = false;
           }, 3000);
       }).catch((error) => {
-          // حتى لو فيه مشكلة في الصلاحيات، بيعطي المستخدم رسالة إنها وصلت عشان ما ينزعج
-          input.value = '';
-          btn.innerText = 'تم الإرسال بنجاح، شكراً لك!';
+          // إذا فشل الإرسال بسبب Rules أو مشكلة في الاتصال بيعلمك هنا
+          alert('عذراً، يوجد مشكلة في الاتصال! تأكد من قواعد الأمان (Rules).');
+          console.error("Firebase Error: ", error);
+          btn.innerText = 'فشل الإرسال';
+          btn.style.color = 'var(--danger)';
           btn.disabled = false;
-          console.log("Msg error: ", error);
       });
   };
 
