@@ -327,6 +327,31 @@
                 <div onclick="document.getElementById('media-section').scrollIntoView({behavior: 'smooth'})" style="background: var(--bg-dark); padding:10px; border-radius:8px; border: 1px solid var(--border-color); margin-top: 20px; text-align:center; cursor: pointer; transition: 0.2s;">
                     <span id="bottom-message" style="font-size:0.75rem; color:var(--text-secondary); font-weight:600; cursor: pointer;">التغطية الحصرية لنهائي البطولة 🏆</span>
                 </div>
+                
+                <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                    <h3 style="color:var(--text-primary); font-size:0.95rem; margin:0 0 12px 0; text-align:center; font-weight:800;">توقعات النهائي 🔥</h3>
+                    <div style="display:flex; justify-content:space-between; gap:10px; margin-bottom: 12px;">
+                        <button id="vote-faisaly" onclick="submitVote('faisaly')" style="flex:1; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); padding:10px; border-radius:12px; font-family:'Cairo'; font-weight:700; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:4px;">
+                            الفيصلي
+                            <span id="faisaly-votes-count" style="color:var(--accent-gold); font-size:0.8rem; font-weight:900;">(0)</span>
+                        </button>
+                        <button id="vote-wesam" onclick="submitVote('wesam')" style="flex:1; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); padding:10px; border-radius:12px; font-family:'Cairo'; font-weight:700; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:4px;">
+                            الوسام
+                            <span id="wesam-votes-count" style="color:var(--text-secondary); font-size:0.8rem; font-weight:900;">(0)</span>
+                        </button>
+                    </div>
+                    <div style="width:100%; background:var(--bg-dark); height:6px; border-radius:10px; overflow:hidden; display:flex; border:1px solid var(--border-color);">
+                        <div id="faisaly-bar" style="width:50%; background:var(--accent-gold); height:100%; transition:0.5s;"></div>
+                        <div id="wesam-bar" style="width:50%; background:#475569; height:100%; transition:0.5s;"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed var(--border-color);">
+                    <h3 style="color:var(--text-primary); font-size:0.9rem; margin:0 0 5px 0; text-align:center; font-weight:800;">رأيك يهمنا (بسرية تامة 🤫)</h3>
+                    <p style="font-size:0.7rem; color:var(--text-secondary); text-align:center; margin-top:0; margin-bottom:12px;">رسالتك توصل للمبرمج إياد مباشرة</p>
+                    <textarea id="secret-message-input" placeholder="اكتب ملاحظتك، رأيك في الموقع، أو أي تشجيع هنا..." style="width:100%; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); border-radius:12px; padding:12px; font-family:'Cairo'; font-size:0.8rem; min-height:80px; resize:none; box-sizing:border-box; margin-bottom:10px; transition:0.3s;"></textarea>
+                    <button id="send-secret-btn" onclick="sendSecretMessage()" style="width:100%; background:rgba(226, 183, 20, 0.1); color:var(--accent-gold); border:1px solid rgba(226, 183, 20, 0.3); padding:12px; border-radius:12px; font-family:'Cairo'; font-weight:800; font-size:0.85rem; cursor:pointer; transition:0.3s;">إرسال الرسالة 🚀</button>
+                </div>
             </div>
         </div>
 
@@ -373,29 +398,22 @@
     </div>
 
 <script>
-// تحديث البيانات تلقائياً للصفحة 
 setTimeout(function(){ location.reload(); }, 180000); 
 
-// دالة إضافة الحدث للتقويم (النسخة المباشرة بدون تحميل ملف)
 function addToCalendar() {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     let icsMSG = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Qahma28//EN\nBEGIN:VEVENT\nSUMMARY:نهائي بطولة القحمة الرمضانية 28\nDESCRIPTION:المباراة النهائية الكبرى بين الفيصلي والوسام - تغطية حصرية\nLOCATION:ملعب الوسم بالقحمة\nDTSTART:20260508T190000Z\nDTEND:20260508T210000Z\nEND:VEVENT\nEND:VCALENDAR";
     
     if (isIOS) {
-        // في أجهزة الآيفون، هذي الطريقة تفتح نافذة إضافة الحدث للتقويم مباشرة
         window.location.href = "data:text/calendar;charset=utf8," + encodeURIComponent(icsMSG);
     } else {
-        // في أجهزة الأندرويد أو الكمبيوتر، يفتح تطبيق Google Calendar مباشرة للتسجيل
         let url = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent("نهائي بطولة القحمة الرمضانية 28") + "&dates=20260508T160000Z/20260508T180000Z&details=" + encodeURIComponent("المباراة النهائية الكبرى بين الفيصلي والوسام") + "&location=" + encodeURIComponent("ملعب الوسم بالقحمة");
         window.open(url, '_blank');
     }
 }
 
-// كود لإجبار المتصفح على تحديث البيانات فوراً عند فتح التطبيق من الخلفية
 document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible" && window.scoreRef && window.onValueCallback) {
-        // سيقوم Firebase بجلب التحديثات فوراً بفضل أكواد الـ Meta فوق
-    }
+    if (document.visibilityState === "visible" && window.scoreRef && window.onValueCallback) {}
 });
 
 const archiveData = [
@@ -498,7 +516,7 @@ window.onload = function() {
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-  import { getDatabase, ref, runTransaction, onValue, onDisconnect, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+  import { getDatabase, ref, runTransaction, onValue, onDisconnect, set, push } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
   const p1 = "AIzaSyDMSL";
   const p2 = "sTOf_zy8Ec";
@@ -531,7 +549,7 @@ window.onload = function() {
   };
 
   // ==========================================
-  // أكواد التبديل التلقائي + ميزة الهدافين المباشرة
+  // أكواد النتيجة المباشرة
   // ==========================================
   window.onValueCallback = (snapshot) => {
       const data = snapshot.val();
@@ -589,8 +607,84 @@ window.onload = function() {
           if(wesamScorersDiv) wesamScorersDiv.innerHTML = "";
       }
   };
-  
   onValue(window.scoreRef, window.onValueCallback);
+
+  // ==========================================
+  // 1. نظام التصويت المباشر
+  // ==========================================
+  const pollRef = ref(db, 'match_poll');
+  onValue(pollRef, (snapshot) => {
+      const data = snapshot.val() || { faisaly: 0, wesam: 0 };
+      const fVotes = data.faisaly || 0;
+      const wVotes = data.wesam || 0;
+      const total = fVotes + wVotes;
+      
+      document.getElementById('faisaly-votes-count').innerText = `(${fVotes})`;
+      document.getElementById('wesam-votes-count').innerText = `(${wVotes})`;
+      
+      if (total > 0) {
+          const fPercent = (fVotes / total) * 100;
+          const wPercent = (wVotes / total) * 100;
+          document.getElementById('faisaly-bar').style.width = `${fPercent}%`;
+          document.getElementById('wesam-bar').style.width = `${wPercent}%`;
+      }
+  });
+
+  window.submitVote = (team) => {
+      if (localStorage.getItem('voted_final28_v2')) {
+          alert('لقد قمت بالتصويت مسبقاً! شكراً لمشاركتك 🤩');
+          return;
+      }
+      const teamRef = ref(db, `match_poll/${team}`);
+      runTransaction(teamRef, (current) => (current || 0) + 1).then(() => {
+          localStorage.setItem('voted_final28_v2', 'true');
+          const btn = document.getElementById('vote-' + team);
+          btn.style.background = 'rgba(226, 183, 20, 0.15)';
+          btn.style.borderColor = 'var(--accent-gold)';
+      });
+  };
+
+  // ==========================================
+  // 2. نظام الرسائل السرية
+  // ==========================================
+  window.sendSecretMessage = () => {
+      const input = document.getElementById('secret-message-input');
+      const btn = document.getElementById('send-secret-btn');
+      const msg = input.value.trim();
+      
+      if (!msg) {
+          alert('اكتب رسالتك أولاً يا غالي!');
+          return;
+      }
+      
+      btn.innerText = 'جاري الإرسال... ⏳';
+      btn.disabled = true;
+      
+      const messagesRef = ref(db, 'secret_messages');
+      push(messagesRef, {
+          message: msg,
+          timestamp: new Date().toLocaleString('ar-SA'),
+          userAgent: navigator.userAgent
+      }).then(() => {
+          input.value = '';
+          btn.innerText = 'تم الإرسال بنجاح، شكراً لك! ✔️';
+          btn.style.background = 'rgba(16, 185, 129, 0.1)';
+          btn.style.color = 'var(--success)';
+          btn.style.borderColor = 'var(--success)';
+          
+          setTimeout(() => {
+              btn.innerText = 'إرسال رسالة أخرى 🚀';
+              btn.style.background = 'rgba(226, 183, 20, 0.1)';
+              btn.style.color = 'var(--accent-gold)';
+              btn.style.borderColor = 'rgba(226, 183, 20, 0.3)';
+              btn.disabled = false;
+          }, 4000);
+      }).catch((error) => {
+          alert('حدث خطأ أثناء الإرسال، حاول مرة أخرى.');
+          btn.innerText = 'إرسال الرسالة 🚀';
+          btn.disabled = false;
+      });
+  };
 
 </script>
 </body>
