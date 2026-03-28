@@ -173,27 +173,12 @@
         .search-input { width: 100%; padding: 8px 10px; border-radius: 8px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.2); font-family: 'Cairo'; font-size: 0.75rem; box-sizing: border-box; }
         .search-input::placeholder { color: var(--text-muted); }
         .search-input:focus { outline: none; border-color: var(--gold-main); box-shadow: 0 0 6px rgba(212,175,55,0.2); }
-
-        #ios-install-prompt { display: none; position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 350px; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(10px); border: 1px solid var(--gold-main); border-radius: 15px; padding: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.9), 0 0 15px rgba(212,175,55,0.2); z-index: 99999; text-align: center; animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        @keyframes popUp { from { bottom: -100px; opacity: 0; } to { bottom: 80px; opacity: 1; } }
-        .ios-prompt-close { position: absolute; top: 5px; left: 10px; color: #a0a0a0; font-size: 1.2rem; cursor: pointer; }
-        .ios-prompt-text { color: #fff; font-size: 0.8rem; font-weight: 700; line-height: 1.6; font-family: 'Cairo'; }
-        .ios-prompt-icon { color: var(--gold-light); font-size: 1.2rem; vertical-align: middle; margin: 0 3px; }
     </style>
 </head>
 <body>
 
     <div id="preloader">
         <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
-    </div>
-
-    <div id="ios-install-prompt">
-        <span class="ios-prompt-close" onclick="closeIosPrompt()">✖</span>
-        <div class="ios-prompt-text">
-            للحصول على تجربة "التطبيق الرسمي" 📱<br>
-            اضغط على زر المشاركة <span class="ios-prompt-icon">📤</span> بالأسفل<br>
-            ثم اختر <span style="color:var(--gold-main);">"إضافة للشاشة الرئيسية ➕"</span>
-        </div>
     </div>
 
     <div id="image-modal">
@@ -423,17 +408,9 @@ function hidePreloaderSafely() {
     }
 }
 
-function closeIosPrompt() { document.getElementById('ios-install-prompt').style.display = 'none'; localStorage.setItem('iosPromptShown', 'true'); }
-function showIosPromptIfNeeded() {
-    const isIos = () => /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
-    const isInStandaloneMode = ('standalone' in window.navigator) && (window.navigator.standalone);
-    const hasPromptBeenShown = localStorage.getItem('iosPromptShown');
-    if (isIos() && !isInStandaloneMode && !hasPromptBeenShown) { setTimeout(() => { document.getElementById('ios-install-prompt').style.display = 'block'; }, 3000); }
-}
-
 window.onload = function() { 
     fetchWeather(); updateDisplay(); openTab(null, 'today'); openSubTab(null, 'players-list'); 
-    setTimeout(hidePreloaderSafely, 1500); showIosPromptIfNeeded();
+    setTimeout(hidePreloaderSafely, 1500); 
 };
 </script>
 
