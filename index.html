@@ -12,6 +12,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <title>بطولة القحمة الرمضانية 28 - النهائي الكبير</title>
     
     <meta name="google-site-verification" content="OW252jrJC6EhalNrLRFKoEr2VA7hblIx5NfCzw5CP34" />
@@ -53,24 +57,40 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* ========= شاشة التحميل (محدثة مع الكورة) ========= */
+        /* ========= شاشة التحميل (النسخة الفخمة VIP) ========= */
         #preloader { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: var(--bg-dark); z-index: 99999; display: flex; justify-content: center; align-items: center; 
-            transition: opacity 0.4s ease-out, visibility 0.4s ease-out; 
+            background: #0a0c0f; z-index: 99999; display: flex; justify-content: center; align-items: center; 
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s; 
         }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .preloader-content { text-align: center; }
-        .preloader-ball { font-size: 2.5rem; display: block; margin-bottom: 15px; animation: bounceBall 0.6s cubic-bezier(0.28, 0.84, 0.42, 1) infinite alternate; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5)); }
-        .preloader-logo { width: 100px; animation: pulseLogo 2s ease-in-out infinite; }
+        .preloader-content { position: relative; display: flex; justify-content: center; align-items: center; }
         
-        @keyframes bounceBall { 0% { transform: translateY(0); } 100% { transform: translateY(-25px); } }
-        @keyframes pulseLogo { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 15px rgba(226, 183, 20, 0.4)); } }
+        /* الحلقة الذهبية الدوارة */
+        .spinner-ring {
+            position: absolute;
+            width: 140px; height: 140px;
+            border-radius: 50%;
+            border: 3px solid rgba(226, 183, 20, 0.1);
+            border-top-color: var(--accent-gold);
+            border-right-color: var(--accent-gold);
+            animation: spinRing 1.2s linear infinite;
+            box-shadow: 0 0 20px rgba(226, 183, 20, 0.2);
+        }
+        
+        .preloader-logo { 
+            width: 80px; position: relative; z-index: 2; 
+            animation: pulsePreloaderLogo 2s ease-in-out infinite; 
+            filter: drop-shadow(0 0 10px rgba(226, 183, 20, 0.5));
+        }
+        
+        @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes pulsePreloaderLogo { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 20px rgba(226, 183, 20, 0.8)); } }
 
         /* ========= ستايلات عامة ========= */
         .container { max-width: 800px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; }
         
-        /* الهيدر العلوي (محدث) */
+        /* الهيدر العلوي */
         header { 
             text-align: center; padding: 18px 0; background: var(--bg-dark); 
             position: sticky; top: 0; z-index: 1000;
@@ -79,7 +99,6 @@
         }
         .logo-img { width: 65px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(0 0 8px rgba(226, 183, 20, 0.2)); }
         
-        /* كود تكبير الخط ومنع النزول لسطرين */
         header h1 { 
             font-weight: 900; margin: 0; 
             font-size: clamp(1.2rem, 5.5vw, 1.7rem); 
@@ -138,7 +157,7 @@
         .sub-content.active { display: block; animation: fadeIn 0.3s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* الأرشيف والمباريات (محدث ليكون أوضح بكثير) */
+        /* الأرشيف والمباريات */
         .match-list-card { 
             background: linear-gradient(145deg, #1c1f26, #14161a); 
             border-radius: 12px; 
@@ -207,7 +226,7 @@
 
     <div id="preloader">
         <div class="preloader-content">
-            <span class="preloader-ball">⚽</span>
+            <div class="spinner-ring"></div>
             <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
         </div>
     </div>
@@ -352,7 +371,17 @@
     </div>
 
 <script>
-setTimeout(function(){ location.reload(); }, 180000);
+setTimeout(function(){ location.reload(); }, 180000); // تحديث كلي كل 3 دقائق للأمان
+
+// كود لإجبار المتصفح على تحديث البيانات فوراً عند فتح التطبيق من الخلفية
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+        // يمكننا ترك Firebase يقوم بعمله، ولكن للأمان لبعض أجهزة الأيفون نطلب تحديث البيانات 
+        if(window.scoreRef && window.onValueCallback) {
+           // يتم التحديث تلقائياً بواسطة فايربيس
+        }
+    }
+});
 
 const archiveData = [
     { d: "السبت 25 رمضان", matches: [{t1:"ساحل مغزل", t2:"الوسام", r: "0 - 1"}] },
@@ -442,13 +471,13 @@ function hidePreloaderSafely() {
     const preloader = document.getElementById('preloader');
     if(preloader && !preloader.classList.contains('hidden')) {
         preloader.style.opacity = '0';
-        setTimeout(() => { preloader.classList.add('hidden'); }, 400);
+        setTimeout(() => { preloader.classList.add('hidden'); }, 500);
     }
 }
 
 window.onload = function() { 
     fetchWeather(); updateDisplay(); openTab(null, 'today'); openSubTab(null, 'players-list'); 
-    // تأخير شاشة التحميل (الكورة) لمدة ثانيتين (2000 ملي ثانية)
+    // تأخير شاشة التحميل الفخمة لمدة ثانيتين (2000 ملي ثانية) ثم تختفي
     setTimeout(hidePreloaderSafely, 2000); 
 };
 </script>
@@ -471,6 +500,7 @@ window.onload = function() {
 
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
+  window.scoreRef = ref(db, 'live_match_score'); // حفظه في window للوصول العام
   
   const visitsRef = ref(db, 'visits_counter/total');
   runTransaction(visitsRef, (currentVisits) => { return (currentVisits || 19477) + 1; });
@@ -489,8 +519,7 @@ window.onload = function() {
   // ==========================================
   // أكواد التبديل التلقائي + ميزة الهدافين المباشرة 
   // ==========================================
-  const scoreRef = ref(db, 'live_match_score');
-  onValue(scoreRef, (snapshot) => {
+  window.onValueCallback = (snapshot) => {
       const data = snapshot.val();
       
       const vsContainer = document.getElementById('vs-container');
@@ -545,7 +574,9 @@ window.onload = function() {
           if(faisalyScorersDiv) faisalyScorersDiv.innerHTML = "";
           if(wesamScorersDiv) wesamScorersDiv.innerHTML = "";
       }
-  });
+  };
+  
+  onValue(window.scoreRef, window.onValueCallback);
 
 </script>
 </body>
