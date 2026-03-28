@@ -319,7 +319,7 @@
                     <div id="match-status-badge" onclick="addToCalendar()" style="background: rgba(226, 183, 20, 0.1); color: var(--accent-gold); padding: 5px 15px; border-radius: 8px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(226, 183, 20, 0.2); transition: 0.3s; cursor: pointer;">
                         📅 21 شوال
                     </div>
-                    <div id="stadium-badge" onclick="window.open('https://maps.google.com/?q=ملعب+الوسم+بالقحمة', '_blank')" style="background: var(--bg-dark); color: var(--text-secondary); padding: 5px 15px; border-radius: 8px; font-weight: 600; font-size: 0.75rem; border: 1px solid var(--border-color); cursor: pointer;">
+                    <div id="stadium-badge" onclick="window.open('https://maps.app.goo.gl/dBe1DU1vVR47ZGRh7?g_st=ic', '_blank')" style="background: var(--bg-dark); color: var(--text-secondary); padding: 5px 15px; border-radius: 8px; font-weight: 600; font-size: 0.75rem; border: 1px solid var(--border-color); cursor: pointer;">
                         🏟️ ملعب الوسم بالقحمة
                     </div>
                 </div>
@@ -373,25 +373,28 @@
     </div>
 
 <script>
-// تحديث البيانات تلقائياً للصفحة
+// تحديث البيانات تلقائياً للصفحة 
 setTimeout(function(){ location.reload(); }, 180000); 
 
-// دالة توليد ملف التقويم
+// دالة إضافة الحدث للتقويم (النسخة المباشرة بدون تحميل ملف)
 function addToCalendar() {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     let icsMSG = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Qahma28//EN\nBEGIN:VEVENT\nSUMMARY:نهائي بطولة القحمة الرمضانية 28\nDESCRIPTION:المباراة النهائية الكبرى بين الفيصلي والوسام - تغطية حصرية\nLOCATION:ملعب الوسم بالقحمة\nDTSTART:20260508T190000Z\nDTEND:20260508T210000Z\nEND:VEVENT\nEND:VCALENDAR";
-    let blob = new Blob([icsMSG], { type: 'text/calendar;charset=utf-8' });
-    let link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'qahma28_final.ics');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    
+    if (isIOS) {
+        // في أجهزة الآيفون، هذي الطريقة تفتح نافذة إضافة الحدث للتقويم مباشرة
+        window.location.href = "data:text/calendar;charset=utf8," + encodeURIComponent(icsMSG);
+    } else {
+        // في أجهزة الأندرويد أو الكمبيوتر، يفتح تطبيق Google Calendar مباشرة للتسجيل
+        let url = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent("نهائي بطولة القحمة الرمضانية 28") + "&dates=20260508T160000Z/20260508T180000Z&details=" + encodeURIComponent("المباراة النهائية الكبرى بين الفيصلي والوسام") + "&location=" + encodeURIComponent("ملعب الوسم بالقحمة");
+        window.open(url, '_blank');
+    }
 }
 
 // كود لإجبار المتصفح على تحديث البيانات فوراً عند فتح التطبيق من الخلفية
 document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible" && window.scoreRef && window.onValueCallback) {
-        // تحديث البيانات من فايربيس فور العودة للتطبيق
+        // سيقوم Firebase بجلب التحديثات فوراً بفضل أكواد الـ Meta فوق
     }
 });
 
