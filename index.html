@@ -15,7 +15,7 @@
     <title>بطولة القحمة الرمضانية 28 - النهائي الكبير</title>
     
     <meta name="google-site-verification" content="OW252jrJC6EhalNrLRFKoEr2VA7hblIx5NfCzw5CP34" />
-    <meta name="description" content="الموقع والتطبيق الشامل لبطولة القحمة الرمضانية 28 - نتائج المباريات، ترتيب المجموعات، وقائمة الهدافين أولاً بأول.">
+    <meta name="description" content="المنصة الرياضية الرسمية لبطولة القحمة الرمضانية 28. نتائج، إحصائيات، وتغطية حصرية.">
     <meta name="author" content="إياد عسيري">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,7 +24,7 @@
     <link rel="apple-touch-icon" href="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png">
     
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#0f1115">
     <link rel="icon" type="image/png" href="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -32,147 +32,156 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
 
     <style>
-        /* ========= ستايل الذهب الملكي ========= */
+        /* ========= ستايل الاحترافي الداكن (Pro Dark Mode) ========= */
         :root { 
-            --gold-main: #d4af37; --gold-light: #f3e5ab; --gold-dark: #aa8c2c; 
-            --gold-grad: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%);
-            --bronze-gold: #c5a059; 
-            --black-bg: #0a0a0a; --black-card: #141414; --glass-border: rgba(212, 175, 55, 0.15); 
-            --text-main: #f8fafc; --text-muted: #a0a0a0; --green-neon: #10b981;
+            --bg-dark: #0f1115;          /* خلفية الموقع - أسود فحمي */
+            --card-dark: #181b21;        /* خلفية الكروت */
+            --card-hover: #1f232b;       
+            --border-color: #272c33;     /* حدود خفيفة وأنيقة */
+            --accent-gold: #e2b714;      /* ذهبي احترافي للتنبيهات */
+            --text-primary: #f8fafc;     /* نصوص رئيسية بيضاء */
+            --text-secondary: #94a3b8;   /* نصوص ثانوية رمادية */
+            --danger: #ef4444;           /* أحمر للبث المباشر */
+            --success: #10b981;
         }
         
-        html { background-color: var(--black-bg); touch-action: manipulation; scroll-behavior: smooth; }
+        html { background-color: var(--bg-dark); touch-action: manipulation; scroll-behavior: smooth; }
         body { 
             margin: 0; padding: 0; min-height: 100vh;
-            background: linear-gradient(45deg, #0a0a0a, #1a1a1a, #0f0f0f, #0a0a0a);
-            background-size: 400% 400%; animation: gradientBG 20s ease infinite;
-            color: var(--text-main); font-family: 'Cairo', sans-serif; line-height: 1.6; font-size: 0.9rem; 
+            background-color: var(--bg-dark);
+            color: var(--text-primary); font-family: 'Cairo', sans-serif; line-height: 1.6; font-size: 0.9rem; 
             -webkit-tap-highlight-color: transparent;
         }
-        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
-        /* ========= التأثيرات السينمائية ========= */
-        @keyframes smokeEffect {
-            0% { transform: translateY(0) scale(1); opacity: 0.2; }
-            50% { transform: translateY(-15px) scale(1.1); opacity: 0.6; }
-            100% { transform: translateY(0) scale(1); opacity: 0.2; }
-        }
-        .smoke-bg {
-            position: absolute; bottom: -30px; left: 0; width: 100%; height: 160px;
-            background: radial-gradient(ellipse at bottom, rgba(212,175,55,0.35) 0%, transparent 65%);
-            filter: blur(20px); animation: smokeEffect 5s infinite alternate; z-index: 0; pointer-events: none;
-        }
-        .golden-smoke-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.3) 0%, transparent 80%);
-            filter: blur(25px); z-index: 1; pointer-events: none; animation: goldenSmokeDrift 6s infinite alternate;
-        }
-        @keyframes goldenSmokeDrift { 0% { transform: scale(1) translateY(0); opacity: 0.5; } 100% { transform: scale(1.05) translateY(-5px); opacity: 0.8; } }
 
         /* ========= شاشة التحميل ========= */
         #preloader { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: #000; z-index: 99999; display: flex; justify-content: center; align-items: center; 
-            overflow: hidden; pointer-events: auto;
+            background: var(--bg-dark); z-index: 99999; display: flex; justify-content: center; align-items: center; 
             transition: opacity 0.25s ease-out, visibility 0.25s ease-out; 
-            transition-delay: 0.15s; 
         }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .preloader-logo { 
-            width: 130px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5)); 
-            will-change: transform, opacity; transform: translateZ(0); animation: gentlePulse 2s ease-in-out infinite; 
-        }
-        @keyframes gentlePulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8)); } }
-        @keyframes smoothPopOut { 0% { transform: scale(1); opacity: 1; } 20% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(8); opacity: 0; } }
-        #preloader.run-exit .preloader-logo { animation: smoothPopOut 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important; }
+        .preloader-logo { width: 110px; animation: pulseLogo 2s ease-in-out infinite; }
+        @keyframes pulseLogo { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
 
-        /* ========= ستايلات عامة ========= */
-        #image-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999999; justify-content: center; align-items: center; flex-direction: column; animation: fadeIn 0.3s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .modal-img-container { max-height: 70vh; max-width: 85vw; border-radius: 15px; border: 2px solid var(--gold-main); box-shadow: 0 0 30px rgba(212,175,55,0.4); overflow: hidden; }
-        .modal-img-container img { width: 100%; height: 100%; object-fit: contain; display: block; }
-        .close-modal-btn { margin-top: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 10px 30px; border-radius: 30px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; z-index: 1000000; position: relative;}
-
-        .champions-card { border-radius: 20px; position: relative; overflow: hidden; text-align: center; }
-        .champions-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px; height: 150px; background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%); z-index: 0; pointer-events: none; }
+        /* ========= ستايلات عامة (نظيفة وحديثة) ========= */
+        .container { max-width: 800px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; }
         
-        .champions-vs-badge { background: linear-gradient(135deg, #f3e5ab, #aa8c2c); border: 2px solid #141414; box-shadow: 0 0 10px rgba(212,175,55,0.6), inset 0 0 5px rgba(255,255,255,0.6); transform: rotate(45deg); display: flex; justify-content: center; align-items: center; margin: 0 auto; position: relative; z-index: 2; border-radius: 6px; transition: 0.3s ease; }
-        .champions-vs-text { transform: rotate(-45deg); color: #000; font-weight: 900; font-family: sans-serif; transition: 0.3s ease; }
-        
-        .container { max-width: 900px; margin: auto; padding: 10px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 85px; }
-        
+        /* الهيدر العلوي */
         header { 
-            text-align: center; padding: 12px 0; background: linear-gradient(to bottom, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.9)); 
-            border: 1px solid var(--glass-border); border-top: none; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; 
-            margin-bottom: 12px; margin-top: -10px; position: relative; overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+            text-align: center; padding: 15px 0; background: var(--bg-dark); 
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
         }
-        .eid-active-header { animation: eidGlow 2.5s infinite alternate; }
-        @keyframes eidGlow { from { box-shadow: 0 5px 15px rgba(0,0,0,0.6), 0 0 5px rgba(212,175,55,0.1); } to { box-shadow: 0 5px 15px rgba(0,0,0,0.6), 0 0 15px rgba(212,175,55,0.3); border-color: var(--gold-light); } }
-        header::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.05), transparent); animation: shine 6s infinite; }
-        .logo-img { width: 70px; height: auto; display: block; margin: 0 auto 5px; filter: drop-shadow(0 2px 5px rgba(212, 175, 55, 0.2)); }
-        header h1 { font-weight: 900; margin: 0; font-size: 1.1rem; color: var(--gold-light); text-shadow: 0 2px 8px rgba(212, 175, 55, 0.3); }
-        .stadium-tag { color: var(--gold-main); font-size: 0.75rem; font-weight: 900; margin-top: 2px; display: block; letter-spacing: 1px; text-shadow: 0 0 5px rgba(212,175,55,0.5); }
+        .logo-img { width: 60px; height: auto; display: block; margin: 0 auto 8px; }
+        header h1 { font-weight: 900; margin: 0; font-size: 1.1rem; color: var(--text-primary); letter-spacing: 0.5px; }
+        .stadium-tag { color: var(--accent-gold); font-size: 0.75rem; font-weight: 700; margin-top: 4px; display: block; }
         
-        .info-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
-        .stat-badge, .sub-tab-btn, .match-card, .group-card, .about-text-area, .search-input { background: var(--black-card); border: 1px solid var(--glass-border); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .stat-badge { padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; color: var(--gold-light); display: inline-flex; align-items: center; gap: 4px; }
+        /* شريط المعلومات */
+        .info-bar { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .stat-badge { 
+            background: var(--card-dark); border: 1px solid var(--border-color); 
+            padding: 6px 12px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; 
+            color: var(--text-secondary); display: inline-flex; align-items: center; gap: 6px; 
+        }
+        .dot { height: 6px; width: 6px; background-color: var(--success); border-radius: 50%; display: inline-block; }
         
-        .dot { height: 5px; width: 5px; background-color: var(--gold-main); border-radius: 50%; display: inline-block; animation: goldPulse 2s infinite; box-shadow: 0 0 6px var(--gold-main); }
-        
-        .dot-red { background-color: #ef4444; box-shadow: 0 0 6px #ef4444; animation: redPulse 1.5s infinite; border-radius: 50%; display: inline-block; }
-        @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 5px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+        /* الكروت الأساسية */
+        .card-pro {
+            background: var(--card-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
 
-        /* ========= البار السفلي ========= */
+        /* البار السفلي */
         .tabs-nav { 
             position: fixed; bottom: 0; left: 0; width: 100%; 
-            background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border-top: 1px solid rgba(212, 175, 55, 0.2); display: flex; justify-content: space-around; align-items: center;
-            padding: 8px 5px 15px; z-index: 9000; border-radius: 15px 15px 0 0; box-shadow: 0 -4px 20px rgba(0,0,0,0.8);
+            background: rgba(24, 27, 33, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; align-items: center;
+            padding: 10px 5px 15px; z-index: 9000;
         }
         .tab-btn { 
-            background: transparent; color: var(--text-muted); border: none; display: flex; flex-direction: column; align-items: center; 
-            gap: 3px; font-family: 'Cairo'; font-size: 0.6rem; font-weight: 700; flex: 1; cursor: pointer; transition: 0.3s; padding: 4px;
+            background: transparent; color: var(--text-secondary); border: none; display: flex; flex-direction: column; align-items: center; 
+            gap: 4px; font-family: 'Cairo'; font-size: 0.65rem; font-weight: 600; flex: 1; cursor: pointer; transition: 0.3s;
         }
-        .tab-btn .icon { font-size: 1.2rem; margin-bottom: 2px; transition: 0.3s; filter: grayscale(100%) opacity(0.6); }
-        .tab-btn.active { color: var(--gold-light); }
-        .tab-btn.active .icon { filter: grayscale(0%) opacity(1); transform: translateY(-3px) scale(1.1); text-shadow: 0 0 10px rgba(212,175,55,0.8); }
+        .tab-btn .icon { font-size: 1.3rem; transition: 0.3s; filter: grayscale(100%) opacity(0.5); }
+        .tab-btn.active { color: var(--accent-gold); }
+        .tab-btn.active .icon { filter: grayscale(0%) opacity(1); transform: translateY(-2px); }
 
-        .sub-tabs { display: flex; gap: 8px; margin-bottom: 12px; padding: 0 5px; justify-content: center; }
-        .sub-tab-btn { color: var(--text-muted); padding: 5px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; cursor: pointer; flex: 1; font-family: 'Cairo'; max-width: 140px; transition: 0.3s; }
-        .sub-tab-btn.active { background: var(--gold-dark); color: #fff; border-color: var(--gold-main); box-shadow: 0 3px 8px rgba(212, 175, 55, 0.2); }
+        /* التبويبات الفرعية */
+        .sub-tabs { display: flex; gap: 8px; margin-bottom: 15px; padding: 0 5px; justify-content: center; }
+        .sub-tab-btn { 
+            background: var(--card-dark); border: 1px solid var(--border-color); color: var(--text-secondary); 
+            padding: 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; flex: 1; 
+            font-family: 'Cairo'; max-width: 150px; transition: 0.2s; 
+        }
+        .sub-tab-btn.active { background: rgba(226, 183, 20, 0.1); color: var(--accent-gold); border-color: rgba(226, 183, 20, 0.3); }
 
+        /* محتوى التبويبات */
         .tab-content { display: none; flex-grow: 1; opacity: 0; }
-        .tab-content.active { display: block; animation: smoothFade 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease-out forwards; }
         .sub-content { display: none; opacity: 0; }
-        .sub-content.active { display: block; animation: smoothFade 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
-        @keyframes smoothFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .sub-content.active { display: block; animation: fadeIn 0.3s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        .match-card { border-radius: 12px; margin-bottom: 10px; padding: 10px; position: relative; overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.3); }
-        .teams-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 4px; position: relative; }
-        .team-item { width: 42%; text-align: center; font-weight: 700; font-size: 0.85rem; color: var(--gold-light); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
-        .vs-label { background: var(--gold-grad); color: #000; padding: 4px 10px; border-radius: 6px; font-weight: 900; border: 1px solid rgba(255,255,255,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 40px; box-shadow: 0 3px 8px rgba(212, 175, 55, 0.4); font-size: 0.9rem; position: relative; }
-        .penalty-small { font-size: 0.55rem; opacity: 0.9; display: block; margin-top: 2px; color: #333; }
-        .day-header { color: var(--gold-main); font-size: 0.75rem; font-weight: 900; margin: 15px 0 6px; display: block; border-right: 3px solid var(--gold-main); padding-right: 8px; text-align: right; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+        /* الأرشيف والمباريات */
+        .match-list-card { background: var(--card-dark); border-radius: 12px; border: 1px solid var(--border-color); padding: 12px; margin-bottom: 10px; }
+        .teams-row-mini { display: flex; justify-content: space-between; align-items: center; }
+        .team-mini { width: 40%; text-align: center; font-weight: 700; font-size: 0.85rem; color: var(--text-primary); }
+        .score-mini { background: var(--bg-dark); color: var(--text-primary); padding: 4px 12px; border-radius: 8px; font-weight: 900; border: 1px solid var(--border-color); font-size: 0.9rem; }
+        .day-header { color: var(--text-secondary); font-size: 0.8rem; font-weight: 700; margin: 20px 0 10px; display: block; }
         
-        .group-card { border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
-        .group-header { background: rgba(212, 175, 55, 0.1); color: var(--gold-main); padding: 8px; font-weight: 900; text-align: right; font-size: 0.75rem; border-bottom: 1px solid var(--glass-border); }
+        /* الجداول (المجموعات والإحصائيات) */
+        .group-table-wrap { background: var(--card-dark); border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 15px; }
+        .group-header { background: rgba(255,255,255,0.02); color: var(--text-primary); padding: 12px; font-weight: 700; text-align: right; font-size: 0.85rem; border-bottom: 1px solid var(--border-color); }
         .group-table { width: 100%; border-collapse: collapse; }
-        .group-table th { padding: 6px 4px; color: var(--text-muted); font-size: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
-        .group-table td { padding: 8px 4px; text-align: center; font-size: 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.02); color: #eee; }
-        .team-name-cell { text-align: right !important; padding-right: 10px !important; font-weight: 700; width: 35%; color: var(--gold-light); }
+        .group-table th { padding: 10px 5px; color: var(--text-secondary); font-size: 0.7rem; border-bottom: 1px solid var(--border-color); text-align: center; font-weight: 600; }
+        .group-table td { padding: 12px 5px; text-align: center; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.02); color: var(--text-primary); }
+        .team-name-cell { text-align: right !important; padding-right: 15px !important; font-weight: 700; width: 40%; }
 
-        .about-text-area { white-space: pre-wrap; font-size: 0.75rem; padding: 12px; border-radius: 10px; text-align: right; line-height: 1.8; color: #ddd; }
+        .about-text-area { white-space: pre-wrap; font-size: 0.8rem; padding: 20px; background: var(--card-dark); border: 1px solid var(--border-color); border-radius: 16px; text-align: right; line-height: 1.9; color: var(--text-secondary); }
         
-        .footer { text-align: center; padding: 20px 10px 10px; background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent); margin-top: 15vh; border-top: 1px solid var(--glass-border); }
-        .social-mini { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
-        .social-btn { padding: 5px 10px; border-radius: 6px; text-decoration: none; font-size: 0.6rem; font-weight: 700; color: #000; background: var(--gold-grad); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 2px 4px rgba(212,175,55,0.2); }
-        .disclaimer { font-size: 0.55rem; color: var(--text-muted); max-width: 700px; margin: 10px auto 0; line-height: 1.4; opacity: 0.6; }
+        /* الفوتر */
+        .footer { text-align: center; padding: 30px 10px 20px; margin-top: 10vh; border-top: 1px solid var(--border-color); }
+        .social-mini { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+        .social-btn { padding: 6px 15px; border-radius: 8px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: var(--text-primary); background: var(--card-dark); border: 1px solid var(--border-color); transition: 0.2s; }
+        .social-btn:hover { background: var(--border-color); }
+        .disclaimer { font-size: 0.65rem; color: var(--text-secondary); max-width: 600px; margin: 20px auto 0; line-height: 1.5; }
         
-        .search-container { padding: 0; margin-bottom: 10px; }
-        .search-input { width: 100%; padding: 8px 10px; border-radius: 8px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.2); font-family: 'Cairo'; font-size: 0.75rem; box-sizing: border-box; }
-        .search-input::placeholder { color: var(--text-muted); }
-        .search-input:focus { outline: none; border-color: var(--gold-main); box-shadow: 0 0 6px rgba(212,175,55,0.2); }
+        /* البحث */
+        .search-input { width: 100%; padding: 12px 15px; border-radius: 12px; background: var(--card-dark); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.8rem; box-sizing: border-box; margin-bottom: 15px; transition: 0.3s; }
+        .search-input:focus { outline: none; border-color: var(--accent-gold); }
+
+        /* نافذة الشكر (Pro Style) */
+        #welcome-popup {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 15, 25, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 1000000; justify-content: center; align-items: center;
+            transition: opacity 0.4s ease;
+        }
+        .popup-box {
+            width: 88%; max-width: 400px; background: var(--card-dark);
+            border: 1px solid var(--border-color); border-radius: 20px; padding: 25px 20px;
+            text-align: center; position: relative; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: popupIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .popup-close-x {
+            position: absolute; top: 15px; left: 15px; color: var(--text-secondary); font-size: 1.1rem;
+            cursor: pointer; z-index: 10; font-family: sans-serif;
+        }
+        
+        /* نبض التسجيل */
+        @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 4px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+
+        /* المودال للصور */
+        #image-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11,15,25,0.95); z-index: 999999; justify-content: center; align-items: center; flex-direction: column; }
+        .modal-img-container { max-height: 70vh; max-width: 85vw; border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden; }
+        .modal-img-container img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .close-modal-btn { margin-top: 20px; background: var(--card-dark); border: 1px solid var(--border-color); color: #fff; padding: 10px 30px; border-radius: 12px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -181,32 +190,71 @@
         <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
     </div>
 
+    <div id="welcome-popup">
+        <div class="popup-box">
+            <div class="popup-close-x" onclick="closeWelcomePopup()">✖</div>
+
+            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 55px; margin-bottom: 15px;">
+            
+            <h2 style="color:var(--text-primary); font-weight:900; font-size:1.2rem; margin:0 0 15px 0;">شكر وتقدير</h2>
+            
+            <div style="font-size: 0.85rem; line-height: 1.8; color: var(--text-secondary); text-align: center;">
+                <div style="margin-bottom: 8px;">نتقدم بخالص الشكر والتقدير لـ</div>
+                
+                <div style="color: var(--accent-gold); font-size: 0.75rem; font-weight: 700; background: rgba(226, 183, 20, 0.1); padding: 4px 12px; border-radius: 8px; display: inline-block; margin-bottom: 8px; border: 1px solid rgba(226, 183, 20, 0.2);">رئيس جمعية التنمية الاجتماعية الأهلية بالقحمة</div>
+                
+                <div style="color:var(--text-primary); font-weight: 900; font-size: 1.1rem; margin-bottom: 15px;">الأستاذ زايد عبده أبو هداش الشاعري</div>
+                
+                <div style="margin-bottom: 10px; text-align: justify; direction: rtl;">
+                    وذلك تقديرًا لدعمه السخي وتحفيزه المستمر الذي كان له بالغ الأثر في مسيرتنا.
+                </div>
+                
+                <div style="margin-bottom: 10px; text-align: justify; direction: rtl;">
+                    ونحن اليوم نعيش لحظات الترقب بشغف لانطلاق نهائي بطولة القحمة الرمضانية 28، يظل دعمه أحد أهم الركائز التي أوصلتنا إلى هذه المرحلة المميزة وأسهم في تألق منصتها الإلكترونية.
+                </div>
+                
+                <div style="text-align: justify; direction: rtl;">
+                    لقد كانت وقفته الصادقة أساسًا في تحقيق هذا المنجز الذي نفخر به جميعًا، فله منا جزيل الشكر وعظيم الامتنان على عطائه اللامحدود الذي امتد لكافة المجالات وجعلنا نصل إلى أعتاب نهائي تاريخي.
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; font-size: 0.7rem; color: var(--text-secondary); font-weight: 600;">
+                إياد عسيري
+            </div>
+        </div>
+    </div>
+
     <div id="image-modal">
-        <p style="color: #fff; font-family: 'Cairo'; margin-bottom: 15px; font-weight: 900; font-size: 0.9rem; text-shadow: 0 2px 5px #000;">✨ اضغط مطولاً على الصورة لحفظها ومشاركتها ✨</p>
+        <p style="color: var(--text-secondary); font-family: 'Cairo'; margin-bottom: 15px; font-weight: 700; font-size: 0.85rem;">✨ اضغط مطولاً على الصورة لحفظها ✨</p>
         <div class="modal-img-container">
             <img id="generated-image" src="" alt="بوستر المباراة">
         </div>
-        <button class="close-modal-btn" onclick="document.getElementById('image-modal').style.display='none'">إغلاق ✖</button>
+        <button class="close-modal-btn" onclick="document.getElementById('image-modal').style.display='none'">إغلاق</button>
     </div>
 
     <div class="offscreen-poster-wrapper" style="position: absolute; top: -15000px; left: -15000px; opacity: 1; z-index: -1;">
-        <div id="snapchat-poster" style="width: 540px; height: 960px; background: linear-gradient(135deg, #050505 0%, #1a1a1a 50%, #000000 100%); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 50px 30px; box-sizing: border-box; position: relative; overflow: hidden; font-family: 'Cairo', sans-serif;">
-            <div style="content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%); border-radius: 50%; z-index: 0;"></div>
+        <div id="snapchat-poster" style="width: 540px; height: 960px; background: linear-gradient(135deg, #0f1115 0%, #181b21 100%); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 50px 30px; box-sizing: border-box; position: relative; font-family: 'Cairo', sans-serif;">
             <div style="text-align: center; z-index: 2; width: 100%; margin-top: 20px;">
-                <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 140px; filter: drop-shadow(0 0 15px rgba(212,175,55,0.4)); margin-bottom: 20px;" crossorigin="anonymous">
-                <h1 style="color: #f3e5ab; font-size: 3.5rem; margin: 0; font-weight: 900; text-shadow: 0 4px 20px rgba(212,175,55,0.6);">النهائي الكبير</h1>
+                <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 140px; margin-bottom: 20px;" crossorigin="anonymous">
+                <h1 style="color: #f8fafc; font-size: 3rem; margin: 0; font-weight: 900;">النهائي الكبير</h1>
+                <p style="color: #e2b714; font-size: 1.2rem; margin: 5px 0 0 0; font-weight: 700;">بطولة القحمة الرمضانية 28</p>
             </div>
             
-            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; z-index: 2; background: rgba(20,20,20,0.8); border: 1px solid #aa8c2c; border-radius: 25px; padding: 40px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.9);">
-                <div style="text-align: center; width: 40%;"><img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous"><h2 style="color: #c5a059; margin: 0; font-size: 1.8rem; font-weight: 900; text-shadow: 0 2px 5px #000;">الفيصلي</h2></div>
-                <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #aa8c2c 0%, #d4af37 50%, #f3e5ab 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; color: #000; box-shadow: 0 0 25px rgba(212,175,55,0.7); flex-shrink: 0; border: 3px solid #141414;">VS</div>
-                <div style="text-align: center; width: 40%;"><img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9)); margin-bottom: 15px;" crossorigin="anonymous"><h2 style="color: #c5a059; margin: 0; font-size: 1.8rem; font-weight: 900; text-shadow: 0 2px 5px #000;">الوسام</h2></div>
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; background: #181b21; border: 1px solid #272c33; border-radius: 20px; padding: 40px 20px;">
+                <div style="text-align: center; width: 40%;">
+                    <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 110px; height: 110px; object-fit: contain; margin-bottom: 15px;" crossorigin="anonymous">
+                    <h2 style="color: #f8fafc; margin: 0; font-size: 1.8rem; font-weight: 900;">الفيصلي</h2>
+                </div>
+                <div style="width: 60px; height: 60px; background: #0f1115; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.5rem; color: #94a3b8; border: 1px solid #272c33;">VS</div>
+                <div style="text-align: center; width: 40%;">
+                    <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 110px; height: 110px; object-fit: contain; margin-bottom: 15px;" crossorigin="anonymous">
+                    <h2 style="color: #f8fafc; margin: 0; font-size: 1.8rem; font-weight: 900;">الوسام</h2>
+                </div>
             </div>
             
-            <div style="text-align: center; z-index: 2; width: 100%; border-top: 2px dashed rgba(212,175,55,0.4); padding-top: 30px; padding-bottom: 20px;">
-                <span style="color: #d4af37; font-size: 1.2rem; font-weight: 700; background: rgba(212,175,55,0.15); padding: 5px 20px; border-radius: 30px; display: inline-block; margin-bottom: 15px; border: 1px solid rgba(212,175,55,0.3);">📅 21 شوال</span>
-                <p style="color: #f8fafc; font-size: 1.5rem; font-weight: 900; margin: 0 0 10px 0; text-shadow: 0 2px 5px #000;">نكون أو لا نكون.. ليلة كتابة التاريخ! ✍️</p>
-                <p style="color: #d4af37; font-size: 1.1rem; margin: 0; font-weight: 700;">تابعنا عبر تطبيق البطولة 📲</p>
+            <div style="text-align: center; width: 100%; border-top: 1px solid #272c33; padding-top: 30px; padding-bottom: 20px;">
+                <span style="color: #e2b714; font-size: 1.2rem; font-weight: 700; background: rgba(226,183,20,0.1); padding: 8px 25px; border-radius: 12px; display: inline-block; margin-bottom: 15px;">📅 21 شوال | 🏟️ ملعب الوسم</span>
+                <p style="color: #94a3b8; font-size: 1.1rem; margin: 0; font-weight: 600;">المنصة الرياضية الرسمية 📲</p>
             </div>
         </div>
     </div>
@@ -214,101 +262,106 @@
     <div class="tabs-nav">
         <button class="tab-btn active" onclick="openTab(event, 'today')"><span class="icon">🏆</span><span>النهائي</span></button>
         <button class="tab-btn" onclick="openTab(event, 'scorers-main'); openSubTab(null, 'players-list')"><span class="icon">⚽</span><span>الهدافين</span></button>
-        <button class="tab-btn" onclick="openTab(event, 'archive')"><span class="icon">📺</span><span>الأرشيف</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'archive')"><span class="icon">📺</span><span>المباريات</span></button>
         <button class="tab-btn" onclick="openTab(event, 'groups')"><span class="icon">📊</span><span>المجموعات</span></button>
         <button class="tab-btn" onclick="openTab(event, 'about')"><span class="icon">ℹ️</span><span>البطولة</span></button>
     </div>
 
+    <header id="main-header">
+        <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img" crossorigin="anonymous">
+        <h1>بطولة القحمة الرمضانية 28</h1>
+        <span class="stadium-tag">المنصة الرياضية الرسمية</span>
+    </header>
+
     <div class="container">
-        <header id="main-header" class="eid-active-header">
-            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img" crossorigin="anonymous">
-            <h1>بطولة القحمة الرمضانية 28</h1>
-            <span class="stadium-tag">✨ النهائي الكبير ✨</span>
-        </header>
         
         <div class="info-bar">
-            <div class="stat-badge"><span class="dot"></span> النشاط: <span id="live-visit-counter">...</span></div>
-            <span class="dot-red" style="width: 8px; height: 8px; margin: 0 4px;" title="بث مباشر للموقع"></span>
-            <div class="stat-badge" id="weather-box" style="display:flex; align-items:center; gap:5px;">⏳ تحديث الجو...</div>
+            <div class="stat-badge"><span class="dot"></span> متصل: <span id="live-visit-counter" style="color:var(--text-primary);">...</span></div>
+            <div class="stat-badge" id="weather-box">⏳ تحديث...</div>
         </div>
 
         <div id="today" class="tab-content active">
-            <div class="champions-card" style="padding: 15px 10px 20px; margin-top: 5px; border: 1px solid rgba(212,175,55,0.3); background: linear-gradient(180deg, #111 0%, #050505 100%); box-shadow: 0 5px 20px rgba(0,0,0,0.9), inset 0 0 20px rgba(212,175,55,0.05); max-width: 500px; margin-left: auto; margin-right: auto;">
-                <div class="smoke-bg"></div>
-                <div class="champions-glow" style="width: 150px; height: 150px;"></div>
-                <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.5); color: var(--gold-light); border: 1px solid rgba(212,175,55,0.4); border-radius: 50%; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.8); z-index: 100; transition: 0.3s; backdrop-filter: blur(5px);" title="مشاركة البوستر">📸</button>
+            <div class="card-pro" style="position: relative;">
+                
+                <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: var(--bg-dark); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 8px; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 0.9rem; transition: 0.2s;" title="مشاركة">📸</button>
 
-                <div style="position:relative; z-index:2; margin-bottom: 15px; margin-top: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                    <h2 style="color:var(--gold-light); margin:0; font-size:1.3rem; font-weight:900; letter-spacing: 0.5px; text-shadow: 0 0 10px rgba(212,175,55,0.6);">النهائي الكبير</h2>
-                    <span style="font-size:0.65rem; color:var(--gold-dark); font-weight:900; background:rgba(212,175,55,0.1); padding:2px 10px; border-radius:15px; margin-top:3px; border:1px solid rgba(212,175,55,0.2);">بطولة القحمة الرمضانية 28</span>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <h2 style="color:var(--text-primary); margin:0; font-size:1.1rem; font-weight:800;">النهائي الكبير</h2>
                 </div>
                 
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 5px; padding: 0 5px; position: relative; z-index:2;">
-                    <div class="golden-smoke-overlay"></div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 10px;">
                     
-                    <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
-                        <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 65px; height: 65px; object-fit:contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.9)); margin-bottom: 8px; position:relative; z-index:1;" crossorigin="anonymous">
-                        <span style="font-size: 0.95rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الفيصلي</span>
-                        <div id="faisaly-scorers" style="font-size: 0.65rem; color: #a0a0a0; margin-top: 3px; min-height: 15px; text-align: center; line-height: 1.4;"></div>
+                    <div style="flex: 1; display:flex; flex-direction:column; align-items:center;">
+                        <img src="https://i.ibb.co/YrBRjxC/E3-B24994-B882-4021-80-E8-A101-D6-DB1-A0-E.png" style="width: 55px; height: 55px; object-fit:contain; margin-bottom: 10px;" crossorigin="anonymous">
+                        <span style="font-size: 0.9rem; font-weight: 800; color: var(--text-primary);">الفيصلي</span>
+                        <div id="faisaly-scorers" style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 5px; text-align: center; line-height: 1.5;"></div>
                     </div>
                     
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0.8; position: relative; gap: 8px;">
-                        <div id="vs-container" class="champions-vs-badge" style="width: 40px; height: 40px; margin: 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 15px rgba(212,175,55,0.6);">
-                            <div class="champions-vs-text" id="live-vs-text" style="font-size: 1rem; transition: 0.3s ease;">VS</div>
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0.8; gap: 8px;">
+                        <div id="vs-container" style="background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 12px; width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; transition: 0.3s;">
+                            <div id="live-vs-text" style="font-size: 1rem; color: var(--text-secondary); font-weight: 900; font-family: 'Cairo', sans-serif;">VS</div>
                         </div>
                     </div>
 
-                    <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
-                        <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 65px; height: 65px; object-fit:contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.9)); margin-bottom: 8px; position:relative; z-index:1;" crossorigin="anonymous">
-                        <span style="font-size: 0.95rem; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 5px #000; position:relative; z-index:1;">الوسام</span>
-                        <div id="wesam-scorers" style="font-size: 0.65rem; color: #a0a0a0; margin-top: 3px; min-height: 15px; text-align: center; line-height: 1.4;"></div>
+                    <div style="flex: 1; display:flex; flex-direction:column; align-items:center;">
+                        <img src="https://i.ibb.co/RGGP0BDJ/56-A88516-0-B1-E-4-E26-A8-F1-609-AC13-C968-D.png" style="width: 55px; height: 55px; object-fit:contain; margin-bottom: 10px;" crossorigin="anonymous">
+                        <span style="font-size: 0.9rem; font-weight: 800; color: var(--text-primary);">الوسام</span>
+                        <div id="wesam-scorers" style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 5px; text-align: center; line-height: 1.5;"></div>
                     </div>
                 </div>
 
-                <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items: center; flex-wrap: wrap; gap:8px; margin-top: 15px;">
-                    <div id="match-status-badge" style="background: var(--gold-grad); color: #000; padding: 4px 15px; border-radius: 20px; font-weight: 900; font-size: 0.75rem; box-shadow: 0 3px 8px rgba(212,175,55,0.4); border: 1px solid rgba(255,255,255,0.3); transition: 0.3s;">
+                <div style="display:flex; justify-content:center; align-items: center; flex-wrap: wrap; gap:10px; margin-top: 20px;">
+                    <div id="match-status-badge" style="background: rgba(226, 183, 20, 0.1); color: var(--accent-gold); padding: 5px 15px; border-radius: 8px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(226, 183, 20, 0.2); transition: 0.3s;">
                         📅 21 شوال
                     </div>
-                    <div id="stadium-badge" style="background: rgba(20,20,20,0.8); color: var(--gold-light); padding: 4px 15px; border-radius: 20px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(212,175,55,0.3);">
+                    <div id="stadium-badge" style="background: var(--bg-dark); color: var(--text-secondary); padding: 5px 15px; border-radius: 8px; font-weight: 600; font-size: 0.75rem; border: 1px solid var(--border-color);">
                         🏟️ ملعب الوسم بالقحمة
                     </div>
                 </div>
 
-                <div style="position:relative; z-index:2; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); padding:6px; border-radius:8px; border-top: 1px solid rgba(212,175,55,0.3); margin-top: 15px;">
-                    <span id="bottom-message" style="font-size:0.75rem; color:var(--gold-light); font-weight:900; text-shadow: 0 2px 5px rgba(0,0,0,0.9); display:block; text-align:center;">انتظرونا في ليلة كتابة التاريخ ✨🏆</span>
+                <div style="background: var(--bg-dark); padding:10px; border-radius:8px; border: 1px solid var(--border-color); margin-top: 20px; text-align:center;">
+                    <span id="bottom-message" style="font-size:0.75rem; color:var(--text-secondary); font-weight:600;">التغطية الحصرية لنهائي البطولة 🏆</span>
                 </div>
             </div>
         </div>
 
         <div id="scorers-main" class="tab-content">
             <div class="sub-tabs">
-                <button id="default-scorers" class="sub-tab-btn active" onclick="openSubTab(event, 'players-list')">الهدافين</button>
-                <button class="sub-tab-btn" onclick="openSubTab(event, 'teams-list')">الإحصائيات</button>
+                <button id="default-scorers" class="sub-tab-btn active" onclick="openSubTab(event, 'players-list')">قائمة الهدافين</button>
+                <button class="sub-tab-btn" onclick="openSubTab(event, 'teams-list')">إحصائيات الأندية</button>
             </div>
-            <div class="search-container"><input type="text" class="search-input" id="scorer-search" placeholder="ابحث عن هداف أو فريق..." onkeyup="searchList('scorers')"></div>
-            <div id="players-list" class="sub-content active"><div class="group-card"><table id="players-table" style="width:100%; border-collapse:collapse;"></table></div></div>
-            <div id="teams-list" class="sub-content"><div class="group-card"><div class="group-header">📊 سجل الأندية</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>له</th><th>عل</th><th>+/-</th></tr></thead><tbody id="teams-tbody"></tbody></table></div></div>
+            <input type="text" class="search-input" id="scorer-search" placeholder="ابحث عن لاعب أو فريق..." onkeyup="searchList('scorers')">
+            <div id="players-list" class="sub-content active">
+                <div class="group-table-wrap"><table id="players-table" class="group-table"></table></div>
+            </div>
+            <div id="teams-list" class="sub-content">
+                <div class="group-table-wrap">
+                    <div class="group-header">سجل الأندية</div>
+                    <table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>لعب</th><th>له</th><th>عليه</th><th>الفرق</th></tr></thead><tbody id="teams-tbody"></tbody></table>
+                </div>
+            </div>
         </div>
         
         <div id="archive" class="tab-content">
-            <div class="search-container"><input type="text" class="search-input" id="archive-search" placeholder="ابحث عن مباراة..." onkeyup="searchList('archive')"></div>
+            <input type="text" class="search-input" id="archive-search" placeholder="ابحث عن مباراة سابقة..." onkeyup="searchList('archive')">
             <div id="archive-area"></div>
         </div>
+        
         <div id="groups" class="tab-content"><div id="groups-area"></div></div>
         
         <div id="about" class="tab-content"><div class="about-text-area" id="about-text-content"></div></div>
 
         <div class="footer">
-            <p style="font-weight:900; margin-bottom:2px; font-size:0.75rem; color:var(--gold-main);">👨‍💻 إعداد وبرمجة: إياد عسيري</p>
-            <div class="social-mini"><a href="https://wa.me/966534987428" class="social-btn">واتساب</a><a href="https://snapchat.com/t/TXTbTApk" class="social-btn">سناب</a></div>
-            <p style="font-size:0.7rem; color:var(--gold-light); font-weight:900; margin-top:15px;">📸 الشبكة الإعلامية للبطولة</p>
+            <p style="font-weight:700; margin-bottom:5px; font-size:0.8rem; color:var(--text-primary);">تطوير وتصميم: إياد عسيري</p>
+            <div class="social-mini"><a href="https://wa.me/966534987428" class="social-btn">واتساب</a><a href="https://snapchat.com/t/TXTbTApk" class="social-btn">سناب شات</a></div>
+            <p style="font-size:0.75rem; color:var(--text-secondary); font-weight:600; margin-top:20px;">الشبكة الإعلامية للبطولة</p>
             <div class="social-mini">
                 <a href="https://snapchat.com/t/2qKXdcpD" class="social-btn">سناب سوداني</a>
                 <a href="https://snapchat.com/t/rJe5ARXp" class="social-btn">علي</a>
                 <a href="https://snapchat.com/t/nreTp74h" class="social-btn">رضي</a>
                 <a href="https://snapchat.com/t/gcKhHU8e" class="social-btn">علوش</a>
             </div>
-            <div class="disclaimer">هذا الموقع مخصص لعرض أخبار وجدول ونتائج بطولة القحمة الرمضانية 28. الموقع جهد شخصي، ولا نتحمل مسؤولية أي أخطاء غير مقصودة.</div>
+            <div class="disclaimer">المنصة مخصصة لعرض إحصائيات ونتائج بطولة القحمة الرمضانية 28. (جهد شخصي).</div>
         </div>
     </div>
 
@@ -350,7 +403,6 @@ const groupData = [
     {n:"السادسة", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-// إرجاع النص كامل كما طلبت بالضبط
 const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة\n\n* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة\n* تقام مباريات البطولة بنظام المجموعات من دور واحد\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:\n- مجموع النقاط\n- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)\n- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر\n- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب\n- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة\n\n* آلية مباريات الملحق\nبعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:\n * المباراة  رقم (19) \n(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) \n * المباراة رقم ( 20) \n(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) \n\n* مباريات دور الثمانية\nرقم المباراة ( 21) \nاول مج (1) مع اول مج(3)\n\nالمبارة رقم (22) \nاول مج (2)   مع أول مج ( 4) \n المباراة رقم ( 23)\nاول مج ( 5) مع اول مج ( 7 ) \nالمباراة رقم (24) \nاول مج (6) مع اول مج ( 8) \n\n(( ملاحظة مهمة)) \nفي حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: \nالمباراة رقم ( 23)\n اول مج ( 5 ) مع أول مج ( 8 ) \nالمباراة رقم (24) \nاول مج( 6) مع أول مج(7) \nوذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية \n\nمباريات نصف النهاىي\n المباراة رقم (25) \nفائز (21) مع فائز( 23) \nالمباراة رقم (26)\n فائز (22) مع فائز 24\n\nالنهائي \nالمباراة رقم (27)\nفائز (25) مع فائز (26)\n\nبعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي \nتم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة \nوبالتالي اصبح ترتيب الاوائل على النحو التالي :\nالمجموعة الاولى فريق السوق \nالمجموعة الثانية فريق ساحل مغزل\nالمجموعة الثالثة فريق الصقر \nالمجموعة الرابعة فريق الساحل الرياضي \nالمجموعه الخامسة فريق صقليه\nالمجموعة السادسة فريق الوسام \nالمجموعة السابعة فريق عمق \nالمجموعة الثامنه فريق الفيصلي\n\nوتلعب مباريات دور الثمانية(ربع النهائي )\nحسب نظام البطولة \nاول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)\nاول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)\n—————————————————- \nوحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا\nاول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)\nاول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)\n——————————————————\nمباريات دور الاربعة ( نصف النهائي )\nرقم المباراة (25)\nفائز المباراة رقم  (21) مع فائز المباراة رقم  (23)\nرقم المباراة (26)\nفائز المباراة رقم (22) مع فائز المباراة رقم (24)\n——————————————————-\nالمباراة النهائية \nرقم المباراة (27)\nفائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
 
 function openTab(evt, tabName) { 
@@ -364,7 +416,7 @@ function openTab(evt, tabName) {
 }
 
 function openSubTab(evt, subName) { let content = document.getElementsByClassName("sub-content"), btns = document.getElementsByClassName("sub-tab-btn"); for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); void document.getElementById(subName).offsetWidth; document.getElementById(subName).classList.add("active"); if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } else { let activeBtn = document.querySelector(".sub-tab-btn[onclick*='" + subName + "']"); if(activeBtn) activeBtn.classList.add("active"); } }
-function searchList(type) { let input = document.getElementById(type === 'scorers' ? 'scorer-search' : 'archive-search'); let filter = input.value.toUpperCase(); let cards = type === 'scorers' ? document.getElementById('players-table').getElementsByTagName('tr') : document.getElementById('archive-area').getElementsByClassName('match-card'); for (let i = 0; i < cards.length; i++) { let txt = cards[i].textContent || cards[i].innerText; cards[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "" : "none"; } }
+function searchList(type) { let input = document.getElementById(type === 'scorers' ? 'scorer-search' : 'archive-search'); let filter = input.value.toUpperCase(); let cards = type === 'scorers' ? document.getElementById('players-table').getElementsByTagName('tr') : document.getElementById('archive-area').getElementsByClassName('match-list-card'); for (let i = 0; i < cards.length; i++) { let txt = cards[i].textContent || cards[i].innerText; cards[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "" : "none"; } }
 
 async function shareMatchAsImage() { 
     const btn = document.getElementById('share-btn'); 
@@ -373,7 +425,7 @@ async function shareMatchAsImage() {
     try { 
         if(window.trackShareClick) window.trackShareClick();
         const element = document.getElementById('snapchat-poster'); 
-        const canvas = await html2canvas(element, { backgroundColor: '#050505', scale: 2, useCORS: true, allowTaint: true, logging: false }); 
+        const canvas = await html2canvas(element, { backgroundColor: '#0f1115', scale: 2, useCORS: true, allowTaint: true, logging: false }); 
         const imgData = canvas.toDataURL('image/png'); 
         document.getElementById('generated-image').src = imgData; 
         document.getElementById('image-modal').style.display = 'flex'; 
@@ -381,11 +433,11 @@ async function shareMatchAsImage() {
 }
 
 function updateDisplay() {
-    document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-card"><div class="teams-row"><span class="team-item">${m.t1}</span><div class="vs-label"><span>${m.r}</span>${m.p ? `<span class="penalty-small">${m.p}</span>` : ""}</div><span class="team-item">${m.t2}</span></div></div>`).join('')).join('');
-    document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, index) => { let medal = ''; let rowStyle = ''; if (index === 0) { medal = '🥇'; rowStyle = 'background: rgba(212, 175, 55, 0.15);'; } else if (index === 1) { medal = '🥈'; rowStyle = 'background: rgba(192, 192, 192, 0.1);'; } else if (index === 2) { medal = '🥉'; rowStyle = 'background: rgba(205, 127, 50, 0.1);'; } return `<tr style="${rowStyle} border-bottom: 1px solid rgba(255,255,255,0.05);"><td class="team-name-cell" style="padding: 10px;">${medal} ${s.n}<br><small style="color:var(--text-muted)">(${s.f})</small></td><td style="padding:15px; text-align:left;"><span style="background:var(--gold-grad); color:#000; padding:4px 8px; border-radius:8px; font-weight:900; box-shadow: 0 2px 5px rgba(212,175,55,0.3);">${s.g}</span></td></tr>`; }).join('');
-    document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-card"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th style="text-align:right; padding-right:15px;">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>ن</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--gold-main); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
+    document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-list-card"><div class="teams-row-mini"><span class="team-mini">${m.t1}</span><div class="score-mini"><span>${m.r}</span>${m.p ? `<span style="font-size:0.6rem; color:var(--text-secondary); display:block;">${m.p}</span>` : ""}</div><span class="team-mini">${m.t2}</span></div></div>`).join('')).join('');
+    document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, index) => { let medal = ''; if (index === 0) medal = '🥇'; else if (index === 1) medal = '🥈'; else if (index === 2) medal = '🥉'; return `<tr><td class="team-name-cell" style="padding: 12px;">${medal} ${s.n}<br><span style="color:var(--text-secondary); font-size:0.65rem;">${s.f}</span></td><td style="padding:12px; text-align:left;"><span style="background:var(--bg-dark); color:var(--text-primary); padding:4px 10px; border-radius:8px; font-weight:900; border:1px solid var(--border-color);">${s.g}</span></td></tr>`; }).join('');
+    document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-table-wrap"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>نقاط</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--text-primary); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     const stats = {}; archiveData.forEach(day => day.matches.forEach(m => { const res = m.r.split(' - ').map(Number); if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 }; stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; }));
-    document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--gold-main); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
+    document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--text-primary); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
     document.getElementById('about-text-content').innerText = aboutFullText; 
 }
 
@@ -396,21 +448,46 @@ async function fetchWeather() {
         const temp = Math.round(data.current_weather.temperature);
         const code = data.current_weather.weathercode;
         let icon = '⛅'; if(code === 0) icon = '☀️'; else if(code >= 51 && code <= 67 || (code >= 80 && code <= 82)) icon = '🌧️'; else if(code >= 95) icon = '⛈️'; 
-        document.getElementById('weather-box').innerHTML = `<span style="font-size:1.1rem; filter:drop-shadow(0 0 5px rgba(255,255,255,0.3));">${icon}</span> <span style="color:#ddd; font-weight:700;">القحمة:</span> <span style="color:var(--gold-main); font-weight:900; font-size:0.8rem; text-shadow:0 0 8px rgba(212,175,55,0.4);">${temp}°C</span>`; 
-    } catch (e) { document.getElementById('weather-box').innerHTML = `<span style="font-size:1.1rem;">⛅</span> <span style="color:#ddd; font-weight:700;">القحمة:</span> <span style="color:var(--gold-main); font-weight:900; font-size:0.8rem;">26°C</span>`; } 
+        document.getElementById('weather-box').innerHTML = `<span style="font-size:1rem;">${icon}</span> <span style="color:var(--text-secondary); font-weight:600;">القحمة:</span> <span style="color:var(--text-primary); font-weight:800; font-size:0.8rem;">${temp}°C</span>`; 
+    } catch (e) { document.getElementById('weather-box').innerHTML = `<span style="font-size:1rem;">⛅</span> <span style="color:var(--text-secondary); font-weight:600;">القحمة:</span> <span style="color:var(--text-primary); font-weight:800; font-size:0.8rem;">26°C</span>`; } 
 }
 
 function hidePreloaderSafely() {
     const preloader = document.getElementById('preloader');
     if(preloader && !preloader.classList.contains('hidden')) {
-        preloader.classList.add('run-exit');
-        setTimeout(() => { preloader.classList.add('hidden'); }, 400);
+        preloader.style.opacity = '0';
+        setTimeout(() => { preloader.classList.add('hidden'); }, 300);
+    }
+}
+
+// دالة النافذة الترحيبية
+function showWelcomePopup() {
+    const hasSeen = localStorage.getItem('welcome_pro_v1');
+    if (!hasSeen) {
+        const popup = document.getElementById('welcome-popup');
+        popup.style.display = 'flex';
+        // اختفاء تلقائي بعد 10 ثواني
+        setTimeout(() => {
+            closeWelcomePopup();
+        }, 10000);
+    }
+}
+
+function closeWelcomePopup() {
+    const popup = document.getElementById('welcome-popup');
+    if (popup) {
+        popup.style.opacity = '0';
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 400); 
+        localStorage.setItem('welcome_pro_v1', 'true');
     }
 }
 
 window.onload = function() { 
     fetchWeather(); updateDisplay(); openTab(null, 'today'); openSubTab(null, 'players-list'); 
-    setTimeout(hidePreloaderSafely, 1500); 
+    setTimeout(hidePreloaderSafely, 1200);
+    setTimeout(showWelcomePopup, 1500); 
 };
 </script>
 
@@ -448,7 +525,7 @@ window.onload = function() {
   };
 
   // ==========================================
-  // أكواد التبديل التلقائي + ميزة الهدافين المباشرة
+  // أكواد التبديل التلقائي + ميزة الهدافين المباشرة (للستايل الجديد)
   // ==========================================
   const scoreRef = ref(db, 'live_match_score');
   onValue(scoreRef, (snapshot) => {
@@ -467,52 +544,44 @@ window.onload = function() {
       const faisaly = data && data.faisaly !== undefined ? data.faisaly : 0;
       const wesam = data && data.wesam !== undefined ? data.wesam : 0;
       
-      // جلب أسماء الهدافين من الفايربيس
       const faisalyScorers = data && data.faisaly_scorers !== undefined ? data.faisaly_scorers : "";
       const wesamScorers = data && data.wesam_scorers !== undefined ? data.wesam_scorers : "";
 
       if (isLive) {
-          // وضع المباراة المباشر
+          // وضع المباراة المباشر (ستايل Pro Dark)
           if(vsContainer) {
-              vsContainer.className = "";
-              vsContainer.style.cssText = "background: linear-gradient(135deg, #111, #222); border: 2px solid var(--gold-main); box-shadow: 0 0 15px rgba(212,175,55,0.6), inset 0 0 5px rgba(212,175,55,0.3); border-radius: 10px; padding: 5px 15px; display: flex; justify-content: center; align-items: center; transition: 0.3s ease; min-width: 80px;";
+              vsContainer.style.cssText = "background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 12px; padding: 6px 20px; display: flex; justify-content: center; align-items: center; min-width: 70px; transition: 0.3s;";
           }
           if(vsText) {
               vsText.innerText = faisaly + " - " + wesam;
-              vsText.className = "";
-              vsText.style.cssText = "color: var(--gold-light); font-weight: 900; font-size: 1.5rem; font-family: sans-serif; letter-spacing: 2px;";
+              vsText.style.cssText = "color: var(--accent-gold); font-weight: 900; font-size: 1.6rem; font-family: 'Cairo', sans-serif; letter-spacing: 2px;";
           }
           if(statusBadge) {
-              // تصميم "تلعب الآن" الصغير الأنيق مع الفلاشر الأحمر
-              statusBadge.innerHTML = '<span style="display:inline-block; width:6px; height:6px; background:#ef4444; border-radius:50%; box-shadow: 0 0 5px #ef4444; animation: redPulse 1s infinite; margin-left:5px;"></span> تلعب الآن';
-              statusBadge.style.cssText = "background: rgba(20,20,20,0.9); border: 1px solid #ef4444; color: #fff; padding: 4px 15px; border-radius: 20px; font-weight: 700; font-size: 0.75rem; box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); display: flex; align-items: center; transition: 0.3s;";
+              statusBadge.innerHTML = '<span style="display:inline-block; width:6px; height:6px; background:var(--danger); border-radius:50%; box-shadow: 0 0 4px var(--danger); animation: redPulse 1.5s infinite; margin-left:6px;"></span> مباشر الآن';
+              statusBadge.style.cssText = "background: rgba(239, 68, 68, 0.1); color: var(--danger); padding: 5px 15px; border-radius: 8px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(239, 68, 68, 0.3); display: flex; align-items: center;";
           }
           if(stadiumBadge) stadiumBadge.style.display = "none";
-          if(bottomMsg) bottomMsg.innerText = "تغطية مباشرة لأحداث النهائي الكبير 🔥";
+          if(bottomMsg) bottomMsg.innerText = "تغطية النتيجة والأهداف المباشرة للنهائي 🔥";
           
-          // إظهار أسماء الهدافين تحت الفرق
           if(faisalyScorersDiv) faisalyScorersDiv.innerHTML = faisalyScorers;
           if(wesamScorersDiv) wesamScorersDiv.innerHTML = wesamScorers;
           
       } else {
           // وضع الانتظار (قبل المباراة)
           if(vsContainer) {
-              vsContainer.className = "champions-vs-badge";
-              vsContainer.style.cssText = "width: 40px; height: 40px; margin: 0; z-index: 2; border:2px solid var(--gold-main); box-shadow: 0 0 15px rgba(212,175,55,0.6); transform: rotate(45deg);";
+              vsContainer.style.cssText = "background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 12px; width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; transition: 0.3s;";
           }
           if(vsText) {
               vsText.innerText = "VS";
-              vsText.className = "champions-vs-text";
-              vsText.style.cssText = "font-size: 1rem; color: #000; font-weight: 900; font-family: sans-serif; transition: 0.3s ease; transform: rotate(-45deg);";
+              vsText.style.cssText = "font-size: 1.1rem; color: var(--text-secondary); font-weight: 900; font-family: 'Cairo', sans-serif;";
           }
           if(statusBadge) {
               statusBadge.innerHTML = "📅 21 شوال";
-              statusBadge.style.cssText = "background: var(--gold-grad); color: #000; padding: 4px 15px; border-radius: 20px; font-weight: 900; font-size: 0.75rem; box-shadow: 0 3px 8px rgba(212,175,55,0.4); border: 1px solid rgba(255,255,255,0.3); transition: 0.3s;";
+              statusBadge.style.cssText = "background: rgba(226, 183, 20, 0.1); color: var(--accent-gold); padding: 5px 15px; border-radius: 8px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(226, 183, 20, 0.2); transition: 0.3s;";
           }
           if(stadiumBadge) stadiumBadge.style.display = "block";
-          if(bottomMsg) bottomMsg.innerText = "انتظرونا في ليلة كتابة التاريخ ✨🏆";
+          if(bottomMsg) bottomMsg.innerText = "التغطية الحصرية لنهائي البطولة 🏆";
           
-          // إخفاء أسماء الهدافين في وضع الانتظار
           if(faisalyScorersDiv) faisalyScorersDiv.innerHTML = "";
           if(wesamScorersDiv) wesamScorersDiv.innerHTML = "";
       }
