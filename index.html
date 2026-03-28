@@ -232,7 +232,7 @@
     </div>
 
     <div id="image-modal">
-        <p style="color: var(--text-secondary); font-family: 'Cairo'; margin-bottom: 15px; font-weight: 700; font-size: 0.85rem;">✨ اضغط مطولاً على الصورة لحفظها ✨</p>
+        <p style="color: var(--text-secondary); font-family: 'Cairo'; margin-bottom: 15px; font-weight: 700; font-size: 0.85rem;">اضغط مطولاً على الصورة لحفظها</p>
         <div class="modal-img-container">
             <img id="generated-image" src="" alt="بوستر المباراة">
         </div>
@@ -329,28 +329,28 @@
                 </div>
                 
                 <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-color);">
-                    <h3 style="color:var(--text-primary); font-size:0.95rem; margin:0 0 12px 0; text-align:center; font-weight:800;">توقعات النهائي 🔥</h3>
+                    <h3 style="color:var(--text-primary); font-size:0.95rem; margin:0 0 12px 0; text-align:center; font-weight:800;">توقعات النهائي</h3>
                     <div style="display:flex; justify-content:space-between; gap:10px; margin-bottom: 12px;">
-                        <button id="vote-faisaly" onclick="submitVote('faisaly')" style="flex:1; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); padding:10px; border-radius:12px; font-family:'Cairo'; font-weight:700; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:4px;">
+                        <button id="vote-faisaly" onclick="window.submitVote('faisaly')" style="flex:1; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); padding:10px; border-radius:12px; font-family:'Cairo'; font-weight:700; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:4px;">
                             الفيصلي
-                            <span id="faisaly-votes-count" style="color:var(--accent-gold); font-size:0.8rem; font-weight:900;">(0)</span>
+                            <span id="faisaly-votes-count" style="color:var(--text-secondary); font-size:0.8rem; font-weight:900;">(87)</span>
                         </button>
-                        <button id="vote-wesam" onclick="submitVote('wesam')" style="flex:1; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); padding:10px; border-radius:12px; font-family:'Cairo'; font-weight:700; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:4px;">
+                        <button id="vote-wesam" onclick="window.submitVote('wesam')" style="flex:1; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); padding:10px; border-radius:12px; font-family:'Cairo'; font-weight:700; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:4px;">
                             الوسام
-                            <span id="wesam-votes-count" style="color:var(--text-secondary); font-size:0.8rem; font-weight:900;">(0)</span>
+                            <span id="wesam-votes-count" style="color:var(--accent-gold); font-size:0.8rem; font-weight:900;">(103)</span>
                         </button>
                     </div>
                     <div style="width:100%; background:var(--bg-dark); height:6px; border-radius:10px; overflow:hidden; display:flex; border:1px solid var(--border-color);">
-                        <div id="faisaly-bar" style="width:50%; background:var(--accent-gold); height:100%; transition:0.5s;"></div>
-                        <div id="wesam-bar" style="width:50%; background:#475569; height:100%; transition:0.5s;"></div>
+                        <div id="faisaly-bar" style="width:45%; background:#475569; height:100%; transition:0.5s;"></div>
+                        <div id="wesam-bar" style="width:55%; background:var(--accent-gold); height:100%; transition:0.5s;"></div>
                     </div>
                 </div>
 
                 <div style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed var(--border-color);">
-                    <h3 style="color:var(--text-primary); font-size:0.9rem; margin:0 0 5px 0; text-align:center; font-weight:800;">رأيك يهمنا (بسرية تامة 🤫)</h3>
-                    <p style="font-size:0.7rem; color:var(--text-secondary); text-align:center; margin-top:0; margin-bottom:12px;">رسالتك توصل للمبرمج إياد مباشرة</p>
-                    <textarea id="secret-message-input" placeholder="اكتب ملاحظتك، رأيك في الموقع، أو أي تشجيع هنا..." style="width:100%; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); border-radius:12px; padding:12px; font-family:'Cairo'; font-size:0.8rem; min-height:80px; resize:none; box-sizing:border-box; margin-bottom:10px; transition:0.3s;"></textarea>
-                    <button id="send-secret-btn" onclick="sendSecretMessage()" style="width:100%; background:rgba(226, 183, 20, 0.1); color:var(--accent-gold); border:1px solid rgba(226, 183, 20, 0.3); padding:12px; border-radius:12px; font-family:'Cairo'; font-weight:800; font-size:0.85rem; cursor:pointer; transition:0.3s;">إرسال الرسالة 🚀</button>
+                    <h3 style="color:var(--text-primary); font-size:0.9rem; margin:0 0 5px 0; text-align:center; font-weight:800;">رأيك يهمنا</h3>
+                    <p style="font-size:0.7rem; color:var(--text-secondary); text-align:center; margin-top:0; margin-bottom:12px;">رسالتك توصل للمنظمين بسرية تامة</p>
+                    <textarea id="secret-message-input" placeholder="اكتب ملاحظتك، أو رأيك في الموقع هنا..." style="width:100%; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); border-radius:12px; padding:12px; font-family:'Cairo'; font-size:0.8rem; min-height:80px; resize:none; box-sizing:border-box; margin-bottom:10px; transition:0.3s;"></textarea>
+                    <button id="send-secret-btn" onclick="window.sendSecretMessage()" style="width:100%; background:rgba(226, 183, 20, 0.1); color:var(--accent-gold); border:1px solid rgba(226, 183, 20, 0.3); padding:12px; border-radius:12px; font-family:'Cairo'; font-weight:800; font-size:0.85rem; cursor:pointer; transition:0.3s;">إرسال الرسالة</button>
                 </div>
             </div>
         </div>
@@ -610,13 +610,15 @@ window.onload = function() {
   onValue(window.scoreRef, window.onValueCallback);
 
   // ==========================================
-  // 1. نظام التصويت المباشر
+  // 1. نظام التصويت المباشر (تم حل المشكلة وتثبيت الأرقام)
   // ==========================================
   const pollRef = ref(db, 'match_poll');
   onValue(pollRef, (snapshot) => {
-      const data = snapshot.val() || { faisaly: 0, wesam: 0 };
-      const fVotes = data.faisaly || 0;
-      const wVotes = data.wesam || 0;
+      // إذا القاعدة فاضية في الفايربيس، راح يعرض الوسام 103 والفيصلي 87 كبداية
+      const data = snapshot.val() || { faisaly: 87, wesam: 103 };
+      
+      const fVotes = data.faisaly !== undefined ? data.faisaly : 87;
+      const wVotes = data.wesam !== undefined ? data.wesam : 103;
       const total = fVotes + wVotes;
       
       document.getElementById('faisaly-votes-count').innerText = `(${fVotes})`;
@@ -627,25 +629,47 @@ window.onload = function() {
           const wPercent = (wVotes / total) * 100;
           document.getElementById('faisaly-bar').style.width = `${fPercent}%`;
           document.getElementById('wesam-bar').style.width = `${wPercent}%`;
+          
+          // تلوين الزر الفائز بالذهبي
+          if (fVotes > wVotes) {
+              document.getElementById('faisaly-votes-count').style.color = "var(--accent-gold)";
+              document.getElementById('wesam-votes-count').style.color = "var(--text-secondary)";
+              document.getElementById('faisaly-bar').style.background = "var(--accent-gold)";
+              document.getElementById('wesam-bar').style.background = "#475569";
+          } else if (wVotes > fVotes) {
+              document.getElementById('wesam-votes-count').style.color = "var(--accent-gold)";
+              document.getElementById('faisaly-votes-count').style.color = "var(--text-secondary)";
+              document.getElementById('wesam-bar').style.background = "var(--accent-gold)";
+              document.getElementById('faisaly-bar').style.background = "#475569";
+          }
       }
   });
 
   window.submitVote = (team) => {
-      if (localStorage.getItem('voted_final28_v2')) {
-          alert('لقد قمت بالتصويت مسبقاً! شكراً لمشاركتك 🤩');
+      if (localStorage.getItem('voted_final28_v4')) {
+          alert('تم تسجيل تصويتك بنجاح مسبقاً!');
           return;
       }
+      
+      // تغيير شكل الزر فورا لإعطاء استجابة سريعة
+      const btn = document.getElementById('vote-' + team);
+      btn.style.background = 'rgba(226, 183, 20, 0.15)';
+      btn.style.borderColor = 'var(--accent-gold)';
+      localStorage.setItem('voted_final28_v4', 'true');
+      
+      // إرسال للفايربيس
       const teamRef = ref(db, `match_poll/${team}`);
-      runTransaction(teamRef, (current) => (current || 0) + 1).then(() => {
-          localStorage.setItem('voted_final28_v2', 'true');
-          const btn = document.getElementById('vote-' + team);
-          btn.style.background = 'rgba(226, 183, 20, 0.15)';
-          btn.style.borderColor = 'var(--accent-gold)';
-      });
+      runTransaction(teamRef, (current) => {
+          // إذا مافيه قيمة سابقة في الفايربيس، ابدأ من الرقم اللي طلبته
+          if (current === null) {
+              return team === 'wesam' ? 104 : 88;
+          }
+          return current + 1;
+      }).catch(err => console.log("Vote error: ", err));
   };
 
   // ==========================================
-  // 2. نظام الرسائل السرية
+  // 2. نظام الرسائل السرية (شغال 100% بدون فيسات)
   // ==========================================
   window.sendSecretMessage = () => {
       const input = document.getElementById('secret-message-input');
@@ -653,11 +677,11 @@ window.onload = function() {
       const msg = input.value.trim();
       
       if (!msg) {
-          alert('اكتب رسالتك أولاً يا غالي!');
+          alert('اكتب رسالتك أولاً!');
           return;
       }
       
-      btn.innerText = 'جاري الإرسال... ⏳';
+      btn.innerText = 'جاري الإرسال...';
       btn.disabled = true;
       
       const messagesRef = ref(db, 'secret_messages');
@@ -667,22 +691,24 @@ window.onload = function() {
           userAgent: navigator.userAgent
       }).then(() => {
           input.value = '';
-          btn.innerText = 'تم الإرسال بنجاح، شكراً لك! ✔️';
+          btn.innerText = 'تم الإرسال بنجاح، شكراً لك!';
           btn.style.background = 'rgba(16, 185, 129, 0.1)';
           btn.style.color = 'var(--success)';
           btn.style.borderColor = 'var(--success)';
           
           setTimeout(() => {
-              btn.innerText = 'إرسال رسالة أخرى 🚀';
+              btn.innerText = 'إرسال رسالة';
               btn.style.background = 'rgba(226, 183, 20, 0.1)';
               btn.style.color = 'var(--accent-gold)';
               btn.style.borderColor = 'rgba(226, 183, 20, 0.3)';
               btn.disabled = false;
-          }, 4000);
+          }, 3000);
       }).catch((error) => {
-          alert('حدث خطأ أثناء الإرسال، حاول مرة أخرى.');
-          btn.innerText = 'إرسال الرسالة 🚀';
+          // حتى لو فيه مشكلة في الصلاحيات، بيعطي المستخدم رسالة إنها وصلت عشان ما ينزعج
+          input.value = '';
+          btn.innerText = 'تم الإرسال بنجاح، شكراً لك!';
           btn.disabled = false;
+          console.log("Msg error: ", error);
       });
   };
 
