@@ -34,14 +34,14 @@
     <style>
         /* ========= ستايل الاحترافي الداكن (Pro Dark Mode) ========= */
         :root { 
-            --bg-dark: #0f1115;          /* خلفية الموقع - أسود فحمي */
-            --card-dark: #181b21;        /* خلفية الكروت */
+            --bg-dark: #0f1115;          
+            --card-dark: #181b21;        
             --card-hover: #1f232b;       
-            --border-color: #272c33;     /* حدود خفيفة وأنيقة */
-            --accent-gold: #e2b714;      /* ذهبي احترافي للتنبيهات */
-            --text-primary: #f8fafc;     /* نصوص رئيسية بيضاء */
-            --text-secondary: #94a3b8;   /* نصوص ثانوية رمادية */
-            --danger: #ef4444;           /* أحمر للبث المباشر */
+            --border-color: #272c33;     
+            --accent-gold: #e2b714;      
+            --text-primary: #f8fafc;     
+            --text-secondary: #94a3b8;   
+            --danger: #ef4444;           
             --success: #10b981;
         }
         
@@ -53,29 +53,40 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* ========= شاشة التحميل ========= */
+        /* ========= شاشة التحميل (محدثة مع الكورة) ========= */
         #preloader { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--bg-dark); z-index: 99999; display: flex; justify-content: center; align-items: center; 
-            transition: opacity 0.25s ease-out, visibility 0.25s ease-out; 
+            transition: opacity 0.4s ease-out, visibility 0.4s ease-out; 
         }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .preloader-logo { width: 110px; animation: pulseLogo 2s ease-in-out infinite; }
-        @keyframes pulseLogo { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+        .preloader-content { text-align: center; }
+        .preloader-ball { font-size: 2.5rem; display: block; margin-bottom: 15px; animation: bounceBall 0.6s cubic-bezier(0.28, 0.84, 0.42, 1) infinite alternate; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5)); }
+        .preloader-logo { width: 100px; animation: pulseLogo 2s ease-in-out infinite; }
+        
+        @keyframes bounceBall { 0% { transform: translateY(0); } 100% { transform: translateY(-25px); } }
+        @keyframes pulseLogo { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 15px rgba(226, 183, 20, 0.4)); } }
 
-        /* ========= ستايلات عامة (نظيفة وحديثة) ========= */
+        /* ========= ستايلات عامة ========= */
         .container { max-width: 800px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; }
         
-        /* الهيدر العلوي */
+        /* الهيدر العلوي (محدث) */
         header { 
-            text-align: center; padding: 15px 0; background: var(--bg-dark); 
+            text-align: center; padding: 18px 0; background: var(--bg-dark); 
             position: sticky; top: 0; z-index: 1000;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
-        .logo-img { width: 60px; height: auto; display: block; margin: 0 auto 8px; }
-        header h1 { font-weight: 900; margin: 0; font-size: 1.1rem; color: var(--text-primary); letter-spacing: 0.5px; }
-        .stadium-tag { color: var(--accent-gold); font-size: 0.75rem; font-weight: 700; margin-top: 4px; display: block; }
+        .logo-img { width: 65px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(0 0 8px rgba(226, 183, 20, 0.2)); }
+        
+        /* كود تكبير الخط ومنع النزول لسطرين */
+        header h1 { 
+            font-weight: 900; margin: 0; 
+            font-size: clamp(1.2rem, 5.5vw, 1.7rem); 
+            color: var(--text-primary); 
+            white-space: nowrap; 
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
         
         /* شريط المعلومات */
         .info-bar { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
@@ -127,12 +138,39 @@
         .sub-content.active { display: block; animation: fadeIn 0.3s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* الأرشيف والمباريات */
-        .match-list-card { background: var(--card-dark); border-radius: 12px; border: 1px solid var(--border-color); padding: 12px; margin-bottom: 10px; }
+        /* الأرشيف والمباريات (محدث ليكون أوضح بكثير) */
+        .match-list-card { 
+            background: linear-gradient(145deg, #1c1f26, #14161a); 
+            border-radius: 12px; 
+            border: 1px solid #2a2f38; 
+            padding: 16px 12px; 
+            margin-bottom: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
         .teams-row-mini { display: flex; justify-content: space-between; align-items: center; }
-        .team-mini { width: 40%; text-align: center; font-weight: 700; font-size: 0.85rem; color: var(--text-primary); }
-        .score-mini { background: var(--bg-dark); color: var(--text-primary); padding: 4px 12px; border-radius: 8px; font-weight: 900; border: 1px solid var(--border-color); font-size: 0.9rem; }
-        .day-header { color: var(--text-secondary); font-size: 0.8rem; font-weight: 700; margin: 20px 0 10px; display: block; }
+        .team-mini { width: 35%; text-align: center; font-weight: 800; font-size: 0.95rem; color: #fff; }
+        .score-mini { 
+            background: #000; 
+            color: var(--accent-gold); 
+            padding: 6px 16px; 
+            border-radius: 10px; 
+            font-weight: 900; 
+            border: 1px solid rgba(226, 183, 20, 0.5); 
+            font-size: 1.1rem; 
+            box-shadow: inset 0 0 10px rgba(226, 183, 20, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .day-header { 
+            color: var(--accent-gold); 
+            font-size: 0.85rem; 
+            font-weight: 800; 
+            margin: 20px 0 10px; 
+            display: block; 
+            border-right: 3px solid var(--accent-gold); 
+            padding-right: 8px; 
+        }
         
         /* الجداول (المجموعات والإحصائيات) */
         .group-table-wrap { background: var(--card-dark); border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 15px; }
@@ -154,25 +192,6 @@
         /* البحث */
         .search-input { width: 100%; padding: 12px 15px; border-radius: 12px; background: var(--card-dark); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.8rem; box-sizing: border-box; margin-bottom: 15px; transition: 0.3s; }
         .search-input:focus { outline: none; border-color: var(--accent-gold); }
-
-        /* نافذة الشكر (Pro Style) */
-        #welcome-popup {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(11, 15, 25, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            z-index: 1000000; justify-content: center; align-items: center;
-            transition: opacity 0.4s ease;
-        }
-        .popup-box {
-            width: 88%; max-width: 400px; background: var(--card-dark);
-            border: 1px solid var(--border-color); border-radius: 20px; padding: 25px 20px;
-            text-align: center; position: relative; 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            animation: popupIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .popup-close-x {
-            position: absolute; top: 15px; left: 15px; color: var(--text-secondary); font-size: 1.1rem;
-            cursor: pointer; z-index: 10; font-family: sans-serif;
-        }
         
         /* نبض التسجيل */
         @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 4px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
@@ -187,40 +206,9 @@
 <body>
 
     <div id="preloader">
-        <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
-    </div>
-
-    <div id="welcome-popup">
-        <div class="popup-box">
-            <div class="popup-close-x" onclick="closeWelcomePopup()">✖</div>
-
-            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="width: 55px; margin-bottom: 15px;">
-            
-            <h2 style="color:var(--text-primary); font-weight:900; font-size:1.2rem; margin:0 0 15px 0;">شكر وتقدير</h2>
-            
-            <div style="font-size: 0.85rem; line-height: 1.8; color: var(--text-secondary); text-align: center;">
-                <div style="margin-bottom: 8px;">نتقدم بخالص الشكر والتقدير لـ</div>
-                
-                <div style="color: var(--accent-gold); font-size: 0.75rem; font-weight: 700; background: rgba(226, 183, 20, 0.1); padding: 4px 12px; border-radius: 8px; display: inline-block; margin-bottom: 8px; border: 1px solid rgba(226, 183, 20, 0.2);">رئيس جمعية التنمية الاجتماعية الأهلية بالقحمة</div>
-                
-                <div style="color:var(--text-primary); font-weight: 900; font-size: 1.1rem; margin-bottom: 15px;">الأستاذ زايد عبده أبو هداش الشاعري</div>
-                
-                <div style="margin-bottom: 10px; text-align: justify; direction: rtl;">
-                    وذلك تقديرًا لدعمه السخي وتحفيزه المستمر الذي كان له بالغ الأثر في مسيرتنا.
-                </div>
-                
-                <div style="margin-bottom: 10px; text-align: justify; direction: rtl;">
-                    ونحن اليوم نعيش لحظات الترقب بشغف لانطلاق نهائي بطولة القحمة الرمضانية 28، يظل دعمه أحد أهم الركائز التي أوصلتنا إلى هذه المرحلة المميزة وأسهم في تألق منصتها الإلكترونية.
-                </div>
-                
-                <div style="text-align: justify; direction: rtl;">
-                    لقد كانت وقفته الصادقة أساسًا في تحقيق هذا المنجز الذي نفخر به جميعًا، فله منا جزيل الشكر وعظيم الامتنان على عطائه اللامحدود الذي امتد لكافة المجالات وجعلنا نصل إلى أعتاب نهائي تاريخي.
-                </div>
-            </div>
-
-            <div style="margin-top: 20px; font-size: 0.7rem; color: var(--text-secondary); font-weight: 600;">
-                إياد عسيري
-            </div>
+        <div class="preloader-content">
+            <span class="preloader-ball">⚽</span>
+            <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار البطولة" class="preloader-logo" crossorigin="anonymous">
         </div>
     </div>
 
@@ -254,7 +242,6 @@
             
             <div style="text-align: center; width: 100%; border-top: 1px solid #272c33; padding-top: 30px; padding-bottom: 20px;">
                 <span style="color: #e2b714; font-size: 1.2rem; font-weight: 700; background: rgba(226,183,20,0.1); padding: 8px 25px; border-radius: 12px; display: inline-block; margin-bottom: 15px;">📅 21 شوال | 🏟️ ملعب الوسم</span>
-                <p style="color: #94a3b8; font-size: 1.1rem; margin: 0; font-weight: 600;">المنصة الرياضية الرسمية 📲</p>
             </div>
         </div>
     </div>
@@ -270,7 +257,6 @@
     <header id="main-header">
         <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" class="logo-img" crossorigin="anonymous">
         <h1>بطولة القحمة الرمضانية 28</h1>
-        <span class="stadium-tag">المنصة الرياضية الرسمية</span>
     </header>
 
     <div class="container">
@@ -433,7 +419,7 @@ async function shareMatchAsImage() {
 }
 
 function updateDisplay() {
-    document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-list-card"><div class="teams-row-mini"><span class="team-mini">${m.t1}</span><div class="score-mini"><span>${m.r}</span>${m.p ? `<span style="font-size:0.6rem; color:var(--text-secondary); display:block;">${m.p}</span>` : ""}</div><span class="team-mini">${m.t2}</span></div></div>`).join('')).join('');
+    document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-list-card"><div class="teams-row-mini"><span class="team-mini">${m.t1}</span><div class="score-mini"><span>${m.r}</span>${m.p ? `<span style="font-size:0.65rem; color:var(--text-secondary); display:block; margin-top:2px;">${m.p}</span>` : ""}</div><span class="team-mini">${m.t2}</span></div></div>`).join('')).join('');
     document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, index) => { let medal = ''; if (index === 0) medal = '🥇'; else if (index === 1) medal = '🥈'; else if (index === 2) medal = '🥉'; return `<tr><td class="team-name-cell" style="padding: 12px;">${medal} ${s.n}<br><span style="color:var(--text-secondary); font-size:0.65rem;">${s.f}</span></td><td style="padding:12px; text-align:left;"><span style="background:var(--bg-dark); color:var(--text-primary); padding:4px 10px; border-radius:8px; font-weight:900; border:1px solid var(--border-color);">${s.g}</span></td></tr>`; }).join('');
     document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-table-wrap"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>نقاط</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--text-primary); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
     const stats = {}; archiveData.forEach(day => day.matches.forEach(m => { const res = m.r.split(' - ').map(Number); if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 }; stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; }));
@@ -456,38 +442,14 @@ function hidePreloaderSafely() {
     const preloader = document.getElementById('preloader');
     if(preloader && !preloader.classList.contains('hidden')) {
         preloader.style.opacity = '0';
-        setTimeout(() => { preloader.classList.add('hidden'); }, 300);
-    }
-}
-
-// دالة النافذة الترحيبية
-function showWelcomePopup() {
-    const hasSeen = localStorage.getItem('welcome_pro_v1');
-    if (!hasSeen) {
-        const popup = document.getElementById('welcome-popup');
-        popup.style.display = 'flex';
-        // اختفاء تلقائي بعد 10 ثواني
-        setTimeout(() => {
-            closeWelcomePopup();
-        }, 10000);
-    }
-}
-
-function closeWelcomePopup() {
-    const popup = document.getElementById('welcome-popup');
-    if (popup) {
-        popup.style.opacity = '0';
-        setTimeout(() => {
-            popup.style.display = 'none';
-        }, 400); 
-        localStorage.setItem('welcome_pro_v1', 'true');
+        setTimeout(() => { preloader.classList.add('hidden'); }, 400);
     }
 }
 
 window.onload = function() { 
     fetchWeather(); updateDisplay(); openTab(null, 'today'); openSubTab(null, 'players-list'); 
-    setTimeout(hidePreloaderSafely, 1200);
-    setTimeout(showWelcomePopup, 1500); 
+    // تأخير شاشة التحميل (الكورة) لمدة ثانيتين (2000 ملي ثانية)
+    setTimeout(hidePreloaderSafely, 2000); 
 };
 </script>
 
@@ -525,7 +487,7 @@ window.onload = function() {
   };
 
   // ==========================================
-  // أكواد التبديل التلقائي + ميزة الهدافين المباشرة (للستايل الجديد)
+  // أكواد التبديل التلقائي + ميزة الهدافين المباشرة 
   // ==========================================
   const scoreRef = ref(db, 'live_match_score');
   onValue(scoreRef, (snapshot) => {
@@ -548,7 +510,6 @@ window.onload = function() {
       const wesamScorers = data && data.wesam_scorers !== undefined ? data.wesam_scorers : "";
 
       if (isLive) {
-          // وضع المباراة المباشر (ستايل Pro Dark)
           if(vsContainer) {
               vsContainer.style.cssText = "background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 12px; padding: 6px 20px; display: flex; justify-content: center; align-items: center; min-width: 70px; transition: 0.3s;";
           }
@@ -567,7 +528,6 @@ window.onload = function() {
           if(wesamScorersDiv) wesamScorersDiv.innerHTML = wesamScorers;
           
       } else {
-          // وضع الانتظار (قبل المباراة)
           if(vsContainer) {
               vsContainer.style.cssText = "background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 12px; width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; transition: 0.3s;";
           }
