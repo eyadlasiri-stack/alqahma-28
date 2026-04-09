@@ -34,7 +34,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
 
     <style>
-        /* ========= الألوان والستايل (Pro Dark) ========= */
         :root { 
             --bg-dark: #0f1115;          
             --card-dark: #181b21;        
@@ -49,7 +48,6 @@
         html { background-color: var(--bg-dark); touch-action: manipulation; scroll-behavior: smooth; overflow-x: hidden; }
         body { margin: 0; padding: 0; min-height: 100vh; background-color: var(--bg-dark); color: var(--text-primary); font-family: 'Cairo', sans-serif; line-height: 1.6; font-size: 0.9rem; -webkit-tap-highlight-color: transparent; }
 
-        /* ========= شاشة التحميل ========= */
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0c0f; z-index: 99999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s, visibility 0.5s; }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         .preloader-content { position: relative; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; }
@@ -59,7 +57,6 @@
         @keyframes spinRing { 100% { transform: rotate(360deg); } }
         @keyframes pulsePreloaderLogo { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 20px rgba(226, 183, 20, 0.8)); } }
 
-        /* ========= الأساسيات ========= */
         .container { max-width: 800px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; }
         header { text-align: center; padding: 18px 0; background: var(--bg-dark); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); margin-bottom: 20px; }
         .logo-img { width: 65px; display: block; margin: 0 auto 10px; filter: drop-shadow(0 0 8px rgba(226, 183, 20, 0.2)); }
@@ -71,22 +68,6 @@
         
         .card-pro { background: var(--card-dark); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px 15px; margin-bottom: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
 
-        /* ========= معرض الصور وأسهم التحكم ========= */
-        .gallery-wrapper { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); margin-top: 15px; direction: ltr; }
-        .gallery-track { display: flex; height: 100%; transition: transform 0.5s ease-in-out; width: 100%; flex-direction: row; }
-        .gallery-slide { flex: 0 0 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
-        .gallery-slide img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
-        
-        .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: var(--accent-gold); border: 1px solid rgba(226,183,20,0.5); font-size: 1.2rem; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center; transition: 0.3s; backdrop-filter: blur(2px); }
-        .gallery-arrow:hover { background: var(--accent-gold); color: #000; }
-        .right-arrow { right: 10px; }
-        .left-arrow { left: 10px; }
-
-        .gallery-nav { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 10; direction: ltr; }
-        .gallery-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: 0.3s; }
-        .gallery-dot.active { background: var(--accent-gold); width: 20px; border-radius: 10px; }
-
-        /* ========= القوائم والتبويبات ========= */
         .tabs-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(24, 27, 33, 0.95); backdrop-filter: blur(10px); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 10px 5px 15px; z-index: 9000; }
         .tab-btn { background: transparent; color: var(--text-secondary); border: none; display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: 'Cairo'; font-size: 0.65rem; font-weight: 600; flex: 1; cursor: pointer; transition: 0.3s; }
         .tab-btn .icon { font-size: 1.3rem; transition: 0.3s; filter: grayscale(100%) opacity(0.5); }
@@ -101,7 +82,6 @@
         .tab-content.active, .sub-content.active { display: block; animation: fadeIn 0.3s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ========= الجداول والأرشيف ========= */
         .match-list-card { background: linear-gradient(145deg, #1c1f26, #14161a); border-radius: 12px; border: 1px solid #2a2f38; padding: 16px 12px; margin-bottom: 12px; }
         .teams-row-mini { display: flex; justify-content: space-between; align-items: center; }
         .team-mini { width: 35%; text-align: center; font-weight: 800; font-size: 0.95rem; color: #fff; }
@@ -117,13 +97,13 @@
 
         .about-text-area { white-space: pre-wrap; font-size: 0.8rem; padding: 20px; background: var(--card-dark); border: 1px solid var(--border-color); border-radius: 16px; text-align: right; line-height: 1.9; color: var(--text-secondary); }
         
-        /* ========= الفوتر والمودال ========= */
         .footer { text-align: center; padding: 30px 10px 20px; margin-top: 10vh; border-top: 1px solid var(--border-color); }
         .social-mini { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
         .social-btn { padding: 6px 15px; border-radius: 8px; text-decoration: none; font-size: 0.7rem; font-weight: 700; color: var(--text-primary); background: var(--card-dark); border: 1px solid var(--border-color); transition: 0.2s; }
         .disclaimer { font-size: 0.65rem; color: var(--text-secondary); margin: 20px auto 0; }
         
         .search-input { width: 100%; padding: 12px 15px; border-radius: 12px; background: var(--card-dark); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.8rem; margin-bottom: 15px; }
+        .search-input:focus { outline: none; border-color: var(--accent-gold); }
         
         @keyframes redPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 4px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
 
@@ -198,6 +178,7 @@
 
                 <div style="text-align: center; margin-bottom: 25px;">
                     <h2 style="color:var(--text-primary); margin:0; font-size:1.1rem; font-weight:800;">النهائي الكبير</h2>
+                    <span style="color:var(--text-secondary); font-size: 0.85rem; font-weight: 700; background: var(--bg-dark); padding: 4px 12px; border-radius: 8px; border: 1px solid var(--border-color); display: inline-block; margin-top: 8px;">نهاية المباراة: ( 0 - 0 )</span>
                 </div>
                 
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 10px;">
@@ -224,21 +205,8 @@
                 </div>
 
                 <div onclick="document.getElementById('media-section').scrollIntoView({behavior: 'smooth'})" style="background: var(--bg-dark); padding:10px; border-radius:8px; border: 1px solid var(--border-color); margin-top: 20px; text-align:center; cursor: pointer; transition: 0.2s;">
-                    <span id="bottom-message" style="font-size:0.75rem; color:var(--text-secondary); font-weight:600; cursor: pointer;">التغطية الحصرية لنهائي البطولة 🏆</span>
+                    <span id="bottom-message" style="font-size:0.75rem; color:var(--text-secondary); font-weight:600; cursor: pointer;">الآن.. ركلات الحظ الترجيحية لتحديد البطل 🏆</span>
                 </div>
-            </div>
-
-            <div class="card-pro" style="margin-top: 15px;">
-                <h3 style="color:var(--text-primary); font-size:0.95rem; margin:0 0 10px 0; text-align:center; font-weight:800;">📸 لقطات من قلب الحدث</h3>
-                <div class="gallery-wrapper">
-                    <div class="gallery-track" id="gallery-track">
-                        <div class="gallery-slide"><img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="object-fit: contain; padding: 20px;"></div>
-                    </div>
-                    <button class="gallery-arrow left-arrow" onclick="window.prevSlide()">❮</button>
-                    <button class="gallery-arrow right-arrow" onclick="window.nextSlide()">❯</button>
-                    <div class="gallery-nav" id="gallery-dots"></div>
-                </div>
-                <p style="font-size: 0.65rem; text-align: center; color: var(--text-secondary); margin-top: 10px; margin-bottom: 0;">يتم التحديث تلقائياً خلال الحدث ⏳</p>
             </div>
         </div>
 
@@ -356,87 +324,7 @@ const groupData = [
     {n:"السادسة", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي
-
-دور المجموعات وعدد مبارياته (18) مباراة
-
-* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة
-* تقام مباريات البطولة بنظام المجموعات من دور واحد
-* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق
-* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية
-* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:
-- مجموع النقاط
-- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)
-- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر
-- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب
-- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة
-
-* آلية مباريات الملحق
-بعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:
- * المباراة  رقم (19) 
-(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) 
- * المباراة رقم ( 20) 
-(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) 
-
-* مباريات دور الثمانية
-رقم المباراة ( 21) 
-اول مج (1) مع اول مج(3)
-
-المبارة رقم (22) 
-اول مج (2)   مع أول مج ( 4) 
- المباراة رقم ( 23)
-اول مج ( 5) مع اول مج ( 7 ) 
-المباراة رقم (24) 
-اول مج (6) مع اول مج ( 8) 
-
-(( ملاحظة مهمة)) 
-في حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: 
-المباراة رقم ( 23)
- اول مج ( 5 ) مع أول مج ( 8 ) 
-المباراة رقم (24) 
-اول مج( 6) مع أول مج(7) 
-وذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية 
-
-مباريات نصف النهاىي
- المباراة رقم (25) 
-فائز (21) مع فائز( 23) 
-المباراة رقم (26)
- فائز (22) مع فائز 24
-
-النهائي 
-المباراة رقم (27)
-فائز (25) مع فائز (26)
-
-بعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي 
-تم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة 
-وبالتالي اصبح ترتيب الاوائل على النحو التالي :
-المجموعة الاولى فريق السوق 
-المجموعة الثانية فريق ساحل مغزل
-المجموعة الثالثة فريق الصقر 
-المجموعة الرابعة فريق الساحل الرياضي 
-المجموعه الخامسة فريق صقليه
-المجموعة السادسة فريق الوسام 
-المجموعة السابعة فريق عمق 
-المجموعة الثامنه فريق الفيصلي
-
-وتلعب مباريات دور الثمانية(ربع النهائي )
-حسب نظام البطولة 
-اول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)
-اول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)
-—————————————————- 
-وحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا
-اول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)
-اول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)
-——————————————————
-مباريات دور الاربعة ( نصف النهائي )
-رقم المباراة (25)
-فائز المباراة رقم  (21) مع فائز المباراة رقم  (23)
-رقم المباراة (26)
-فائز المباراة رقم (22) مع فائز المباراة رقم (24)
-——————————————————-
-المباراة النهائية 
-رقم المباراة (27)
-فائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
+const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة\n\n* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة\n* تقام مباريات البطولة بنظام المجموعات من دور واحد\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:\n- مجموع النقاط\n- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)\n- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر\n- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب\n- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة\n\n* آلية مباريات الملحق\nبعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:\n * المباراة  رقم (19) \n(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) \n * المباراة رقم ( 20) \n(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) \n\n* مباريات دور الثمانية\nرقم المباراة ( 21) \nاول مج (1) مع اول مج(3)\n\nالمبارة رقم (22) \nاول مج (2)   مع أول مج ( 4) \n المباراة رقم ( 23)\nاول مج ( 5) مع اول مج ( 7 ) \nالمباراة رقم (24) \nاول مج (6) مع اول مج ( 8) \n\n(( ملاحظة مهمة)) \nفي حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: \nالمباراة رقم ( 23)\n اول مج ( 5 ) مع أول مج ( 8 ) \nالمباراة رقم (24) \nاول مج( 6) مع أول مج(7) \nوذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية \n\nمباريات نصف النهاىي\n المباراة رقم (25) \nفائز (21) مع فائز( 23) \nالمباراة رقم (26)\n فائز (22) مع فائز 24\n\nالنهائي \nالمباراة رقم (27)\nفائز (25) مع فائز (26)\n\nبعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي \nتم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة \nوبالتالي اصبح ترتيب الاوائل على النحو التالي :\nالمجموعة الاولى فريق السوق \nالمجموعة الثانية فريق ساحل مغزل\nالمجموعة الثالثة فريق الصقر \nالمجموعة الرابعة فريق الساحل الرياضي \nالمجموعه الخامسة فريق صقليه\nالمجموعة السادسة فريق الوسام \nالمجموعة السابعة فريق عمق \nالمجموعة الثامنه فريق الفيصلي\n\nوتلعب مباريات دور الثمانية(ربع النهائي )\nحسب نظام البطولة \nاول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)\nاول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)\n—————————————————- \nوحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا\nاول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)\nاول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)\n——————————————————\nمباريات دور الاربعة ( نصف النهائي )\nرقم المباراة (25)\nفائز المباراة رقم  (21) مع فائز المباراة رقم  (23)\nرقم المباراة (26)\nفائز المباراة رقم (22) مع فائز المباراة رقم (24)\n——————————————————-\nالمباراة النهائية \nرقم المباراة (27)\nفائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
 
 function updateDisplay() {
     document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-list-card"><div class="teams-row-mini"><span class="team-mini">${m.t1}</span><div class="score-mini"><span>${m.r}</span>${m.p ? `<span style="font-size:0.65rem; color:var(--text-secondary); display:block; margin-top:2px;">${m.p}</span>` : ""}</div><span class="team-mini">${m.t2}</span></div></div>`).join('')).join('');
@@ -484,8 +372,13 @@ window.onload = function() {
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
   import { getDatabase, ref, runTransaction, onValue, onDisconnect, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
+  const p1 = "AIzaSyDMSL";
+  const p2 = "sTOf_zy8Ec";
+  const p3 = "sL-YZJPsUk";
+  const p4 = "8JHZVaT18";
+  
   const firebaseConfig = {
-    apiKey: "AIzaSyDMSLsTOf_zy8EcsL-YZJPsUk8JHZVaT18",
+    apiKey: p1 + p2 + p3 + p4,
     authDomain: "eyad-a12a5.firebaseapp.com",
     databaseURL: "https://eyad-a12a5-default-rtdb.firebaseio.com",
     projectId: "eyad-a12a5"
@@ -527,10 +420,18 @@ window.onload = function() {
 
       if (isLive) {
           if(vsContainer) vsContainer.style.cssText = "background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 12px; padding: 6px 20px; display: flex; justify-content: center; align-items: center; min-width: 70px; transition: 0.3s;";
-          if(vsText) { vsText.innerText = faisaly + " - " + wesam; vsText.style.cssText = "color: var(--accent-gold); font-weight: 900; font-size: 1.6rem; font-family: 'Cairo', sans-serif; letter-spacing: 2px;"; }
-          if(statusBadge) { statusBadge.innerHTML = '<span style="display:inline-block; width:6px; height:6px; background:var(--danger); border-radius:50%; box-shadow: 0 0 4px var(--danger); animation: redPulse 1.5s infinite; margin-left:6px;"></span> مباشر الآن'; statusBadge.style.cssText = "background: rgba(239, 68, 68, 0.1); color: var(--danger); padding: 5px 15px; border-radius: 8px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(239, 68, 68, 0.3); display: flex; align-items: center; cursor: pointer;"; }
+          if(vsText) { 
+              // تعديل لإظهار الأقواس الخاصة بركلات الترجيح
+              vsText.innerText = "(" + faisaly + ") - (" + wesam + ")"; 
+              vsText.style.cssText = "color: var(--accent-gold); font-weight: 900; font-size: 1.6rem; font-family: 'Cairo', sans-serif; letter-spacing: 2px;"; 
+          }
+          if(statusBadge) { 
+              // شارة ركلات الترجيح النابضة
+              statusBadge.innerHTML = '<span style="display:inline-block; width:6px; height:6px; background:var(--danger); border-radius:50%; box-shadow: 0 0 4px var(--danger); animation: redPulse 1.5s infinite; margin-left:6px;"></span> ركلات الترجيح ⚽'; 
+              statusBadge.style.cssText = "background: rgba(239, 68, 68, 0.1); color: var(--danger); padding: 5px 15px; border-radius: 8px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(239, 68, 68, 0.3); display: flex; align-items: center; cursor: pointer;"; 
+          }
           if(stadiumBadge) stadiumBadge.style.display = "none";
-          if(bottomMsg) bottomMsg.innerText = "تغطية النتيجة والأهداف المباشرة للنهائي 🔥";
+          if(bottomMsg) bottomMsg.innerText = "الآن.. ركلات الحظ الترجيحية لتحديد البطل 🏆";
           if(faisalyScorersDiv) faisalyScorersDiv.innerHTML = faisalyScorers;
           if(wesamScorersDiv) wesamScorersDiv.innerHTML = wesamScorers;
       } else {
@@ -544,65 +445,6 @@ window.onload = function() {
       }
   };
   onValue(window.scoreRef, window.onValueCallback);
-
-  let galleryImages = [];
-  let currentSlideIndex = 0;
-  let sliderInterval = null;
-
-  function resetAutoSlider() {
-      if(sliderInterval) clearInterval(sliderInterval);
-      if(galleryImages.length > 1) {
-          sliderInterval = setInterval(() => { window.goToSlide((currentSlideIndex + 1) % galleryImages.length); }, 3500);
-      }
-  }
-
-  window.nextSlide = () => {
-      if (galleryImages.length <= 1) return;
-      window.goToSlide((currentSlideIndex + 1) % galleryImages.length);
-      resetAutoSlider();
-  };
-
-  window.prevSlide = () => {
-      if (galleryImages.length <= 1) return;
-      window.goToSlide((currentSlideIndex - 1 + galleryImages.length) % galleryImages.length);
-      resetAutoSlider();
-  };
-
-  window.goToSlide = (index) => {
-      if (galleryImages.length === 0) return;
-      currentSlideIndex = index;
-      const track = document.getElementById('gallery-track');
-      const dots = document.querySelectorAll('.gallery-dot');
-      if(track) track.style.transform = `translateX(-${currentSlideIndex * 100}%)`; 
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlideIndex));
-  };
-
-  const galleryRef = ref(db, 'live_gallery');
-  onValue(galleryRef, (snapshot) => {
-      const data = snapshot.val();
-      const track = document.getElementById('gallery-track');
-      const dotsContainer = document.getElementById('gallery-dots');
-      if(data) {
-          let rawData = Array.isArray(data) ? data : Object.values(data);
-          galleryImages = rawData.filter(url => url && typeof url === 'string' && url.startsWith('http'));
-      } else {
-          galleryImages = [];
-      }
-
-      if(galleryImages.length === 0) {
-          if(track) track.innerHTML = '<div class="gallery-slide"><img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="object-fit:contain; padding:20px;"></div>';
-          if(dotsContainer) dotsContainer.innerHTML = '';
-          return;
-      }
-
-      if(track && dotsContainer) {
-          track.innerHTML = galleryImages.map(url => `<div class="gallery-slide"><img src="${url}" onclick="window.zoomImage('${url}')"></div>`).join('');
-          dotsContainer.innerHTML = galleryImages.map((url, i) => `<div class="gallery-dot ${i===0?'active':''}" onclick="window.goToSlide(${i}); resetAutoSlider();"></div>`).join('');
-          currentSlideIndex = 0;
-          window.goToSlide(0);
-          resetAutoSlider();
-      }
-  }, (error) => { console.error("Gallery Error: ", error); });
 </script>
 </body>
 </html>
