@@ -55,9 +55,10 @@
             background-color: var(--bg-dark);
             color: var(--text-primary); font-family: 'Cairo', sans-serif; line-height: 1.6; font-size: 0.9rem; 
             -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
         }
 
-        /* ========= شاشة التحميل ========= */
+        /* ========= شاشة التحميل (النسخة الفخمة VIP) ========= */
         #preloader { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: #0a0c0f; z-index: 99999; display: flex; justify-content: center; align-items: center; 
@@ -124,6 +125,52 @@
             margin-bottom: 15px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
+
+        /* معرض الصور المباشر (Gallery Slider) */
+        .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-top: 15px;
+        }
+        .gallery-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+        .gallery-slide {
+            flex: 0 0 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        .gallery-nav {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+        .gallery-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255,255,255,0.4); cursor: pointer;
+            transition: 0.3s;
+        }
+        .gallery-dot.active { background: var(--accent-gold); width: 20px; border-radius: 10px; }
 
         /* البار السفلي */
         .tabs-nav { 
@@ -233,7 +280,7 @@
     <div id="image-modal">
         <p style="color: var(--text-secondary); font-family: 'Cairo'; margin-bottom: 15px; font-weight: 700; font-size: 0.85rem;">اضغط مطولاً على الصورة لحفظها</p>
         <div class="modal-img-container">
-            <img id="generated-image" src="" alt="بوستر المباراة">
+            <img id="generated-image" src="" alt="صورة مكبرة">
         </div>
         <button class="close-modal-btn" onclick="document.getElementById('image-modal').style.display='none'">إغلاق</button>
     </div>
@@ -287,7 +334,7 @@
         <div id="today" class="tab-content active">
             <div class="card-pro" style="position: relative;">
                 
-                <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: var(--bg-dark); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 8px; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 0.9rem; transition: 0.2s;" title="مشاركة">📸</button>
+                <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: var(--bg-dark); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 8px; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 0.9rem; transition: 0.2s;" title="مشاركة البوستر">📸</button>
 
                 <div style="text-align: center; margin-bottom: 25px;">
                     <h2 style="color:var(--text-primary); margin:0; font-size:1.1rem; font-weight:800;">النهائي الكبير</h2>
@@ -329,25 +376,14 @@
             </div>
 
             <div class="card-pro" style="margin-top: 15px;">
-                <h3 style="color:var(--text-primary); font-size:0.95rem; margin:0 0 15px 0; text-align:center; font-weight:800;">توقعات النهائي 🔥</h3>
-                <div style="display:flex; justify-content:space-between; gap:10px; margin-bottom: 15px;">
-                    <button id="vote-faisaly" onclick="window.submitVote('faisaly')" style="flex:1; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); padding:12px; border-radius:12px; font-family:'Cairo'; font-weight:700; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px;">
-                        الفيصلي
-                        <span id="faisaly-votes-count" style="color:var(--text-secondary); font-size:0.85rem; font-weight:900;">(87)</span>
-                    </button>
-                    <button id="vote-wesam" onclick="window.submitVote('wesam')" style="flex:1; background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-primary); padding:12px; border-radius:12px; font-family:'Cairo'; font-weight:700; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px;">
-                        الوسام
-                        <span id="wesam-votes-count" style="color:var(--accent-gold); font-size:0.85rem; font-weight:900;">(103)</span>
-                    </button>
+                <h3 style="color:var(--text-primary); font-size:0.95rem; margin:0 0 10px 0; text-align:center; font-weight:800;">📸 لقطات من قلب الحدث</h3>
+                <div class="gallery-wrapper">
+                    <div class="gallery-track" id="gallery-track">
+                        <div class="gallery-slide"><img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="object-fit: contain; padding: 20px;"></div>
+                    </div>
+                    <div class="gallery-nav" id="gallery-dots"></div>
                 </div>
-                <div style="width:100%; background:var(--bg-dark); height:8px; border-radius:10px; overflow:hidden; display:flex; border:1px solid var(--border-color);">
-                    <div id="faisaly-bar" style="width:45%; background:#475569; height:100%; transition:0.5s;"></div>
-                    <div id="wesam-bar" style="width:55%; background:var(--accent-gold); height:100%; transition:0.5s;"></div>
-                </div>
-                
-                <div id="vote-success-msg" style="display:none; color: var(--success); background: rgba(16, 185, 129, 0.1); padding: 10px; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.3); text-align: center; margin-top: 15px; font-weight: 700; font-size: 0.8rem; animation: fadeIn 0.4s ease;">
-                    تم التصويت بنجاح، شكراً لمشاركتك ✔️
-                </div>
+                <p style="font-size: 0.65rem; text-align: center; color: var(--text-secondary); margin-top: 10px; margin-bottom: 0;">سيتم تحديث الصور تلقائياً خلال سير المباراة ⏳</p>
             </div>
         </div>
 
@@ -412,6 +448,40 @@ document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible" && window.scoreRef && window.onValueCallback) {}
 });
 
+// دوال التحكم بالصور
+window.zoomImage = function(src) {
+    document.getElementById('generated-image').src = src;
+    document.getElementById('image-modal').style.display = 'flex';
+};
+
+// دوال التحكم بالتنقل
+function openTab(evt, tabName) { 
+    let content = document.getElementsByClassName("tab-content"), btns = document.getElementsByClassName("tab-btn"); 
+    for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); 
+    for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); 
+    void document.getElementById(tabName).offsetWidth; 
+    document.getElementById(tabName).classList.add("active"); 
+    let activeBtn; if (evt && evt.currentTarget && evt.currentTarget.classList.contains('tab-btn')) { activeBtn = evt.currentTarget; } else { activeBtn = document.querySelector(".tab-btn[onclick*='" + tabName + "']"); }
+    if(activeBtn) activeBtn.classList.add("active"); window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openSubTab(evt, subName) { let content = document.getElementsByClassName("sub-content"), btns = document.getElementsByClassName("sub-tab-btn"); for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); void document.getElementById(subName).offsetWidth; document.getElementById(subName).classList.add("active"); if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } else { let activeBtn = document.querySelector(".sub-tab-btn[onclick*='" + subName + "']"); if(activeBtn) activeBtn.classList.add("active"); } }
+function searchList(type) { let input = document.getElementById(type === 'scorers' ? 'scorer-search' : 'archive-search'); let filter = input.value.toUpperCase(); let cards = type === 'scorers' ? document.getElementById('players-table').getElementsByTagName('tr') : document.getElementById('archive-area').getElementsByClassName('match-list-card'); for (let i = 0; i < cards.length; i++) { let txt = cards[i].textContent || cards[i].innerText; cards[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "" : "none"; } }
+
+async function shareMatchAsImage() { 
+    const btn = document.getElementById('share-btn'); 
+    const originalText = btn.innerText; 
+    btn.innerText = '⏳'; btn.style.opacity = '0.7'; btn.disabled = true; 
+    try { 
+        if(window.trackShareClick) window.trackShareClick();
+        const element = document.getElementById('snapchat-poster'); 
+        const canvas = await html2canvas(element, { backgroundColor: '#0f1115', scale: 2, useCORS: true, allowTaint: true, logging: false }); 
+        const imgData = canvas.toDataURL('image/png'); 
+        document.getElementById('generated-image').src = imgData; 
+        document.getElementById('image-modal').style.display = 'flex'; 
+    } catch (err) { alert('حدث خطأ أثناء التجهيز، يرجى المحاولة مرة أخرى.'); } finally { btn.innerText = originalText; btn.style.opacity = '1'; btn.disabled = false; } 
+}
+
 const archiveData = [
     { d: "السبت 25 رمضان", matches: [{t1:"ساحل مغزل", t2:"الوسام", r: "0 - 1"}] },
     { d: "الجمعة 24 رمضان", matches: [{t1:"الصقر", t2:"الفيصلي", r: "1 - 1", p: "(11) - (12)"}] },
@@ -448,33 +518,6 @@ const groupData = [
 ];
 
 const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة\n\n* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة\n* تقام مباريات البطولة بنظام المجموعات من دور واحد\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:\n- مجموع النقاط\n- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)\n- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر\n- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب\n- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة\n\n* آلية مباريات الملحق\nبعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:\n * المباراة  رقم (19) \n(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) \n * المباراة رقم ( 20) \n(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) \n\n* مباريات دور الثمانية\nرقم المباراة ( 21) \nاول مج (1) مع اول مج(3)\n\nالمبارة رقم (22) \nاول مج (2)   مع أول مج ( 4) \n المباراة رقم ( 23)\nاول مج ( 5) مع اول مج ( 7 ) \nالمباراة رقم (24) \nاول مج (6) مع اول مج ( 8) \n\n(( ملاحظة مهمة)) \nفي حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: \nالمباراة رقم ( 23)\n اول مج ( 5 ) مع أول مج ( 8 ) \nالمباراة رقم (24) \nاول مج( 6) مع أول مج(7) \nوذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية \n\nمباريات نصف النهاىي\n المباراة رقم (25) \nفائز (21) مع فائز( 23) \nالمباراة رقم (26)\n فائز (22) مع فائز 24\n\nالنهائي \nالمباراة رقم (27)\nفائز (25) مع فائز (26)\n\nبعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي \nتم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة \nوبالتالي اصبح ترتيب الاوائل على النحو التالي :\nالمجموعة الاولى فريق السوق \nالمجموعة الثانية فريق ساحل مغزل\nالمجموعة الثالثة فريق الصقر \nالمجموعة الرابعة فريق الساحل الرياضي \nالمجموعه الخامسة فريق صقليه\nالمجموعة السادسة فريق الوسام \nالمجموعة السابعة فريق عمق \nالمجموعة الثامنه فريق الفيصلي\n\nوتلعب مباريات دور الثمانية(ربع النهائي )\nحسب نظام البطولة \nاول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)\nاول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)\n—————————————————- \nوحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا\nاول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)\nاول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)\n——————————————————\nمباريات دور الاربعة ( نصف النهائي )\nرقم المباراة (25)\nفائز المباراة رقم  (21) مع فائز المباراة رقم  (23)\nرقم المباراة (26)\nفائز المباراة رقم (22) مع فائز المباراة رقم (24)\n——————————————————-\nالمباراة النهائية \nرقم المباراة (27)\nفائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
-
-function openTab(evt, tabName) { 
-    let content = document.getElementsByClassName("tab-content"), btns = document.getElementsByClassName("tab-btn"); 
-    for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); 
-    for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); 
-    void document.getElementById(tabName).offsetWidth; 
-    document.getElementById(tabName).classList.add("active"); 
-    let activeBtn; if (evt && evt.currentTarget && evt.currentTarget.classList.contains('tab-btn')) { activeBtn = evt.currentTarget; } else { activeBtn = document.querySelector(".tab-btn[onclick*='" + tabName + "']"); }
-    if(activeBtn) activeBtn.classList.add("active"); window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function openSubTab(evt, subName) { let content = document.getElementsByClassName("sub-content"), btns = document.getElementsByClassName("sub-tab-btn"); for (let i = 0; i < content.length; i++) content[i].classList.remove("active"); for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active"); void document.getElementById(subName).offsetWidth; document.getElementById(subName).classList.add("active"); if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); } else { let activeBtn = document.querySelector(".sub-tab-btn[onclick*='" + subName + "']"); if(activeBtn) activeBtn.classList.add("active"); } }
-function searchList(type) { let input = document.getElementById(type === 'scorers' ? 'scorer-search' : 'archive-search'); let filter = input.value.toUpperCase(); let cards = type === 'scorers' ? document.getElementById('players-table').getElementsByTagName('tr') : document.getElementById('archive-area').getElementsByClassName('match-list-card'); for (let i = 0; i < cards.length; i++) { let txt = cards[i].textContent || cards[i].innerText; cards[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "" : "none"; } }
-
-async function shareMatchAsImage() { 
-    const btn = document.getElementById('share-btn'); 
-    const originalText = btn.innerText; 
-    btn.innerText = '⏳'; btn.style.opacity = '0.7'; btn.disabled = true; 
-    try { 
-        if(window.trackShareClick) window.trackShareClick();
-        const element = document.getElementById('snapchat-poster'); 
-        const canvas = await html2canvas(element, { backgroundColor: '#0f1115', scale: 2, useCORS: true, allowTaint: true, logging: false }); 
-        const imgData = canvas.toDataURL('image/png'); 
-        document.getElementById('generated-image').src = imgData; 
-        document.getElementById('image-modal').style.display = 'flex'; 
-    } catch (err) { alert('حدث خطأ أثناء التجهيز، يرجى المحاولة مرة أخرى.'); } finally { btn.innerText = originalText; btn.style.opacity = '1'; btn.disabled = false; } 
-}
 
 function updateDisplay() {
     document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-list-card"><div class="teams-row-mini"><span class="team-mini">${m.t1}</span><div class="score-mini"><span>${m.r}</span>${m.p ? `<span style="font-size:0.65rem; color:var(--text-secondary); display:block; margin-top:2px;">${m.p}</span>` : ""}</div><span class="team-mini">${m.t2}</span></div></div>`).join('')).join('');
@@ -528,8 +571,11 @@ window.onload = function() {
 
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
+  
+  // حفظ المراجع لـ window عشان نوصلها من برى
   window.scoreRef = ref(db, 'live_match_score'); 
   
+  // نظام الزوار المتواجدين
   const visitsRef = ref(db, 'visits_counter/total');
   runTransaction(visitsRef, (currentVisits) => { return (currentVisits || 19477) + 1; });
   onValue(visitsRef, (snapshot) => { if (snapshot.val()) { document.getElementById('live-visit-counter').innerText = snapshot.val().toLocaleString('en-US'); } });
@@ -606,61 +652,59 @@ window.onload = function() {
   onValue(window.scoreRef, window.onValueCallback);
 
   // ==========================================
-  // نظام التصويت المباشر
+  // نظام معرض الصور المباشر (Gallery Slider)
   // ==========================================
-  const pollRef = ref(db, 'match_poll');
-  onValue(pollRef, (snapshot) => {
-      const data = snapshot.val() || { faisaly: 87, wesam: 103 };
+  let galleryImages = [];
+  let currentSlideIndex = 0;
+  let sliderInterval = null;
+
+  window.goToSlide = (index) => {
+      if (galleryImages.length === 0) return;
+      currentSlideIndex = index;
+      const track = document.getElementById('gallery-track');
+      const dots = document.querySelectorAll('.gallery-dot');
+      if(track) {
+          // الانزلاق باتجاه اليمين بالترتيب
+          track.style.transform = `translateX(${currentSlideIndex * 100}%)`;
+      }
+      dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSlideIndex);
+      });
+  };
+
+  const galleryRef = ref(db, 'live_gallery');
+  onValue(galleryRef, (snapshot) => {
+      const data = snapshot.val();
+      const track = document.getElementById('gallery-track');
+      const dotsContainer = document.getElementById('gallery-dots');
       
-      const fVotes = data.faisaly !== undefined ? data.faisaly : 87;
-      const wVotes = data.wesam !== undefined ? data.wesam : 103;
-      const total = fVotes + wVotes;
-      
-      document.getElementById('faisaly-votes-count').innerText = `(${fVotes})`;
-      document.getElementById('wesam-votes-count').innerText = `(${wVotes})`;
-      
-      if (total > 0) {
-          const fPercent = (fVotes / total) * 100;
-          const wPercent = (wVotes / total) * 100;
-          document.getElementById('faisaly-bar').style.width = `${fPercent}%`;
-          document.getElementById('wesam-bar').style.width = `${wPercent}%`;
+      if(data) {
+          galleryImages = Array.isArray(data) ? data : Object.values(data);
+      } else {
+          galleryImages = [];
+      }
+
+      if(galleryImages.length === 0) {
+          if(track) track.innerHTML = '<div class="gallery-slide"><img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="object-fit:contain; padding:20px;"></div>';
+          if(dotsContainer) dotsContainer.innerHTML = '';
+          return;
+      }
+
+      if(track && dotsContainer) {
+          track.innerHTML = galleryImages.map(url => `<div class="gallery-slide"><img src="${url}" onclick="window.zoomImage('${url}')"></div>`).join('');
+          dotsContainer.innerHTML = galleryImages.map((url, i) => `<div class="gallery-dot ${i===0?'active':''}" onclick="window.goToSlide(${i})"></div>`).join('');
           
-          if (fVotes > wVotes) {
-              document.getElementById('faisaly-votes-count').style.color = "var(--accent-gold)";
-              document.getElementById('wesam-votes-count').style.color = "var(--text-secondary)";
-              document.getElementById('faisaly-bar').style.background = "var(--accent-gold)";
-              document.getElementById('wesam-bar').style.background = "#475569";
-          } else if (wVotes > fVotes) {
-              document.getElementById('wesam-votes-count').style.color = "var(--accent-gold)";
-              document.getElementById('faisaly-votes-count').style.color = "var(--text-secondary)";
-              document.getElementById('wesam-bar').style.background = "var(--accent-gold)";
-              document.getElementById('faisaly-bar').style.background = "#475569";
+          currentSlideIndex = 0;
+          window.goToSlide(0);
+
+          if(sliderInterval) clearInterval(sliderInterval);
+          if(galleryImages.length > 1) {
+              sliderInterval = setInterval(() => {
+                  window.goToSlide((currentSlideIndex + 1) % galleryImages.length);
+              }, 3000);
           }
       }
   });
-
-  window.submitVote = (team) => {
-      if (localStorage.getItem('voted_final28_v7_reset')) {
-          alert('لقد قمت بالتصويت مسبقاً! شكراً لك.');
-          return;
-      }
-      
-      const btn = document.getElementById('vote-' + team);
-      btn.style.background = 'rgba(226, 183, 20, 0.15)';
-      btn.style.borderColor = 'var(--accent-gold)';
-      
-      document.getElementById('vote-success-msg').style.display = 'block';
-      
-      localStorage.setItem('voted_final28_v7_reset', 'true');
-      
-      const teamRef = ref(db, `match_poll/${team}`);
-      runTransaction(teamRef, (current) => {
-          if (current === null) {
-              return team === 'wesam' ? 104 : 88;
-          }
-          return current + 1;
-      }).catch(err => console.log("Vote error: ", err));
-  };
 
 </script>
 </body>
