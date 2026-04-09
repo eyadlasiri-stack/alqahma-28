@@ -49,7 +49,7 @@
         html { background-color: var(--bg-dark); touch-action: manipulation; scroll-behavior: smooth; overflow-x: hidden; }
         body { margin: 0; padding: 0; min-height: 100vh; background-color: var(--bg-dark); color: var(--text-primary); font-family: 'Cairo', sans-serif; line-height: 1.6; font-size: 0.9rem; -webkit-tap-highlight-color: transparent; }
 
-        /* ========= شاشة التحميل (تم الإصلاح والضبط 100%) ========= */
+        /* ========= شاشة التحميل ========= */
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0c0f; z-index: 99999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s, visibility 0.5s; }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         .preloader-content { position: relative; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; }
@@ -58,6 +58,23 @@
         
         @keyframes spinRing { 100% { transform: rotate(360deg); } }
         @keyframes pulsePreloaderLogo { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 20px rgba(226, 183, 20, 0.8)); } }
+
+        /* ========= البنر الذهبي النابض (الجديد) ========= */
+        .final-alert-banner {
+            background-color: var(--accent-gold);
+            color: #000;
+            text-align: center;
+            font-weight: 900;
+            font-size: 0.9rem;
+            padding: 10px;
+            position: relative;
+            z-index: 1001;
+            animation: ultimatePulse 2s infinite;
+        }
+        @keyframes ultimatePulse {
+            0%, 100% { background-color: #e2b714; box-shadow: 0 0 10px rgba(226, 183, 20, 0.5); }
+            50% { background-color: #ffdf00; box-shadow: 0 0 25px rgba(226, 183, 20, 1); }
+        }
 
         /* ========= الأساسيات ========= */
         .container { max-width: 800px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; }
@@ -71,11 +88,18 @@
         
         .card-pro { background: var(--card-dark); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px 15px; margin-bottom: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
 
-        /* ========= معرض الصور (تم ضبط السلايدر ليعمل بسلاسة) ========= */
+        /* ========= معرض الصور وأسهم التحكم (تم التحديث) ========= */
         .gallery-wrapper { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); margin-top: 15px; direction: ltr; }
         .gallery-track { display: flex; height: 100%; transition: transform 0.5s ease-in-out; width: 100%; flex-direction: row; }
         .gallery-slide { flex: 0 0 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
         .gallery-slide img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+        
+        /* أسهم التنقل الجديدة */
+        .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: var(--accent-gold); border: 1px solid rgba(226,183,20,0.5); font-size: 1.2rem; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center; transition: 0.3s; backdrop-filter: blur(2px); }
+        .gallery-arrow:hover { background: var(--accent-gold); color: #000; }
+        .right-arrow { right: 10px; }
+        .left-arrow { left: 10px; }
+
         .gallery-nav { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 10; direction: ltr; }
         .gallery-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: 0.3s; }
         .gallery-dot.active { background: var(--accent-gold); width: 20px; border-radius: 10px; }
@@ -135,6 +159,10 @@
             <div class="spinner-ring"></div>
             <img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" alt="شعار" class="preloader-logo" crossorigin="anonymous">
         </div>
+    </div>
+
+    <div class="final-alert-banner">
+        🏆 الليلة.. الموعد المنتظر والنهائي الكبير 🏆
     </div>
 
     <div id="image-modal">
@@ -225,13 +253,19 @@
 
             <div class="card-pro" style="margin-top: 15px;">
                 <h3 style="color:var(--text-primary); font-size:0.95rem; margin:0 0 10px 0; text-align:center; font-weight:800;">📸 لقطات من قلب الحدث</h3>
+                
                 <div class="gallery-wrapper">
                     <div class="gallery-track" id="gallery-track">
                         <div class="gallery-slide"><img src="https://i.ibb.co/Xf7761W2/5-B1-AD85-D-E147-422-B-953-C-0518-D83-FF042.png" style="object-fit: contain; padding: 20px;"></div>
                     </div>
+                    
+                    <button class="gallery-arrow left-arrow" onclick="window.prevSlide()">❮</button>
+                    <button class="gallery-arrow right-arrow" onclick="window.nextSlide()">❯</button>
+                    
                     <div class="gallery-nav" id="gallery-dots"></div>
                 </div>
-                <p style="font-size: 0.65rem; text-align: center; color: var(--text-secondary); margin-top: 10px; margin-bottom: 0;">يتم التحديث تلقائياً خلال الحدث ⏳</p>
+                
+                <p style="font-size: 0.65rem; text-align: center; color: var(--text-secondary); margin-top: 10px; margin-bottom: 0;">يتم التحديث تلقائياً - اسحب لمشاهدة الصور 📸</p>
             </div>
         </div>
 
@@ -464,11 +498,32 @@ window.onload = function() {
   onValue(window.scoreRef, window.onValueCallback);
 
   // ==========================================
-  // معرض الصور المباشر (النسخة المفلترة والمصلحة 100%)
+  // معرض الصور المباشر والتحكم بالأسهم
   // ==========================================
   let galleryImages = [];
   let currentSlideIndex = 0;
   let sliderInterval = null;
+
+  // دالة تحريك السلايدر وإعادة ضبط المؤقت التلقائي
+  function resetAutoSlider() {
+      if(sliderInterval) clearInterval(sliderInterval);
+      if(galleryImages.length > 1) {
+          sliderInterval = setInterval(() => { window.goToSlide((currentSlideIndex + 1) % galleryImages.length); }, 3500);
+      }
+  }
+
+  // دوال التحكم اليدوي (مرتبطة بالأسهم)
+  window.nextSlide = () => {
+      if (galleryImages.length <= 1) return;
+      window.goToSlide((currentSlideIndex + 1) % galleryImages.length);
+      resetAutoSlider(); // يوقف التقليب التلقائي شوي عشان الزائر يركز
+  };
+
+  window.prevSlide = () => {
+      if (galleryImages.length <= 1) return;
+      window.goToSlide((currentSlideIndex - 1 + galleryImages.length) % galleryImages.length);
+      resetAutoSlider();
+  };
 
   window.goToSlide = (index) => {
       if (galleryImages.length === 0) return;
@@ -485,7 +540,7 @@ window.onload = function() {
       const track = document.getElementById('gallery-track');
       const dotsContainer = document.getElementById('gallery-dots');
       
-      // فلترة ذكية: إذا حطيت رابط فاضي أو ترتيب أرقام غلط، الكود بيفلترها لك تلقائياً
+      // فلترة ذكية لروابط الصور فقط
       if(data) {
           let rawData = Array.isArray(data) ? data : Object.values(data);
           galleryImages = rawData.filter(url => url && typeof url === 'string' && url.startsWith('http'));
@@ -501,15 +556,11 @@ window.onload = function() {
 
       if(track && dotsContainer) {
           track.innerHTML = galleryImages.map(url => `<div class="gallery-slide"><img src="${url}" onclick="window.zoomImage('${url}')"></div>`).join('');
-          dotsContainer.innerHTML = galleryImages.map((url, i) => `<div class="gallery-dot ${i===0?'active':''}" onclick="window.goToSlide(${i})"></div>`).join('');
+          dotsContainer.innerHTML = galleryImages.map((url, i) => `<div class="gallery-dot ${i===0?'active':''}" onclick="window.goToSlide(${i}); resetAutoSlider();"></div>`).join('');
           
           currentSlideIndex = 0;
           window.goToSlide(0);
-
-          if(sliderInterval) clearInterval(sliderInterval);
-          if(galleryImages.length > 1) {
-              sliderInterval = setInterval(() => { window.goToSlide((currentSlideIndex + 1) % galleryImages.length); }, 3500);
-          }
+          resetAutoSlider();
       }
   }, (error) => { console.error("Gallery Error: ", error); });
 
