@@ -83,7 +83,7 @@
         .sub-tab-btn.active { background: rgba(226, 183, 20, 0.1); color: var(--accent-gold); border-color: rgba(226, 183, 20, 0.3); }
 
         .tab-content, .sub-content { display: none; opacity: 0; }
-        .tab-content.active, .sub-content.active { display: block; animation: fadeIn(0.3s) ease-out forwards; }
+        .tab-content.active, .sub-content.active { display: block; animation: fadeIn 0.3s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
         /* ========= الجداول والأرشيف ========= */
@@ -182,13 +182,8 @@
             <div class="card-pro" style="position: relative;">
                 <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: var(--bg-dark); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 8px; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 0.9rem; transition: 0.2s;" title="مشاركة البوستر">📸</button>
 
-                <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
-                    <h2 style="color:var(--text-primary); margin:0; font-size:1.0rem; font-weight:900; white-space: nowrap;">النهائي الكبير</h2>
-                    
-                    <div style="display: flex; align-items: center; gap: 6px; color:var(--text-secondary); font-size: 0.75rem; font-weight: 700; background: var(--bg-dark); padding: 5px 12px; border-radius: 8px; border: 1px solid var(--border-color); white-space: nowrap;">
-                        <span>نهاية المباراة:</span>
-                        <span style="direction: ltr; font-weight: 900; color: var(--accent-gold); font-size: 0.8rem;">0 - 0</span>
-                    </div>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <h2 style="color:var(--text-primary); margin:0; font-size:1.1rem; font-weight:800;">النهائي الكبير</h2>
                 </div>
                 
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 10px;">
@@ -215,7 +210,7 @@
                 </div>
 
                 <div onclick="document.getElementById('media-section').scrollIntoView({behavior: 'smooth'})" style="background: var(--bg-dark); padding:10px; border-radius:8px; border: 1px solid var(--border-color); margin-top: 20px; text-align:center; cursor: pointer; transition: 0.2s;">
-                    <span id="bottom-message" style="font-size:0.75rem; color:var(--text-secondary); font-weight:600; cursor: pointer;">الآن.. ركلات الحظ الترجيحية لتحديد البطل 🏆</span>
+                    <span id="bottom-message" style="font-size:0.75rem; color:var(--text-secondary); font-weight:600; cursor: pointer;">التغطية الحصرية لنهائي البطولة 🏆</span>
                 </div>
             </div>
         </div>
@@ -428,10 +423,10 @@ window.onload = function() {
 
       if (isLive) {
           if(vsContainer) vsContainer.style.cssText = "background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 12px; padding: 6px 20px; display: flex; justify-content: center; align-items: center; min-width: 70px; transition: 0.3s;";
-          if(vsText) { vsText.innerText = "(" + faisaly + ") - (" + wesam + ")"; vsText.style.cssText = "color: var(--accent-gold); font-weight: 900; font-size: 1.6rem; font-family: 'Cairo', sans-serif; letter-spacing: 2px;"; }
-          if(statusBadge) { statusBadge.innerHTML = '<span style="display:inline-block; width:6px; height:6px; background:var(--danger); border-radius:50%; box-shadow: 0 0 4px var(--danger); animation: redPulse 1.5s infinite; margin-left:6px;"></span> ركلات الترجيح ⚽'; statusBadge.style.cssText = "background: rgba(239, 68, 68, 0.1); color: var(--danger); padding: 5px 15px; border-radius: 8px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(239, 68, 68, 0.3); display: flex; align-items: center; cursor: pointer;"; }
+          if(vsText) { vsText.innerText = faisaly + " - " + wesam; vsText.style.cssText = "color: var(--accent-gold); font-weight: 900; font-size: 1.6rem; font-family: 'Cairo', sans-serif; letter-spacing: 2px;"; }
+          if(statusBadge) { statusBadge.innerHTML = '<span style="display:inline-block; width:6px; height:6px; background:var(--danger); border-radius:50%; box-shadow: 0 0 4px var(--danger); animation: redPulse 1.5s infinite; margin-left:6px;"></span> مباشر الآن'; statusBadge.style.cssText = "background: rgba(239, 68, 68, 0.1); color: var(--danger); padding: 5px 15px; border-radius: 8px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(239, 68, 68, 0.3); display: flex; align-items: center; cursor: pointer;"; }
           if(stadiumBadge) stadiumBadge.style.display = "none";
-          if(bottomMsg) bottomMsg.innerText = "الآن.. ركلات الحظ الترجيحية لتحديد البطل 🏆";
+          if(bottomMsg) bottomMsg.innerText = "تغطية النتيجة والأهداف المباشرة للنهائي 🔥";
           if(faisalyScorersDiv) faisalyScorersDiv.innerHTML = faisalyScorers;
           if(wesamScorersDiv) wesamScorersDiv.innerHTML = wesamScorers;
       } else {
@@ -445,6 +440,7 @@ window.onload = function() {
       }
   };
   onValue(window.scoreRef, window.onValueCallback);
+
 </script>
 </body>
 </html>
