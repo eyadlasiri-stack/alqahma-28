@@ -186,17 +186,6 @@
         </div>
 
         <div id="today" class="tab-content active">
-            
-            <div class="card-pro" style="border: 1px dashed var(--accent-gold); background: rgba(226, 183, 20, 0.05); text-align: center; padding: 25px 15px; margin-bottom: 25px;">
-                <div style="font-size: 2rem; margin-bottom: 10px;">💻</div>
-                <h3 style="color: var(--text-primary); margin: 0 0 10px 0; font-size: 1.1rem; font-weight: 800;">هل ترغب بمنصة احترافية لبطولتك؟</h3>
-                <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 20px; line-height: 1.6;">
-                    صُممت وبُرمجت هذه المنصة بواسطة <span style="color: var(--accent-gold); font-weight: 700;">إياد عسيري</span> لتغطية شاملة وإحصائيات دقيقة.
-                </p>
-                <a href="https://wa.me/966534987428" style="display: inline-block; background: var(--accent-gold); color: #000; padding: 10px 25px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(226, 183, 20, 0.3);">
-                    اطلب منصتك الآن 💬
-                </a>
-            </div>
 
             <div class="card-pro champion-card" style="position: relative;">
                 <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.5); color: var(--accent-gold); border: 1px solid var(--accent-gold); border-radius: 8px; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 0.9rem; transition: 0.2s; z-index: 10;" title="مشاركة البوستر">📸</button>
@@ -237,6 +226,17 @@
                 <div style="background: var(--bg-dark); padding:15px; border-radius:10px; border: 1px solid var(--border-color); margin-top: 20px; text-align:center;">
                     <span style="font-size:0.85rem; color:var(--text-primary); font-weight:800; line-height: 1.8; display: block;">انتهت دراما النهائي المجنون! 🎉<br>شكراً لكل من حضر وساهم في إنجاح هذا العرس الرياضي الكبير ❤️</span>
                 </div>
+            </div>
+
+            <div class="card-pro" style="border: none; box-shadow: none; background: rgba(226, 183, 20, 0.05); text-align: center; padding: 25px 15px; margin-top: 15px;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">💻</div>
+                <h3 style="color: var(--text-primary); margin: 0 0 10px 0; font-size: 1.1rem; font-weight: 800;">هل ترغب بمنصة احترافية لبطولتك؟</h3>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 20px; line-height: 1.6;">
+                    صُممت وبُرمجت هذه المنصة بواسطة <span style="color: var(--accent-gold); font-weight: 700;">إياد عسيري</span> لتغطية شاملة وإحصائيات دقيقة.
+                </p>
+                <a href="https://wa.me/966534987428" style="display: inline-block; background: var(--accent-gold); color: #000; padding: 10px 25px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(226, 183, 20, 0.3);">
+                    اطلب منصتك الآن 💬
+                </a>
             </div>
 
         </div>
@@ -344,7 +344,7 @@ const groupData = [
     {n:"السادسة", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\n(باقي تفاصيل وقوانين البطولة كما هي مدرجة مسبقاً)`;
+const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة\n\n* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة\n* تقام مباريات البطولة بنظام المجموعات من دور واحد\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:\n- مجموع النقاط\n- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)\n- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر\n- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب\n- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة\n\n* آلية مباريات الملحق\nبعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:\n * المباراة  رقم (19) \n(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) \n * المباراة رقم ( 20) \n(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) \n\n* مباريات دور الثمانية\nرقم المباراة ( 21) \nاول مج (1) مع اول مج(3)\n\nالمبارة رقم (22) \nاول مج (2)   مع أول مج ( 4) \n المباراة رقم ( 23)\nاول مج ( 5) مع اول مج ( 7 ) \nالمباراة رقم (24) \nاول مج (6) مع اول مج ( 8) \n\n(( ملاحظة مهمة)) \nفي حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: \nالمباراة رقم ( 23)\n اول مج ( 5 ) مع أول مج ( 8 ) \nالمباراة رقم (24) \nاول مج( 6) مع أول مج(7) \nوذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية \n\nمباريات نصف النهاىي\n المباراة رقم (25) \nفائز (21) مع فائز( 23) \nالمباراة رقم (26)\n فائز (22) مع فائز 24\n\nالنهائي \nالمباراة رقم (27)\nفائز (25) مع فائز (26)\n\nبعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي \nتم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة \nوبالتالي اصبح ترتيب الاوائل على النحو التالي :\nالمجموعة الاولى فريق السوق \nالمجموعة الثانية فريق ساحل مغزل\nالمجموعة الثالثة فريق الصقر \nالمجموعة الرابعة فريق الساحل الرياضي \nالمجموعه الخامسة فريق صقليه\nالمجموعة السادسة فريق الوسام \nالمجموعة السابعة فريق عمق \nالمجموعة الثامنه فريق الفيصلي\n\nوتلعب مباريات دور الثمانية(ربع النهائي )\nحسب نظام البطولة \nاول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)\nاول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)\n—————————————————- \nوحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا\nاول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)\nاول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)\n——————————————————\nمباريات دور الاربعة ( نصف النهائي )\nرقم المباراة (25)\nفائز المباراة رقم  (21) مع فائز المباراة رقم  (23)\nرقم المباراة (26)\nفائز المباراة رقم (22) مع فائز المباراة رقم (24)\n——————————————————-\nالمباراة النهائية \nرقم المباراة (27)\nفائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
 
 function updateDisplay() {
     document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-list-card"><div class="teams-row-mini"><span class="team-mini">${m.t1}</span><div class="score-mini"><span>${m.r}</span>${m.p ? `<span style="font-size:0.65rem; color:var(--text-secondary); display:block; margin-top:2px;">${m.p}</span>` : ""}</div><span class="team-mini">${m.t2}</span></div></div>`).join('')).join('');
