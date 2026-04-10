@@ -18,7 +18,7 @@
 
     <title>بطولة القحمة الرمضانية 28 - بطل النسخة: الفيصلي 🏆</title>
     
-    <meta name="description" content="الفيصلي يتوج بطلاً لبطولة القحمة الرمضانية 28 بعد فوزه على الوسام بركلات الترجيح.">
+    <meta name="description" content="الفيصلي يتوج بطلاً لبطولة القحمة الرمضانية 28 بعد فوزه المثير بركلات الترجيح. تغطية وإحصائيات البطولة.">
     <meta name="author" content="إياد عسيري">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,14 +50,15 @@
         html { background-color: var(--bg-dark); touch-action: manipulation; scroll-behavior: smooth; overflow-x: hidden; }
         body { margin: 0; padding: 0; min-height: 100vh; background-color: var(--bg-dark); color: var(--text-primary); font-family: 'Cairo', sans-serif; line-height: 1.6; font-size: 0.9rem; -webkit-tap-highlight-color: transparent; }
 
+        /* شاشة التحميل */
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0c0f; z-index: 99999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s, visibility 0.5s; }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         .preloader-content { position: relative; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; }
-        .spinner-ring { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; border: 3px solid rgba(226, 183, 20, 0.1); border-top-color: var(--accent-gold); border-right-color: var(--accent-gold); animation: spinRing 1.2s linear infinite; box-shadow: 0 0 20px rgba(226, 183, 20, 0.2); box-sizing: border-box; }
+        .spinner-ring { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; border: 3px solid rgba(226, 183, 20, 0.1); border-top-color: var(--accent-gold); border-right-color: var(--accent-gold); animation: spinRing 1.2s linear infinite; box-sizing: border-box; }
         .preloader-logo { width: 75px; height: auto; position: relative; z-index: 2; animation: pulsePreloaderLogo 2s infinite; filter: drop-shadow(0 0 10px rgba(226, 183, 20, 0.5)); }
         
         @keyframes spinRing { 100% { transform: rotate(360deg); } }
-        @keyframes pulsePreloaderLogo { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 20px rgba(226, 183, 20, 0.8)); } }
+        @keyframes pulsePreloaderLogo { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; } }
 
         .container { max-width: 800px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; z-index: 5; position: relative; }
         header { text-align: center; padding: 18px 0; background: var(--bg-dark); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); margin-bottom: 20px; }
@@ -70,6 +71,7 @@
         
         .card-pro { background: var(--card-dark); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px 15px; margin-bottom: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
         
+        /* كرت البطل */
         .champion-card {
             border: 2px solid var(--accent-gold);
             background: linear-gradient(145deg, #181b21, #111317);
@@ -184,12 +186,28 @@
         </div>
 
         <div id="today" class="tab-content active">
+            
+            <div class="card-pro" style="border: 1px dashed var(--accent-gold); background: rgba(226, 183, 20, 0.05); text-align: center; padding: 25px 15px; margin-bottom: 25px;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">💻</div>
+                <h3 style="color: var(--text-primary); margin: 0 0 10px 0; font-size: 1.1rem; font-weight: 800;">هل ترغب بمنصة احترافية لبطولتك؟</h3>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 20px; line-height: 1.6;">
+                    صُممت وبُرمجت هذه المنصة بواسطة <span style="color: var(--accent-gold); font-weight: 700;">إياد عسيري</span> لتغطية شاملة وإحصائيات دقيقة.
+                </p>
+                <a href="https://wa.me/966534987428" style="display: inline-block; background: var(--accent-gold); color: #000; padding: 10px 25px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(226, 183, 20, 0.3);">
+                    اطلب منصتك الآن 💬
+                </a>
+            </div>
+
             <div class="card-pro champion-card" style="position: relative;">
                 <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.5); color: var(--accent-gold); border: 1px solid var(--accent-gold); border-radius: 8px; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 0.9rem; transition: 0.2s; z-index: 10;" title="مشاركة البوستر">📸</button>
 
-                <div style="text-align: center; margin-bottom: 25px;">
-                    <h2 style="color:var(--accent-gold); margin:0; font-size:1.3rem; font-weight:900; text-shadow: 0 0 15px rgba(226,183,20,0.5);">🏆 ألف مبروك للفيصلي 🏆</h2>
-                    <span style="color:var(--text-primary); font-size: 0.85rem; font-weight: 700; display: block; margin-top: 5px;">بطل بطولة القحمة الرمضانية 28</span>
+                <div style="text-align: center; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
+                    <h2 style="color:var(--accent-gold); margin:0; font-size:1.1rem; font-weight:900; text-shadow: 0 0 15px rgba(226,183,20,0.5); white-space: nowrap;">النهائي الكبير</h2>
+                    
+                    <div style="display: flex; align-items: center; gap: 6px; color:var(--text-secondary); font-size: 0.75rem; font-weight: 700; background: var(--bg-dark); padding: 5px 12px; border-radius: 8px; border: 1px solid var(--border-color); white-space: nowrap;">
+                        <span>نهاية المباراة:</span>
+                        <span style="direction: ltr; font-weight: 900; color: var(--accent-gold); font-size: 0.8rem;">( 0 - 0 )</span>
+                    </div>
                 </div>
                 
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 10px;">
@@ -220,6 +238,7 @@
                     <span style="font-size:0.85rem; color:var(--text-primary); font-weight:800; line-height: 1.8; display: block;">انتهت دراما النهائي المجنون! 🎉<br>شكراً لكل من حضر وساهم في إنجاح هذا العرس الرياضي الكبير ❤️</span>
                 </div>
             </div>
+
         </div>
 
         <div id="scorers-main" class="tab-content">
@@ -356,7 +375,7 @@ async function fetchWeather() {
     } catch (e) { document.getElementById('weather-box').innerHTML = `<span style="font-size:1rem;">⛅</span> <span style="color:var(--text-secondary); font-weight:600;">القحمة:</span> <span style="color:var(--text-primary); font-weight:800; font-size:0.8rem;">26°C</span>`; } 
 }
 
-// تشغيل الألعاب النارية من أعلى الشاشة وتغطية كاملة
+// تشغيل الألعاب النارية من أعلى الشاشة
 function fireConfetti() {
     var duration = 7 * 1000;
     var end = Date.now() + duration;
@@ -377,13 +396,13 @@ function hidePreloaderSafely() {
 }
 
 window.onload = function() { 
-    fetchWeather(); // استدعاء الطقس
+    fetchWeather(); 
     updateDisplay(); 
     openTab(null, 'today'); 
     openSubTab(null, 'players-list'); 
     setTimeout(() => {
         hidePreloaderSafely();
-        setTimeout(fireConfetti, 500); // تنطلق الألعاب النارية بعد فتح الشاشة
+        setTimeout(fireConfetti, 500); 
     }, 1500); 
 };
 </script>
@@ -407,7 +426,7 @@ window.onload = function() {
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
   
-  // أبقينا فقط على كود الزيارات المباشرة
+  // كود الزيارات المباشرة
   const visitsRef = ref(db, 'visits_counter/total');
   runTransaction(visitsRef, (currentVisits) => { return (currentVisits || 19477) + 1; });
   onValue(visitsRef, (snapshot) => { if (snapshot.val()) { document.getElementById('live-visit-counter').innerText = snapshot.val().toLocaleString('en-US'); } });
