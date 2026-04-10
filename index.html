@@ -59,7 +59,7 @@
         @keyframes spinRing { 100% { transform: rotate(360deg); } }
         @keyframes pulsePreloaderLogo { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 20px rgba(226, 183, 20, 0.8)); } }
 
-        .container { max-width: 800px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; }
+        .container { max-width: 800px; margin: auto; padding: 12px; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; z-index: 5; position: relative; }
         header { text-align: center; padding: 18px 0; background: var(--bg-dark); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); margin-bottom: 20px; }
         .logo-img { width: 65px; display: block; margin: 0 auto 10px; filter: drop-shadow(0 0 8px rgba(226, 183, 20, 0.2)); }
         header h1 { font-weight: 900; margin: 0; font-size: clamp(1.2rem, 5.5vw, 1.7rem); color: var(--text-primary); }
@@ -70,7 +70,6 @@
         
         .card-pro { background: var(--card-dark); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px 15px; margin-bottom: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
         
-        /* تأثير كرت البطل */
         .champion-card {
             border: 2px solid var(--accent-gold);
             background: linear-gradient(145deg, #181b21, #111317);
@@ -148,18 +147,12 @@
                 <p style="color: #e2b714; font-size: 1.1rem; margin: 5px 0 0 0; font-weight: 700;">لبطولة القحمة الرمضانية 28</p>
             </div>
             
-            <div style="display: flex; align-items: center; justify-content: center; width: 100%; border-radius: 20px; margin-top: 15px; flex-direction: column;">
-                <img src="https://i.ibb.co/RTdYYmbq/Photoroom-20260329-004128.png" style="width: 110px; height: 110px; object-fit: contain; margin-bottom: 15px;" crossorigin="anonymous">
-                <h2 style="color: #e2b714; margin: 0; font-size: 1.8rem; font-weight: 900;">الفيصلي</h2>
-                
-                <div style="background: rgba(226,183,20,0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; color: #e2b714; border: 1px solid var(--accent-gold); flex-direction: column; padding: 20px 25px; min-width: 90px; min-height: 85px; margin: 15px 0;">
-                    <span>7</span>
-                    <span style="font-size:0.6rem; color:#94a3b8; margin: 5px 0;">-</span>
-                    <span>6</span>
-                </div>
+            <div style="display: flex; align-items: center; justify-content: center; width: 100%; margin-top: 30px; flex-direction: column;">
+                <img src="https://i.ibb.co/RTdYYmbq/Photoroom-20260329-004128.png" style="width: 160px; height: 160px; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 0 20px rgba(226, 183, 20, 0.6));" crossorigin="anonymous">
+                <h2 style="color: #e2b714; margin: 0; font-size: 2.2rem; font-weight: 900;">الفيصلي</h2>
             </div>
 
-            <div style="text-align: center; width: 100%; margin-top: 15px;">
+            <div style="text-align: center; width: 100%; margin-top: 25px;">
                 <p style="color: #f8fafc; font-size: 1.25rem; line-height: 1.6; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">انتهت دراما النهائي المجنون! 🎉<br>شكراً لكل من حضر وساهم في إنجاح<br>هذا العرس الرياضي الكبير ❤️</p>
             </div>
 
@@ -194,30 +187,32 @@
             <div class="card-pro champion-card" style="position: relative;">
                 <button id="share-btn" onclick="shareMatchAsImage()" style="position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.5); color: var(--accent-gold); border: 1px solid var(--accent-gold); border-radius: 8px; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 0.9rem; transition: 0.2s; z-index: 10;" title="مشاركة البوستر">📸</button>
 
-                <div style="text-align: center; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
-                    <h2 style="color:var(--accent-gold); margin:0; font-size:1.1rem; font-weight:900; text-shadow: 0 0 15px rgba(226,183,20,0.5); white-space: nowrap;">النهائي الكبير</h2>
-                    
-                    <div style="display: flex; align-items: center; gap: 6px; color:var(--text-secondary); font-size: 0.75rem; font-weight: 700; background: var(--bg-dark); padding: 5px 12px; border-radius: 8px; border: 1px solid var(--border-color); white-space: nowrap;">
-                        <span>نهاية المباراة:</span>
-                        <span style="direction: ltr; font-weight: 900; color: var(--accent-gold); font-size: 0.8rem;">( 0 - 0 )</span>
-                    </div>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <h2 style="color:var(--accent-gold); margin:0; font-size:1.3rem; font-weight:900; text-shadow: 0 0 15px rgba(226,183,20,0.5);">🏆 ألف مبروك للفيصلي 🏆</h2>
+                    <span style="color:var(--text-primary); font-size: 0.85rem; font-weight: 700; display: block; margin-top: 5px;">بطل بطولة القحمة الرمضانية 28</span>
                 </div>
                 
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 5px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding: 0 10px;">
                     
                     <div style="flex: 1; display:flex; flex-direction:column; align-items:center; position: relative;">
                         <div style="position: absolute; top: -15px; background: var(--accent-gold); color: #000; font-size: 0.65rem; font-weight: 900; padding: 3px 10px; border-radius: 12px; z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.5);">البطل 🥇</div>
-                        <img src="https://i.ibb.co/RTdYYmbq/Photoroom-20260329-004128.png" style="width: 75px; height: 75px; object-fit:contain; margin-bottom: 10px; filter: drop-shadow(0 0 15px rgba(226, 183, 20, 0.8)); transform: scale(1.1);" crossorigin="anonymous">
-                        <span style="font-size: 1rem; font-weight: 900; color: var(--accent-gold);">الفيصلي</span>
+                        <img src="https://i.ibb.co/RTdYYmbq/Photoroom-20260329-004128.png" style="width: 55px; height: 55px; object-fit:contain; margin-bottom: 10px; filter: drop-shadow(0 0 15px rgba(226, 183, 20, 0.8)); transform: scale(1.1);" crossorigin="anonymous">
+                        <span style="font-size: 0.9rem; font-weight: 900; color: var(--accent-gold);">الفيصلي</span>
                     </div>
 
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0.8; gap: 5px;">
-                        
-                        <div style="background: rgba(226,183,20,0.1); border: 1px solid var(--accent-gold); border-radius: 16px; padding: 20px 25px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-width: 90px; min-height: 85px; margin: 10px 0; box-shadow: inset 0 0 10px rgba(226,183,20,0.1);">
-                            <span style="font-size: 1.8rem; color: var(--accent-gold); font-weight: 900; font-family: 'Cairo', sans-serif; letter-spacing: 3px; line-height: 1;">7 - 6</span>
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0.8; gap: 8px;">
+                        <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: 700;">( 0 - 0 )</span>
+                        <div style="background: var(--bg-dark); border: 1px solid var(--accent-gold); border-radius: 12px; padding: 6px 20px; display: flex; justify-content: center; align-items: center; min-width: 70px;">
+                            <span style="font-size: 1.2rem; color: var(--accent-gold); font-weight: 900; font-family: 'Cairo', sans-serif; letter-spacing: 2px;">7 - 6</span>
                         </div>
-                        
-                        <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: 800;">ركلات الترجيح</span>
+                        <span style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 700;">ركلات الترجيح</span>
+                    </div>
+
+                    <div style="flex: 1; display:flex; flex-direction:column; align-items:center; opacity: 0.85;">
+                        <div style="position: absolute; top: -15px; background: #475569; color: #fff; font-size: 0.65rem; font-weight: 900; padding: 3px 10px; border-radius: 12px; z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.5); visibility: hidden;">الوصيف</div>
+                        <img src="https://i.ibb.co/hFBhwmx9/Photoroom-20260329-003438.png" style="width: 55px; height: 55px; object-fit:contain; margin-bottom: 10px;" crossorigin="anonymous">
+                        <span style="font-size: 0.9rem; font-weight: 800; color: var(--text-primary);">الوسام</span>
+                        <span style="font-size: 0.65rem; color: #94a3b8; margin-top: 2px;">الوصيف 🥈</span>
                     </div>
                 </div>
 
@@ -330,7 +325,7 @@ const groupData = [
     {n:"السادسة", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
 ];
 
-const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\nدور المجموعات وعدد مبارياته (18) مباراة\n\n* يشارك بالبطولة عدد( 18) فريقا ويتم تقسيم الفرق الي (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة\n* تقام مباريات البطولة بنظام المجموعات من دور واحد\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعه الي دور الثمانية ويصبح عدد المتأهلين (6) فرق\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتاهل فريقين منهم لإكمال عدد فرق دور الثمانية\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب التالي:\n- مجموع النقاط\n- إذا استمر التعادل في النقاط يحتسب فرق الأهداف ( له - عليه)\n- إذا استمر التعادل يرجح الفريق الذي سجل أهداف أكثر\n- إذا استمر التعادل تلعب ركلات الترجيح من علامة نقطة الجزاء إذا كان الفريقان المتعادلان لا يزالان داخل الملعب\n- في حال تعادل فرق المجموعة الواحدة في النقاط والأهداف  يتم اللجوء إلى القرعه لحسم الموقف بين الفرق المتعادلة  بحضور مندوبي الفرق الثلاثة\n\n* آلية مباريات الملحق\nبعد تحديد أفضل أربعة ثواني يتم ترتيب المتأهلين من (1) الي (4) حسب تسلسل مجموعاتهم الأصلية وتلعب المباريات كالتالي:\n * المباراة  رقم (19) \n(1) مع( 2) والفائز يصبح اول المجموعه (السابعه) \n * المباراة رقم ( 20) \n(3) مع ( 4) والفائز يصبح اول المجموعة (الثامنه) \n\n* مباريات دور الثمانية\nرقم المباراة ( 21) \nاول مج (1) مع اول مج(3)\n\nالمبارة رقم (22) \nاول مج (2)   مع أول مج ( 4) \n المباراة رقم ( 23)\nاول مج ( 5) مع اول مج ( 7 ) \nالمباراة رقم (24) \nاول مج (6) مع اول مج ( 8) \n\n(( ملاحظة مهمة)) \nفي حال كان المتاهلان من مباراتي الملحق من المجموعتين (5/6) تلعب المواجهتان (23/24) من دور الثمانية على النحو التالي: \nالمباراة رقم ( 23)\n اول مج ( 5 ) مع أول مج ( 8 ) \nالمباراة رقم (24) \nاول مج( 6) مع أول مج(7) \nوذلك لتلافي مواجهة فريقان كانا في نفس المجموعة في الأدوار التمهيدية \n\nمباريات نصف النهاىي\n المباراة رقم (25) \nفائز (21) مع فائز( 23) \nالمباراة رقم (26)\n فائز (22) مع فائز 24\n\nالنهائي \nالمباراة رقم (27)\nفائز (25) مع فائز (26)\n\nبعد نهاية مباريات الملحق وتأهل فريقي عمق والفيصلي \nتم اضافة عمق إلى المجموعة السابعه والفيصلي إلى المجموعة الثامنة \nوبالتالي اصبح ترتيب الاوائل على النحو التالي :\nالمجموعة الاولى فريق السوق \nالمجموعة الثانية فريق ساحل مغزل\nالمجموعة الثالثة فريق الصقر \nالمجموعة الرابعة فريق الساحل الرياضي \nالمجموعه الخامسة فريق صقليه\nالمجموعة السادسة فريق الوسام \nالمجموعة السابعة فريق عمق \nالمجموعة الثامنه فريق الفيصلي\n\nوتلعب مباريات دور الثمانية(ربع النهائي )\nحسب نظام البطولة \nاول المجموعة الأولي | اول المجموعة الثالثه( مباراة رقم 21)\nاول المجموعة الثانية / اول المجموعة الرابعه( مباراة رقم 22)\n—————————————————- \nوحسب نظام البطولة المعلن عنه سابقا in حال تاهل فريق من الملحق من المجموعة الخامسة والسادسة تلعب مباريات دور الثمانية كما يلي وذلك لتفادي تكرار مواجهة فريقين كان معا in نفس المجموعه in الدور التمهيدي وهذا ما حدث فعلا\nاول المجموعة الخامسة / اول المجموعة الثامنه( مباراة رقم 23)\nاول المجموعة السادسة / اول المجموعة السابعة (مباراة رقم 24)\n——————————————————\nمباريات دور الاربعة ( نصف النهائي )\nرقم المباراة (25)\nفائز المباراة رقم  (21) مع فائز المباراة رقم  (23)\nرقم المباراة (26)\nفائز المباراة رقم (22) مع فائز المباراة رقم (24)\n——————————————————-\nالمباراة النهائية \nرقم المباراة (27)\nفائز المباراة رقم (25) مع فائز المباراة رقم (26)`;
+const aboutFullText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م الصادر يوم الثلاثاء 1447/8/22هجري الموافق 10 فبراير 2036 ميلادي\n\n(باقي تفاصيل وقوانين البطولة كما هي مدرجة مسبقاً)`;
 
 function updateDisplay() {
     document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-list-card"><div class="teams-row-mini"><span class="team-mini">${m.t1}</span><div class="score-mini"><span>${m.r}</span>${m.p ? `<span style="font-size:0.65rem; color:var(--text-secondary); display:block; margin-top:2px;">${m.p}</span>` : ""}</div><span class="team-mini">${m.t2}</span></div></div>`).join('')).join('');
